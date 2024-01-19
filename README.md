@@ -1,4 +1,4 @@
-# DES_Adative-Application
+# DES_Adaptive-Application
 
 ## **Project Overview**
 
