@@ -1,0 +1,1390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MF0 version="1.1" packageUris="http://schema.mathworks.com/mf0/ci/19700101 http://schema.mathworks.com/mf0/sl_data_duplicateandconsistencycheck/R2022b http://schema.mathworks.com/mf0/sl_modelref_info/R2023b http://schema.mathworks.com/mf0/slexec_mm_sto/R2023a_202208151321 http://schema.mathworks.com/mf0/sltp_mm/R2023a_202209151115">
+  <ModelRefInfoRepo.ModelRefInfoRoot type="ModelRefInfoRepo.ModelRefInfoRoot" uuid="16d2c60a-3259-4d78-9ac4-a3999a006e3c">
+    <childModelRefInfo type="ModelRefInfoRepo.ChildModelRefInfo" uuid="6ce72a83-8fb6-4a32-b9bd-5fb346a34787">
+      <modelName>LaneGuidance</modelName>
+      <modelPath>LaneGuidance</modelPath>
+    </childModelRefInfo>
+    <compiledTFinal>10.0</compiledTFinal>
+    <dataSourceInfo type="ModelRefInfoRepo.DataSourceInfo" uuid="16a7ce6e-b144-484c-908a-759114f00b65">
+      <dataSources type="ModelRefInfoRepo.SourceInfo" uuid="5583b147-77ad-454b-beb4-61aa039454ba">
+        <includeAllSections>true</includeAllSections>
+        <sourceName>base workspace</sourceName>
+        <type>BaseWorkspace</type>
+      </dataSources>
+      <modelName>LaneGuidance</modelName>
+    </dataSourceInfo>
+    <dataTransferInfos>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAAAgAAAAAAAAAFAAAACAAAAAAAAAABAAAAAQAAAAAAAAAFAAQAAQAAAAEAAAAAAAAA</dataTransferInfos>
+    <fastestNoncontSigFeedingDerivPorts>-1.0</fastestNoncontSigFeedingDerivPorts>
+    <fundamentalSampleTimePeriod>.1</fundamentalSampleTimePeriod>
+    <hasBlockWithPeriodicDiscreteSampleTime>true</hasBlockWithPeriodicDiscreteSampleTime>
+    <hasBwsAccessed>true</hasBwsAccessed>
+    <hasBwsAccessedByAnyModel>true</hasBwsAccessedByAnyModel>
+    <hasNonVirtualConstantTs>true</hasNonVirtualConstantTs>
+    <inports type="ModelRefInfoRepo.InportInformation" uuid="c8369deb-3d55-4c00-9d78-bbaf2d3f6b13">
+      <isNotDerivPort>true</isNotDerivPort>
+      <designMax>inf</designMax>
+      <designMin>-inf</designMin>
+      <indexType>2</indexType>
+      <isMessage>true</isMessage>
+      <rateInfos type="ModelRefInfoRepo.RateInfo">
+        <compiled>true</compiled>
+        <nonFcnCallPartitionName>D1</nonFcnCallPartitionName>
+        <period>.1</period>
+        <priority>40</priority>
+        <rateIdx>0</rateIdx>
+      </rateInfos>
+      <resolvedSignalObject></resolvedSignalObject>
+      <executionInterface type="ModelRefInfoRepo.InputExecutionInterface" uuid="c9248db8-e399-4797-9950-4fc7f0fdafd3"/>
+      <sigNameToEMVCEMap type="ModelRefInfoRepo.SigNameEMVCEInfo" uuid="ed2f897e-727f-4017-9d4d-0c75b09d2719"/>
+    </inports>
+    <inports type="ModelRefInfoRepo.InportInformation" uuid="03b31fb8-22eb-41d9-82e4-275ec44441cb">
+      <isNotDerivPort>true</isNotDerivPort>
+      <designMax>inf</designMax>
+      <designMin>-inf</designMin>
+      <indexType>2</indexType>
+      <isMessage>true</isMessage>
+      <originalPortNumber>1</originalPortNumber>
+      <rateInfos type="ModelRefInfoRepo.RateInfo">
+        <compiled>true</compiled>
+        <nonFcnCallPartitionName>D1</nonFcnCallPartitionName>
+        <period>.1</period>
+        <priority>40</priority>
+        <rateIdx>0</rateIdx>
+      </rateInfos>
+      <resolvedSignalObject></resolvedSignalObject>
+      <executionInterface type="ModelRefInfoRepo.InputExecutionInterface" uuid="07766845-16f3-4590-8c28-0e12b9c47f05"/>
+      <sigNameToEMVCEMap type="ModelRefInfoRepo.SigNameEMVCEInfo" uuid="05996d13-99b9-4234-96c9-810db1ceaf1f"/>
+    </inports>
+    <inports type="ModelRefInfoRepo.InportInformation" uuid="92d0ed80-8f5d-4279-a19b-f93e5667908a">
+      <isNotDerivPort>true</isNotDerivPort>
+      <designMax>inf</designMax>
+      <designMin>-inf</designMin>
+      <indexType>2</indexType>
+      <isMessage>true</isMessage>
+      <originalPortNumber>2</originalPortNumber>
+      <rateInfos type="ModelRefInfoRepo.RateInfo">
+        <compiled>true</compiled>
+        <nonFcnCallPartitionName>D1</nonFcnCallPartitionName>
+        <period>.1</period>
+        <priority>40</priority>
+        <rateIdx>0</rateIdx>
+      </rateInfos>
+      <resolvedSignalObject></resolvedSignalObject>
+      <executionInterface type="ModelRefInfoRepo.InputExecutionInterface" uuid="20d7bdec-969c-4e3f-b611-8d3147597172"/>
+      <sigNameToEMVCEMap type="ModelRefInfoRepo.SigNameEMVCEInfo" uuid="234165ea-4e32-4256-be86-4b234b2d54a6"/>
+    </inports>
+    <inports type="ModelRefInfoRepo.InportInformation" uuid="f0833b0d-ca1c-4ed6-bda8-7070419e2300">
+      <isNotDerivPort>true</isNotDerivPort>
+      <designMax>inf</designMax>
+      <designMin>-inf</designMin>
+      <indexType>2</indexType>
+      <isMessage>true</isMessage>
+      <originalPortNumber>3</originalPortNumber>
+      <rateInfos type="ModelRefInfoRepo.RateInfo">
+        <compiled>true</compiled>
+        <nonFcnCallPartitionName>D1</nonFcnCallPartitionName>
+        <period>.1</period>
+        <priority>40</priority>
+        <rateIdx>0</rateIdx>
+      </rateInfos>
+      <resolvedSignalObject></resolvedSignalObject>
+      <executionInterface type="ModelRefInfoRepo.InputExecutionInterface" uuid="9a461550-5816-45b6-8e4f-077e1af8df65"/>
+      <sigNameToEMVCEMap type="ModelRefInfoRepo.SigNameEMVCEInfo" uuid="83cf3226-aa09-4143-aa67-2c80b86d2166"/>
+    </inports>
+    <inports type="ModelRefInfoRepo.InportInformation" uuid="ed67a3a7-2eaa-42f7-b1d4-affa3c243d37">
+      <isNotDerivPort>true</isNotDerivPort>
+      <designMax>inf</designMax>
+      <designMin>-inf</designMin>
+      <indexType>2</indexType>
+      <isMessage>true</isMessage>
+      <originalPortNumber>4</originalPortNumber>
+      <rateInfos type="ModelRefInfoRepo.RateInfo">
+        <compiled>true</compiled>
+        <nonFcnCallPartitionName>D1</nonFcnCallPartitionName>
+        <period>.1</period>
+        <priority>40</priority>
+        <rateIdx>0</rateIdx>
+      </rateInfos>
+      <resolvedSignalObject></resolvedSignalObject>
+      <executionInterface type="ModelRefInfoRepo.InputExecutionInterface" uuid="879f801d-9f15-479a-81dc-5037daa36aa0"/>
+      <sigNameToEMVCEMap type="ModelRefInfoRepo.SigNameEMVCEInfo" uuid="75400582-226e-442c-b22a-fc61dc0503f4"/>
+    </inports>
+    <inports type="ModelRefInfoRepo.InportInformation" uuid="0ee80994-4c36-4079-8acb-69cb251746f5">
+      <isNotDerivPort>true</isNotDerivPort>
+      <designMax>inf</designMax>
+      <designMin>-inf</designMin>
+      <indexType>2</indexType>
+      <isMessage>true</isMessage>
+      <originalPortNumber>5</originalPortNumber>
+      <rateInfos type="ModelRefInfoRepo.RateInfo">
+        <compiled>true</compiled>
+        <nonFcnCallPartitionName>D1</nonFcnCallPartitionName>
+        <period>.1</period>
+        <priority>40</priority>
+        <rateIdx>0</rateIdx>
+      </rateInfos>
+      <resolvedSignalObject></resolvedSignalObject>
+      <executionInterface type="ModelRefInfoRepo.InputExecutionInterface" uuid="f692aa68-fa34-4b76-9c5e-8f47486a9475"/>
+      <sigNameToEMVCEMap type="ModelRefInfoRepo.SigNameEMVCEInfo" uuid="063ab2f8-b39f-4c31-aea4-55904e83aaec"/>
+    </inports>
+    <isBdInSimModeForSimCodegenVariants>false</isBdInSimModeForSimCodegenVariants>
+    <isInlineParamsOn>true</isInlineParamsOn>
+    <isOrigInportVirtualBus>false</isOrigInportVirtualBus>
+    <isOrigInportVirtualBus>false</isOrigInportVirtualBus>
+    <isOrigInportVirtualBus>false</isOrigInportVirtualBus>
+    <isOrigInportVirtualBus>false</isOrigInportVirtualBus>
+    <isOrigInportVirtualBus>false</isOrigInportVirtualBus>
+    <isOrigInportVirtualBus>false</isOrigInportVirtualBus>
+    <isOrigOutportVirtualBus>false</isOrigOutportVirtualBus>
+    <isOrigOutportVirtualBus>false</isOrigOutportVirtualBus>
+    <loggingSaveFormat>2</loggingSaveFormat>
+    <maxFreqHz>-1.0</maxFreqHz>
+    <numDataInputPorts>6</numDataInputPorts>
+    <numLoggableJacobianDStates>0</numLoggableJacobianDStates>
+    <origInportBusType></origInportBusType>
+    <origInportBusType></origInportBusType>
+    <origInportBusType></origInportBusType>
+    <origInportBusType></origInportBusType>
+    <origInportBusType></origInportBusType>
+    <origInportBusType></origInportBusType>
+    <origOutportBusOutputAsStruct>false</origOutportBusOutputAsStruct>
+    <origOutportBusOutputAsStruct>false</origOutportBusOutputAsStruct>
+    <origOutportBusType></origOutportBusType>
+    <origOutportBusType></origOutportBusType>
+    <outports type="ModelRefInfoRepo.OutportInformation" uuid="b4757dab-ddbe-46d2-a103-f191ee546490">
+      <designMax>inf</designMax>
+      <designMin>-inf</designMin>
+      <rateInfos type="ModelRefInfoRepo.RateInfo">
+        <compiled>true</compiled>
+        <nonFcnCallPartitionName>D1</nonFcnCallPartitionName>
+        <period>.1</period>
+        <priority>40</priority>
+        <rateIdx>0</rateIdx>
+      </rateInfos>
+      <resolvedSignalObject></resolvedSignalObject>
+      <executionInterface type="ModelRefInfoRepo.OutputExecutionInterface" uuid="a11149ad-bd26-4bd2-9d38-2d36901bd223"/>
+      <sigNameToEMVCEMap type="ModelRefInfoRepo.SigNameEMVCEInfo" uuid="3bb09126-168c-4dd5-b6bb-7e44a73e1533"/>
+    </outports>
+    <outports type="ModelRefInfoRepo.OutportInformation" uuid="71626766-1437-45e6-8dcd-e0d1bcd71735">
+      <designMax>inf</designMax>
+      <designMin>-inf</designMin>
+      <originalPortNumber>1</originalPortNumber>
+      <rateInfos type="ModelRefInfoRepo.RateInfo">
+        <compiled>true</compiled>
+        <nonFcnCallPartitionName>D1</nonFcnCallPartitionName>
+        <period>.1</period>
+        <priority>40</priority>
+        <rateIdx>0</rateIdx>
+      </rateInfos>
+      <resolvedSignalObject></resolvedSignalObject>
+      <executionInterface type="ModelRefInfoRepo.OutputExecutionInterface" uuid="ba867ed4-56da-4334-b685-eda70f5d1b7c"/>
+      <sigNameToEMVCEMap type="ModelRefInfoRepo.SigNameEMVCEInfo" uuid="f7866eff-a931-42f3-af4f-894d97517441"/>
+    </outports>
+    <removeResetFunc>true</removeResetFunc>
+    <runtimeNonFcnCallRateInfos type="ModelRefInfoRepo.RateInfo">
+      <compiled>true</compiled>
+      <nonFcnCallPartitionName>D1</nonFcnCallPartitionName>
+      <period>.1</period>
+      <priority>40</priority>
+      <rateIdx>0</rateIdx>
+    </runtimeNonFcnCallRateInfos>
+    <sampleTimeInheritanceRule>2</sampleTimeInheritanceRule>
+    <solverStatusFlags>327</solverStatusFlags>
+    <timingAndTaskingRegistry>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;slexec_sto version=&quot;1.1&quot; packageUris=&quot;http://schema.mathworks.com/mf0/slexec_mm_sto/R2023a_202208151321&quot;&gt;
+  &lt;sto.Registry type=&quot;sto.Registry&quot; uuid=&quot;e9ade25b-41dd-42d2-acf0-181ef4246b8a&quot;&gt;
+    &lt;executionSpec&gt;Undetermined&lt;/executionSpec&gt;
+    &lt;identifier&gt;LaneGuidance&lt;/identifier&gt;
+    &lt;clockRegistry type=&quot;sto.ClockRegistry&quot; uuid=&quot;4bab2a52-1bf8-42ee-b9fb-7c601bb72f42&quot;&gt;
+      &lt;clocks type=&quot;sto.Timer&quot; uuid=&quot;ad322484-5e6b-49c5-b7e0-5f1c9535bb06&quot;&gt;
+        &lt;clockTickConstraint&gt;PeriodicWithFixedResolution&lt;/clockTickConstraint&gt;
+        &lt;computedFundamentalDiscretePeriod&gt;.1&lt;/computedFundamentalDiscretePeriod&gt;
+        &lt;fastestDiscreteRate type=&quot;sto.ClassicPeriodicDiscreteRate&quot; uuid=&quot;06e603de-6b09-4945-b076-5c63650cc64d&quot;/&gt;
+        &lt;isDefaultTimer&gt;true&lt;/isDefaultTimer&gt;
+        &lt;resolution&gt;.1&lt;/resolution&gt;
+        &lt;timeAdvanceMode&gt;FixedStep&lt;/timeAdvanceMode&gt;
+        &lt;identifier&gt;LaneGuidance::defaultTimer&lt;/identifier&gt;
+        &lt;rates type=&quot;sto.ClassicPeriodicDiscreteRate&quot; uuid=&quot;06e603de-6b09-4945-b076-5c63650cc64d&quot;&gt;
+          &lt;annotation&gt;D1&lt;/annotation&gt;
+          &lt;clockId&gt;LaneGuidance::defaultTimer&lt;/clockId&gt;
+          &lt;description&gt;Discrete 1&lt;/description&gt;
+          &lt;taskId&gt;_task0&lt;/taskId&gt;
+          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;dc2cf130-a611-4bc9-beae-3fcc73c4e029&quot;&gt;
+            &lt;period&gt;.1&lt;/period&gt;
+            &lt;rateType&gt;ClassicPeriodicDiscrete&lt;/rateType&gt;
+          &lt;/rateSpec&gt;
+        &lt;/rates&gt;
+        &lt;baseRate type=&quot;sto.ClassicPeriodicDiscreteRate&quot; uuid=&quot;414b3714-787a-4c06-a8b5-fd3f3853071e&quot;&gt;
+          &lt;annotation&gt;D1&lt;/annotation&gt;
+          &lt;clockId&gt;LaneGuidance::defaultTimer&lt;/clockId&gt;
+          &lt;description&gt;Discrete 1&lt;/description&gt;
+          &lt;taskId&gt;_task0&lt;/taskId&gt;
+          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;930cd513-6e5c-43b1-82f1-983a13d6830e&quot;&gt;
+            &lt;period&gt;.1&lt;/period&gt;
+            &lt;rateType&gt;ClassicPeriodicDiscrete&lt;/rateType&gt;
+          &lt;/rateSpec&gt;
+        &lt;/baseRate&gt;
+      &lt;/clocks&gt;
+      &lt;clocks type=&quot;sto.Event&quot; uuid=&quot;fb1e88a6-9a9f-4c01-8641-b60f1d800e95&quot;&gt;
+        &lt;eventType&gt;PARAMETER_CHANGE_EVENT&lt;/eventType&gt;
+        &lt;cNum&gt;1&lt;/cNum&gt;
+        &lt;clockType&gt;Event&lt;/clockType&gt;
+        &lt;identifier&gt;ParameterChangeEvent&lt;/identifier&gt;
+        &lt;rates type=&quot;sto.ModelWideEventRate&quot; uuid=&quot;fa4c9d50-2778-498b-851d-a2ca76b484f2&quot;&gt;
+          &lt;clockId&gt;ParameterChangeEvent&lt;/clockId&gt;
+          &lt;rateIdx&gt;-1&lt;/rateIdx&gt;
+          &lt;taskId&gt;ModelWideParameterChangeEvent&lt;/taskId&gt;
+          &lt;useForExecution&gt;NotForExecution&lt;/useForExecution&gt;
+          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;ff734e77-db26-45a7-a37a-04de9fb109ec&quot;&gt;
+            &lt;period&gt;inf&lt;/period&gt;
+            &lt;rateType&gt;ModelWideParameterChangeEvent&lt;/rateType&gt;
+          &lt;/rateSpec&gt;
+        &lt;/rates&gt;
+      &lt;/clocks&gt;
+      &lt;timeAdvanceMode&gt;FixedStep&lt;/timeAdvanceMode&gt;
+    &lt;/clockRegistry&gt;
+    &lt;taskRegistry type=&quot;sto.TaskRegistry&quot; uuid=&quot;ec476445-d7e3-4cbe-98d0-0fc9e2c4e907&quot;&gt;
+      &lt;rootTaskHierarchyElements type=&quot;sto.Task&quot; uuid=&quot;dfe40842-380f-44c9-9f67-ecacc9d4d2be&quot;&gt;
+        &lt;isExplicit&gt;true&lt;/isExplicit&gt;
+        &lt;rates type=&quot;sto.ModelWideEventRate&quot; uuid=&quot;fd03fc3c-fee2-4e14-9dfc-945e42bb98d0&quot;&gt;
+          &lt;clockId&gt;ParameterChangeEvent&lt;/clockId&gt;
+          &lt;rateIdx&gt;-1&lt;/rateIdx&gt;
+          &lt;taskId&gt;ModelWideParameterChangeEvent&lt;/taskId&gt;
+          &lt;useForExecution&gt;NotForExecution&lt;/useForExecution&gt;
+          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;97c807ad-08fc-4a46-a643-9bbbd4439bb9&quot;&gt;
+            &lt;period&gt;inf&lt;/period&gt;
+            &lt;rateType&gt;ModelWideParameterChangeEvent&lt;/rateType&gt;
+          &lt;/rateSpec&gt;
+        &lt;/rates&gt;
+        &lt;schedulingClockId&gt;ParameterChangeEvent&lt;/schedulingClockId&gt;
+        &lt;timeKeeperClockId&gt;LaneGuidance::defaultTimer&lt;/timeKeeperClockId&gt;
+        &lt;elementType&gt;Task&lt;/elementType&gt;
+        &lt;identifier&gt;ModelWideParameterChangeEvent&lt;/identifier&gt;
+        &lt;priority&gt;-1&lt;/priority&gt;
+      &lt;/rootTaskHierarchyElements&gt;
+      &lt;rootTaskHierarchyElements type=&quot;sto.Task&quot; uuid=&quot;0de47c36-6845-46aa-8f3e-20181f13de8f&quot;&gt;
+        &lt;isExecutable&gt;true&lt;/isExecutable&gt;
+        &lt;orderIndex&gt;1&lt;/orderIndex&gt;
+        &lt;rates type=&quot;sto.ClassicPeriodicDiscreteRate&quot; uuid=&quot;3922f40f-8558-436f-a6a1-93831de2902b&quot;&gt;
+          &lt;annotation&gt;D1&lt;/annotation&gt;
+          &lt;clockId&gt;LaneGuidance::defaultTimer&lt;/clockId&gt;
+          &lt;description&gt;Discrete 1&lt;/description&gt;
+          &lt;taskId&gt;_task0&lt;/taskId&gt;
+          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;99147de3-9505-4f02-ba3e-f29b422be65b&quot;&gt;
+            &lt;period&gt;.1&lt;/period&gt;
+            &lt;rateType&gt;ClassicPeriodicDiscrete&lt;/rateType&gt;
+          &lt;/rateSpec&gt;
+        &lt;/rates&gt;
+        &lt;schedulingClockId&gt;LaneGuidance::defaultTimer&lt;/schedulingClockId&gt;
+        &lt;timeKeeperClockId&gt;LaneGuidance::defaultTimer&lt;/timeKeeperClockId&gt;
+        &lt;elementType&gt;Task&lt;/elementType&gt;
+        &lt;identifier&gt;_task0&lt;/identifier&gt;
+        &lt;priority&gt;40&lt;/priority&gt;
+      &lt;/rootTaskHierarchyElements&gt;
+      &lt;taskDependencyGraph type=&quot;sto.SerializedTaskConnectionList&quot; uuid=&quot;22a32ebb-de9c-4578-bcb8-20833cf0f24a&quot;&gt;
+        &lt;clockIdentifier&gt;LaneGuidance::defaultTimer&lt;/clockIdentifier&gt;
+        &lt;taskIdentifier&gt;_task0&lt;/taskIdentifier&gt;
+      &lt;/taskDependencyGraph&gt;
+      &lt;taskDependencyGraph type=&quot;sto.SerializedTaskConnectionList&quot; uuid=&quot;1ff0a009-13b4-444b-b60b-0493c4b1e2fb&quot;&gt;
+        &lt;clockIdentifier&gt;ParameterChangeEvent&lt;/clockIdentifier&gt;
+        &lt;taskIdentifier&gt;ModelWideParameterChangeEvent&lt;/taskIdentifier&gt;
+      &lt;/taskDependencyGraph&gt;
+      &lt;taskPriorityDirection&gt;HighNumberLast&lt;/taskPriorityDirection&gt;
+    &lt;/taskRegistry&gt;
+  &lt;/sto.Registry&gt;
+&lt;/slexec_sto&gt;</timingAndTaskingRegistry>
+    <zeroInternalMemoryAtStartupUnchecked>true</zeroInternalMemoryAtStartupUnchecked>
+    <FMUBlockMap type="ModelRefInfoRepo.FMUBlockInfo" uuid="6e5bc10a-7ada-43b7-9b85-4a918eeb76e9"/>
+    <codeGenInfo type="ModelRefInfoRepo.CodeGenInformation" uuid="0b2be31e-23c8-46e4-9ba9-8cf425c86c87"/>
+    <compiledVariantInfos type="ModelRefInfoRepo.CompiledVariantInfoMap" uuid="dabcaca3-1a6d-4790-85fd-9f9e4e36f965"/>
+    <configSettingsForConsistencyChecks type="ModelRefInfoRepo.ConfigSettingsForConsistencyChecks" uuid="c0b8f6e7-90e8-49a9-a3bd-013b7d92c7f5">
+      <LUTObjectStructOrderEvenSpacing>1</LUTObjectStructOrderEvenSpacing>
+      <consistentOutportInitialization>true</consistentOutportInitialization>
+      <fixedStepSize>.1</fixedStepSize>
+      <frameDiagnosticSetting>2</frameDiagnosticSetting>
+      <hasHybridSampleTime>true</hasHybridSampleTime>
+      <optimizedInitCode>true</optimizedInitCode>
+      <signalLoggingSaveFormat>2</signalLoggingSaveFormat>
+      <simSIMDOptimization>1</simSIMDOptimization>
+      <solverName>FixedStepDiscrete</solverName>
+      <solverType>SOLVER_TYPE_FIXEDSTEP</solverType>
+      <hardwareSettings type="ModelRefInfoRepo.HardwareSettings" uuid="94edb940-ca3f-4289-8838-49c0dca68b4a">
+        <prodBitPerChar>8</prodBitPerChar>
+        <prodBitPerDouble>64</prodBitPerDouble>
+        <prodBitPerFloat>32</prodBitPerFloat>
+        <prodBitPerInt>32</prodBitPerInt>
+        <prodBitPerLong>64</prodBitPerLong>
+        <prodBitPerLongLong>64</prodBitPerLongLong>
+        <prodBitPerPointer>64</prodBitPerPointer>
+        <prodBitPerPtrDiffT>64</prodBitPerPtrDiffT>
+        <prodBitPerShort>16</prodBitPerShort>
+        <prodBitPerSizeT>64</prodBitPerSizeT>
+        <prodEndianess>1</prodEndianess>
+        <prodShiftRight>true</prodShiftRight>
+        <prodWordSize>64</prodWordSize>
+      </hardwareSettings>
+    </configSettingsForConsistencyChecks>
+    <controllableInputRatesMap type="ModelRefInfoRepo.VarTsUIDMap" uuid="c19f44e5-9e73-4918-8279-2e7c1196955b"/>
+    <controllableOutputRatesMap type="ModelRefInfoRepo.VarTsUIDMap" uuid="dc526ae8-46d6-4577-ad72-a03f7d144aa9"/>
+    <dataPortGroup type="ModelRefInfoRepo.DataPortGroup" uuid="0e1c5607-644a-4686-8eec-91fde9f86887">
+      <compDataInputPorts>0</compDataInputPorts>
+      <compDataInputPorts>1</compDataInputPorts>
+      <compDataInputPorts>2</compDataInputPorts>
+      <compDataInputPorts>3</compDataInputPorts>
+      <compDataInputPorts>4</compDataInputPorts>
+      <compDataInputPorts>5</compDataInputPorts>
+      <compDataOutputPorts>0</compDataOutputPorts>
+      <compDataOutputPorts>1</compDataOutputPorts>
+      <dataInputPorts>0</dataInputPorts>
+      <dataInputPorts>1</dataInputPorts>
+      <dataInputPorts>2</dataInputPorts>
+      <dataInputPorts>3</dataInputPorts>
+      <dataInputPorts>4</dataInputPorts>
+      <dataInputPorts>5</dataInputPorts>
+      <dataOutputPorts>0</dataOutputPorts>
+      <dataOutputPorts>1</dataOutputPorts>
+    </dataPortGroup>
+    <expFcnUnconnectedDataPortGroup type="ModelRefInfoRepo.DataPortGroup" uuid="437bb6fa-447f-491c-9dcb-268b1a649ad8"/>
+    <interfaceParameterInfo type="ModelRefInfoRepo.InterfaceParameterInfo" uuid="d528918f-3bac-432f-bc7c-a2cd01a6f401"/>
+    <messageInfo type="ModelRefInfoRepo.MessageInformation" uuid="6eb75a1f-2546-4f1b-b1f3-76719090e80e">
+      <rootInportInfo type="ModelRefInfoRepo.MessageRootPortInfo" uuid="1b30f863-5a59-44b3-b10b-5b0be7c36fd6">
+        <CompMsgInfoMap type="ModelRefInfoRepo.MessageCompPortInfo" uuid="a4eb88c7-ee0c-4f54-82ef-4a4c89e7fd91">
+          <msgPortType>MESSAGE_PORT_RECEIVE</msgPortType>
+        </CompMsgInfoMap>
+        <CompMsgInfoMap type="ModelRefInfoRepo.MessageCompPortInfo" uuid="19810ace-892a-4175-9d24-fbc66a3b3c9d">
+          <msgPortType>MESSAGE_PORT_RECEIVE</msgPortType>
+          <portIdx>1</portIdx>
+        </CompMsgInfoMap>
+        <CompMsgInfoMap type="ModelRefInfoRepo.MessageCompPortInfo" uuid="a3e836a1-809a-423c-a080-835cbcf41edf">
+          <msgPortType>MESSAGE_PORT_RECEIVE</msgPortType>
+          <portIdx>2</portIdx>
+        </CompMsgInfoMap>
+        <CompMsgInfoMap type="ModelRefInfoRepo.MessageCompPortInfo" uuid="cf7943df-274f-4c53-b6da-2c3bd3e678c2">
+          <msgPortType>MESSAGE_PORT_RECEIVE</msgPortType>
+          <portIdx>3</portIdx>
+        </CompMsgInfoMap>
+        <CompMsgInfoMap type="ModelRefInfoRepo.MessageCompPortInfo" uuid="a89f9a9c-0b6f-495a-b8d8-f29db4b73001">
+          <msgPortType>MESSAGE_PORT_RECEIVE</msgPortType>
+          <portIdx>4</portIdx>
+        </CompMsgInfoMap>
+        <CompMsgInfoMap type="ModelRefInfoRepo.MessageCompPortInfo" uuid="cc033860-2f98-4121-8f96-4f7542213d78">
+          <msgPortType>MESSAGE_PORT_RECEIVE</msgPortType>
+          <portIdx>5</portIdx>
+        </CompMsgInfoMap>
+        <GrHierarchyMsgModeMap type="ModelRefInfoRepo.MessageModeMap" uuid="65464a6b-513d-4e36-8b29-4a3f898059c1">
+          <messageMode>2</messageMode>
+        </GrHierarchyMsgModeMap>
+        <GrHierarchyMsgModeMap type="ModelRefInfoRepo.MessageModeMap" uuid="d9c6b8c4-69c8-411a-b5f9-fc3074a4ecd1">
+          <messageMode>2</messageMode>
+          <portIdx>1</portIdx>
+        </GrHierarchyMsgModeMap>
+        <GrHierarchyMsgModeMap type="ModelRefInfoRepo.MessageModeMap" uuid="7d7ac077-ca95-47ca-9568-f74bb22e8743">
+          <messageMode>2</messageMode>
+          <portIdx>2</portIdx>
+        </GrHierarchyMsgModeMap>
+        <GrHierarchyMsgModeMap type="ModelRefInfoRepo.MessageModeMap" uuid="85db9277-4ac5-4a05-9640-35f6162d14e4">
+          <messageMode>2</messageMode>
+          <portIdx>3</portIdx>
+        </GrHierarchyMsgModeMap>
+        <GrHierarchyMsgModeMap type="ModelRefInfoRepo.MessageModeMap" uuid="054d7cde-8973-448d-840f-4efe344c367a">
+          <messageMode>2</messageMode>
+          <portIdx>4</portIdx>
+        </GrHierarchyMsgModeMap>
+        <GrHierarchyMsgModeMap type="ModelRefInfoRepo.MessageModeMap" uuid="796874b9-8492-47b7-a68d-da4516602e83">
+          <messageMode>2</messageMode>
+          <portIdx>5</portIdx>
+        </GrHierarchyMsgModeMap>
+      </rootInportInfo>
+      <rootOutportInfo type="ModelRefInfoRepo.MessageRootPortInfo" uuid="381120a6-f7bd-4ddb-952f-4db26f60d12f">
+        <CompMsgInfoMap type="ModelRefInfoRepo.MessageCompPortInfo" uuid="2e42ff5a-5921-4388-99af-3feec100ad3f">
+          <msgPortType>MESSAGE_PORT_SEND</msgPortType>
+        </CompMsgInfoMap>
+        <CompMsgInfoMap type="ModelRefInfoRepo.MessageCompPortInfo" uuid="5bd1340f-d7b0-4485-aae7-12a9d14b4663">
+          <msgPortType>MESSAGE_PORT_SEND</msgPortType>
+          <portIdx>1</portIdx>
+        </CompMsgInfoMap>
+        <GrHierarchyMsgModeMap type="ModelRefInfoRepo.MessageModeMap" uuid="40686a35-7ce5-43cb-887d-f9097cc132b7">
+          <messageMode>2</messageMode>
+        </GrHierarchyMsgModeMap>
+        <GrHierarchyMsgModeMap type="ModelRefInfoRepo.MessageModeMap" uuid="7550ce52-f091-47f7-aa42-a66e15144fe7">
+          <messageMode>2</messageMode>
+          <portIdx>1</portIdx>
+        </GrHierarchyMsgModeMap>
+      </rootOutportInfo>
+    </messageInfo>
+    <methodInfo type="ModelRefInfoRepo.MethodExistenceInfo" uuid="dfc07685-b508-4b98-859a-bab74bbe1768">
+      <hasEnableMethod>true</hasEnableMethod>
+      <hasSystemInitializeMethod>true</hasSystemInitializeMethod>
+      <hasSystemResetMethod>true</hasSystemResetMethod>
+      <hasTerminateMethod>true</hasTerminateMethod>
+    </methodInfo>
+    <periodicEventPortUnsupportedBlockInfo type="ModelRefInfoRepo.PeriodicEventPortUnsupportedBlockInfo" uuid="b8965230-8a12-4698-98ce-1b64b57b0ab0"/>
+    <portGroupsRequireSameRate type="ModelRefInfoRepo.PortGroupsRequireSameRate" uuid="018b7f8a-aa45-4f62-911f-6baddf2e9550">
+      <DSMPortGroups type="ModelRefInfoRepo.NameToPortGroupIdxVectMap" uuid="fda2becb-c9d0-4b99-a412-f98b521c01b6"/>
+      <GlobalDSMPortGroups type="ModelRefInfoRepo.NameToPortGroupIdxVectMap" uuid="d358ab40-f9b3-490f-a48c-db34bc3734df"/>
+      <mergedPortGroups type="ModelRefInfoRepo.NameToPortGroupIdxVectMap" uuid="6e1ed464-023c-4eb0-9973-38f3b8c304da"/>
+    </portGroupsRequireSameRate>
+    <rateBasedMdlGlobalDSMRateSpec type="ModelRefInfoRepo.GlobalDSMRateSpecMap" uuid="a883494e-6820-437a-8a3d-cb1388f80bea"/>
+    <rateSpecOfGlobalDSMAccessedByDescExpFcnMdlMap type="ModelRefInfoRepo.GlobalDSMRateSpecMap" uuid="a2d6a35c-20f1-476e-80e1-b6db6c9a568c"/>
+    <rootBlockDiagramInterface type="ci.Model" uuid="86b8df0c-1f0d-4e57-8b31-c7fb5e155a23">
+      <p_RootComponentInterface type="ci.ComponentInterface" uuid="1730ebec-c7f6-4487-a8a4-63bc4ec51d04">
+        <p_InputPorts type="ci.SignalInterface" uuid="74bf2d11-c7bc-43db-8f58-a004101bc9c9">
+          <p_ComputedNumericDimensions>1.0</p_ComputedNumericDimensions>
+          <p_ComputedSampleTime>.1</p_ComputedSampleTime>
+          <p_ComputedSampleTime>0.0</p_ComputedSampleTime>
+          <p_Name>leftLaneDistance</p_Name>
+        </p_InputPorts>
+        <p_InputPorts type="ci.SignalInterface" uuid="1b5f5e7a-d0b8-47e1-935c-e52e36c9bb4c">
+          <p_ComputedNumericDimensions>1.0</p_ComputedNumericDimensions>
+          <p_ComputedSampleTime>.1</p_ComputedSampleTime>
+          <p_ComputedSampleTime>0.0</p_ComputedSampleTime>
+          <p_Name>leftTurnIndicator</p_Name>
+        </p_InputPorts>
+        <p_InputPorts type="ci.SignalInterface" uuid="9eb62dd4-c41d-4ff8-aa3b-ad5eb6d85162">
+          <p_ComputedNumericDimensions>1.0</p_ComputedNumericDimensions>
+          <p_ComputedSampleTime>.1</p_ComputedSampleTime>
+          <p_ComputedSampleTime>0.0</p_ComputedSampleTime>
+          <p_Name>rightLaneDistance</p_Name>
+        </p_InputPorts>
+        <p_InputPorts type="ci.SignalInterface" uuid="e42c038e-d454-4611-8c98-37099efa64e8">
+          <p_ComputedNumericDimensions>1.0</p_ComputedNumericDimensions>
+          <p_ComputedSampleTime>.1</p_ComputedSampleTime>
+          <p_ComputedSampleTime>0.0</p_ComputedSampleTime>
+          <p_Name>rightTurnIndicator</p_Name>
+        </p_InputPorts>
+        <p_InputPorts type="ci.SignalInterface" uuid="58ae0f5b-66db-4748-a1b6-e1d81d66619a">
+          <p_ComputedNumericDimensions>1.0</p_ComputedNumericDimensions>
+          <p_ComputedSampleTime>.1</p_ComputedSampleTime>
+          <p_ComputedSampleTime>0.0</p_ComputedSampleTime>
+          <p_Name>leftCarInBlindSpot</p_Name>
+        </p_InputPorts>
+        <p_InputPorts type="ci.SignalInterface" uuid="8778e1c2-27bf-4158-b8b4-ed247a3b59d2">
+          <p_ComputedNumericDimensions>1.0</p_ComputedNumericDimensions>
+          <p_ComputedSampleTime>.1</p_ComputedSampleTime>
+          <p_ComputedSampleTime>0.0</p_ComputedSampleTime>
+          <p_Name>rightCarInBlindSpot</p_Name>
+        </p_InputPorts>
+        <p_Name>LaneGuidance</p_Name>
+        <p_OutputPorts type="ci.SignalInterface" uuid="7849dcba-5f6d-4dc6-9c51-08d32b2d4041">
+          <p_ComputedNumericDimensions>1.0</p_ComputedNumericDimensions>
+          <p_ComputedSampleTime>.1</p_ComputedSampleTime>
+          <p_ComputedSampleTime>0.0</p_ComputedSampleTime>
+          <p_Name>leftHazardIndicator</p_Name>
+        </p_OutputPorts>
+        <p_OutputPorts type="ci.SignalInterface" uuid="327d18e4-1826-41bf-b24c-d3f70e79f740">
+          <p_ComputedNumericDimensions>1.0</p_ComputedNumericDimensions>
+          <p_ComputedSampleTime>.1</p_ComputedSampleTime>
+          <p_ComputedSampleTime>0.0</p_ComputedSampleTime>
+          <p_Name>rightHazardIndicator</p_Name>
+        </p_OutputPorts>
+        <p_Type>ROOT</p_Type>
+      </p_RootComponentInterface>
+    </rootBlockDiagramInterface>
+    <simulinkFunctions type="ModelRefInfoRepo.SimulinkFunctions" uuid="8e017309-8147-4707-8b15-1e2c0b3e1ef2">
+      <compFunctions type="ModelRefInfoRepo.CompFunction" uuid="20a9d717-bf70-47e8-a246-dcbfa787d404">
+        <CGFunctionName>SendData</CGFunctionName>
+        <CGIsCalled>true</CGIsCalled>
+        <canInvokeConcurrently>true</canInvokeConcurrently>
+        <fullPathToFunction>LaneGuidance/leftHazardIndicator_In_0</fullPathToFunction>
+        <functionBlock>LaneGuidance/leftHazardIndicator</functionBlock>
+        <functionName>SendData</functionName>
+        <hasDeclaration>true</hasDeclaration>
+        <isDefined>true</isDefined>
+        <isServiceFcn>true</isServiceFcn>
+        <sourceModel>LaneGuidance</sourceModel>
+        <variantFunctionBlockPath>LaneGuidance/leftHazardIndicator</variantFunctionBlockPath>
+        <variantFunctionNetEMVCE type="ModelRefInfoRepo.VariantFunctionNetEMVCE" uuid="16aacb36-2900-4900-91fc-d30b358dd758">
+          <EMVCE>({true}_0)</EMVCE>
+        </variantFunctionNetEMVCE>
+        <visibility>Scoped Local</visibility>
+        <fcnArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="8ab57c4a-e689-4637-8824-a7cdad233d39">
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="52bd6088-94db-433c-9e48-99a054c311c0">
+            <index>I0</index>
+          </argIndexMap>
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="dce9e538-e3e0-49e9-88c4-b75a309f09e7">
+            <index>O0</index>
+            <position>1</position>
+          </argIndexMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="54dfd4ea-34d1-4902-a37c-ad77e0548273">
+            <name>data</name>
+          </argNameMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="9f62d158-515f-410e-9215-7231066f1a71">
+            <name>status</name>
+            <position>1</position>
+          </argNameMap>
+          <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="d0d4e86b-7016-4071-a282-63680a79f930">
+            <argumentType>1</argumentType>
+            <dims>1</dims>
+            <passByType>CONST_POINTER_CONST_DATA</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="548bb285-dc8f-46bf-beab-1b517cdaea6b">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+            </dataType>
+          </inArgs>
+          <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="216ec336-2629-48b6-891e-4bd8dd9ebbad">
+            <argumentType>2</argumentType>
+            <dims>1</dims>
+            <passByType>AUTO</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="0801093b-97f4-4c7c-97dd-28269c26bc2b">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(1,32,0)</dataTypeName>
+            </dataType>
+          </outArgs>
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnArgs>
+        <fcnFpcArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="937e7ba5-390f-40d4-a881-9737a3f4c965">
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnFpcArgs>
+      </compFunctions>
+      <compFunctions type="ModelRefInfoRepo.CompFunction" uuid="ba012823-15b3-4a8f-b823-117213adcd26">
+        <CGFunctionName>RecvData</CGFunctionName>
+        <CGIsCalled>true</CGIsCalled>
+        <canInvokeConcurrently>true</canInvokeConcurrently>
+        <fullPathToFunction>LaneGuidance/rightCarInBlindSpot_Out_0</fullPathToFunction>
+        <functionBlock>LaneGuidance/rightCarInBlindSpot</functionBlock>
+        <functionName>RecvData</functionName>
+        <hasDeclaration>true</hasDeclaration>
+        <isDefined>true</isDefined>
+        <isServiceFcn>true</isServiceFcn>
+        <sourceModel>LaneGuidance</sourceModel>
+        <variantFunctionBlockPath>LaneGuidance/rightCarInBlindSpot</variantFunctionBlockPath>
+        <variantFunctionNetEMVCE type="ModelRefInfoRepo.VariantFunctionNetEMVCE" uuid="330265e8-136d-42ef-b2f1-d53dc21a8288">
+          <EMVCE>({true}_0)</EMVCE>
+        </variantFunctionNetEMVCE>
+        <visibility>Scoped Local</visibility>
+        <fcnArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="a553cb0d-f5a0-44ce-9f0a-880a08e3eca8">
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="b60aa12e-1ec1-4761-846c-0e1d62b48dc4">
+            <index>I0</index>
+          </argIndexMap>
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="5a6a31a9-c0ba-4faf-b300-e868cbd10015">
+            <index>O0</index>
+            <position>1</position>
+          </argIndexMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="249764a6-92f8-4e0c-af0a-0b902c4dcff4">
+            <name>data</name>
+          </argNameMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="bc5ce6a3-8f97-4f7b-8a9a-6b716d28fca4">
+            <name>status</name>
+            <position>1</position>
+          </argNameMap>
+          <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="042d93c6-288f-494f-8d4e-119399da0b12">
+            <argumentType>1</argumentType>
+            <dims>1</dims>
+            <passByType>POINTER</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="cbf05e9f-2e88-4024-a73e-0ad423854c90">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+            </dataType>
+          </inArgs>
+          <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="55c2dd97-9872-4ca2-b871-e9a54cc64d4f">
+            <argumentType>2</argumentType>
+            <dims>1</dims>
+            <passByType>AUTO</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="66baafef-326d-40fa-86d9-3bf25870f7da">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(1,32,0)</dataTypeName>
+            </dataType>
+          </outArgs>
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnArgs>
+        <fcnFpcArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="97870a39-8bda-4a55-a999-8fbb0a07e9d8">
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnFpcArgs>
+      </compFunctions>
+      <compFunctions type="ModelRefInfoRepo.CompFunction" uuid="7b6a2105-fd33-4ec6-b5da-ccc7c2beca5f">
+        <CGFunctionName>RecvData</CGFunctionName>
+        <CGIsCalled>true</CGIsCalled>
+        <canInvokeConcurrently>true</canInvokeConcurrently>
+        <fullPathToFunction>LaneGuidance/rightTurnIndicator_Out_0</fullPathToFunction>
+        <functionBlock>LaneGuidance/rightTurnIndicator</functionBlock>
+        <functionName>RecvData</functionName>
+        <hasDeclaration>true</hasDeclaration>
+        <isDefined>true</isDefined>
+        <isServiceFcn>true</isServiceFcn>
+        <sourceModel>LaneGuidance</sourceModel>
+        <variantFunctionBlockPath>LaneGuidance/rightTurnIndicator</variantFunctionBlockPath>
+        <variantFunctionNetEMVCE type="ModelRefInfoRepo.VariantFunctionNetEMVCE" uuid="57d1ceb1-7aa2-4ac6-899b-fe89b3e681c8">
+          <EMVCE>({true}_0)</EMVCE>
+        </variantFunctionNetEMVCE>
+        <visibility>Scoped Local</visibility>
+        <fcnArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="fc1764b2-d30a-4aa9-b9ae-7b3e9e1f0f83">
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="8bda50f7-b1d1-4179-ad1e-02f974b7ad31">
+            <index>I0</index>
+          </argIndexMap>
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="af629910-8e82-4ac7-a36e-4d40d7989427">
+            <index>O0</index>
+            <position>1</position>
+          </argIndexMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="2a885268-a457-4c35-bf8a-d4c6cfbabe4e">
+            <name>data</name>
+          </argNameMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="2b4b274b-9074-443f-95a7-1c7e06b59c06">
+            <name>status</name>
+            <position>1</position>
+          </argNameMap>
+          <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="ed403239-3a86-454b-9804-3ca4216bcadd">
+            <argumentType>1</argumentType>
+            <dims>1</dims>
+            <passByType>POINTER</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="05e4f32a-e3ae-4257-bfc9-950165803947">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+            </dataType>
+          </inArgs>
+          <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="465a19db-a16b-4093-854b-cb3435a22059">
+            <argumentType>2</argumentType>
+            <dims>1</dims>
+            <passByType>AUTO</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="29defe4a-2b9a-4674-9f17-8e3a5fd9695c">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(1,32,0)</dataTypeName>
+            </dataType>
+          </outArgs>
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnArgs>
+        <fcnFpcArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="32f7c04a-e617-4e56-81f8-382a378d359d">
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnFpcArgs>
+      </compFunctions>
+      <compFunctions type="ModelRefInfoRepo.CompFunction" uuid="4fca1af7-74d2-4df5-878a-75d3f01fc055">
+        <CGFunctionName>RecvData</CGFunctionName>
+        <CGIsCalled>true</CGIsCalled>
+        <canInvokeConcurrently>true</canInvokeConcurrently>
+        <fullPathToFunction>LaneGuidance/leftTurnIndicator_Out_0</fullPathToFunction>
+        <functionBlock>LaneGuidance/leftTurnIndicator</functionBlock>
+        <functionName>RecvData</functionName>
+        <hasDeclaration>true</hasDeclaration>
+        <isDefined>true</isDefined>
+        <isServiceFcn>true</isServiceFcn>
+        <sourceModel>LaneGuidance</sourceModel>
+        <variantFunctionBlockPath>LaneGuidance/leftTurnIndicator</variantFunctionBlockPath>
+        <variantFunctionNetEMVCE type="ModelRefInfoRepo.VariantFunctionNetEMVCE" uuid="d6f84157-9db3-4aba-b946-49c433f2a5c8">
+          <EMVCE>({true}_0)</EMVCE>
+        </variantFunctionNetEMVCE>
+        <visibility>Scoped Local</visibility>
+        <fcnArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="6c0606e6-8ff6-45b1-8707-cb7797ec7d3d">
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="d1e22e2f-e2b5-4638-9e64-e7a22875b3fa">
+            <index>I0</index>
+          </argIndexMap>
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="0959228f-9e2a-4885-9199-2d0e657ed6e5">
+            <index>O0</index>
+            <position>1</position>
+          </argIndexMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="a38fa2d1-31db-4387-a170-ecd63f064fce">
+            <name>data</name>
+          </argNameMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="7934cd2a-8905-4314-a8ad-c95a1a886d47">
+            <name>status</name>
+            <position>1</position>
+          </argNameMap>
+          <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="c91f0150-97a5-44b3-b543-497e52c3b0d7">
+            <argumentType>1</argumentType>
+            <dims>1</dims>
+            <passByType>POINTER</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="36d10239-2ea5-4bdd-ad02-51cdc0bc2747">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+            </dataType>
+          </inArgs>
+          <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="e82bfd92-fe9d-48f3-97f6-3ca842414b39">
+            <argumentType>2</argumentType>
+            <dims>1</dims>
+            <passByType>AUTO</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="f538572a-04a1-42f8-a8fa-6a480a3984e7">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(1,32,0)</dataTypeName>
+            </dataType>
+          </outArgs>
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnArgs>
+        <fcnFpcArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="af94fd6d-fd0a-48ea-ad51-5e215537d314">
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnFpcArgs>
+      </compFunctions>
+      <compFunctions type="ModelRefInfoRepo.CompFunction" uuid="affa82f8-52bb-46b1-bc9b-7df1248bf603">
+        <CGFunctionName>RecvData</CGFunctionName>
+        <CGIsCalled>true</CGIsCalled>
+        <canInvokeConcurrently>true</canInvokeConcurrently>
+        <fullPathToFunction>LaneGuidance/leftCarInBlindSpot_Out_0</fullPathToFunction>
+        <functionBlock>LaneGuidance/leftCarInBlindSpot</functionBlock>
+        <functionName>RecvData</functionName>
+        <hasDeclaration>true</hasDeclaration>
+        <isDefined>true</isDefined>
+        <isServiceFcn>true</isServiceFcn>
+        <sourceModel>LaneGuidance</sourceModel>
+        <variantFunctionBlockPath>LaneGuidance/leftCarInBlindSpot</variantFunctionBlockPath>
+        <variantFunctionNetEMVCE type="ModelRefInfoRepo.VariantFunctionNetEMVCE" uuid="efca45a1-c2af-4ed3-91cf-d6d6a61a3d34">
+          <EMVCE>({true}_0)</EMVCE>
+        </variantFunctionNetEMVCE>
+        <visibility>Scoped Local</visibility>
+        <fcnArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="f0e72413-2ee4-4354-bc27-e2b103f78bb7">
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="8b6ed8aa-4ffc-4453-a454-5f0a99727a6d">
+            <index>I0</index>
+          </argIndexMap>
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="7a58cef0-2e1b-4d7a-ba33-24e31b57c8e7">
+            <index>O0</index>
+            <position>1</position>
+          </argIndexMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="6b4ab1a0-1705-45fd-8ff7-c2a69cb62542">
+            <name>data</name>
+          </argNameMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="dba80e2e-d6ef-43d3-9b44-92d3052fae14">
+            <name>status</name>
+            <position>1</position>
+          </argNameMap>
+          <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="89ff6193-4028-4403-bb19-c04ebd150570">
+            <argumentType>1</argumentType>
+            <dims>1</dims>
+            <passByType>POINTER</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="c0ff5b14-d790-49de-a6f3-08f5807b124e">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+            </dataType>
+          </inArgs>
+          <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="a0d921b1-3c97-48cb-abe6-dc9494581cda">
+            <argumentType>2</argumentType>
+            <dims>1</dims>
+            <passByType>AUTO</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="2e879cf8-0b02-4fcc-857b-08231d6aaf43">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(1,32,0)</dataTypeName>
+            </dataType>
+          </outArgs>
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnArgs>
+        <fcnFpcArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="352ef6a7-7e83-44b0-8110-041b22d9ecf7">
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnFpcArgs>
+      </compFunctions>
+      <compFunctions type="ModelRefInfoRepo.CompFunction" uuid="c002429f-c89d-4e6d-9ec9-c04c6f10b340">
+        <CGFunctionName>SendData</CGFunctionName>
+        <CGIsCalled>true</CGIsCalled>
+        <canInvokeConcurrently>true</canInvokeConcurrently>
+        <fullPathToFunction>LaneGuidance/rightHazardIndicator_In_0</fullPathToFunction>
+        <functionBlock>LaneGuidance/rightHazardIndicator</functionBlock>
+        <functionName>SendData</functionName>
+        <hasDeclaration>true</hasDeclaration>
+        <isDefined>true</isDefined>
+        <isServiceFcn>true</isServiceFcn>
+        <sourceModel>LaneGuidance</sourceModel>
+        <variantFunctionBlockPath>LaneGuidance/rightHazardIndicator</variantFunctionBlockPath>
+        <variantFunctionNetEMVCE type="ModelRefInfoRepo.VariantFunctionNetEMVCE" uuid="de189d27-d8ce-4a43-b548-dd2470bdf59c">
+          <EMVCE>({true}_0)</EMVCE>
+        </variantFunctionNetEMVCE>
+        <visibility>Scoped Local</visibility>
+        <fcnArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="ad5a13ba-9da4-493b-b0b3-dd781c80b945">
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="2b128d9b-3fe9-4c80-b033-ae04d7bb9804">
+            <index>I0</index>
+          </argIndexMap>
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="f4351dbe-5eba-451b-ac59-d7d69ec84e81">
+            <index>O0</index>
+            <position>1</position>
+          </argIndexMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="64d8c278-d8dd-4cbc-9315-76c67333b8d5">
+            <name>data</name>
+          </argNameMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="ddf39f32-fa9a-442c-bf7c-98a4a2b6f03e">
+            <name>status</name>
+            <position>1</position>
+          </argNameMap>
+          <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="96858401-a8f8-4a5e-bd80-2f5a0560bf19">
+            <argumentType>1</argumentType>
+            <dims>1</dims>
+            <passByType>CONST_POINTER_CONST_DATA</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="a52858f3-4794-4a6e-8ee0-937885414ec9">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+            </dataType>
+          </inArgs>
+          <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="87273f9e-1857-4745-88f2-40aa4f337cbb">
+            <argumentType>2</argumentType>
+            <dims>1</dims>
+            <passByType>AUTO</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="11e8109b-9d2c-487b-aa68-eb342f839d9f">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(1,32,0)</dataTypeName>
+            </dataType>
+          </outArgs>
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnArgs>
+        <fcnFpcArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="efac983f-f861-45bb-a985-68945620d6ae">
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnFpcArgs>
+      </compFunctions>
+      <compFunctions type="ModelRefInfoRepo.CompFunction" uuid="d823e9af-cc5d-46c6-9f2f-c21c35a67f8c">
+        <CGFunctionName>RecvData</CGFunctionName>
+        <CGIsCalled>true</CGIsCalled>
+        <canInvokeConcurrently>true</canInvokeConcurrently>
+        <fullPathToFunction>LaneGuidance/rightLaneDistance_Out_0</fullPathToFunction>
+        <functionBlock>LaneGuidance/rightLaneDistance</functionBlock>
+        <functionName>RecvData</functionName>
+        <hasDeclaration>true</hasDeclaration>
+        <isDefined>true</isDefined>
+        <isServiceFcn>true</isServiceFcn>
+        <sourceModel>LaneGuidance</sourceModel>
+        <variantFunctionBlockPath>LaneGuidance/rightLaneDistance</variantFunctionBlockPath>
+        <variantFunctionNetEMVCE type="ModelRefInfoRepo.VariantFunctionNetEMVCE" uuid="d9b3ea4a-a235-42b7-bc4f-282c4adb498b">
+          <EMVCE>({true}_0)</EMVCE>
+        </variantFunctionNetEMVCE>
+        <visibility>Scoped Local</visibility>
+        <fcnArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="11eed295-7f03-41d0-8beb-cd336a70d87a">
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="ac98dd67-bdfc-47f4-8f1d-85c36f6d2646">
+            <index>I0</index>
+          </argIndexMap>
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="e2e9f36a-a189-47dd-a871-8f1df40bd3ca">
+            <index>O0</index>
+            <position>1</position>
+          </argIndexMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="8c3fbc6f-b386-432f-abf9-b97ef4472353">
+            <name>data</name>
+          </argNameMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="4f7c6db7-363d-428e-8e35-f36625972739">
+            <name>status</name>
+            <position>1</position>
+          </argNameMap>
+          <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="d9e7de8c-914a-45be-b866-3677783d31b3">
+            <argumentType>1</argumentType>
+            <dims>1</dims>
+            <passByType>POINTER</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="a2312bab-84f2-48ce-bd8b-720ae8501ed2">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+            </dataType>
+          </inArgs>
+          <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="06481332-a8a8-42ae-8818-128e163b2428">
+            <argumentType>2</argumentType>
+            <dims>1</dims>
+            <passByType>AUTO</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="7421c15e-f572-4f0f-a941-1905338d9a0d">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(1,32,0)</dataTypeName>
+            </dataType>
+          </outArgs>
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnArgs>
+        <fcnFpcArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="b54cef1a-5bc8-468a-b73e-2fa5422b3091">
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnFpcArgs>
+      </compFunctions>
+      <compFunctions type="ModelRefInfoRepo.CompFunction" uuid="4a154f9f-992b-44a2-a3c8-fb7550e2af27">
+        <CGFunctionName>RecvData</CGFunctionName>
+        <CGIsCalled>true</CGIsCalled>
+        <canInvokeConcurrently>true</canInvokeConcurrently>
+        <fullPathToFunction>LaneGuidance/leftLaneDistance_Out_0</fullPathToFunction>
+        <functionBlock>LaneGuidance/leftLaneDistance</functionBlock>
+        <functionName>RecvData</functionName>
+        <hasDeclaration>true</hasDeclaration>
+        <isDefined>true</isDefined>
+        <isServiceFcn>true</isServiceFcn>
+        <sourceModel>LaneGuidance</sourceModel>
+        <variantFunctionBlockPath>LaneGuidance/leftLaneDistance</variantFunctionBlockPath>
+        <variantFunctionNetEMVCE type="ModelRefInfoRepo.VariantFunctionNetEMVCE" uuid="6d4ae201-f1ce-464c-b7f0-792ae8d031f3">
+          <EMVCE>({true}_0)</EMVCE>
+        </variantFunctionNetEMVCE>
+        <visibility>Scoped Local</visibility>
+        <fcnArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="29b5f939-eb46-46a7-93d0-5017f58c53cc">
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="7081140e-7d66-4a91-83ed-d5ffacb2918f">
+            <index>I0</index>
+          </argIndexMap>
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="feece385-d2b1-45bd-914b-0f8a608eee0b">
+            <index>O0</index>
+            <position>1</position>
+          </argIndexMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="829171a2-608b-4328-8dd7-229e873ffd32">
+            <name>data</name>
+          </argNameMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="e3f4f439-203f-4ae7-8c03-cc219d1344e1">
+            <name>status</name>
+            <position>1</position>
+          </argNameMap>
+          <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="3e21d46c-40ef-46ca-a956-34333adcaefa">
+            <argumentType>1</argumentType>
+            <dims>1</dims>
+            <passByType>POINTER</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="f1339b98-7c79-4d7e-a6f8-c37a5bfb14fd">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+            </dataType>
+          </inArgs>
+          <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="51ab3667-07f8-4ccc-ae81-9c17dd6018d7">
+            <argumentType>2</argumentType>
+            <dims>1</dims>
+            <passByType>AUTO</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="d3f85eb5-58ce-44cc-9133-be761a0fb6fd">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(1,32,0)</dataTypeName>
+            </dataType>
+          </outArgs>
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnArgs>
+        <fcnFpcArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="ec1fd84d-7bb6-4aa1-8ecc-31039d1dbfae">
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnFpcArgs>
+      </compFunctions>
+      <compServicePorts type="ModelRefInfoRepo.CompIOServicePort" uuid="b2055cd8-5d57-4d39-b90d-5ed9957cb74a">
+        <providingServices type="ModelRefInfoRepo.CompMsgService" uuid="26a080af-de92-4add-a645-57e5c8beb5ce">
+          <compFcnFullPath>LaneGuidance/leftHazardIndicator_In_0</compFcnFullPath>
+          <serviceCGFcnName>SendData</serviceCGFcnName>
+          <serviceName>SendData</serviceName>
+          <serviceArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="35683c8a-5e1f-4dea-8abe-d4b4b8463c25">
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="cd195efa-54af-4def-99e5-b14ac634b7ec">
+              <index>I0</index>
+            </argIndexMap>
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="e31124ea-bc28-4994-a478-7875c539e7a7">
+              <index>O0</index>
+              <position>1</position>
+            </argIndexMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="64431f98-5880-45f7-ae13-411e83bb6235">
+              <name>data</name>
+            </argNameMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="7996e80e-d0b8-45fb-8a0a-0dd91891db56">
+              <name>status</name>
+              <position>1</position>
+            </argNameMap>
+            <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="09ad9062-fa1c-493f-b8b3-cb9216b19464">
+              <argumentType>1</argumentType>
+              <dims>1</dims>
+              <passByType>CONST_POINTER_CONST_DATA</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="66eda5ed-785a-4932-9c6e-1caf5d48e50d">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+              </dataType>
+            </inArgs>
+            <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="0644aebb-80c3-480f-80c3-e867073b3b35">
+              <argumentType>2</argumentType>
+              <dims>1</dims>
+              <passByType>AUTO</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="ab8bf47c-33c6-40a0-ae34-73c42e3ef07b">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(1,32,0)</dataTypeName>
+              </dataType>
+            </outArgs>
+            <returnArgIdx>-1</returnArgIdx>
+          </serviceArgs>
+        </providingServices>
+        <servicePortKey type="ModelRefInfoRepo.ServicePortKey">
+          <blockPath>LaneGuidance/leftHazardIndicator</blockPath>
+          <portType>SVC_IN_PORT</portType>
+        </servicePortKey>
+      </compServicePorts>
+      <compServicePorts type="ModelRefInfoRepo.CompIOServicePort" uuid="10a38fef-8e8f-442b-b041-e7317543b9fa">
+        <externalPortIdx>5</externalPortIdx>
+        <providingServices type="ModelRefInfoRepo.CompMsgService" uuid="14013097-de8c-4163-bd83-3450a8a54377">
+          <compFcnFullPath>LaneGuidance/rightCarInBlindSpot_Out_0</compFcnFullPath>
+          <serviceCGFcnName>RecvData</serviceCGFcnName>
+          <serviceName>RecvData</serviceName>
+          <serviceArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="579509b0-356d-4ec3-aeb3-0654af148f82">
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="d20a9b5a-578c-4c68-8ca0-289cbf920a21">
+              <index>I0</index>
+            </argIndexMap>
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="40d05d84-ce1b-4ead-aa26-89655b12fb70">
+              <index>O0</index>
+              <position>1</position>
+            </argIndexMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="7a23c8e1-0b02-475d-986f-59d77f2a83d6">
+              <name>data</name>
+            </argNameMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="a9f736b1-0896-46f6-bded-a37318e6ea2c">
+              <name>status</name>
+              <position>1</position>
+            </argNameMap>
+            <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="5073a629-5cc7-41e4-bb21-847c2d5efa1b">
+              <argumentType>1</argumentType>
+              <dims>1</dims>
+              <passByType>POINTER</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="38b3b171-7f31-479b-9d4b-51df27925616">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+              </dataType>
+            </inArgs>
+            <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="a3a50d58-cd3c-45d8-bf2f-73668a7eeb08">
+              <argumentType>2</argumentType>
+              <dims>1</dims>
+              <passByType>AUTO</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="ef418030-f028-4c20-8a11-3d2158bd1a48">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(1,32,0)</dataTypeName>
+              </dataType>
+            </outArgs>
+            <returnArgIdx>-1</returnArgIdx>
+          </serviceArgs>
+        </providingServices>
+        <servicePortKey type="ModelRefInfoRepo.ServicePortKey">
+          <blockPath>LaneGuidance/rightCarInBlindSpot</blockPath>
+          <portType>SVC_OUT_PORT</portType>
+        </servicePortKey>
+      </compServicePorts>
+      <compServicePorts type="ModelRefInfoRepo.CompIOServicePort" uuid="75a854b2-97ab-4650-8a11-471f29accce5">
+        <externalPortIdx>3</externalPortIdx>
+        <providingServices type="ModelRefInfoRepo.CompMsgService" uuid="57cd6ba4-c840-4602-84c9-538cdb4bd9eb">
+          <compFcnFullPath>LaneGuidance/rightTurnIndicator_Out_0</compFcnFullPath>
+          <serviceCGFcnName>RecvData</serviceCGFcnName>
+          <serviceName>RecvData</serviceName>
+          <serviceArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="1fe698a3-683d-4352-b097-5f1ebbc63bfe">
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="1d607927-966f-4592-8f22-ed44e27eaf5d">
+              <index>I0</index>
+            </argIndexMap>
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="6ccd0226-a1eb-48e6-b0a3-8760d5fa9290">
+              <index>O0</index>
+              <position>1</position>
+            </argIndexMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="665b8118-6580-444a-b127-34ec6d9ec0ab">
+              <name>data</name>
+            </argNameMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="78647886-a4cb-4c89-96cb-9c3f02766ff4">
+              <name>status</name>
+              <position>1</position>
+            </argNameMap>
+            <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="9269ed57-3962-446c-b12e-84028fb6e0be">
+              <argumentType>1</argumentType>
+              <dims>1</dims>
+              <passByType>POINTER</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="d9b9df8d-6d05-4b74-ba29-8671c9014b59">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+              </dataType>
+            </inArgs>
+            <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="51b1d10f-3f54-431f-a741-449cb2eee171">
+              <argumentType>2</argumentType>
+              <dims>1</dims>
+              <passByType>AUTO</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="020df760-d365-4403-afb0-233379982dd3">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(1,32,0)</dataTypeName>
+              </dataType>
+            </outArgs>
+            <returnArgIdx>-1</returnArgIdx>
+          </serviceArgs>
+        </providingServices>
+        <servicePortKey type="ModelRefInfoRepo.ServicePortKey">
+          <blockPath>LaneGuidance/rightTurnIndicator</blockPath>
+          <portType>SVC_OUT_PORT</portType>
+        </servicePortKey>
+      </compServicePorts>
+      <compServicePorts type="ModelRefInfoRepo.CompIOServicePort" uuid="1d743db9-d84d-4ac1-82ff-51199d13c9a4">
+        <externalPortIdx>4</externalPortIdx>
+        <providingServices type="ModelRefInfoRepo.CompMsgService" uuid="2716b725-b9de-4b0f-9c34-eb52ab9efbbd">
+          <compFcnFullPath>LaneGuidance/leftCarInBlindSpot_Out_0</compFcnFullPath>
+          <serviceCGFcnName>RecvData</serviceCGFcnName>
+          <serviceName>RecvData</serviceName>
+          <serviceArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="d6f59419-ff23-46b6-92ff-ada09d2612d3">
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="a20b88e7-eb1a-41d0-be66-b2f200049b5c">
+              <index>I0</index>
+            </argIndexMap>
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="79aa6479-3e81-4cdd-9fdb-46ba5dfa2827">
+              <index>O0</index>
+              <position>1</position>
+            </argIndexMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="67e6733d-5b9b-42dd-9f5b-95dd0774f95e">
+              <name>data</name>
+            </argNameMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="5e162ffa-0f20-43b9-aa62-a5f33d6e248a">
+              <name>status</name>
+              <position>1</position>
+            </argNameMap>
+            <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="e4af81df-9450-4797-ad00-7784da2c3b88">
+              <argumentType>1</argumentType>
+              <dims>1</dims>
+              <passByType>POINTER</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="8e481b97-2d7c-44ed-932f-f9c130fcecd4">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+              </dataType>
+            </inArgs>
+            <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="3a85d867-6321-4ce5-994e-c5cd62b01da4">
+              <argumentType>2</argumentType>
+              <dims>1</dims>
+              <passByType>AUTO</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="3871e385-721e-4259-a0d5-3557d2fe3614">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(1,32,0)</dataTypeName>
+              </dataType>
+            </outArgs>
+            <returnArgIdx>-1</returnArgIdx>
+          </serviceArgs>
+        </providingServices>
+        <servicePortKey type="ModelRefInfoRepo.ServicePortKey">
+          <blockPath>LaneGuidance/leftCarInBlindSpot</blockPath>
+          <portType>SVC_OUT_PORT</portType>
+        </servicePortKey>
+      </compServicePorts>
+      <compServicePorts type="ModelRefInfoRepo.CompIOServicePort" uuid="0562f87d-59a8-4a6a-bd04-8a5d4f1ae49a">
+        <externalPortIdx>1</externalPortIdx>
+        <providingServices type="ModelRefInfoRepo.CompMsgService" uuid="6c1fd8b1-2575-4ae3-8cc4-e31ee75cefb1">
+          <compFcnFullPath>LaneGuidance/leftTurnIndicator_Out_0</compFcnFullPath>
+          <serviceCGFcnName>RecvData</serviceCGFcnName>
+          <serviceName>RecvData</serviceName>
+          <serviceArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="65d4bc8c-c020-43ed-a43c-9211aed82d96">
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="785381d9-b39b-453a-baab-f66c692f8ff9">
+              <index>I0</index>
+            </argIndexMap>
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="1298a06e-6d11-4702-9073-8a13483e9ba0">
+              <index>O0</index>
+              <position>1</position>
+            </argIndexMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="5ac8cfc4-d4fb-43b6-84a9-6a8cc3e088ed">
+              <name>data</name>
+            </argNameMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="9322ad06-04e3-4dfa-911c-7342b1d9b362">
+              <name>status</name>
+              <position>1</position>
+            </argNameMap>
+            <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="d4ec323d-803d-40e9-9413-c6ec8ff9a399">
+              <argumentType>1</argumentType>
+              <dims>1</dims>
+              <passByType>POINTER</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="f87f5f9c-49c9-4429-936b-e51e67c74dba">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+              </dataType>
+            </inArgs>
+            <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="c4bd4474-7b19-4253-8647-6736bf59b9db">
+              <argumentType>2</argumentType>
+              <dims>1</dims>
+              <passByType>AUTO</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="ee15ce63-4244-43cc-8080-9332887506ca">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(1,32,0)</dataTypeName>
+              </dataType>
+            </outArgs>
+            <returnArgIdx>-1</returnArgIdx>
+          </serviceArgs>
+        </providingServices>
+        <servicePortKey type="ModelRefInfoRepo.ServicePortKey">
+          <blockPath>LaneGuidance/leftTurnIndicator</blockPath>
+          <portType>SVC_OUT_PORT</portType>
+        </servicePortKey>
+      </compServicePorts>
+      <compServicePorts type="ModelRefInfoRepo.CompIOServicePort" uuid="dd4fd99e-0c2b-4e6b-9e86-9e62e6ba3505">
+        <providingServices type="ModelRefInfoRepo.CompMsgService" uuid="7cccb6ca-a113-4b0e-bf08-dcc84b8076ae">
+          <compFcnFullPath>LaneGuidance/leftLaneDistance_Out_0</compFcnFullPath>
+          <serviceCGFcnName>RecvData</serviceCGFcnName>
+          <serviceName>RecvData</serviceName>
+          <serviceArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="16a0ee9e-3ea3-462f-aedd-7a20580274e8">
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="06007464-d106-45f1-8a8c-8fc4937dd441">
+              <index>I0</index>
+            </argIndexMap>
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="c98688fe-8f5a-4e6c-8841-9b8ab40bb0df">
+              <index>O0</index>
+              <position>1</position>
+            </argIndexMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="558fbcdb-f2a9-44df-8a1a-bfb930f2f19f">
+              <name>data</name>
+            </argNameMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="676ffd95-1a4e-4c82-86d5-e05a4d94788e">
+              <name>status</name>
+              <position>1</position>
+            </argNameMap>
+            <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="c5c258aa-2b0d-4f3e-a948-05af6232c4ce">
+              <argumentType>1</argumentType>
+              <dims>1</dims>
+              <passByType>POINTER</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="cd1a7fe1-dc19-49bf-843a-1bb2dcac467c">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+              </dataType>
+            </inArgs>
+            <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="93aa4513-201e-4140-925e-91b1778e6c40">
+              <argumentType>2</argumentType>
+              <dims>1</dims>
+              <passByType>AUTO</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="61849693-f3a2-4df9-a4ca-cbbd6d37410d">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(1,32,0)</dataTypeName>
+              </dataType>
+            </outArgs>
+            <returnArgIdx>-1</returnArgIdx>
+          </serviceArgs>
+        </providingServices>
+        <servicePortKey type="ModelRefInfoRepo.ServicePortKey">
+          <blockPath>LaneGuidance/leftLaneDistance</blockPath>
+          <portType>SVC_OUT_PORT</portType>
+        </servicePortKey>
+      </compServicePorts>
+      <compServicePorts type="ModelRefInfoRepo.CompIOServicePort" uuid="2074b8a8-e457-4ad9-b433-ec3e5ca4aef8">
+        <externalPortIdx>2</externalPortIdx>
+        <providingServices type="ModelRefInfoRepo.CompMsgService" uuid="a7e5b80d-53c6-40d0-b13d-f150774e5e63">
+          <compFcnFullPath>LaneGuidance/rightLaneDistance_Out_0</compFcnFullPath>
+          <serviceCGFcnName>RecvData</serviceCGFcnName>
+          <serviceName>RecvData</serviceName>
+          <serviceArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="0d2fa850-cce9-4210-9c7a-6614300c77f4">
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="bff6ab1c-a135-4966-8040-fcc14b0adedd">
+              <index>I0</index>
+            </argIndexMap>
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="ee7af23f-0130-483d-9ffc-cad432516c77">
+              <index>O0</index>
+              <position>1</position>
+            </argIndexMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="006269e1-53df-4aef-84b8-393b32484c9f">
+              <name>data</name>
+            </argNameMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="ab0b17f0-c7a2-4c34-9049-236dfdec0f63">
+              <name>status</name>
+              <position>1</position>
+            </argNameMap>
+            <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="a590736c-5be8-43f7-b913-ae926cf22d0b">
+              <argumentType>1</argumentType>
+              <dims>1</dims>
+              <passByType>POINTER</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="0fd44367-5a3c-480f-8dc9-c198e069dc8f">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+              </dataType>
+            </inArgs>
+            <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="8f3026f4-f8df-4b8e-ab2f-63b49be393e8">
+              <argumentType>2</argumentType>
+              <dims>1</dims>
+              <passByType>AUTO</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="56387443-96b1-4482-be50-133339bafc94">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(1,32,0)</dataTypeName>
+              </dataType>
+            </outArgs>
+            <returnArgIdx>-1</returnArgIdx>
+          </serviceArgs>
+        </providingServices>
+        <servicePortKey type="ModelRefInfoRepo.ServicePortKey">
+          <blockPath>LaneGuidance/rightLaneDistance</blockPath>
+          <portType>SVC_OUT_PORT</portType>
+        </servicePortKey>
+      </compServicePorts>
+      <compServicePorts type="ModelRefInfoRepo.CompIOServicePort" uuid="1a68b093-03f0-4bd4-b880-de087a3314df">
+        <externalPortIdx>1</externalPortIdx>
+        <providingServices type="ModelRefInfoRepo.CompMsgService" uuid="0d12f515-2c50-46ff-acc7-2d6510a3be77">
+          <compFcnFullPath>LaneGuidance/rightHazardIndicator_In_0</compFcnFullPath>
+          <serviceCGFcnName>SendData</serviceCGFcnName>
+          <serviceName>SendData</serviceName>
+          <serviceArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="ce5ad880-ab5a-4343-8c68-6fa9f1d9993d">
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="217029f9-e712-4839-9770-d2643c07695d">
+              <index>I0</index>
+            </argIndexMap>
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="fd67c721-8236-4a52-a2ba-12ec19fc400b">
+              <index>O0</index>
+              <position>1</position>
+            </argIndexMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="34a665cc-6c97-4bd3-9ab4-64e9d0db78fd">
+              <name>data</name>
+            </argNameMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="7fceedc7-e2ac-434b-8c43-4f84d852639d">
+              <name>status</name>
+              <position>1</position>
+            </argNameMap>
+            <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="e64c1f41-11e9-4674-8dd5-2e98ad41341c">
+              <argumentType>1</argumentType>
+              <dims>1</dims>
+              <passByType>CONST_POINTER_CONST_DATA</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="ec5397c8-136b-4de6-835f-5187fc04dc7d">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+              </dataType>
+            </inArgs>
+            <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="03df62bf-11af-4baa-bb7d-bcf992601da0">
+              <argumentType>2</argumentType>
+              <dims>1</dims>
+              <passByType>AUTO</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="32399643-eefc-4344-b494-0a4923283c06">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(1,32,0)</dataTypeName>
+              </dataType>
+            </outArgs>
+            <returnArgIdx>-1</returnArgIdx>
+          </serviceArgs>
+        </providingServices>
+        <servicePortKey type="ModelRefInfoRepo.ServicePortKey">
+          <blockPath>LaneGuidance/rightHazardIndicator</blockPath>
+          <portType>SVC_IN_PORT</portType>
+        </servicePortKey>
+      </compServicePorts>
+      <compSimulinkFunctionCatalog></compSimulinkFunctionCatalog>
+    </simulinkFunctions>
+    <sltpContext type="sltp.mm.core.Context" uuid="e01174aa-ddb6-480c-8f6c-977bc1d433b8">
+      <globalData type="sltp.mm.core.GlobalData" uuid="dbeef467-3db3-4616-8159-f7082eb2d8ec">
+        <dataName>portleftCarInBlindSpot</dataName>
+        <type>RootInport</type>
+      </globalData>
+      <globalData type="sltp.mm.core.GlobalData" uuid="66cb365c-2e35-4fa5-b4ea-cd5223561901">
+        <dataName>portleftHazardIndicator</dataName>
+        <type>RootOutport</type>
+      </globalData>
+      <globalData type="sltp.mm.core.GlobalData" uuid="ff9f4bf5-8d3d-4463-84eb-45941efe2609">
+        <dataName>portleftLaneDistance</dataName>
+        <type>RootInport</type>
+      </globalData>
+      <globalData type="sltp.mm.core.GlobalData" uuid="ee11a6c6-45bd-49ce-9b8c-cda7f9c6f2cb">
+        <dataName>portleftTurnIndicator</dataName>
+        <type>RootInport</type>
+      </globalData>
+      <globalData type="sltp.mm.core.GlobalData" uuid="07be71d0-594a-45b7-8363-9ecbe151c8a0">
+        <dataName>portrightCarInBlindSpot</dataName>
+        <type>RootInport</type>
+      </globalData>
+      <globalData type="sltp.mm.core.GlobalData" uuid="76676e2c-f621-4e69-a0f9-dfa5756a8a78">
+        <dataName>portrightHazardIndicator</dataName>
+        <type>RootOutport</type>
+      </globalData>
+      <globalData type="sltp.mm.core.GlobalData" uuid="28840b8b-36b7-4961-8866-fb8869c3ad3b">
+        <dataName>portrightLaneDistance</dataName>
+        <type>RootInport</type>
+      </globalData>
+      <globalData type="sltp.mm.core.GlobalData" uuid="acbe85e7-64e4-4414-b585-180f53af1b0f">
+        <dataName>portrightTurnIndicator</dataName>
+        <type>RootInport</type>
+      </globalData>
+      <priorityDirection>HighNumberLast</priorityDirection>
+      <defaultEventBehavior type="sltp.mm.core.EventBehavior" uuid="5c2c40f5-7f7b-41a1-b806-349686cd7f30"/>
+      <editorState type="sltp.mm.core.EditorState" uuid="9711fc84-ad1a-4f38-b135-fbbf222fe637">
+        <isSynchronized>true</isSynchronized>
+        <panelState type="sltp.mm.core.EditorPanelState" uuid="990c030d-e57e-4e37-985e-58a37bb2f533"/>
+      </editorState>
+      <rootTask type="sltp.mm.core.Task" uuid="1fa7714c-f29b-4439-b816-92e840af84e5">
+        <context type="sltp.mm.core.Context" uuid="e01174aa-ddb6-480c-8f6c-977bc1d433b8"/>
+        <explicit>false</explicit>
+        <name>Default</name>
+        <priority>-2147483648</priority>
+        <subgraph type="sltp.mm.core.Graph" uuid="9f515fbb-f64a-4edb-8a0e-7beffeaeb245">
+          <tasks type="sltp.mm.core.Task" uuid="36c3291f-9cf1-4261-8ffb-bdf8d9e5bfab">
+            <context type="sltp.mm.core.Context" uuid="e01174aa-ddb6-480c-8f6c-977bc1d433b8"/>
+            <explicit>false</explicit>
+            <id>1</id>
+            <isTimed>true</isTimed>
+            <name>D1</name>
+            <priority>40</priority>
+            <rates type="sltp.mm.core.Rate" uuid="b02096df-c618-41ea-8950-186d7e5edab4">
+              <annotation>D1</annotation>
+              <color>-12240129</color>
+              <hasBlocks>true</hasBlocks>
+              <rateIndex>0</rateIndex>
+              <rateSpec type="sltp.mm.core.RateSpec">
+                <period>.1</period>
+              </rateSpec>
+              <sti>0</sti>
+            </rates>
+          </tasks>
+        </subgraph>
+      </rootTask>
+    </sltpContext>
+    <stateWriterToOwnerMap type="ModelRefInfoRepo.StateWriterInfo" uuid="9dcf2289-c0ce-443f-b977-8be7f9278bb5"/>
+    <stoClientDataRegistry type="sto.ClientDataRegistry" uuid="294ff7f8-cfb0-4bec-a720-87fad8b10b0b">
+      <dataSets type="sto.ClientClockNamedDataSet" uuid="350ec55d-c325-45f5-abd7-7c1294e40676">
+        <tag>sltpEvents</tag>
+      </dataSets>
+      <dataSets type="sto.ClientTaskHierarchyElementNamedDataSet" uuid="da51401e-5414-4ca8-895d-6f43d581fd9e">
+        <tag>sltpTaskGroups</tag>
+      </dataSets>
+      <dataSets type="sto.ClientTaskHierarchyElementNamedDataSet" uuid="d9e6c1b6-ec8c-47f6-ab61-f43f1fe092a4">
+        <dSet type="ModelRefInfoRepo.SltpTaskData" uuid="7fe2bbbd-163f-40da-8524-aa18e8fab024"/>
+        <tSet type="ModelRefInfoRepo.SltpTaskData" uuid="7fe2bbbd-163f-40da-8524-aa18e8fab024">
+          <dataName>D1</dataName>
+          <linkedSet type="sto.ClientTaskHierarchyElementNamedDataSet" uuid="d9e6c1b6-ec8c-47f6-ab61-f43f1fe092a4"/>
+          <id type="sto.TaskHierarchyElementId">
+            <clockId>LaneGuidance::defaultTimer</clockId>
+            <id>_task0</id>
+          </id>
+        </tSet>
+        <tag>sltpTasks</tag>
+      </dataSets>
+    </stoClientDataRegistry>
+    <varTsUIDMap type="ModelRefInfoRepo.VarTsUIDMap" uuid="98bed6f9-d95c-4156-9373-3350154b64e8"/>
+  </ModelRefInfoRepo.ModelRefInfoRoot>
+</MF0>

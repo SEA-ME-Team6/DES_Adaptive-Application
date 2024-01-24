@@ -1,0 +1,45 @@
+module eprosima_dds {
+  struct ProvidedInterface_LeftHazardIndicator {
+    double m_double;
+  }
+  ;
+
+  struct ProvidedInterface_RightHazardIndicator {
+    double m_double;
+  }
+    ;
+}
+;
+
+module eprosima_dds {
+  struct RequiredInterface_LeftCarInBlindSpot {
+    double m_double;
+  }
+  ;
+
+  struct RequiredInterface_LeftLaneDistance {
+    double m_double;
+  }
+    ;
+
+  struct RequiredInterface_LeftTurnIndicator {
+    double m_double;
+  }
+    ;
+
+  struct RequiredInterface_RightCarInBlindSpot {
+    double m_double;
+  }
+    ;
+
+  struct RequiredInterface_RightLaneDistance {
+    double m_double;
+  }
+    ;
+
+  struct RequiredInterface_RightTurnIndicator {
+    double m_double;
+  }
+    ;
+}
+;
