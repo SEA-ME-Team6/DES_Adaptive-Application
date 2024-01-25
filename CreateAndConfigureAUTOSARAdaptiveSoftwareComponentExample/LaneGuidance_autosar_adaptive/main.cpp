@@ -26,99 +26,88 @@
 int32_t main() {
   /* Used to control the flow in case of error in any api's used. */
   bool bProceed{true};
-  /* Used to decide whether ara function clusters has been initialized. */
-  bool bAraInitialized{true};
-  /* ara function cluster init. */
-  const ara::core::Result<void> initStatus{ara::core::Initialize()};
 
-  if (!initStatus.HasValue()) {
+  ara::log::Logger &araLog{ara::log::CreateLogger(
+      ara::core::StringView{"Lane"},
+      ara::core::StringView{"Logger for LaneGuidance's main function."},
+      ara::log::LogLevel::kWarn)};
+
+  /* Report Execution state */
+  ara::exec::ExecutionClient exec_client;
+  try {
+    if (!exec_client.ReportExecutionState(
+            ara::exec::ExecutionState::kRunning)) {
+      araLog.LogError() << "Unable to report running state: "
+                            "ara::exec::ExecutionReturnType::kGeneralError.\n";
+      bProceed = false;
+    } else {
+      araLog.LogVerbose() << "Adaptive application entering running state.";
+    } /* if */
+  } catch (std::exception const &e) {
+    araLog.LogError() << "Unable to report running state due to exception: "
+                      << e.what() << ".\n";
     bProceed = false;
-    bAraInitialized = false;
-  } /* if */
+  }
 
-  if (bAraInitialized) {
-    ara::log::Logger &araLog{ara::log::CreateLogger(
-        ara::core::StringView{"Lane"},
-        ara::core::StringView{"Logger for LaneGuidance's main function."},
-        ara::log::LogLevel::kWarn)};
-
-    /* Report Execution state */
-    ara::exec::ExecutionClient exec_client;
+  LaneGuidance LaneGuidance_Obj;
+  if (bProceed) {
+    /* Initialize Functions */
     try {
-      if (!exec_client.ReportExecutionState(
-              ara::exec::ExecutionState::kRunning)) {
-        araLog.LogError() << "Unable to report running state: "
-                             "ara::exec::ExecutionReturnType::kGeneralError.\n";
-        bProceed = false;
-      } else {
-        araLog.LogVerbose() << "Adaptive application entering running state.";
-      } /* if */
+      LaneGuidance_Obj.initialize();
     } catch (std::exception const &e) {
-      araLog.LogError() << "Unable to report running state due to exception: "
-                        << e.what() << ".\n";
+      araLog.LogError() << "Unable to initialize: " << e.what() << ".\n";
       bProceed = false;
     }
+  } /* if */
 
-    LaneGuidance LaneGuidance_Obj;
-    if (bProceed) {
-      /* Initialize Functions */
-      try {
-        LaneGuidance_Obj.initialize();
-      } catch (std::exception const &e) {
-        araLog.LogError() << "Unable to initialize: " << e.what() << ".\n";
-        bProceed = false;
-      }
-    } /* if */
+  if (bProceed) {
+    /* Create an executor instance to schedule the periodic step functions */
+    /* Whenever the period of a step function passes, the executor */
+    /* schedules that step function to be executed on a thread. */
+    platform::runtime::Executor fcnExecutor;
 
-    if (bProceed) {
-      /* Create an executor instance to schedule the periodic step functions */
-      /* Whenever the period of a step function passes, the executor */
-      /* schedules that step function to be executed on a thread. */
-      platform::runtime::Executor fcnExecutor;
+    /* Base rate is the time unit of a tick */
+    const double baseRate{0.100000};
+    fcnExecutor.setBaseRateInSeconds(std::chrono::duration<double>(baseRate));
 
-      /* Base rate is the time unit of a tick */
-      const double baseRate{0.100000};
-      fcnExecutor.setBaseRateInSeconds(std::chrono::duration<double>(baseRate));
+    /* Register periodic step functions in the executor. */
+    fcnExecutor.addPeriodicEvent(
+        [&LaneGuidance_Obj, &araLog]() {
+          try {
+            LaneGuidance_Obj.step();
+          } catch (std::exception const &e) {
+            araLog.LogError() << "Error executing step: " << e.what();
+          }
+        },
+        1);
 
-      /* Register periodic step functions in the executor. */
-      fcnExecutor.addPeriodicEvent(
-          [&LaneGuidance_Obj, &araLog]() {
-            try {
-              LaneGuidance_Obj.step();
-            } catch (std::exception const &e) {
-              araLog.LogError() << "Error executing step: " << e.what();
-            }
-          },
-          1);
-
-      araLog.LogVerbose() << "Starting Step function.";
+    araLog.LogVerbose() << "Starting Step function.";
 #if defined(rtmSetStopRequested) && defined(rtmGetStopRequested)
-      fcnExecutor.run(
-          [&LaneGuidance_Obj]() {
-            return rtmGetStopRequested(LaneGuidance_Obj.getRTM());
-          },
-          araLog);
+    fcnExecutor.run(
+        [&LaneGuidance_Obj]() {
+          return rtmGetStopRequested(LaneGuidance_Obj.getRTM());
+        },
+        araLog);
 #else
-      fcnExecutor.run(araLog);
+    fcnExecutor.run(araLog);
 #endif
-    } /* if */
+  } /* if */
 
-    if (bProceed) {
-      try {
-        /* Terminate Functions */
-        LaneGuidance_Obj.terminate();
-      } catch (std::exception const &e) {
-        araLog.LogError() << "Unable to terminate: " << e.what() << ".\n";
-        bProceed = false;
-      }
-    } /* if */
+  if (bProceed) {
+    try {
+      /* Terminate Functions */
+      LaneGuidance_Obj.terminate();
+    } catch (std::exception const &e) {
+      araLog.LogError() << "Unable to terminate: " << e.what() << ".\n";
+      bProceed = false;
+    }
+  } /* if */
 
-    araLog.LogVerbose() << "Exiting adaptive application.\n";
-    const ara::core::Result<void> deinitStatus{ara::core::Deinitialize()};
-    if (!deinitStatus.HasValue()) {
-      bAraInitialized = false;
-    } /* if */
-  }   /* if */
+  araLog.LogVerbose() << "Exiting adaptive application.\n";
+  const ara::core::Result<void> deinitStatus{ara::core::Deinitialize()};
+  if (!deinitStatus.HasValue()) {
+    bAraInitialized = false;
+  } /* if */
 
   constexpr int32_t APP_SUCCESS{0};
   constexpr int32_t APP_FAIL{1};
