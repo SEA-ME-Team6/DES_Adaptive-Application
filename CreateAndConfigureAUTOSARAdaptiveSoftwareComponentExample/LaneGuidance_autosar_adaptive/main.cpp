@@ -28,8 +28,8 @@ int32_t main() {
   bool bProceed{true};
 
   ara::log::Logger &araLog{ara::log::CreateLogger(
-      ara::core::StringView{"Lane"},
-      ara::core::StringView{"Logger for LaneGuidance's main function."},
+      std::string{"Lane"},
+      std::string{"Logger for LaneGuidance's main function."},
       ara::log::LogLevel::kWarn)};
 
   /* Report Execution state */
