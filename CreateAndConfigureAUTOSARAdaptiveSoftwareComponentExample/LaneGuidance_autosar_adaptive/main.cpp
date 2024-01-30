@@ -17,10 +17,10 @@ int32_t main() {
   /* Used to control the flow in case of error in any api's used. */
   bool bProceed{true};
 
-  ara::log::Logger &araLog{ara::log::CreateLogger(
+  ara::log::Logger araLog = ara::log::CreateLogger(
       std::string{"Lane"},
       std::string{"Logger for LaneGuidance's main function."},
-      ara::log::LogLevel::kWarn)};
+      ara::log::LogLevel::kWarn);
 
 //   LaneGuidance LaneGuidance_Obj;
 //   if (bProceed) {

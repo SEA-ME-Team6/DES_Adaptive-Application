@@ -14,11 +14,11 @@ namespace ara
             std::string mContextId;
             std::string mContextDescription;
             LogLevel mContextDefaultLogLevel;
+
+        public:
             Logger(std::string ctxId,
                    std::string ctxDescription,
                    LogLevel ctxDefLogLevel);
-
-        public:
             Logger() = delete;
             ~Logger() noexcept = default;
 
@@ -72,12 +72,12 @@ namespace ara
             /// @param ctxDefLogLevel Context default log level
             /// @returns A new logger for that specifc context
             /// @note Log with less severity than the default log level are ignored.
-            static Logger CreateLogger(
-                std::string ctxId,
-                std::string ctxDescription,
-                LogLevel ctxDefLogLevel);
         };
 
+        Logger CreateLogger(
+            std::string ctxId,
+            std::string ctxDescription,
+            LogLevel ctxDefLogLevel);
     }
 }
 
