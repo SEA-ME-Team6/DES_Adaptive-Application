@@ -11,18 +11,19 @@
 #include "ara/log/log_stream.h"
 // #include <ara/exec/execution_client.h>
 // #include <ara/core/initialization.h>
-// #include "LaneGuidance.h"
+#include "LaneGuidance.h"
 
 int32_t main() {
   /* Used to control the flow in case of error in any api's used. */
-  bool bProceed{true};
+	bool bProceed{true};
 
-  ara::log::Logger araLog = ara::log::CreateLogger(
-      std::string{"Lane"},
-      std::string{"Logger for LaneGuidance's main function."},
-      ara::log::LogLevel::kWarn);
+	ara::log::Logger araLog = ara::log::CreateLogger(
+		std::string{"Lane"},
+		std::string{"Logger for LaneGuidance's main function."},
+		ara::log::LogLevel::kWarn);
 
-//   LaneGuidance LaneGuidance_Obj;
+	LaneGuidance LaneGuidance_Obj;
+
 //   if (bProceed) {
 //     /* Initialize Functions */
 //     try {

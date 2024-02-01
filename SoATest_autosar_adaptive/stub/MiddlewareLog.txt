@@ -1,0 +1,1 @@
+Simulink block SoATest/Out1 using DDS topic name 'Out1' for ara::com event communication.

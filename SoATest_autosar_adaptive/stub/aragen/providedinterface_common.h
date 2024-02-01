@@ -3,17 +3,17 @@
    in Simulink. When deploying the generated code outside of Simulink,
    replace this file with an appropriate ARA file.
 
-   Code generated for Simulink Adaptive model: "LaneGuidance"
+   Code generated for Simulink Adaptive model: "SoATest"
    AUTOSAR AP Release: "21-11"
-   On: "24-Jan-2024 16:40:57"  */
+   On: "01-Feb-2024 16:12:38"  */
 
 #ifndef PROVIDEDINTERFACE_COMMON_H_
 #define PROVIDEDINTERFACE_COMMON_H_
-// #include "ara/core/array.h"
-// #include "ara/core/vector.h"
-// #include "ara/core/future.h"
-// #include "ara/core/promise.h"
-// #include "ara/com/types.h"
+#include "ara/core/array.h"
+#include "ara/core/vector.h"
+#include "ara/core/future.h"
+#include "ara/core/promise.h"
+#include "ara/com/types.h"
 #include "MiddlewareFactories.h"
 #include <fastrtps/types/DynamicData.h>
 #include <fastrtps/types/DynamicPubSubType.h>

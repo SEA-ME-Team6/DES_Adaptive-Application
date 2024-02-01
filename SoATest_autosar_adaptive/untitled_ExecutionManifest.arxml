@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Auto generated XML Component Description for model SoATest
+Model version                : 1.1
+Simulink Coder version       : Simulink Coder 23.2 (R2023b) 01-Aug-2023
+XML source code generated on : Thu Feb 01 16:12:40 2024
+Model Checksum               : 1627036528 1024624715 1194955342 1999502659
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00050.xsd">
+    <AR-PACKAGES>
+        <AR-PACKAGE>
+            <SHORT-NAME>ModeDeclarationGroups</SHORT-NAME>
+            <ELEMENTS>
+                <MODE-DECLARATION-GROUP>
+                    <SHORT-NAME>ProcessStateMachine</SHORT-NAME>
+                    <INITIAL-MODE-REF DEST="MODE-DECLARATION">/ModeDeclarationGroups/ProcessStateMachine/Idle</INITIAL-MODE-REF>
+                    <MODE-DECLARATIONS>
+                        <MODE-DECLARATION UUID="d7eb687c-9ef3-5c4e-b82b-6ab5cd7305c6">
+                            <SHORT-NAME>Idle</SHORT-NAME>
+                            <VALUE>1</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="12164594-5bf6-5b15-a306-9cb73945bb62">
+                            <SHORT-NAME>Starting</SHORT-NAME>
+                            <VALUE>2</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="401dd624-06c4-5da2-241a-a9532a330455">
+                            <SHORT-NAME>Running</SHORT-NAME>
+                            <VALUE>3</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="0144a03d-3359-5221-4ea8-87b99887915d">
+                            <SHORT-NAME>Terminating</SHORT-NAME>
+                            <VALUE>4</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="a2def901-39ef-5f56-0701-6b4ecbcaeada">
+                            <SHORT-NAME>Terminated</SHORT-NAME>
+                            <VALUE>5</VALUE>
+                        </MODE-DECLARATION>
+                    </MODE-DECLARATIONS>
+                </MODE-DECLARATION-GROUP>
+            </ELEMENTS>
+        </AR-PACKAGE>
+    </AR-PACKAGES>
+</AUTOSAR>

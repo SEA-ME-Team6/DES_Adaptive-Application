@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_ENABLE_EXPORTS 1)
 
 find_package(Threads REQUIRED)
+# find_package(fastrtps REQUIRED)
 
 include_directories(
     ${CMAKE_SOURCE_DIR}/ara/com
@@ -16,6 +17,7 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/ara/log
     ${CMAKE_SOURCE_DIR}/stub/aragen
     ${CMAKE_SOURCE_DIR}/slprj/autosar_adaptive/_sharedutils
+    # ${FASTRTPS_INCLUDE_DIR}
 )
 
 file(GLOB ARA_COM_SOURCES "${CMAKE_SOURCE_DIR}/ara/com/*.cpp")
@@ -31,9 +33,10 @@ add_executable(${PROJECT_NAME}
     # ${ARA_DIAG_SOURCES}
     # ${ARA_EXEC_SOURCES}
     ${ARA_LOG_SOURCES}
-    # LaneGuidance.cpp
+    LaneGuidance.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE Threads::Threads
+    # fastrtps
 )

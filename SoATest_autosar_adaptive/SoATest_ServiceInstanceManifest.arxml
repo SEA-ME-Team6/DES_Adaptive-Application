@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Auto generated XML Component Description for model SoATest
+Model version                : 1.1
+Simulink Coder version       : Simulink Coder 23.2 (R2023b) 01-Aug-2023
+XML source code generated on : Thu Feb 01 16:12:40 2024
+Model Checksum               : 1627036528 1024624715 1194955342 1999502659
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00050.xsd">
+    <AR-PACKAGES>
+        <AR-PACKAGE>
+            <SHORT-NAME>untitled_CommunicationCluster</SHORT-NAME>
+            <ELEMENTS>
+                <ETHERNET-CLUSTER UUID="c03cf3db-44d7-5b6c-65ee-6bce6dd6a737">
+                    <SHORT-NAME>ComCluster</SHORT-NAME>
+                    <ETHERNET-CLUSTER-VARIANTS>
+                        <ETHERNET-CLUSTER-CONDITIONAL>
+                            <PHYSICAL-CHANNELS>
+                                <ETHERNET-PHYSICAL-CHANNEL UUID="69f303bb-f62e-544e-82a0-52ad6c458fa4">
+                                    <SHORT-NAME>PhysicalChannel</SHORT-NAME>
+                                    <NETWORK-ENDPOINTS>
+                                        <NETWORK-ENDPOINT UUID="6bb31c93-d793-5718-7532-1b4e96584504">
+                                            <SHORT-NAME>NetworkEndpoint</SHORT-NAME>
+                                            <NETWORK-ENDPOINT-ADDRESSES>
+                                                <IPV-4-CONFIGURATION>
+                                                    <IPV-4-ADDRESS>127.0.0.1</IPV-4-ADDRESS>
+                                                </IPV-4-CONFIGURATION>
+                                            </NETWORK-ENDPOINT-ADDRESSES>
+                                        </NETWORK-ENDPOINT>
+                                    </NETWORK-ENDPOINTS>
+                                </ETHERNET-PHYSICAL-CHANNEL>
+                            </PHYSICAL-CHANNELS>
+                        </ETHERNET-CLUSTER-CONDITIONAL>
+                    </ETHERNET-CLUSTER-VARIANTS>
+                </ETHERNET-CLUSTER>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>untitled_Deployments</SHORT-NAME>
+            <ELEMENTS>
+                <DDS-SERVICE-INTERFACE-DEPLOYMENT UUID="b92fa312-207c-59f3-d9eb-e2725a42c981">
+                    <SHORT-NAME>DdsDeployment_ProvidedPort</SHORT-NAME>
+                    <EVENT-DEPLOYMENTS>
+                        <DDS-EVENT-DEPLOYMENT UUID="b0ce62d9-1b36-556b-7cb7-905457d8c33e">
+                            <SHORT-NAME>Deployment_Out1</SHORT-NAME>
+                            <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/Interfaces/ProvidedInterface/Out1</EVENT-REF>
+                            <TOPIC-NAME>Out1</TOPIC-NAME>
+                            <TRANSPORT-PROTOCOLS>
+                                <TRANSPORT-PROTOCOL>TCP</TRANSPORT-PROTOCOL>
+                            </TRANSPORT-PROTOCOLS>
+                        </DDS-EVENT-DEPLOYMENT>
+                    </EVENT-DEPLOYMENTS>
+                    <TRANSPORT-PROTOCOLS>
+                        <TRANSPORT-PROTOCOL>TCP</TRANSPORT-PROTOCOL>
+                    </TRANSPORT-PROTOCOLS>
+                </DDS-SERVICE-INTERFACE-DEPLOYMENT>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>untitled_MachineDesign</SHORT-NAME>
+            <ELEMENTS>
+                <MACHINE-DESIGN UUID="bc365c88-5a26-55da-6e21-7f467e544d26">
+                    <SHORT-NAME>MachineDesign</SHORT-NAME>
+                    <COMMUNICATION-CONNECTORS>
+                        <ETHERNET-COMMUNICATION-CONNECTOR UUID="9f35e349-8f05-521e-16b0-4a66c2d60714">
+                            <SHORT-NAME>CommunicationConnector</SHORT-NAME>
+                            <UNICAST-NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/untitled_CommunicationCluster/ComCluster/PhysicalChannel/NetworkEndpoint</UNICAST-NETWORK-ENDPOINT-REF>
+                        </ETHERNET-COMMUNICATION-CONNECTOR>
+                    </COMMUNICATION-CONNECTORS>
+                </MACHINE-DESIGN>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>untitled_ServiceInstToMachineMap</SHORT-NAME>
+            <ELEMENTS>
+                <DDS-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="18c14819-da9f-50d4-3170-170ea7c59872">
+                    <SHORT-NAME>DdsServiceInstToMachineMap_DdsSI_ProvidedPort</SHORT-NAME>
+                    <COMMUNICATION-CONNECTOR-REF DEST="COMMUNICATION-CONNECTOR">/untitled_MachineDesign/MachineDesign/CommunicationConnector</COMMUNICATION-CONNECTOR-REF>
+                    <SERVICE-INSTANCE-REFS>
+                        <SERVICE-INSTANCE-REF DEST="DDS-PROVIDED-SERVICE-INSTANCE">/untitled_ServiceInstances/DdsSI_ProvidedPort</SERVICE-INSTANCE-REF>
+                    </SERVICE-INSTANCE-REFS>
+                </DDS-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>untitled_ServiceInstanceToPortMappings</SHORT-NAME>
+            <ELEMENTS>
+                <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="7d8ec4a2-6dc0-50ad-b288-5d01204cc5f9">
+                    <SHORT-NAME>Mapping_ProvidedPort</SHORT-NAME>
+                    <PORT-PROTOTYPE-IREF>
+                        <CONTEXT-COMPONENT-PROTOTYPE-REF DEST="SW-COMPONENT-PROTOTYPE">/Components/SoATest</CONTEXT-COMPONENT-PROTOTYPE-REF>
+                        <TARGET-PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/Components/SoATest/ProvidedPort</TARGET-PORT-PROTOTYPE-REF>
+                    </PORT-PROTOTYPE-IREF>
+                    <PROCESS-DESIGN-REF DEST="PROCESS-DESIGN">/untitled_ProcessDesigns/DefaultProcessDesign</PROCESS-DESIGN-REF>
+                    <SERVICE-INSTANCE-REF DEST="DDS-PROVIDED-SERVICE-INSTANCE">/untitled_ServiceInstances/DdsSI_ProvidedPort</SERVICE-INSTANCE-REF>
+                </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>untitled_ServiceInstances</SHORT-NAME>
+            <ELEMENTS>
+                <DDS-PROVIDED-SERVICE-INSTANCE UUID="23f9360a-4483-5c14-b280-a92babf172db">
+                    <SHORT-NAME>DdsSI_ProvidedPort</SHORT-NAME>
+                    <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="DDS-SERVICE-INTERFACE-DEPLOYMENT">/untitled_Deployments/DdsDeployment_ProvidedPort</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                    <DOMAIN-ID>0</DOMAIN-ID>
+                    <EVENT-QOS-PROPSS>
+                        <DDS-EVENT-QOS-PROPS>
+                            <QOS-PROFILE>RELIABLE</QOS-PROFILE>
+                            <EVENT-REF DEST="DDS-EVENT-DEPLOYMENT">/untitled_Deployments/DdsDeployment_ProvidedPort/Deployment_Out1</EVENT-REF>
+                        </DDS-EVENT-QOS-PROPS>
+                    </EVENT-QOS-PROPSS>
+                    <SERVICE-INSTANCE-ID>1</SERVICE-INSTANCE-ID>
+                </DDS-PROVIDED-SERVICE-INSTANCE>
+            </ELEMENTS>
+        </AR-PACKAGE>
+    </AR-PACKAGES>
+</AUTOSAR>
