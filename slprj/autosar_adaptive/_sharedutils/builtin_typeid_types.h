@@ -7,9 +7,9 @@
 //
 //  Code generation for model "SoATest".
 //
-//  Model version              : 1.1
+//  Model version              : 1.2
 //  Simulink Coder version : 23.2 (R2023b) 01-Aug-2023
-//  C++ source code generated on : Thu Feb  1 16:12:33 2024
+//  C++ source code generated on : Tue Feb  6 15:42:31 2024
 
 
 #ifndef BUILTIN_TYPEID_TYPES_H

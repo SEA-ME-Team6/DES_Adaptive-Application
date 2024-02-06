@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Auto generated XML Component Description for model SoATest
-Model version                : 1.1
+Model version                : 1.2
 Simulink Coder version       : Simulink Coder 23.2 (R2023b) 01-Aug-2023
-XML source code generated on : Thu Feb 01 16:12:40 2024
-Model Checksum               : 1627036528 1024624715 1194955342 1999502659
+XML source code generated on : Tue Feb 06 15:42:34 2024
+Model Checksum               : 302504909 1346652103 562755769 2073449633
 -->
-<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00050.xsd">
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00049.xsd">
     <AR-PACKAGES>
         <AR-PACKAGE>
             <SHORT-NAME>Components</SHORT-NAME>
             <ELEMENTS>
-                <ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE UUID="d8be6cb5-aa91-5365-6ce4-f26a842266cf">
+                <ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE UUID="d992b504-438f-5b17-650c-73082c3a4885">
                     <SHORT-NAME>SoATest</SHORT-NAME>
                     <PORTS>
-                        <P-PORT-PROTOTYPE UUID="4014a1c2-504f-5805-70c2-70b10fb98fa1">
+                        <P-PORT-PROTOTYPE UUID="9623c056-5411-5ee5-168a-10cad9d236cf">
                             <SHORT-NAME>ProvidedPort</SHORT-NAME>
                             <PROVIDED-COM-SPECS>
                                 <QUEUED-SENDER-COM-SPEC>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Auto generated XML Component Description for model SoATest
-Model version                : 1.1
+Model version                : 1.2
 Simulink Coder version       : Simulink Coder 23.2 (R2023b) 01-Aug-2023
-XML source code generated on : Thu Feb 01 16:12:40 2024
-Model Checksum               : 1627036528 1024624715 1194955342 1999502659
+XML source code generated on : Tue Feb 06 15:42:34 2024
+Model Checksum               : 302504909 1346652103 562755769 2073449633
 -->
-<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00050.xsd">
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00049.xsd">
     <AR-PACKAGES>
         <AR-PACKAGE>
             <SHORT-NAME>AUTOSAR</SHORT-NAME>
@@ -14,7 +14,7 @@ Model Checksum               : 1627036528 1024624715 1194955342 1999502659
                 <AR-PACKAGE>
                     <SHORT-NAME>StdTypes</SHORT-NAME>
                     <ELEMENTS>
-                        <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="e4f1863d-86b1-5824-636d-7ad4324debe6">
+                        <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="d488f66c-5397-509a-df91-4d863b83da6a">
                             <SHORT-NAME>double</SHORT-NAME>
                             <CATEGORY>VALUE</CATEGORY>
                         </STD-CPP-IMPLEMENTATION-DATA-TYPE>

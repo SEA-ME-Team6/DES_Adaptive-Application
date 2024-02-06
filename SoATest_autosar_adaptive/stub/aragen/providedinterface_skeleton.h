@@ -4,13 +4,14 @@
    replace this file with an appropriate ARA file.
 
    Code generated for Simulink Adaptive model: "SoATest"
-   AUTOSAR AP Release: "21-11"
-   On: "01-Feb-2024 16:12:38"  */
+   AUTOSAR AP Release: "20-11"
+   On: "06-Feb-2024 15:42:33"  */
 
 #ifndef PROVIDEDINTERFACE_SKELETON_H_
 #define PROVIDEDINTERFACE_SKELETON_H_
 #include <memory>
-#include "providedinterface_common.h"
+// #include "providedinterface_common.h"
+#include "Instance_Identifier.h"
 
 namespace skeleton
 {
@@ -48,11 +49,9 @@ namespace skeleton
     }
 
     ProvidedInterfaceSkeleton(const ProvidedInterfaceSkeleton&) = delete;
-    ProvidedInterfaceSkeleton& operator = (const ProvidedInterfaceSkeleton&) =
-      delete;
+    ProvidedInterfaceSkeleton& operator = (const ProvidedInterfaceSkeleton&) = delete;
     ProvidedInterfaceSkeleton(ProvidedInterfaceSkeleton&& sklObj) = default;
-    ProvidedInterfaceSkeleton& operator = (ProvidedInterfaceSkeleton&& sklObj) =
-      default;
+    ProvidedInterfaceSkeleton& operator = (ProvidedInterfaceSkeleton&& sklObj) = default;
     inline ara::core::Result<void> OfferService()
     {
       ara::com::ServiceFactory::CreateService(mHndl);

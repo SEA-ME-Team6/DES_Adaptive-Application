@@ -7,12 +7,12 @@
 //
 //  Code generation for model "SoATest".
 //
-//  Model version              : 1.1
+//  Model version              : 1.2
 //  Simulink Coder version : 23.2 (R2023b) 01-Aug-2023
-//  C++ source code generated on : Thu Feb  1 16:12:33 2024
+//  C++ source code generated on : Tue Feb  6 15:42:31 2024
 //
 //  Target selection: autosar_adaptive.tlc
-//  Embedded hardware selection: Intel->x86-64 (Windows64)
+//  Embedded hardware selection: AMD->x86-64 (Linux 64)
 //  Code generation objectives: Unspecified
 //  Validation result: Not run
 
@@ -39,7 +39,7 @@ bool SoATest::SoATest_push(Buffer_real_T *q, const Msg_real_T *element)
   return true;
 }
 
-int32_t SoATest::SoATest_EventReceive_SendData(const double *data)
+int32_t SoATest::EventReceive_SendData(const double *data)
 {
   Msg_real_T msg;
   int32_t status{ 1 };
@@ -52,8 +52,7 @@ int32_t SoATest::SoATest_EventReceive_SendData(const double *data)
   // Queue generated from: '<Root>/Receiver' incorporates:
   //   DiscreteEventSubgraph generated from: '<Root>/Receiver'
 
-  if (SoATest_push(&SoATest_DW.Queue_InsertedFor_Receiver_at_inport_0_Queue,
-                   &msg)) {
+  if (SoATest_push(&rtDW.Queue_InsertedFor_Receiver_at_inport_0_Queue, &msg)) {
     status = 0;
   }
 
@@ -78,7 +77,7 @@ bool SoATest::SoATest_pop(Buffer_real_T *q, Msg_real_T *elementOut)
   return isPop;
 }
 
-int32_t SoATest::SoATest_EventReceive_RecvData(double *data)
+int32_t SoATest::EventReceive_RecvData(double *data)
 {
   Msg_real_T msg;
   int32_t status{ 1 };
@@ -86,8 +85,7 @@ int32_t SoATest::SoATest_EventReceive_RecvData(double *data)
   // Queue generated from: '<Root>/Receiver' incorporates:
   //   DiscreteEventSubgraph generated from: '<Root>/Receiver'
 
-  if (SoATest_pop(&SoATest_DW.Queue_InsertedFor_Receiver_at_inport_0_Queue, &msg))
-  {
+  if (SoATest_pop(&rtDW.Queue_InsertedFor_Receiver_at_inport_0_Queue, &msg)) {
     status = 0;
     *data = msg.fData;
   }
@@ -102,13 +100,13 @@ void SoATest::step()
   double rtb_Gain;
 
   // Send: '<S2>/Event Send'
-  SoATest_EventReceive_SendData(&SoATest_ConstB.Gain);
+  EventReceive_SendData(&rtConstB.Gain);
 
   // Receive: '<S1>/Event Receive'
-  SoATest_EventReceive_RecvData(&SoATest_B.EventReceive);
+  EventReceive_RecvData(&rtB.EventReceive);
 
   // Gain: '<S1>/Gain'
-  rtb_Gain = 4.0 * SoATest_B.EventReceive;
+  rtb_Gain = 4.0 * rtB.EventReceive;
 
   // Send: '<S1>/Event Send'
   // Send event
@@ -133,8 +131,8 @@ void SoATest::terminate()
 
 // Constructor
 SoATest::SoATest():
-  SoATest_B(),
-  SoATest_DW()
+  rtB(),
+  rtDW()
 {
   // Currently there is no constructor body generated.
 }

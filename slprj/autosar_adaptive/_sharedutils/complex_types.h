@@ -7,9 +7,9 @@
 //
 //  Code generation for model "SoATest".
 //
-//  Model version              : 1.1
+//  Model version              : 1.2
 //  Simulink Coder version : 23.2 (R2023b) 01-Aug-2023
-//  C++ source code generated on : Thu Feb  1 16:12:33 2024
+//  C++ source code generated on : Tue Feb  6 15:42:31 2024
 
 
 #ifndef COMPLEX_TYPES_H
@@ -74,5 +74,19 @@ typedef struct {
   uint32_t re;
   uint32_t im;
 } cuint32_T;
+
+#define CINT64_T
+
+typedef struct {
+  int64_t re;
+  int64_t im;
+} cint64_T;
+
+#define CUINT64_T
+
+typedef struct {
+  uint64_t re;
+  uint64_t im;
+} cuint64_T;
 
 #endif                                 // COMPLEX_TYPES_H

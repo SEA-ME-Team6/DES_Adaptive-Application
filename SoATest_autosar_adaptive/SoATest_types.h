@@ -7,12 +7,12 @@
 //
 //  Code generation for model "SoATest".
 //
-//  Model version              : 1.1
+//  Model version              : 1.2
 //  Simulink Coder version : 23.2 (R2023b) 01-Aug-2023
-//  C++ source code generated on : Thu Feb  1 16:12:33 2024
+//  C++ source code generated on : Tue Feb  6 15:42:31 2024
 //
 //  Target selection: autosar_adaptive.tlc
-//  Embedded hardware selection: Intel->x86-64 (Windows64)
+//  Embedded hardware selection: AMD->x86-64 (Linux 64)
 //  Code generation objectives: Unspecified
 //  Validation result: Not run
 
@@ -53,5 +53,13 @@ struct Buffer_real_T
   Msg_real_T fMsg;
 };
 
+#endif
+
+#ifndef SS_UINT64
+#define SS_UINT64                      20
+#endif
+
+#ifndef SS_INT64
+#define SS_INT64                       21
 #endif
 #endif                                 // RTW_HEADER_SoATest_types_h_

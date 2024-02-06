@@ -1,34 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Auto generated XML Component Description for model SoATest
-Model version                : 1.1
+Model version                : 1.2
 Simulink Coder version       : Simulink Coder 23.2 (R2023b) 01-Aug-2023
-XML source code generated on : Thu Feb 01 16:12:40 2024
-Model Checksum               : 1627036528 1024624715 1194955342 1999502659
+XML source code generated on : Tue Feb 06 15:42:34 2024
+Model Checksum               : 302504909 1346652103 562755769 2073449633
 -->
-<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00050.xsd">
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00049.xsd">
     <AR-PACKAGES>
         <AR-PACKAGE>
-            <SHORT-NAME>untitled_Executable</SHORT-NAME>
+            <SHORT-NAME>ModeDeclarationGroups</SHORT-NAME>
             <ELEMENTS>
-                <EXECUTABLE UUID="4a1f15f6-ef76-53d4-f68d-9e45d99c4441">
-                    <SHORT-NAME>untitled</SHORT-NAME>
+                <MODE-DECLARATION-GROUP>
+                    <SHORT-NAME>ProcessStateMachine</SHORT-NAME>
+                    <INITIAL-MODE-REF DEST="MODE-DECLARATION">/ModeDeclarationGroups/ProcessStateMachine/Idle</INITIAL-MODE-REF>
+                    <MODE-DECLARATIONS>
+                        <MODE-DECLARATION UUID="fce2cf6f-c56b-52ea-b8c2-a30f6a047ac0">
+                            <SHORT-NAME>Idle</SHORT-NAME>
+                            <VALUE>1</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="59d3b3ae-00b2-51c6-9889-c3ce8b91df60">
+                            <SHORT-NAME>Starting</SHORT-NAME>
+                            <VALUE>2</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="965de195-faf9-5237-758d-5cc42762ab30">
+                            <SHORT-NAME>Running</SHORT-NAME>
+                            <VALUE>3</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="7f64572b-f9b2-5be5-e4ad-7669425d9db5">
+                            <SHORT-NAME>Terminating</SHORT-NAME>
+                            <VALUE>4</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="fa738a28-6646-5b55-6b0e-de2377fea1b1">
+                            <SHORT-NAME>Terminated</SHORT-NAME>
+                            <VALUE>5</VALUE>
+                        </MODE-DECLARATION>
+                    </MODE-DECLARATIONS>
+                </MODE-DECLARATION-GROUP>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>SoATest_Executable</SHORT-NAME>
+            <ELEMENTS>
+                <EXECUTABLE UUID="fdbb1b72-0942-5d7c-c34e-64141378d446">
+                    <SHORT-NAME>SoATest</SHORT-NAME>
                     <BUILD-TYPE>BUILD-TYPE-DEBUG</BUILD-TYPE>
                     <LOGGING-BEHAVIOR>USES-LOGGING</LOGGING-BEHAVIOR>
-                    <ROOT-SW-COMPONENT-PROTOTYPE UUID="bc7e0e18-91cf-5710-2833-ff6002f158c5">
-                        <SHORT-NAME>untitled_RootSwComponentPrototype</SHORT-NAME>
+                    <ROOT-SW-COMPONENT-PROTOTYPE UUID="00a90741-fed8-57d9-442b-e123461c311e">
+                        <SHORT-NAME>SoATest_RootSwComponentPrototype</SHORT-NAME>
                         <APPLICATION-TYPE-TREF DEST="ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE">/Components/SoATest</APPLICATION-TYPE-TREF>
                     </ROOT-SW-COMPONENT-PROTOTYPE>
                 </EXECUTABLE>
             </ELEMENTS>
         </AR-PACKAGE>
         <AR-PACKAGE>
-            <SHORT-NAME>untitled_FunctionGroupSet</SHORT-NAME>
+            <SHORT-NAME>SoATest_FunctionGroupSet</SHORT-NAME>
             <ELEMENTS>
-                <FUNCTION-GROUP-SET UUID="d030806b-121a-5dc5-bd41-54cebda9013a">
+                <FUNCTION-GROUP-SET UUID="1b46d491-f471-5aca-f7bb-e92ad4ea86eb">
                     <SHORT-NAME>DefaultFunctionGroupSet</SHORT-NAME>
                     <FUNCTION-GROUPS>
-                        <MODE-DECLARATION-GROUP-PROTOTYPE UUID="bb4d0273-78a8-57c9-b9e7-8ede071ef0e0">
+                        <MODE-DECLARATION-GROUP-PROTOTYPE UUID="1e6b8a3c-b122-5762-ea81-780d89111b92">
                             <SHORT-NAME>DefaultFunctionGroupSet_ModeDeclarationGroupElement</SHORT-NAME>
                             <SW-CALIBRATION-ACCESS>READ-ONLY</SW-CALIBRATION-ACCESS>
                             <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/MachineStates/MachineFG</TYPE-TREF>
@@ -38,37 +69,37 @@ Model Checksum               : 1627036528 1024624715 1194955342 1999502659
             </ELEMENTS>
         </AR-PACKAGE>
         <AR-PACKAGE>
-            <SHORT-NAME>untitled_ProcessDesigns</SHORT-NAME>
+            <SHORT-NAME>SoATest_ProcessDesigns</SHORT-NAME>
             <ELEMENTS>
-                <PROCESS-DESIGN UUID="b3f1707d-47dd-5b0a-13d3-50ac23c6524c">
+                <PROCESS-DESIGN UUID="1fa63368-acf1-5518-c59d-453a5e2c9b8a">
                     <SHORT-NAME>DefaultProcessDesign</SHORT-NAME>
-                    <EXECUTABLE-REF DEST="EXECUTABLE">/untitled_Executable/untitled</EXECUTABLE-REF>
+                    <EXECUTABLE-REF DEST="EXECUTABLE">/SoATest_Executable/SoATest</EXECUTABLE-REF>
                 </PROCESS-DESIGN>
             </ELEMENTS>
         </AR-PACKAGE>
         <AR-PACKAGE>
-            <SHORT-NAME>untitled_ProcessToMachineMappingSet</SHORT-NAME>
+            <SHORT-NAME>SoATest_ProcessToMachineMappingSet</SHORT-NAME>
             <ELEMENTS>
-                <PROCESS-TO-MACHINE-MAPPING-SET UUID="e60a2f5f-e6a9-5a4c-7a58-6674b6abec48">
+                <PROCESS-TO-MACHINE-MAPPING-SET UUID="be99aca5-44ed-57c1-ebd2-8dcc43b96a94">
                     <SHORT-NAME>ProcessToMachineMappingSet</SHORT-NAME>
                     <PROCESS-TO-MACHINE-MAPPINGS>
-                        <PROCESS-TO-MACHINE-MAPPING UUID="6a0e0779-eff3-57e6-f615-72dc9afd6330">
+                        <PROCESS-TO-MACHINE-MAPPING UUID="7c0b8a12-71a0-555e-fc30-03e6dbb06dc1">
                             <SHORT-NAME>DefaultMapping</SHORT-NAME>
                             <MACHINE-REF DEST="MACHINE">/Machines/Host</MACHINE-REF>
-                            <PROCESS-REF DEST="PROCESS">/untitled_Processes/DefaultInstance</PROCESS-REF>
+                            <PROCESS-REF DEST="PROCESS">/SoATest_Processes/DefaultInstance</PROCESS-REF>
                         </PROCESS-TO-MACHINE-MAPPING>
                     </PROCESS-TO-MACHINE-MAPPINGS>
                 </PROCESS-TO-MACHINE-MAPPING-SET>
             </ELEMENTS>
         </AR-PACKAGE>
         <AR-PACKAGE>
-            <SHORT-NAME>untitled_Processes</SHORT-NAME>
+            <SHORT-NAME>SoATest_Processes</SHORT-NAME>
             <ELEMENTS>
-                <PROCESS UUID="334d7902-500a-548c-4a01-17e2e7811ecc">
+                <PROCESS UUID="a7c397ff-c03e-5e5f-92b4-168855fdd8de">
                     <SHORT-NAME>DefaultInstance</SHORT-NAME>
-                    <DESIGN-REF DEST="PROCESS-DESIGN">/untitled_ProcessDesigns/DefaultProcessDesign</DESIGN-REF>
-                    <EXECUTABLE-REF DEST="EXECUTABLE">/untitled_Executable/untitled</EXECUTABLE-REF>
-                    <PROCESS-STATE-MACHINE UUID="d02f3e5b-0ba2-5c2f-a232-a897bc4f7014">
+                    <DESIGN-REF DEST="PROCESS-DESIGN">/SoATest_ProcessDesigns/DefaultProcessDesign</DESIGN-REF>
+                    <EXECUTABLE-REF DEST="EXECUTABLE">/SoATest_Executable/SoATest</EXECUTABLE-REF>
+                    <PROCESS-STATE-MACHINE UUID="b0559e4e-4259-5b85-458f-c708576f9d63">
                         <SHORT-NAME>ProcessStateMachine_ModeDeclarationGroupElement</SHORT-NAME>
                         <SW-CALIBRATION-ACCESS>READ-ONLY</SW-CALIBRATION-ACCESS>
                         <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/ModeDeclarationGroups/ProcessStateMachine</TYPE-TREF>
@@ -77,35 +108,40 @@ Model Checksum               : 1627036528 1024624715 1194955342 1999502659
                         <STATE-DEPENDENT-STARTUP-CONFIG>
                             <FUNCTION-GROUP-STATE-IREFS>
                                 <FUNCTION-GROUP-STATE-IREF>
-                                    <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/untitled_FunctionGroupSet/DefaultFunctionGroupSet/DefaultFunctionGroupSet_ModeDeclarationGroupElement</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                                    <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/SoATest_FunctionGroupSet/DefaultFunctionGroupSet/DefaultFunctionGroupSet_ModeDeclarationGroupElement</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
                                     <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/MachineStates/MachineFG/Running</TARGET-MODE-DECLARATION-REF>
                                 </FUNCTION-GROUP-STATE-IREF>
                             </FUNCTION-GROUP-STATE-IREFS>
                             <RESOURCE-GROUP-REF DEST="RESOURCE-GROUP">/Machines/Host/HostOsInstantiation/DefaultResourceGroup</RESOURCE-GROUP-REF>
-                            <STARTUP-CONFIG-REF DEST="STARTUP-CONFIG">/untitled_StartupConfigs/StartupConfigRR</STARTUP-CONFIG-REF>
+                            <STARTUP-CONFIG-REF DEST="STARTUP-CONFIG">/SoATest_StartupConfigs/DefaultStartupConfigSet/StartupConfigRR</STARTUP-CONFIG-REF>
                         </STATE-DEPENDENT-STARTUP-CONFIG>
                     </STATE-DEPENDENT-STARTUP-CONFIGS>
                 </PROCESS>
             </ELEMENTS>
         </AR-PACKAGE>
         <AR-PACKAGE>
-            <SHORT-NAME>untitled_StartupConfigs</SHORT-NAME>
+            <SHORT-NAME>SoATest_StartupConfigs</SHORT-NAME>
             <ELEMENTS>
-                <STARTUP-CONFIG UUID="49ff1bc8-a2eb-5cd7-61c0-8a4723a351f5">
-                    <SHORT-NAME>StartupConfigRR</SHORT-NAME>
-                    <SCHEDULING-POLICY>SCHEDULING-POLICY-ROUND-ROBIN</SCHEDULING-POLICY>
-                    <SCHEDULING-PRIORITY>32</SCHEDULING-PRIORITY>
-                </STARTUP-CONFIG>
-                <STARTUP-CONFIG UUID="b522993d-7109-5d90-9b49-1f620a3c3887">
-                    <SHORT-NAME>StartupConfigFifo</SHORT-NAME>
-                    <SCHEDULING-POLICY>SCHEDULING-POLICY-FIFO</SCHEDULING-POLICY>
-                    <SCHEDULING-PRIORITY>32</SCHEDULING-PRIORITY>
-                </STARTUP-CONFIG>
-                <STARTUP-CONFIG UUID="960af48f-a992-5438-d9da-d05e43259c74">
-                    <SHORT-NAME>StartupConfigOther</SHORT-NAME>
-                    <SCHEDULING-POLICY>SCHEDULING-POLICY-OTHER</SCHEDULING-POLICY>
-                    <SCHEDULING-PRIORITY>32</SCHEDULING-PRIORITY>
-                </STARTUP-CONFIG>
+                <STARTUP-CONFIG-SET UUID="b71e9139-b24b-51e8-0088-2c9e6f7f0aa4">
+                    <SHORT-NAME>DefaultStartupConfigSet</SHORT-NAME>
+                    <STARTUP-CONFIGS>
+                        <STARTUP-CONFIG UUID="2591117d-98d4-5e72-f3a2-94e206eca98c">
+                            <SHORT-NAME>StartupConfigRR</SHORT-NAME>
+                            <SCHEDULING-POLICY>SCHEDULING-POLICY-ROUND-ROBIN</SCHEDULING-POLICY>
+                            <SCHEDULING-PRIORITY>32</SCHEDULING-PRIORITY>
+                        </STARTUP-CONFIG>
+                        <STARTUP-CONFIG UUID="b14e8ef4-12f1-5312-d757-4d579eb50b1f">
+                            <SHORT-NAME>StartupConfigFifo</SHORT-NAME>
+                            <SCHEDULING-POLICY>SCHEDULING-POLICY-FIFO</SCHEDULING-POLICY>
+                            <SCHEDULING-PRIORITY>32</SCHEDULING-PRIORITY>
+                        </STARTUP-CONFIG>
+                        <STARTUP-CONFIG UUID="133615ae-cb47-5792-2f99-8e1a20bc8fb6">
+                            <SHORT-NAME>StartupConfigOther</SHORT-NAME>
+                            <SCHEDULING-POLICY>SCHEDULING-POLICY-OTHER</SCHEDULING-POLICY>
+                            <SCHEDULING-PRIORITY>32</SCHEDULING-PRIORITY>
+                        </STARTUP-CONFIG>
+                    </STARTUP-CONFIGS>
+                </STARTUP-CONFIG-SET>
             </ELEMENTS>
         </AR-PACKAGE>
     </AR-PACKAGES>

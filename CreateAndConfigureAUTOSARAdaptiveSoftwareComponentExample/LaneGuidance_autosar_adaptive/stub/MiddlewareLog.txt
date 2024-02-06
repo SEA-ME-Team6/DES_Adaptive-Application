@@ -1,8 +1,0 @@
-Simulink block LaneGuidance/leftHazardIndicator using DDS topic name 'LeftHazardIndicator' for ara::com event communication.
-Simulink block LaneGuidance/rightHazardIndicator using DDS topic name 'RightHazardIndicator' for ara::com event communication.
-Simulink block LaneGuidance/leftCarInBlindSpot using DDS topic name 'LeftCarInBlindSpot' for ara::com event communication.
-Simulink block LaneGuidance/leftLaneDistance using DDS topic name 'LeftLaneDistance' for ara::com event communication.
-Simulink block LaneGuidance/leftTurnIndicator using DDS topic name 'LeftTurnIndicator' for ara::com event communication.
-Simulink block LaneGuidance/rightCarInBlindSpot using DDS topic name 'RightCarInBlindSpot' for ara::com event communication.
-Simulink block LaneGuidance/rightLaneDistance using DDS topic name 'RightLaneDistance' for ara::com event communication.
-Simulink block LaneGuidance/rightTurnIndicator using DDS topic name 'RightTurnIndicator' for ara::com event communication.
