@@ -1,0 +1,15 @@
+module eprosima_dds {
+  struct ProvidedInterface_Out1 {
+    double m_double;
+  }
+  ;
+}
+;
+
+module eprosima_dds {
+  struct RequiredInterface_In1 {
+    double m_double;
+  }
+  ;
+}
+;

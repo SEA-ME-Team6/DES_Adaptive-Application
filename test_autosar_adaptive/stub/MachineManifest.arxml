@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Auto generated XML Component Description for model test
+Model version                : 1.2
+Simulink Coder version       : Simulink Coder 23.2 (R2023b) 01-Aug-2023
+XML source code generated on : Fri Feb 09 15:32:51 2024
+Model Checksum               : 1121624725 1950676603 793316243 3031864394
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00049.xsd">
+    <AR-PACKAGES>
+        <AR-PACKAGE>
+            <SHORT-NAME>MachineStates</SHORT-NAME>
+            <ELEMENTS>
+                <MODE-DECLARATION-GROUP>
+                    <SHORT-NAME>MachineFG</SHORT-NAME>
+                    <INITIAL-MODE-REF DEST="MODE-DECLARATION">/MachineStates/MachineFG/Running</INITIAL-MODE-REF>
+                    <MODE-DECLARATIONS>
+                        <MODE-DECLARATION UUID="a78b1842-91b9-5174-d4da-cd7f0f37903f">
+                            <SHORT-NAME>Off</SHORT-NAME>
+                            <VALUE>1</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="dc4a2831-ce6f-5738-ef28-04e3041d8ff0">
+                            <SHORT-NAME>Startup</SHORT-NAME>
+                            <VALUE>2</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="fcd8cd30-c6d2-5a79-d678-941c9efcd598">
+                            <SHORT-NAME>Running</SHORT-NAME>
+                            <VALUE>3</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="4fb98530-4695-54eb-5a8d-88e09c21456e">
+                            <SHORT-NAME>Idle</SHORT-NAME>
+                            <VALUE>4</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="952bc905-fc6d-5465-ed8c-be89f78f45b6">
+                            <SHORT-NAME>Shutdown</SHORT-NAME>
+                            <VALUE>5</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="3ea66f7a-bb06-5889-0d39-12f916e7b521">
+                            <SHORT-NAME>Restart</SHORT-NAME>
+                            <VALUE>6</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="a0ba39a5-ba3b-5332-3cc4-ffa80c04c93f">
+                            <SHORT-NAME>Verify</SHORT-NAME>
+                            <VALUE>7</VALUE>
+                        </MODE-DECLARATION>
+                    </MODE-DECLARATIONS>
+                </MODE-DECLARATION-GROUP>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Machines</SHORT-NAME>
+            <ELEMENTS>
+                <MACHINE UUID="0d5779aa-6c93-56f5-cb01-f2a74ddd28c8">
+                    <SHORT-NAME>Host</SHORT-NAME>
+                    <DEFAULT-APPLICATION-TIMEOUT>
+                        <ENTER-TIMEOUT-VALUE>60</ENTER-TIMEOUT-VALUE>
+                        <EXIT-TIMEOUT-VALUE>60</EXIT-TIMEOUT-VALUE>
+                    </DEFAULT-APPLICATION-TIMEOUT>
+                    <MACHINE-DESIGN-REF DEST="MACHINE-DESIGN">/test_MachineDesign/MachineDesign</MACHINE-DESIGN-REF>
+                    <MODULE-INSTANTIATIONS>
+                        <OS-MODULE-INSTANTIATION UUID="d2a27873-0e98-52d5-9ee4-5db9238a8978">
+                            <SHORT-NAME>HostOsInstantiation</SHORT-NAME>
+                            <RESOURCE-GROUPS>
+                                <RESOURCE-GROUP UUID="3ace879a-fd0e-5466-6a73-fa731a2eadd1">
+                                    <SHORT-NAME>DefaultResourceGroup</SHORT-NAME>
+                                    <CPU-USAGE>100</CPU-USAGE>
+                                    <MEM-USAGE>4096000000</MEM-USAGE>
+                                </RESOURCE-GROUP>
+                            </RESOURCE-GROUPS>
+                        </OS-MODULE-INSTANTIATION>
+                        <LOG-AND-TRACE-INSTANTIATION UUID="cb629aa8-3bb6-5b70-09d6-541a34e81999">
+                            <SHORT-NAME>test_LogAndTraceInstantiation</SHORT-NAME>
+                            <DLT-LOG-CHANNELS>
+                                <DLT-LOG-CHANNEL UUID="1cb1a625-558b-52c4-e76e-7aef58aefaab">
+                                    <SHORT-NAME>DefaultDltLogChannel</SHORT-NAME>
+                                    <APPLICATION-DESCRIPTION>Log messages for adaptive application test</APPLICATION-DESCRIPTION>
+                                    <APPLICATION-ID>944</APPLICATION-ID>
+                                    <LOG-TRACE-DEFAULT-LOG-LEVEL>WARN</LOG-TRACE-DEFAULT-LOG-LEVEL>
+                                    <LOG-TRACE-LOG-MODES>
+                                        <LOG-TRACE-LOG-MODE>CONSOLE</LOG-TRACE-LOG-MODE>
+                                    </LOG-TRACE-LOG-MODES>
+                                </DLT-LOG-CHANNEL>
+                            </DLT-LOG-CHANNELS>
+                        </LOG-AND-TRACE-INSTANTIATION>
+                    </MODULE-INSTANTIATIONS>
+                </MACHINE>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>test_DltLogChannelToProcessMapping</SHORT-NAME>
+            <ELEMENTS>
+                <DLT-LOG-CHANNEL-TO-PROCESS-MAPPING UUID="c3a2b332-18fa-50ca-fb78-a42871f054e2">
+                    <SHORT-NAME>DltLogChannelToProcessMapping</SHORT-NAME>
+                    <DLT-LOG-CHANNEL-REF DEST="DLT-LOG-CHANNEL">/Machines/Host/test_LogAndTraceInstantiation/DefaultDltLogChannel</DLT-LOG-CHANNEL-REF>
+                    <PROCESS-REF DEST="PROCESS">/test_Processes/DefaultInstance</PROCESS-REF>
+                </DLT-LOG-CHANNEL-TO-PROCESS-MAPPING>
+            </ELEMENTS>
+        </AR-PACKAGE>
+    </AR-PACKAGES>
+</AUTOSAR>
