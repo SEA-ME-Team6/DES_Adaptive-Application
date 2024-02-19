@@ -7,9 +7,9 @@
 //
 //  Code generation for model "test".
 //
-//  Model version              : 1.2
+//  Model version              : 1.3
 //  Simulink Coder version : 23.2 (R2023b) 01-Aug-2023
-//  C++ source code generated on : Fri Feb  9 15:32:48 2024
+//  C++ source code generated on : Tue Feb 13 13:02:19 2024
 //
 //  Target selection: autosar_adaptive.tlc
 //  Embedded hardware selection: Intel->x86-64 (Windows64)

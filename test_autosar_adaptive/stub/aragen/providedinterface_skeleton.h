@@ -5,7 +5,7 @@
 
    Code generated for Simulink Adaptive model: "test"
    AUTOSAR AP Release: "20-11"
-   On: "09-Feb-2024 15:32:50"  */
+   On: "13-Feb-2024 13:02:25"  */
 
 #ifndef PROVIDEDINTERFACE_SKELETON_H_
 #define PROVIDEDINTERFACE_SKELETON_H_
@@ -42,10 +42,10 @@ namespace skeleton
       }                                /* if */
     }
 
-    virtual ~ProvidedInterfaceSkeleton()
-    {
-      StopOfferService();
-    }
+    // virtual ~ProvidedInterfaceSkeleton()
+    // {
+    //   StopOfferService();
+    // }
 
     ProvidedInterfaceSkeleton(const ProvidedInterfaceSkeleton&) = delete;
     ProvidedInterfaceSkeleton& operator = (const ProvidedInterfaceSkeleton&) =
@@ -53,31 +53,31 @@ namespace skeleton
     ProvidedInterfaceSkeleton(ProvidedInterfaceSkeleton&& sklObj) = default;
     ProvidedInterfaceSkeleton& operator = (ProvidedInterfaceSkeleton&& sklObj) =
       default;
-    inline ara::core::Result<void> OfferService()
-    {
-      ara::com::ServiceFactory::CreateService(mHndl);
-      mMethodMiddleware.reset(ara::com::MethodFactory::CreateSkeletonMethod<
-        ProvidedInterfaceSkeleton, skeleton_io::
-        ProvidedInterfaceSkeleton_mthd_dispatcher_t>(mMethodProcMode, this,
-        mHndl));
-      std::string sTopicName;
-      sTopicName = "Out1";
-      Out1.Init(ara::com::EventFactory::CreateSkeletonEvent<double, skeleton_io::
-                ProvidedInterface_Out1_t>(mHndl, sTopicName));
-      return ara::core::Result<void>::FromValue();
-    }
+    // inline ara::core::Result<void> OfferService()
+    // {
+    //   ara::com::ServiceFactory::CreateService(mHndl);
+    //   mMethodMiddleware.reset(ara::com::MethodFactory::CreateSkeletonMethod<
+    //     ProvidedInterfaceSkeleton, skeleton_io::
+    //     ProvidedInterfaceSkeleton_mthd_dispatcher_t>(mMethodProcMode, this,
+    //     mHndl));
+    //   std::string sTopicName;
+    //   sTopicName = "Out1";
+    //   Out1.Init(ara::com::EventFactory::CreateSkeletonEvent<double, skeleton_io::
+    //             ProvidedInterface_Out1_t>(mHndl, sTopicName));
+    //   return ara::core::Result<void>::FromValue();
+    // }
 
-    inline void StopOfferService()
-    {
-      Out1.Deinit();
-      ara::com::ServiceFactory::DestroyService(mHndl);
-    }
+    // inline void StopOfferService()
+    // {
+    //   Out1.Deinit();
+    //   ara::com::ServiceFactory::DestroyService(mHndl);
+    // }
 
     skeleton::events::Out1 Out1;
    private:
     ara::com::ServiceHandleType mHndl;
     ara::com::MethodCallProcessingMode mMethodProcMode;
-    std::shared_ptr<ara::com::SkeletonMethodMiddlewareBase> mMethodMiddleware;
+    // std::shared_ptr<ara::com::SkeletonMethodMiddlewareBase> mMethodMiddleware;
   };
 }                                      /* namespace skeleton */
 

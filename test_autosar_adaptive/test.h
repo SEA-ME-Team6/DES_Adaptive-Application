@@ -7,9 +7,9 @@
 //
 //  Code generation for model "test".
 //
-//  Model version              : 1.2
+//  Model version              : 1.3
 //  Simulink Coder version : 23.2 (R2023b) 01-Aug-2023
-//  C++ source code generated on : Fri Feb  9 15:32:48 2024
+//  C++ source code generated on : Tue Feb 13 13:02:19 2024
 //
 //  Target selection: autosar_adaptive.tlc
 //  Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -21,11 +21,11 @@
 #define RTW_HEADER_test_h_
 #include <stdbool.h>
 #include <stdint.h>
-#include "complex_types.h"
-#include "providedinterface_skeleton.h"
-#include "requiredinterface_proxy.h"
-#include <stddef.h>
+// #include "complex_types.h"
+// #include "providedinterface_skeleton.h"
+// #include "requiredinterface_proxy.h"
 #include "test_types.h"
+#include <stddef.h>
 #include <memory>
 
 // Class declaration for model test
@@ -54,10 +54,10 @@ class test final
   void initialize();
 
   // model step function
-  void step();
+  // void step();
 
   // model terminate function
-  void terminate();
+  // void terminate();
 
   // Constructor
   test();
@@ -69,12 +69,12 @@ class test final
  private:
   // Block signals
   B_test_T test_B;
-  std::shared_ptr<proxy::RequiredInterfaceProxy> RequiredPort;
+  // std::shared_ptr<proxy::RequiredInterfaceProxy> RequiredPort;
   std::shared_ptr<skeleton::ProvidedInterfaceSkeleton> ProvidedPort;
 
   // private member function(s) for subsystem '<Root>'
-  void RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::
-    SampleType const > elementPtr);
+  // void RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::
+  //   SampleType const > elementPtr);
 };
 
 //-

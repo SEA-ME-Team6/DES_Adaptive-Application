@@ -7,9 +7,9 @@
 //
 //  Code generation for model "test".
 //
-//  Model version              : 1.2
+//  Model version              : 1.3
 //  Simulink Coder version : 23.2 (R2023b) 01-Aug-2023
-//  C++ source code generated on : Fri Feb  9 15:32:48 2024
+//  C++ source code generated on : Tue Feb 13 13:02:19 2024
 //
 //  Target selection: autosar_adaptive.tlc
 //  Embedded hardware selection: Intel->x86-64 (Windows64)
@@ -20,28 +20,28 @@
 #include "test.h"
 #include <stdint.h>
 
-void test::RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::
-  SampleType const > elementPtr)
-{
-  // Receive: '<S1>/Event Receive'
-  test_B.EventReceive = *elementPtr;
-}
+// void test::RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::
+//   SampleType const > elementPtr)
+// {
+//   // Receive: '<S1>/Event Receive'
+//   test_B.EventReceive = *elementPtr;
+// }
 
 // Model step function
-void test::step()
-{
-  std::shared_ptr<ara::core::Result<size_t>> resultPtr;
-  if (RequiredPort) {
-    resultPtr = std::make_shared< ara::core::Result<size_t> >
-      (RequiredPort->In1.GetNewSamples(std::move(std::bind(&test::
-          RequiredPortIn1Receive, this, std::placeholders::_1)), 1U));
-    resultPtr->ValueOrThrow();
-  }
+// void test::step()
+// {
+//   std::shared_ptr<ara::core::Result<size_t>> resultPtr;
+//   if (RequiredPort) {
+//     resultPtr = std::make_shared< ara::core::Result<size_t> >
+//       (RequiredPort->In1.GetNewSamples(std::move(std::bind(&test::
+//           RequiredPortIn1Receive, this, std::placeholders::_1)), 1U));
+//     resultPtr->ValueOrThrow();
+//   }
 
-  // Send: '<S2>/Event Send'
-  // Send event
-  ProvidedPort->Out1.Send(test_B.EventReceive);
-}
+//   // Send: '<S2>/Event Send'
+//   // Send event
+//   ProvidedPort->Out1.Send(test_B.EventReceive);
+// }
 
 // Model initialize function
 void test::initialize()
@@ -54,33 +54,34 @@ void test::initialize()
 
     // Initialize service provider instance - ProvidedPort
     ProvidedPort = std::make_shared< skeleton::ProvidedInterfaceSkeleton >(ara::
-      com::InstanceIdentifier(ara::core::StringView("2")), ara::com::
+      core::InstanceSpecifier(ara::core::StringView(
+      "test/test_RootSwComponentPrototype/ProvidedPort")), ara::com::
       MethodCallProcessingMode::kEventSingleThread);
     ProvidedPort->OfferService();
 
-    // Initialize service requester instance - RequiredPort
-    resultPtr = std::make_shared< ara::core::Result<ara::com::
-      ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >> >
-      (proxy::RequiredInterfaceProxy::FindService(ara::com::InstanceIdentifier
-        (ara::core::StringView("1"))));
-    if (resultPtr->HasValue()) {
-      handles = resultPtr->Value();
-      if (handles.size() > 0U) {
-        RequiredPort = std::make_shared< proxy::RequiredInterfaceProxy >
-          (*handles.begin());
+    // // Initialize service requester instance - RequiredPort
+    // resultPtr = std::make_shared< ara::core::Result<ara::com::
+    //   ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >> >
+    //   (proxy::RequiredInterfaceProxy::FindService(ara::core::InstanceSpecifier
+    //     (ara::core::StringView("test/test_RootSwComponentPrototype/RequiredPort"))));
+    // if (resultPtr->HasValue()) {
+    //   handles = resultPtr->Value();
+    //   if (handles.size() > 0U) {
+    //     RequiredPort = std::make_shared< proxy::RequiredInterfaceProxy >
+    //       (*handles.begin());
 
-        // Subscribe events
-        RequiredPort->In1.Subscribe(1U);
-      }
-    }
+    //     // Subscribe events
+    //     RequiredPort->In1.Subscribe(1U);
+    //   }
+    // }
   }
 }
 
 // Model terminate function
-void test::terminate()
-{
-  ProvidedPort->StopOfferService();
-}
+// void test::terminate()
+// {
+//   ProvidedPort->StopOfferService();
+// }
 
 // Constructor
 test::test():

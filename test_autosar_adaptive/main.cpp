@@ -13,7 +13,7 @@
 #include "ara/log/common.h"
 #include "ara/log/logger.h"
 #include "ara/log/log_stream.h"
-// #include "test.h"
+#include "test.h"
 
 /* main() handles the following: */
 /*  - Instantiates the model object and owns its memory. */
@@ -36,38 +36,39 @@ int32_t main() {
     bAraInitialized = false;
   } /* if */
 
-//   if (bAraInitialized) {
-//     ara::log::Logger &araLog{ara::log::CreateLogger(
-//         ara::core::StringView{"test"},
-//         ara::core::StringView{"Logger for test's main function."})};
+  if (bAraInitialized) {
+    ara::log::Logger araLog = ara::log::CreateLogger(
+        std::string{"test"},
+        std::string{"Logger for test's main function."},
+        ara::log::LogLevel::kWarn);
 
-//     /* Report Execution state */
-//     ara::exec::ExecutionClient exec_client;
-//     try {
-//       if (!exec_client.ReportExecutionState(
-//               ara::exec::ExecutionState::kRunning)) {
-//         araLog.LogError() << "Unable to report running state: "
-//                              "ara::exec::ExecutionReturnType::kGeneralError.\n";
-//         bProceed = false;
-//       } else {
-//         araLog.LogVerbose() << "Adaptive application entering running state.";
-//       } /* if */
-//     } catch (std::exception const &e) {
-//       araLog.LogError() << "Unable to report running state due to exception: "
-//                         << e.what() << ".\n";
-//       bProceed = false;
-//     }
+    // /* Report Execution state */
+    // ara::exec::ExecutionClient exec_client;
+    // try {
+    //   if (!exec_client.ReportExecutionState(
+    //           ara::exec::ExecutionState::kRunning)) {
+    //     araLog.LogError() << "Unable to report running state: "
+    //                          "ara::exec::ExecutionReturnType::kGeneralError.\n";
+    //     bProceed = false;
+    //   } else {
+    //     araLog.LogVerbose() << "Adaptive application entering running state.";
+    //   } /* if */
+    // } catch (std::exception const &e) {
+    //   araLog.LogError() << "Unable to report running state due to exception: "
+    //                     << e.what() << ".\n";
+    //   bProceed = false;
+    // }
 
-//     test test_Obj;
-//     if (bProceed) {
-//       /* Initialize Functions */
-//       try {
-//         test_Obj.initialize();
-//       } catch (std::exception const &e) {
-//         araLog.LogError() << "Unable to initialize: " << e.what() << ".\n";
-//         bProceed = false;
-//       }
-//     } /* if */
+    test test_Obj;
+    if (bProceed) {
+      /* Initialize Functions */
+      try {
+        test_Obj.initialize();
+      } catch (std::exception const &e) {
+        araLog.LogError() << "Unable to initialize: " << e.what() << ".\n";
+        bProceed = false;
+      }
+    } /* if */
 
 //     if (bProceed) {
 //       /* Create an executor instance to schedule the periodic step functions */
@@ -115,7 +116,7 @@ int32_t main() {
 //     if (!deinitStatus.HasValue()) {
 //       bAraInitialized = false;
 //     } /* if */
-//   }   /* if */
+  }   /* if */
 
 //   constexpr int32_t APP_SUCCESS{0};
 //   constexpr int32_t APP_FAIL{1};
