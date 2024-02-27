@@ -17,6 +17,7 @@
 #include "sf_runtime/sf_test_language.h"
 #include "simlogCIntrf.h"
 #include "half_type.h"
+#include "coder_array.h"
 #include "coder_bounded_array.h"
 #include "multiword_types.h"
 #include "sf_runtime/sfc_messages.h"

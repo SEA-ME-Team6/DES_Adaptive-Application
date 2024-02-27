@@ -5,238 +5,238 @@
 #ifndef typedef_c4_sibHABGMpBjS4v57vRH5HpC
 #define typedef_c4_sibHABGMpBjS4v57vRH5HpC
 
-using c4_sibHABGMpBjS4v57vRH5HpC = struct c4_tag_sibHABGMpBjS4v57vRH5HpC;
+typedef struct c4_tag_sibHABGMpBjS4v57vRH5HpC c4_sibHABGMpBjS4v57vRH5HpC;
 
 #endif                                 /* typedef_c4_sibHABGMpBjS4v57vRH5HpC */
 
 #ifndef typedef_c4_spGKsvEVm7uA89hv31XX4LH
 #define typedef_c4_spGKsvEVm7uA89hv31XX4LH
 
-using c4_spGKsvEVm7uA89hv31XX4LH = struct c4_tag_spGKsvEVm7uA89hv31XX4LH;
+typedef struct c4_tag_spGKsvEVm7uA89hv31XX4LH c4_spGKsvEVm7uA89hv31XX4LH;
 
 #endif                                 /* typedef_c4_spGKsvEVm7uA89hv31XX4LH */
 
 #ifndef typedef_c4_skA4KFEZ4HPkJJBOYCrevdH
 #define typedef_c4_skA4KFEZ4HPkJJBOYCrevdH
 
-using c4_skA4KFEZ4HPkJJBOYCrevdH = struct c4_tag_skA4KFEZ4HPkJJBOYCrevdH;
+typedef struct c4_tag_skA4KFEZ4HPkJJBOYCrevdH c4_skA4KFEZ4HPkJJBOYCrevdH;
 
 #endif                                 /* typedef_c4_skA4KFEZ4HPkJJBOYCrevdH */
 
 #ifndef typedef_c4_sKGJXMD9VfgqCU44Gm9fvGC
 #define typedef_c4_sKGJXMD9VfgqCU44Gm9fvGC
 
-using c4_sKGJXMD9VfgqCU44Gm9fvGC = struct c4_tag_sKGJXMD9VfgqCU44Gm9fvGC;
+typedef struct c4_tag_sKGJXMD9VfgqCU44Gm9fvGC c4_sKGJXMD9VfgqCU44Gm9fvGC;
 
 #endif                                 /* typedef_c4_sKGJXMD9VfgqCU44Gm9fvGC */
 
 #ifndef typedef_c4_s_FDrX8kOEjZXLXru8nW4swE
 #define typedef_c4_s_FDrX8kOEjZXLXru8nW4swE
 
-using c4_s_FDrX8kOEjZXLXru8nW4swE = struct c4_tag_FDrX8kOEjZXLXru8nW4swE;
+typedef struct c4_tag_FDrX8kOEjZXLXru8nW4swE c4_s_FDrX8kOEjZXLXru8nW4swE;
 
 #endif                                 /* typedef_c4_s_FDrX8kOEjZXLXru8nW4swE */
 
 #ifndef typedef_c4_cell_1
 #define typedef_c4_cell_1
 
-using c4_cell_1 = struct c4_tag_loVqRc9l7Pt635WKirVlaE;
+typedef struct c4_tag_loVqRc9l7Pt635WKirVlaE c4_cell_1;
 
 #endif                                 /* typedef_c4_cell_1 */
 
 #ifndef typedef_c4_cell_3
 #define typedef_c4_cell_3
 
-using c4_cell_3 = struct c4_tag_hyAvVX6KZnrBsoiytgk8HG;
+typedef struct c4_tag_hyAvVX6KZnrBsoiytgk8HG c4_cell_3;
 
 #endif                                 /* typedef_c4_cell_3 */
 
 #ifndef typedef_c4_cell_wrap_4
 #define typedef_c4_cell_wrap_4
 
-using c4_cell_wrap_4 = struct c4_tag_L5JvjW1A13FyCQi5N783sB;
+typedef struct c4_tag_L5JvjW1A13FyCQi5N783sB c4_cell_wrap_4;
 
 #endif                                 /* typedef_c4_cell_wrap_4 */
 
 #ifndef typedef_c4_cell_5
 #define typedef_c4_cell_5
 
-using c4_cell_5 = struct c4_tag_bWuSUcnFZsO8HeyRSSd5WF;
+typedef struct c4_tag_bWuSUcnFZsO8HeyRSSd5WF c4_cell_5;
 
 #endif                                 /* typedef_c4_cell_5 */
 
 #ifndef typedef_c4_cell_6
 #define typedef_c4_cell_6
 
-using c4_cell_6 = struct c4_tag_Zfb33eoWhMX6EY3d1wTKkC;
+typedef struct c4_tag_Zfb33eoWhMX6EY3d1wTKkC c4_cell_6;
 
 #endif                                 /* typedef_c4_cell_6 */
 
 #ifndef typedef_c4_cell_7
 #define typedef_c4_cell_7
 
-using c4_cell_7 = struct c4_tag_C1eWCmx8cjBnHP48YjvCXG;
+typedef struct c4_tag_C1eWCmx8cjBnHP48YjvCXG c4_cell_7;
 
 #endif                                 /* typedef_c4_cell_7 */
 
 #ifndef typedef_c4_cell_8
 #define typedef_c4_cell_8
 
-using c4_cell_8 = struct c4_tag_ox4iUtDTmpYjI2XZsofYEG;
+typedef struct c4_tag_ox4iUtDTmpYjI2XZsofYEG c4_cell_8;
 
 #endif                                 /* typedef_c4_cell_8 */
 
 #ifndef typedef_c4_cell_9
 #define typedef_c4_cell_9
 
-using c4_cell_9 = struct c4_tag_UD4WiouVr4lps3GsdSuFHF;
+typedef struct c4_tag_UD4WiouVr4lps3GsdSuFHF c4_cell_9;
 
 #endif                                 /* typedef_c4_cell_9 */
 
 #ifndef typedef_c4_cell_10
 #define typedef_c4_cell_10
 
-using c4_cell_10 = struct c4_tag_uBsITxwZcILuT8iBiBDwED;
+typedef struct c4_tag_uBsITxwZcILuT8iBiBDwED c4_cell_10;
 
 #endif                                 /* typedef_c4_cell_10 */
 
 #ifndef typedef_c4_cell_11
 #define typedef_c4_cell_11
 
-using c4_cell_11 = struct c4_tag_Ttp4vl5MNpIOXZPqljIq7B;
+typedef struct c4_tag_Ttp4vl5MNpIOXZPqljIq7B c4_cell_11;
 
 #endif                                 /* typedef_c4_cell_11 */
 
 #ifndef typedef_c4_cell_12
 #define typedef_c4_cell_12
 
-using c4_cell_12 = struct c4_tag_3cvm3NozImkc8ZmUYLA3oG;
+typedef struct c4_tag_3cvm3NozImkc8ZmUYLA3oG c4_cell_12;
 
 #endif                                 /* typedef_c4_cell_12 */
 
 #ifndef typedef_c4_s_bXQHQ5tMc49lFbz3k7QrBC
 #define typedef_c4_s_bXQHQ5tMc49lFbz3k7QrBC
 
-using c4_s_bXQHQ5tMc49lFbz3k7QrBC = struct c4_tag_bXQHQ5tMc49lFbz3k7QrBC;
+typedef struct c4_tag_bXQHQ5tMc49lFbz3k7QrBC c4_s_bXQHQ5tMc49lFbz3k7QrBC;
 
 #endif                                 /* typedef_c4_s_bXQHQ5tMc49lFbz3k7QrBC */
 
 #ifndef typedef_c4_cell_14
 #define typedef_c4_cell_14
 
-using c4_cell_14 = struct c4_tag_FWAx9YmgCYqLkaFiyAr9e;
+typedef struct c4_tag_FWAx9YmgCYqLkaFiyAr9e c4_cell_14;
 
 #endif                                 /* typedef_c4_cell_14 */
 
 #ifndef typedef_c4_cell_15
 #define typedef_c4_cell_15
 
-using c4_cell_15 = struct c4_tag_vCroJ4nSCwjPwQBS7RhjeC;
+typedef struct c4_tag_vCroJ4nSCwjPwQBS7RhjeC c4_cell_15;
 
 #endif                                 /* typedef_c4_cell_15 */
 
 #ifndef typedef_c4_s_w3m1Q26ivrDTAtgc0mcqVE
 #define typedef_c4_s_w3m1Q26ivrDTAtgc0mcqVE
 
-using c4_s_w3m1Q26ivrDTAtgc0mcqVE = struct c4_tag_w3m1Q26ivrDTAtgc0mcqVE;
+typedef struct c4_tag_w3m1Q26ivrDTAtgc0mcqVE c4_s_w3m1Q26ivrDTAtgc0mcqVE;
 
 #endif                                 /* typedef_c4_s_w3m1Q26ivrDTAtgc0mcqVE */
 
 #ifndef typedef_c4_s_s0cvUBApK9D3a7g66jYr7F
 #define typedef_c4_s_s0cvUBApK9D3a7g66jYr7F
 
-using c4_s_s0cvUBApK9D3a7g66jYr7F = struct c4_tag_s0cvUBApK9D3a7g66jYr7F;
+typedef struct c4_tag_s0cvUBApK9D3a7g66jYr7F c4_s_s0cvUBApK9D3a7g66jYr7F;
 
 #endif                                 /* typedef_c4_s_s0cvUBApK9D3a7g66jYr7F */
 
 #ifndef typedef_c4_s_KzUHUE0SF3lLCqTE0GVbpF
 #define typedef_c4_s_KzUHUE0SF3lLCqTE0GVbpF
 
-using c4_s_KzUHUE0SF3lLCqTE0GVbpF = struct c4_tag_KzUHUE0SF3lLCqTE0GVbpF;
+typedef struct c4_tag_KzUHUE0SF3lLCqTE0GVbpF c4_s_KzUHUE0SF3lLCqTE0GVbpF;
 
 #endif                                 /* typedef_c4_s_KzUHUE0SF3lLCqTE0GVbpF */
 
 #ifndef typedef_c4_s_HOps0FrfA6RiWumqewPwZD
 #define typedef_c4_s_HOps0FrfA6RiWumqewPwZD
 
-using c4_s_HOps0FrfA6RiWumqewPwZD = struct c4_tag_HOps0FrfA6RiWumqewPwZD;
+typedef struct c4_tag_HOps0FrfA6RiWumqewPwZD c4_s_HOps0FrfA6RiWumqewPwZD;
 
 #endif                                 /* typedef_c4_s_HOps0FrfA6RiWumqewPwZD */
 
 #ifndef typedef_c4_s_dIgePP3pChH5q6DAeD1m8G
 #define typedef_c4_s_dIgePP3pChH5q6DAeD1m8G
 
-using c4_s_dIgePP3pChH5q6DAeD1m8G = struct c4_tag_dIgePP3pChH5q6DAeD1m8G;
+typedef struct c4_tag_dIgePP3pChH5q6DAeD1m8G c4_s_dIgePP3pChH5q6DAeD1m8G;
 
 #endif                                 /* typedef_c4_s_dIgePP3pChH5q6DAeD1m8G */
 
 #ifndef typedef_c4_s_AT2DeblEVzxKmRYramInlC
 #define typedef_c4_s_AT2DeblEVzxKmRYramInlC
 
-using c4_s_AT2DeblEVzxKmRYramInlC = struct c4_tag_AT2DeblEVzxKmRYramInlC;
+typedef struct c4_tag_AT2DeblEVzxKmRYramInlC c4_s_AT2DeblEVzxKmRYramInlC;
 
 #endif                                 /* typedef_c4_s_AT2DeblEVzxKmRYramInlC */
 
 #ifndef typedef_c4_s_ye3LKu5h6YA74T79U7QQAE
 #define typedef_c4_s_ye3LKu5h6YA74T79U7QQAE
 
-using c4_s_ye3LKu5h6YA74T79U7QQAE = struct c4_tag_ye3LKu5h6YA74T79U7QQAE;
+typedef struct c4_tag_ye3LKu5h6YA74T79U7QQAE c4_s_ye3LKu5h6YA74T79U7QQAE;
 
 #endif                                 /* typedef_c4_s_ye3LKu5h6YA74T79U7QQAE */
 
 #ifndef typedef_c4_s_V9jhBvwzshUU95UJqdQaEG
 #define typedef_c4_s_V9jhBvwzshUU95UJqdQaEG
 
-using c4_s_V9jhBvwzshUU95UJqdQaEG = struct c4_tag_V9jhBvwzshUU95UJqdQaEG;
+typedef struct c4_tag_V9jhBvwzshUU95UJqdQaEG c4_s_V9jhBvwzshUU95UJqdQaEG;
 
 #endif                                 /* typedef_c4_s_V9jhBvwzshUU95UJqdQaEG */
 
 #ifndef typedef_c4_s_tztIaAQzzV7r4CVrbnh0oD
 #define typedef_c4_s_tztIaAQzzV7r4CVrbnh0oD
 
-using c4_s_tztIaAQzzV7r4CVrbnh0oD = struct c4_tag_tztIaAQzzV7r4CVrbnh0oD;
+typedef struct c4_tag_tztIaAQzzV7r4CVrbnh0oD c4_s_tztIaAQzzV7r4CVrbnh0oD;
 
 #endif                                 /* typedef_c4_s_tztIaAQzzV7r4CVrbnh0oD */
 
 #ifndef typedef_c4_s_fcTozvrXG1LvRG4WBj62PD
 #define typedef_c4_s_fcTozvrXG1LvRG4WBj62PD
 
-using c4_s_fcTozvrXG1LvRG4WBj62PD = struct c4_tag_fcTozvrXG1LvRG4WBj62PD;
+typedef struct c4_tag_fcTozvrXG1LvRG4WBj62PD c4_s_fcTozvrXG1LvRG4WBj62PD;
 
 #endif                                 /* typedef_c4_s_fcTozvrXG1LvRG4WBj62PD */
 
 #ifndef typedef_c4_s_hbjLv8oAAufqd63nhohC0C
 #define typedef_c4_s_hbjLv8oAAufqd63nhohC0C
 
-using c4_s_hbjLv8oAAufqd63nhohC0C = struct c4_tag_hbjLv8oAAufqd63nhohC0C;
+typedef struct c4_tag_hbjLv8oAAufqd63nhohC0C c4_s_hbjLv8oAAufqd63nhohC0C;
 
 #endif                                 /* typedef_c4_s_hbjLv8oAAufqd63nhohC0C */
 
 #ifndef typedef_c4_s_BaVU2JGBMDin1nRtzoGFFH
 #define typedef_c4_s_BaVU2JGBMDin1nRtzoGFFH
 
-using c4_s_BaVU2JGBMDin1nRtzoGFFH = struct c4_tag_BaVU2JGBMDin1nRtzoGFFH;
+typedef struct c4_tag_BaVU2JGBMDin1nRtzoGFFH c4_s_BaVU2JGBMDin1nRtzoGFFH;
 
 #endif                                 /* typedef_c4_s_BaVU2JGBMDin1nRtzoGFFH */
 
 #ifndef typedef_c4_s_pPOZHCqhUkni0P8yc94f9F
 #define typedef_c4_s_pPOZHCqhUkni0P8yc94f9F
 
-using c4_s_pPOZHCqhUkni0P8yc94f9F = struct c4_tag_pPOZHCqhUkni0P8yc94f9F;
+typedef struct c4_tag_pPOZHCqhUkni0P8yc94f9F c4_s_pPOZHCqhUkni0P8yc94f9F;
 
 #endif                                 /* typedef_c4_s_pPOZHCqhUkni0P8yc94f9F */
 
 #ifndef typedef_c4_s_4dijvwFFQt8JouTajf5bDH
 #define typedef_c4_s_4dijvwFFQt8JouTajf5bDH
 
-using c4_s_4dijvwFFQt8JouTajf5bDH = struct c4_tag_4dijvwFFQt8JouTajf5bDH;
+typedef struct c4_tag_4dijvwFFQt8JouTajf5bDH c4_s_4dijvwFFQt8JouTajf5bDH;
 
 #endif                                 /* typedef_c4_s_4dijvwFFQt8JouTajf5bDH */
 
 #ifndef typedef_c4_s_qRxSe9N4qwJIjT7M2BxNL
 #define typedef_c4_s_qRxSe9N4qwJIjT7M2BxNL
 
-using c4_s_qRxSe9N4qwJIjT7M2BxNL = struct c4_tag_qRxSe9N4qwJIjT7M2BxNL;
+typedef struct c4_tag_qRxSe9N4qwJIjT7M2BxNL c4_s_qRxSe9N4qwJIjT7M2BxNL;
 
 #endif                                 /* typedef_c4_s_qRxSe9N4qwJIjT7M2BxNL */
 
@@ -265,7 +265,7 @@ struct c4_tag_sibHABGMpBjS4v57vRH5HpC
 #ifndef typedef_c4_sibHABGMpBjS4v57vRH5HpC
 #define typedef_c4_sibHABGMpBjS4v57vRH5HpC
 
-using c4_sibHABGMpBjS4v57vRH5HpC = c4_tag_sibHABGMpBjS4v57vRH5HpC;
+typedef c4_tag_sibHABGMpBjS4v57vRH5HpC c4_sibHABGMpBjS4v57vRH5HpC;
 
 #endif                                 /* typedef_c4_sibHABGMpBjS4v57vRH5HpC */
 
@@ -283,7 +283,7 @@ struct c4_tag_spGKsvEVm7uA89hv31XX4LH
 #ifndef typedef_c4_spGKsvEVm7uA89hv31XX4LH
 #define typedef_c4_spGKsvEVm7uA89hv31XX4LH
 
-using c4_spGKsvEVm7uA89hv31XX4LH = c4_tag_spGKsvEVm7uA89hv31XX4LH;
+typedef c4_tag_spGKsvEVm7uA89hv31XX4LH c4_spGKsvEVm7uA89hv31XX4LH;
 
 #endif                                 /* typedef_c4_spGKsvEVm7uA89hv31XX4LH */
 
@@ -305,7 +305,7 @@ struct c4_tag_skA4KFEZ4HPkJJBOYCrevdH
 #ifndef typedef_c4_skA4KFEZ4HPkJJBOYCrevdH
 #define typedef_c4_skA4KFEZ4HPkJJBOYCrevdH
 
-using c4_skA4KFEZ4HPkJJBOYCrevdH = c4_tag_skA4KFEZ4HPkJJBOYCrevdH;
+typedef c4_tag_skA4KFEZ4HPkJJBOYCrevdH c4_skA4KFEZ4HPkJJBOYCrevdH;
 
 #endif                                 /* typedef_c4_skA4KFEZ4HPkJJBOYCrevdH */
 
@@ -325,7 +325,7 @@ struct c4_tag_sKGJXMD9VfgqCU44Gm9fvGC
 #ifndef typedef_c4_sKGJXMD9VfgqCU44Gm9fvGC
 #define typedef_c4_sKGJXMD9VfgqCU44Gm9fvGC
 
-using c4_sKGJXMD9VfgqCU44Gm9fvGC = c4_tag_sKGJXMD9VfgqCU44Gm9fvGC;
+typedef c4_tag_sKGJXMD9VfgqCU44Gm9fvGC c4_sKGJXMD9VfgqCU44Gm9fvGC;
 
 #endif                                 /* typedef_c4_sKGJXMD9VfgqCU44Gm9fvGC */
 
@@ -343,7 +343,7 @@ struct c4_tag_FDrX8kOEjZXLXru8nW4swE
 #ifndef typedef_c4_s_FDrX8kOEjZXLXru8nW4swE
 #define typedef_c4_s_FDrX8kOEjZXLXru8nW4swE
 
-using c4_s_FDrX8kOEjZXLXru8nW4swE = c4_tag_FDrX8kOEjZXLXru8nW4swE;
+typedef c4_tag_FDrX8kOEjZXLXru8nW4swE c4_s_FDrX8kOEjZXLXru8nW4swE;
 
 #endif                                 /* typedef_c4_s_FDrX8kOEjZXLXru8nW4swE */
 
@@ -362,7 +362,7 @@ struct c4_tag_loVqRc9l7Pt635WKirVlaE
 #ifndef typedef_c4_cell_1
 #define typedef_c4_cell_1
 
-using c4_cell_1 = c4_tag_loVqRc9l7Pt635WKirVlaE;
+typedef c4_tag_loVqRc9l7Pt635WKirVlaE c4_cell_1;
 
 #endif                                 /* typedef_c4_cell_1 */
 
@@ -388,7 +388,7 @@ struct c4_tag_hyAvVX6KZnrBsoiytgk8HG
 #ifndef typedef_c4_cell_3
 #define typedef_c4_cell_3
 
-using c4_cell_3 = c4_tag_hyAvVX6KZnrBsoiytgk8HG;
+typedef c4_tag_hyAvVX6KZnrBsoiytgk8HG c4_cell_3;
 
 #endif                                 /* typedef_c4_cell_3 */
 
@@ -405,7 +405,7 @@ struct c4_tag_L5JvjW1A13FyCQi5N783sB
 #ifndef typedef_c4_cell_wrap_4
 #define typedef_c4_cell_wrap_4
 
-using c4_cell_wrap_4 = c4_tag_L5JvjW1A13FyCQi5N783sB;
+typedef c4_tag_L5JvjW1A13FyCQi5N783sB c4_cell_wrap_4;
 
 #endif                                 /* typedef_c4_cell_wrap_4 */
 
@@ -424,7 +424,7 @@ struct c4_tag_bWuSUcnFZsO8HeyRSSd5WF
 #ifndef typedef_c4_cell_5
 #define typedef_c4_cell_5
 
-using c4_cell_5 = c4_tag_bWuSUcnFZsO8HeyRSSd5WF;
+typedef c4_tag_bWuSUcnFZsO8HeyRSSd5WF c4_cell_5;
 
 #endif                                 /* typedef_c4_cell_5 */
 
@@ -446,7 +446,7 @@ struct c4_tag_Zfb33eoWhMX6EY3d1wTKkC
 #ifndef typedef_c4_cell_6
 #define typedef_c4_cell_6
 
-using c4_cell_6 = c4_tag_Zfb33eoWhMX6EY3d1wTKkC;
+typedef c4_tag_Zfb33eoWhMX6EY3d1wTKkC c4_cell_6;
 
 #endif                                 /* typedef_c4_cell_6 */
 
@@ -466,7 +466,7 @@ struct c4_tag_C1eWCmx8cjBnHP48YjvCXG
 #ifndef typedef_c4_cell_7
 #define typedef_c4_cell_7
 
-using c4_cell_7 = c4_tag_C1eWCmx8cjBnHP48YjvCXG;
+typedef c4_tag_C1eWCmx8cjBnHP48YjvCXG c4_cell_7;
 
 #endif                                 /* typedef_c4_cell_7 */
 
@@ -487,7 +487,7 @@ struct c4_tag_ox4iUtDTmpYjI2XZsofYEG
 #ifndef typedef_c4_cell_8
 #define typedef_c4_cell_8
 
-using c4_cell_8 = c4_tag_ox4iUtDTmpYjI2XZsofYEG;
+typedef c4_tag_ox4iUtDTmpYjI2XZsofYEG c4_cell_8;
 
 #endif                                 /* typedef_c4_cell_8 */
 
@@ -508,7 +508,7 @@ struct c4_tag_UD4WiouVr4lps3GsdSuFHF
 #ifndef typedef_c4_cell_9
 #define typedef_c4_cell_9
 
-using c4_cell_9 = c4_tag_UD4WiouVr4lps3GsdSuFHF;
+typedef c4_tag_UD4WiouVr4lps3GsdSuFHF c4_cell_9;
 
 #endif                                 /* typedef_c4_cell_9 */
 
@@ -527,7 +527,7 @@ struct c4_tag_uBsITxwZcILuT8iBiBDwED
 #ifndef typedef_c4_cell_10
 #define typedef_c4_cell_10
 
-using c4_cell_10 = c4_tag_uBsITxwZcILuT8iBiBDwED;
+typedef c4_tag_uBsITxwZcILuT8iBiBDwED c4_cell_10;
 
 #endif                                 /* typedef_c4_cell_10 */
 
@@ -545,7 +545,7 @@ struct c4_tag_Ttp4vl5MNpIOXZPqljIq7B
 #ifndef typedef_c4_cell_11
 #define typedef_c4_cell_11
 
-using c4_cell_11 = c4_tag_Ttp4vl5MNpIOXZPqljIq7B;
+typedef c4_tag_Ttp4vl5MNpIOXZPqljIq7B c4_cell_11;
 
 #endif                                 /* typedef_c4_cell_11 */
 
@@ -563,7 +563,7 @@ struct c4_tag_3cvm3NozImkc8ZmUYLA3oG
 #ifndef typedef_c4_cell_12
 #define typedef_c4_cell_12
 
-using c4_cell_12 = c4_tag_3cvm3NozImkc8ZmUYLA3oG;
+typedef c4_tag_3cvm3NozImkc8ZmUYLA3oG c4_cell_12;
 
 #endif                                 /* typedef_c4_cell_12 */
 
@@ -581,7 +581,7 @@ struct c4_tag_bXQHQ5tMc49lFbz3k7QrBC
 #ifndef typedef_c4_s_bXQHQ5tMc49lFbz3k7QrBC
 #define typedef_c4_s_bXQHQ5tMc49lFbz3k7QrBC
 
-using c4_s_bXQHQ5tMc49lFbz3k7QrBC = c4_tag_bXQHQ5tMc49lFbz3k7QrBC;
+typedef c4_tag_bXQHQ5tMc49lFbz3k7QrBC c4_s_bXQHQ5tMc49lFbz3k7QrBC;
 
 #endif                                 /* typedef_c4_s_bXQHQ5tMc49lFbz3k7QrBC */
 
@@ -601,7 +601,7 @@ struct c4_tag_FWAx9YmgCYqLkaFiyAr9e
 #ifndef typedef_c4_cell_14
 #define typedef_c4_cell_14
 
-using c4_cell_14 = c4_tag_FWAx9YmgCYqLkaFiyAr9e;
+typedef c4_tag_FWAx9YmgCYqLkaFiyAr9e c4_cell_14;
 
 #endif                                 /* typedef_c4_cell_14 */
 
@@ -623,7 +623,7 @@ struct c4_tag_vCroJ4nSCwjPwQBS7RhjeC
 #ifndef typedef_c4_cell_15
 #define typedef_c4_cell_15
 
-using c4_cell_15 = c4_tag_vCroJ4nSCwjPwQBS7RhjeC;
+typedef c4_tag_vCroJ4nSCwjPwQBS7RhjeC c4_cell_15;
 
 #endif                                 /* typedef_c4_cell_15 */
 
@@ -640,7 +640,7 @@ struct c4_tag_w3m1Q26ivrDTAtgc0mcqVE
 #ifndef typedef_c4_s_w3m1Q26ivrDTAtgc0mcqVE
 #define typedef_c4_s_w3m1Q26ivrDTAtgc0mcqVE
 
-using c4_s_w3m1Q26ivrDTAtgc0mcqVE = c4_tag_w3m1Q26ivrDTAtgc0mcqVE;
+typedef c4_tag_w3m1Q26ivrDTAtgc0mcqVE c4_s_w3m1Q26ivrDTAtgc0mcqVE;
 
 #endif                                 /* typedef_c4_s_w3m1Q26ivrDTAtgc0mcqVE */
 
@@ -657,7 +657,7 @@ struct c4_tag_s0cvUBApK9D3a7g66jYr7F
 #ifndef typedef_c4_s_s0cvUBApK9D3a7g66jYr7F
 #define typedef_c4_s_s0cvUBApK9D3a7g66jYr7F
 
-using c4_s_s0cvUBApK9D3a7g66jYr7F = c4_tag_s0cvUBApK9D3a7g66jYr7F;
+typedef c4_tag_s0cvUBApK9D3a7g66jYr7F c4_s_s0cvUBApK9D3a7g66jYr7F;
 
 #endif                                 /* typedef_c4_s_s0cvUBApK9D3a7g66jYr7F */
 
@@ -674,7 +674,7 @@ struct c4_tag_KzUHUE0SF3lLCqTE0GVbpF
 #ifndef typedef_c4_s_KzUHUE0SF3lLCqTE0GVbpF
 #define typedef_c4_s_KzUHUE0SF3lLCqTE0GVbpF
 
-using c4_s_KzUHUE0SF3lLCqTE0GVbpF = c4_tag_KzUHUE0SF3lLCqTE0GVbpF;
+typedef c4_tag_KzUHUE0SF3lLCqTE0GVbpF c4_s_KzUHUE0SF3lLCqTE0GVbpF;
 
 #endif                                 /* typedef_c4_s_KzUHUE0SF3lLCqTE0GVbpF */
 
@@ -691,7 +691,7 @@ struct c4_tag_HOps0FrfA6RiWumqewPwZD
 #ifndef typedef_c4_s_HOps0FrfA6RiWumqewPwZD
 #define typedef_c4_s_HOps0FrfA6RiWumqewPwZD
 
-using c4_s_HOps0FrfA6RiWumqewPwZD = c4_tag_HOps0FrfA6RiWumqewPwZD;
+typedef c4_tag_HOps0FrfA6RiWumqewPwZD c4_s_HOps0FrfA6RiWumqewPwZD;
 
 #endif                                 /* typedef_c4_s_HOps0FrfA6RiWumqewPwZD */
 
@@ -708,7 +708,7 @@ struct c4_tag_dIgePP3pChH5q6DAeD1m8G
 #ifndef typedef_c4_s_dIgePP3pChH5q6DAeD1m8G
 #define typedef_c4_s_dIgePP3pChH5q6DAeD1m8G
 
-using c4_s_dIgePP3pChH5q6DAeD1m8G = c4_tag_dIgePP3pChH5q6DAeD1m8G;
+typedef c4_tag_dIgePP3pChH5q6DAeD1m8G c4_s_dIgePP3pChH5q6DAeD1m8G;
 
 #endif                                 /* typedef_c4_s_dIgePP3pChH5q6DAeD1m8G */
 
@@ -725,7 +725,7 @@ struct c4_tag_AT2DeblEVzxKmRYramInlC
 #ifndef typedef_c4_s_AT2DeblEVzxKmRYramInlC
 #define typedef_c4_s_AT2DeblEVzxKmRYramInlC
 
-using c4_s_AT2DeblEVzxKmRYramInlC = c4_tag_AT2DeblEVzxKmRYramInlC;
+typedef c4_tag_AT2DeblEVzxKmRYramInlC c4_s_AT2DeblEVzxKmRYramInlC;
 
 #endif                                 /* typedef_c4_s_AT2DeblEVzxKmRYramInlC */
 
@@ -742,7 +742,7 @@ struct c4_tag_ye3LKu5h6YA74T79U7QQAE
 #ifndef typedef_c4_s_ye3LKu5h6YA74T79U7QQAE
 #define typedef_c4_s_ye3LKu5h6YA74T79U7QQAE
 
-using c4_s_ye3LKu5h6YA74T79U7QQAE = c4_tag_ye3LKu5h6YA74T79U7QQAE;
+typedef c4_tag_ye3LKu5h6YA74T79U7QQAE c4_s_ye3LKu5h6YA74T79U7QQAE;
 
 #endif                                 /* typedef_c4_s_ye3LKu5h6YA74T79U7QQAE */
 
@@ -759,7 +759,7 @@ struct c4_tag_V9jhBvwzshUU95UJqdQaEG
 #ifndef typedef_c4_s_V9jhBvwzshUU95UJqdQaEG
 #define typedef_c4_s_V9jhBvwzshUU95UJqdQaEG
 
-using c4_s_V9jhBvwzshUU95UJqdQaEG = c4_tag_V9jhBvwzshUU95UJqdQaEG;
+typedef c4_tag_V9jhBvwzshUU95UJqdQaEG c4_s_V9jhBvwzshUU95UJqdQaEG;
 
 #endif                                 /* typedef_c4_s_V9jhBvwzshUU95UJqdQaEG */
 
@@ -776,7 +776,7 @@ struct c4_tag_tztIaAQzzV7r4CVrbnh0oD
 #ifndef typedef_c4_s_tztIaAQzzV7r4CVrbnh0oD
 #define typedef_c4_s_tztIaAQzzV7r4CVrbnh0oD
 
-using c4_s_tztIaAQzzV7r4CVrbnh0oD = c4_tag_tztIaAQzzV7r4CVrbnh0oD;
+typedef c4_tag_tztIaAQzzV7r4CVrbnh0oD c4_s_tztIaAQzzV7r4CVrbnh0oD;
 
 #endif                                 /* typedef_c4_s_tztIaAQzzV7r4CVrbnh0oD */
 
@@ -793,7 +793,7 @@ struct c4_tag_fcTozvrXG1LvRG4WBj62PD
 #ifndef typedef_c4_s_fcTozvrXG1LvRG4WBj62PD
 #define typedef_c4_s_fcTozvrXG1LvRG4WBj62PD
 
-using c4_s_fcTozvrXG1LvRG4WBj62PD = c4_tag_fcTozvrXG1LvRG4WBj62PD;
+typedef c4_tag_fcTozvrXG1LvRG4WBj62PD c4_s_fcTozvrXG1LvRG4WBj62PD;
 
 #endif                                 /* typedef_c4_s_fcTozvrXG1LvRG4WBj62PD */
 
@@ -810,7 +810,7 @@ struct c4_tag_hbjLv8oAAufqd63nhohC0C
 #ifndef typedef_c4_s_hbjLv8oAAufqd63nhohC0C
 #define typedef_c4_s_hbjLv8oAAufqd63nhohC0C
 
-using c4_s_hbjLv8oAAufqd63nhohC0C = c4_tag_hbjLv8oAAufqd63nhohC0C;
+typedef c4_tag_hbjLv8oAAufqd63nhohC0C c4_s_hbjLv8oAAufqd63nhohC0C;
 
 #endif                                 /* typedef_c4_s_hbjLv8oAAufqd63nhohC0C */
 
@@ -827,7 +827,7 @@ struct c4_tag_BaVU2JGBMDin1nRtzoGFFH
 #ifndef typedef_c4_s_BaVU2JGBMDin1nRtzoGFFH
 #define typedef_c4_s_BaVU2JGBMDin1nRtzoGFFH
 
-using c4_s_BaVU2JGBMDin1nRtzoGFFH = c4_tag_BaVU2JGBMDin1nRtzoGFFH;
+typedef c4_tag_BaVU2JGBMDin1nRtzoGFFH c4_s_BaVU2JGBMDin1nRtzoGFFH;
 
 #endif                                 /* typedef_c4_s_BaVU2JGBMDin1nRtzoGFFH */
 
@@ -844,7 +844,7 @@ struct c4_tag_pPOZHCqhUkni0P8yc94f9F
 #ifndef typedef_c4_s_pPOZHCqhUkni0P8yc94f9F
 #define typedef_c4_s_pPOZHCqhUkni0P8yc94f9F
 
-using c4_s_pPOZHCqhUkni0P8yc94f9F = c4_tag_pPOZHCqhUkni0P8yc94f9F;
+typedef c4_tag_pPOZHCqhUkni0P8yc94f9F c4_s_pPOZHCqhUkni0P8yc94f9F;
 
 #endif                                 /* typedef_c4_s_pPOZHCqhUkni0P8yc94f9F */
 
@@ -861,7 +861,7 @@ struct c4_tag_4dijvwFFQt8JouTajf5bDH
 #ifndef typedef_c4_s_4dijvwFFQt8JouTajf5bDH
 #define typedef_c4_s_4dijvwFFQt8JouTajf5bDH
 
-using c4_s_4dijvwFFQt8JouTajf5bDH = c4_tag_4dijvwFFQt8JouTajf5bDH;
+typedef c4_tag_4dijvwFFQt8JouTajf5bDH c4_s_4dijvwFFQt8JouTajf5bDH;
 
 #endif                                 /* typedef_c4_s_4dijvwFFQt8JouTajf5bDH */
 
@@ -878,16 +878,15 @@ struct c4_tag_qRxSe9N4qwJIjT7M2BxNL
 #ifndef typedef_c4_s_qRxSe9N4qwJIjT7M2BxNL
 #define typedef_c4_s_qRxSe9N4qwJIjT7M2BxNL
 
-using c4_s_qRxSe9N4qwJIjT7M2BxNL = c4_tag_qRxSe9N4qwJIjT7M2BxNL;
+typedef c4_tag_qRxSe9N4qwJIjT7M2BxNL c4_s_qRxSe9N4qwJIjT7M2BxNL;
 
 #endif                                 /* typedef_c4_s_qRxSe9N4qwJIjT7M2BxNL */
 
 #ifndef typedef_c4_LKASStackData
 #define typedef_c4_LKASStackData
 
-struct c4_LKASStackData
-{
-};
+typedef struct {
+} c4_LKASStackData;
 
 #endif                                 /* typedef_c4_LKASStackData */
 
@@ -916,35 +915,10 @@ struct SFc4_LKASInstanceStruct
   uint32_T c4_statuses[44];
   void *c4_outMexFcns[44];
   void *c4_inMexFcns[44];
-  real_T c4_nonzeroy_data[900000];
-  real_T c4_nonzerox_data[900000];
-  real_T c4_good_leftx_indexs_data[900000];
-  real_T c4_good_lefty_indexs_data[900000];
-  real_T c4_good_rightx_indexs_data[900000];
-  real_T c4_good_righty_indexs_data[900000];
-  int32_T c4_ii_data[900000];
-  int32_T c4_jj_data[900000];
-  real_T c4_V_data[300000];
-  real_T c4_A_data[300000];
   real_T c4_left_lane_index[200000];
   real_T c4_right_lane_index[200000];
-  real_T c4_actual_left_lane_index_data[200000];
-  real_T c4_actual_right_lane_index_data[200000];
   boolean_T c4_bv[900000];
-  boolean_T c4_tmp_data[900000];
-  boolean_T c4_b_tmp_data[900000];
-  boolean_T c4_c_tmp_data[900000];
-  boolean_T c4_d_tmp_data[900000];
-  boolean_T c4_e_tmp_data[900000];
-  boolean_T c4_f_tmp_data[900000];
-  real_T c4_b_actual_left_lane_index_data[100000];
-  real_T c4_c_actual_left_lane_index_data[100000];
-  real_T c4_b_actual_right_lane_index_data[100000];
-  real_T c4_c_actual_right_lane_index_data[100000];
-  real_T c4_B_data[100000];
   boolean_T c4_x[451200];
-  boolean_T c4_in2_data[900000];
-  boolean_T c4_in1_data[900000];
   CovrtStateflowInstance *c4_covrtInstance;
   void *c4_fEmlrtCtx;
   boolean_T (*c4_binary_image)[900000];
