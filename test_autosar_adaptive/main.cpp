@@ -43,7 +43,7 @@ int32_t main() {
         ara::log::LogLevel::kWarn);
 
     // /* Report Execution state */
-    // ara::exec::ExecutionClient exec_client;
+    // ara::exec::ExecutionClient e;
     // try {
     //   if (!exec_client.ReportExecutionState(
     //           ara::exec::ExecutionState::kRunning)) {

@@ -26,7 +26,7 @@ file(GLOB ARA_LOG_SOURCES "${CMAKE_SOURCE_DIR}/ara/log/*.cpp")
 
 add_executable(${PROJECT_NAME}
     main.cpp
-    # ${ARA_COM_SOURCES}
+    ${ARA_COM_SOURCES}
     ${ARA_CORE_SOURCES}
     # ${ARA_DIAG_SOURCES}
     # ${ARA_EXEC_SOURCES}

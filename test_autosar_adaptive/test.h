@@ -17,13 +17,13 @@
 //  Validation result: Not run
 
 
-#ifndef RTW_HEADER_test_h_
-#define RTW_HEADER_test_h_
+#ifndef TEST_H_
+#define TEST_H_
 #include <stdbool.h>
 #include <stdint.h>
-// #include "complex_types.h"
+#include "complex_types.h"
 // #include "providedinterface_skeleton.h"
-// #include "requiredinterface_proxy.h"
+#include "stub/aragen/requiredinterface_proxy.h"
 #include "test_types.h"
 #include <stddef.h>
 #include <memory>
@@ -53,10 +53,10 @@ class test final
   // model initialize function
   void initialize();
 
-  // model step function
+  // // model step function
   // void step();
 
-  // model terminate function
+  // // model terminate function
   // void terminate();
 
   // Constructor
@@ -69,8 +69,8 @@ class test final
  private:
   // Block signals
   B_test_T test_B;
-  // std::shared_ptr<proxy::RequiredInterfaceProxy> RequiredPort;
-  std::shared_ptr<skeleton::ProvidedInterfaceSkeleton> ProvidedPort;
+  std::shared_ptr<proxy::RequiredInterfaceProxy> RequiredPort;
+  // std::shared_ptr<skeleton::ProvidedInterfaceSkeleton> ProvidedPort;
 
   // private member function(s) for subsystem '<Root>'
   // void RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::
