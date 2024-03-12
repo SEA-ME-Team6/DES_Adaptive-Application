@@ -23,7 +23,7 @@
 #include <stdint.h>
 #include "complex_types.h"
 // #include "providedinterface_skeleton.h"
-#include "stub/aragen/requiredinterface_proxy.h"
+#include "requiredinterface_proxy.h"
 #include "test_types.h"
 #include <stddef.h>
 #include <memory>

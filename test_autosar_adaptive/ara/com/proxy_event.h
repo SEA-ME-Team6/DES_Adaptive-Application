@@ -1,5 +1,7 @@
 #include <functional>
-#include "../ara/core/result.h"
+#include <limits>
+#include "../core/result.h"
+
 namespace ara 
 {
     namespace com 

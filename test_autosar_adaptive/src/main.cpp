@@ -5,15 +5,14 @@
 #include <exception>
 #include <chrono>
 #include <functional>
-#include "PosixExecutor.hpp"
-#include "ara/core/initialization.h"
-#include "ara/core/result.h"
-#include "ara/core/string_view.h"
-#include "ara/exec/execution_client.h"
-#include "ara/log/common.h"
-#include "ara/log/logger.h"
-#include "ara/log/log_stream.h"
-#include "test.h"
+#include "../ara/core/initialization.h"
+#include "../ara/core/result.h"
+#include "../ara/core/string_view.h"
+#include "../ara/log/common.h"
+#include "../ara/log/logger.h"
+#include "../ara/log/log_stream.h"
+#include "../include/test.h"
+#include "../include/PosixExecutor.hpp"
 
 /* main() handles the following: */
 /*  - Instantiates the model object and owns its memory. */
@@ -60,15 +59,15 @@ int32_t main() {
     // }
 
     test test_Obj;
-    if (bProceed) {
-      /* Initialize Functions */
-      try {
-        test_Obj.initialize();
-      } catch (std::exception const &e) {
-        araLog.LogError() << "Unable to initialize: " << e.what() << ".\n";
-        bProceed = false;
-      }
-    } /* if */
+    // if (bProceed) {
+    //   /* Initialize Functions */
+    //   try {
+    //     test_Obj.initialize();
+    //   } catch (std::exception const &e) {
+    //     araLog.LogError() << "Unable to initialize: " << e.what() << ".\n";
+    //     bProceed = false;
+    //   }
+    // } /* if */
 
 //     if (bProceed) {
 //       /* Create an executor instance to schedule the periodic step functions */

@@ -7,8 +7,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/test.dir/ara/log/log_stream.cpp.o.d"
   "CMakeFiles/test.dir/ara/log/logger.cpp.o"
   "CMakeFiles/test.dir/ara/log/logger.cpp.o.d"
-  "CMakeFiles/test.dir/main.cpp.o"
-  "CMakeFiles/test.dir/main.cpp.o.d"
+  "CMakeFiles/test.dir/src/main.cpp.o"
+  "CMakeFiles/test.dir/src/main.cpp.o.d"
+  "CMakeFiles/test.dir/src/test.cpp.o"
+  "CMakeFiles/test.dir/src/test.cpp.o.d"
   "test"
   "test.pdb"
 )

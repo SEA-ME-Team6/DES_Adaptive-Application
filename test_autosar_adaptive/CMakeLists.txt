@@ -9,12 +9,13 @@ set(CMAKE_ENABLE_EXPORTS 1)
 find_package(Threads REQUIRED)
 
 include_directories(
+    include
     ${CMAKE_SOURCE_DIR}/ara/com
     ${CMAKE_SOURCE_DIR}/ara/core
     ${CMAKE_SOURCE_DIR}/ara/diag
     ${CMAKE_SOURCE_DIR}/ara/exec
     ${CMAKE_SOURCE_DIR}/ara/log
-    ${CMAKE_SOURCE_DIR}/stub/aragen
+    # ${CMAKE_SOURCE_DIR}/stub/aragen
     ${CMAKE_SOURCE_DIR}/slprj/autosar_adaptive/_sharedutils
 )
 
@@ -25,7 +26,8 @@ file(GLOB ARA_EXEC_SOURCES "${CMAKE_SOURCE_DIR}/ara/exec/*.cpp")
 file(GLOB ARA_LOG_SOURCES "${CMAKE_SOURCE_DIR}/ara/log/*.cpp")
 
 add_executable(${PROJECT_NAME}
-    main.cpp
+    src/main.cpp
+    src/test.cpp
     ${ARA_COM_SOURCES}
     ${ARA_CORE_SOURCES}
     # ${ARA_DIAG_SOURCES}
