@@ -11,7 +11,8 @@
 #define REQUIREDINTERFACE_PROXY_H_
 #include <memory>
 #include <utility>
-#include "../../ara/com/proxy_event.h"
+#include "../ara/com/proxy_event.h"
+#include "../ara/com/service_handle_type.h"
 // #include "requiredinterface_common.h"
 
 namespace proxy
@@ -33,14 +34,13 @@ namespace proxy
    private:
     // ara::com::ServiceHandleType mHandle;
    public:
-    // using HandleType = ara::com::ServiceHandleType;
+    using HandleType = ara::com::ServiceHandleType;
     explicit RequiredInterfaceProxy()
     {
-		// There is no concept of Init and Factory in AUTOSAR 
-		// std::string sTopicName;
-		// sTopicName = "In1";
-		// In1.Init(ara::com::EventFactory::CreateProxyEvent<double, proxy_io::
-		// 		RequiredInterface_In1_t>(handle, sTopicName));
+      // std::string sTopicName;
+      // sTopicName = "In1";
+      // In1.Init(ara::com::EventFactory::CreateProxyEvent<double, proxy_io::
+      //     RequiredInterface_In1_t>(handle, sTopicName));
     }
 
     virtual ~RequiredInterfaceProxy()

@@ -43,37 +43,37 @@
 // }
 
 // Model initialize function
-// void test::initialize()
-// {
-//   {
-//     ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >
-//       handles;
-//     std::shared_ptr<ara::core::Result<ara::com::ServiceHandleContainer< proxy::
-//       RequiredInterfaceProxy::HandleType >>> resultPtr;
+void test::initialize()
+{
+  {
+    // ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >
+    //   handles;
+    // std::shared_ptr<ara::core::Result<ara::com::ServiceHandleContainer< proxy::
+    //   RequiredInterfaceProxy::HandleType >>> resultPtr;
 
-//     // Initialize service provider instance - ProvidedPort
-//     // ProvidedPort = std::make_shared< skeleton::ProvidedInterfaceSkeleton >(ara::
-//     //   core::InstanceSpecifier(ara::core::StringView(
-//     //   "test/test_RootSwComponentPrototype/ProvidedPort")), ara::com::
-//     //   MethodCallProcessingMode::kEventSingleThread);
-//     // ProvidedPort->OfferService();
+    // Initialize service provider instance - ProvidedPort
+    // ProvidedPort = std::make_shared< skeleton::ProvidedInterfaceSkeleton >(ara::
+    //   core::InstanceSpecifier(ara::core::StringView(
+    //   "test/test_RootSwComponentPrototype/ProvidedPort")), ara::com::
+    //   MethodCallProcessingMode::kEventSingleThread);
+    // ProvidedPort->OfferService();
 
-//     // Initialize service requester instance - RequiredPort
-//     resultPtr = std::make_shared< ara::core::Result<ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >> >
-//     (proxy::RequiredInterfaceProxy::FindService(ara::core::InstanceSpecifier
-//         (ara::core::StringView("test/test_RootSwComponentPrototype/RequiredPort"))));
-//     if (resultPtr->HasValue()) {
-//       handles = resultPtr->Value();
-//       if (handles.size() > 0U) {
-//         RequiredPort = std::make_shared< proxy::RequiredInterfaceProxy >
-//           (*handles.begin());
+    // Initialize service requester instance - RequiredPort
+    // resultPtr = std::make_shared< ara::core::Result<ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >> >
+    // (proxy::RequiredInterfaceProxy::FindService(ara::core::InstanceSpecifier
+    //     (ara::core::StringView("test/test_RootSwComponentPrototype/RequiredPort"))));
+    // if (resultPtr->HasValue()) {
+    //   handles = resultPtr->Value();
+    //   if (handles.size() > 0U) {
+    //     RequiredPort = std::make_shared< proxy::RequiredInterfaceProxy >
+    //       (*handles.begin());
 
-//         // Subscribe events
-//         RequiredPort->In1.Subscribe(1U);
-//       }
-//     }
-//   }
-// }
+    //     // Subscribe events
+    //     RequiredPort->In1.Subscribe(1U);
+    //   }
+    // }
+  }
+}
 
 // Model terminate function
 // void test::terminate()

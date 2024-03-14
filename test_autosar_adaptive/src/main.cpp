@@ -5,6 +5,7 @@
 #include <exception>
 #include <chrono>
 #include <functional>
+#include <iostream>
 #include "../ara/core/initialization.h"
 #include "../ara/core/result.h"
 #include "../ara/core/string_view.h"
@@ -59,15 +60,15 @@ int32_t main() {
     // }
 
     test test_Obj;
-    // if (bProceed) {
-    //   /* Initialize Functions */
-    //   try {
-    //     test_Obj.initialize();
-    //   } catch (std::exception const &e) {
-    //     araLog.LogError() << "Unable to initialize: " << e.what() << ".\n";
-    //     bProceed = false;
-    //   }
-    // } /* if */
+    if (bProceed) {
+      /* Initialize Functions */
+      try {
+        test_Obj.initialize();
+      } catch (std::exception const &e) {
+        araLog.LogError() << "Unable to initialize: " << e.what() << ".\n";
+        bProceed = false;
+      }
+    } /* if */
 
 //     if (bProceed) {
 //       /* Create an executor instance to schedule the periodic step functions */

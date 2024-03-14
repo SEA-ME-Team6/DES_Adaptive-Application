@@ -1,3 +1,4 @@
 .vscode
 build
 test_autosar_adaptive/.vscode
+test_autosar_adaptive/build
