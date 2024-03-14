@@ -21,12 +21,13 @@
 #define TEST_H_
 #include <stdbool.h>
 #include <stdint.h>
-#include "complex_types.h"
-// #include "providedinterface_skeleton.h"
-#include "requiredinterface_proxy.h"
-#include "test_types.h"
 #include <stddef.h>
 #include <memory>
+#include "complex_types.h"
+#include "requiredinterface_proxy.h"
+#include "test_types.h"
+#include "../ara/com/service_handle_container.h"
+// #include "providedinterface_skeleton.h"
 
 // Class declaration for model test
 class test final

@@ -46,8 +46,8 @@
 void test::initialize()
 {
   {
-    // ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >
-    //   handles;
+    ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >
+      handles;
     // std::shared_ptr<ara::core::Result<ara::com::ServiceHandleContainer< proxy::
     //   RequiredInterfaceProxy::HandleType >>> resultPtr;
 

@@ -15,6 +15,5 @@ namespace ara
             ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max());
 
         };
-
     }
 }

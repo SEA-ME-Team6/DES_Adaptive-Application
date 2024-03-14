@@ -896,8 +896,6 @@ CMakeFiles/test.dir/src/main.cpp.o: ../src/main.cpp \
   ../ara/log/log_stream.h \
   ../include/test.h \
   /usr/lib/gcc/x86_64-linux-gnu/9/include/stdbool.h \
-  ../include/complex_types.h \
-  ../include/requiredinterface_proxy.h \
   /usr/include/c++/9/memory \
   /usr/include/c++/9/bits/stl_tempbuf.h \
   /usr/include/c++/9/bits/stl_raw_storage_iter.h \
@@ -911,9 +909,14 @@ CMakeFiles/test.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/9/bits/atomic_base.h \
   /usr/include/c++/9/bits/atomic_lockfree_defines.h \
   /usr/include/c++/9/backward/auto_ptr.h \
+  ../include/complex_types.h \
+  ../include/requiredinterface_proxy.h \
   ../ara/com/proxy_event.h \
   ../ara/core/result.h \
+  ../ara/com/service_handle_type.h \
+  ../ara/core/instance_specifier.h \
   ../include/test_types.h \
+  ../ara/com/service_handle_container.h \
   ../include/PosixExecutor.hpp \
   /usr/include/c++/9/csignal \
   /usr/include/signal.h \
@@ -996,8 +999,7 @@ CMakeFiles/test.dir/src/test.cpp.o: ../src/test.cpp \
   /usr/include/x86_64-linux-gnu/bits/wchar.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  ../include/complex_types.h \
-  ../include/requiredinterface_proxy.h \
+  /usr/lib/gcc/x86_64-linux-gnu/9/include/stddef.h \
   /usr/include/c++/9/memory \
   /usr/include/c++/9/bits/stl_algobase.h \
   /usr/include/x86_64-linux-gnu/c++/9/bits/c++config.h \
@@ -1027,7 +1029,6 @@ CMakeFiles/test.dir/src/test.cpp.o: ../src/test.cpp \
   /usr/include/c++/9/bits/exception.h \
   /usr/include/c++/9/bits/exception_ptr.h \
   /usr/include/c++/9/bits/cxxabi_init_exception.h \
-  /usr/lib/gcc/x86_64-linux-gnu/9/include/stddef.h \
   /usr/include/c++/9/typeinfo \
   /usr/include/c++/9/bits/hash_bytes.h \
   /usr/include/c++/9/bits/nested_exception.h \
@@ -1150,6 +1151,8 @@ CMakeFiles/test.dir/src/test.cpp.o: ../src/test.cpp \
   /usr/include/c++/9/bits/atomic_base.h \
   /usr/include/c++/9/bits/atomic_lockfree_defines.h \
   /usr/include/c++/9/backward/auto_ptr.h \
+  ../include/complex_types.h \
+  ../include/requiredinterface_proxy.h \
   ../ara/com/proxy_event.h \
   /usr/include/c++/9/functional \
   /usr/include/c++/9/bits/std_function.h \
@@ -1158,7 +1161,15 @@ CMakeFiles/test.dir/src/test.cpp.o: ../src/test.cpp \
   ../ara/core/error_code.h \
   ../ara/core/error_domain.h \
   ../ara/core/optional.h \
-  ../include/test_types.h
+  ../ara/com/service_handle_type.h \
+  ../ara/core/instance_specifier.h \
+  /usr/include/c++/9/vector \
+  /usr/include/c++/9/bits/stl_vector.h \
+  /usr/include/c++/9/bits/stl_bvector.h \
+  /usr/include/c++/9/bits/vector.tcc \
+  ../ara/core/result.h \
+  ../include/test_types.h \
+  ../ara/com/service_handle_container.h
 
 
 ../src/test.cpp:
@@ -1210,6 +1221,8 @@ CMakeFiles/test.dir/src/test.cpp.o: ../src/test.cpp \
 /usr/include/x86_64-linux-gnu/bits/signal_ext.h:
 
 /usr/include/x86_64-linux-gnu/bits/sigthread.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigstack.h:
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
 
@@ -1354,6 +1367,8 @@ CMakeFiles/test.dir/src/test.cpp.o: ../src/test.cpp \
 /usr/include/c++/9/bits/std_abs.h:
 
 /usr/include/asm-generic/errno-base.h:
+
+../ara/com/service_handle_container.h:
 
 /usr/include/c++/9/bits/streambuf.tcc:
 
@@ -1631,8 +1646,6 @@ CMakeFiles/test.dir/src/test.cpp.o: ../src/test.cpp \
 
 /usr/include/c++/9/iomanip:
 
-/usr/include/x86_64-linux-gnu/bits/sigstack.h:
-
 /usr/include/c++/9/new:
 
 /usr/include/c++/9/bits/locale_facets_nonio.h:
@@ -1695,17 +1708,13 @@ CMakeFiles/test.dir/src/test.cpp.o: ../src/test.cpp \
 
 ../include/test.h:
 
-../include/complex_types.h:
-
-/usr/include/c++/9/initializer_list:
-
-../include/requiredinterface_proxy.h:
-
 /usr/include/c++/9/cerrno:
 
 /usr/include/c++/9/memory:
 
 /usr/include/c++/9/ext/string_conversions.h:
+
+../ara/com/service_handle_type.h:
 
 /usr/include/c++/9/bits/stl_raw_storage_iter.h:
 
@@ -1728,6 +1737,12 @@ CMakeFiles/test.dir/src/test.cpp.o: ../src/test.cpp \
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
 
 /usr/include/c++/9/backward/auto_ptr.h:
+
+../include/complex_types.h:
+
+/usr/include/c++/9/initializer_list:
+
+../include/requiredinterface_proxy.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
 
