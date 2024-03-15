@@ -27,6 +27,8 @@
 #include "requiredinterface_proxy.h"
 #include "test_types.h"
 #include "../ara/com/service_handle_container.h"
+#include "../ara/com/instance_identifier.h"
+#include "../ara/core/instance_specifier.h"
 // #include "providedinterface_skeleton.h"
 
 // Class declaration for model test

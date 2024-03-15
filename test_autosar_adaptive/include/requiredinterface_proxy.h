@@ -13,6 +13,10 @@
 #include <utility>
 #include "../ara/com/proxy_event.h"
 #include "../ara/com/service_handle_type.h"
+#include "../ara/com/instance_identifier.h"
+#include "../ara/com/instance_identifier_container.h"
+#include "../ara/com/service_handle_container.h"
+
 // #include "requiredinterface_common.h"
 
 namespace proxy
@@ -53,16 +57,15 @@ namespace proxy
     RequiredInterfaceProxy(RequiredInterfaceProxy&&) = default;
     RequiredInterfaceProxy& operator = (RequiredInterfaceProxy&&) = default;
     
-    // static inline ara::core::Result<ara::com::ServiceHandleContainer<
-    //   RequiredInterfaceProxy::HandleType>> FindService(ara::com::
-    //   InstanceIdentifier instance = ara::com::InstanceIdentifier::Any)
-    // {
-    //   ara::com::ServiceHandleContainer<RequiredInterfaceProxy::HandleType>
-    //     retResult;
-    //   retResult.push_back(ara::com::ServiceFactory::FindService(instance));
-    //   return ara::core::Result<ara::com::ServiceHandleContainer<
-    //     RequiredInterfaceProxy::HandleType>>{ retResult };
-    // }
+    static inline ara::core::Result<ara::com::ServiceHandleContainer<RequiredInterfaceProxy::HandleType>> 
+    FindService(ara::com::InstanceIdentifier instance)
+    {
+      ara::com::ServiceHandleContainer<RequiredInterfaceProxy::HandleType>
+        retResult;
+      // *Replace FindService to register_availability_handler
+      // retResult.push_back(ara::com::ServiceFactory::FindService(instance));
+      return ara::core::Result<ara::com::ServiceHandleContainer<RequiredInterfaceProxy::HandleType>>{ retResult };
+    }
 
     // static inline ara::core::Result<ara::com::ServiceHandleContainer<
     //   RequiredInterfaceProxy::HandleType>> FindService(ara::core::
@@ -73,9 +76,10 @@ namespace proxy
     //   ara::core::Result<ara::com::InstanceIdentifierContainer> vecInstance (ara::
     //     com::runtime::ResolveInstanceIDs(instanceSpec));
     //   if (!vecInstance->empty()) {
-    //     retResult = FindService(vecInstance->front()).Value();
+    //     // *Replace FindService to register_availability_handler
+    //     // retResult = FindService(vecInstance->front()).Value();
     //   } else {
-    //     retResult = FindService(ara::com::InstanceIdentifier::Any).Value();
+    //     // retResult = FindService(ara::com::InstanceIdentifier::Any).Value();
     //   }                                /* if */
 
     //   return ara::core::Result<ara::com::ServiceHandleContainer<

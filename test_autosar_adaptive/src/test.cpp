@@ -19,6 +19,7 @@
 
 #include "test.h"
 #include <stdint.h>
+#include <string>
 
 // void test::RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::SampleType const > elementPtr)
 // {
@@ -45,11 +46,10 @@
 // Model initialize function
 void test::initialize()
 {
-  {
     ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >
       handles;
-    // std::shared_ptr<ara::core::Result<ara::com::ServiceHandleContainer< proxy::
-    //   RequiredInterfaceProxy::HandleType >>> resultPtr;
+    std::shared_ptr<ara::core::Result<ara::com::ServiceHandleContainer< proxy::
+      RequiredInterfaceProxy::HandleType >>> resultPtr;
 
     // Initialize service provider instance - ProvidedPort
     // ProvidedPort = std::make_shared< skeleton::ProvidedInterfaceSkeleton >(ara::
@@ -59,20 +59,19 @@ void test::initialize()
     // ProvidedPort->OfferService();
 
     // Initialize service requester instance - RequiredPort
-    // resultPtr = std::make_shared< ara::core::Result<ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >> >
-    // (proxy::RequiredInterfaceProxy::FindService(ara::core::InstanceSpecifier
-    //     (ara::core::StringView("test/test_RootSwComponentPrototype/RequiredPort"))));
-    // if (resultPtr->HasValue()) {
-    //   handles = resultPtr->Value();
-    //   if (handles.size() > 0U) {
-    //     RequiredPort = std::make_shared< proxy::RequiredInterfaceProxy >
-    //       (*handles.begin());
+    resultPtr = std::make_shared< ara::core::Result<ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >> >
+      (proxy::RequiredInterfaceProxy::FindService(ara::com::InstanceIdentifier("1")));
+    if (resultPtr->HasValue()) {
+      handles = resultPtr->Value();
+      if (handles.size() > 0U) {
+        // RequiredPort = std::make_shared< proxy::RequiredInterfaceProxy >
+        //   (*handles.begin());
 
-    //     // Subscribe events
-    //     RequiredPort->In1.Subscribe(1U);
-    //   }
-    // }
-  }
+      //   // Subscribe event
+      //   RequiredPort->In1.Subscribe(1U);
+      // }
+      }
+    }
 }
 
 // Model terminate function
