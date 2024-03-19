@@ -36,21 +36,22 @@ namespace proxy
 
   class RequiredInterfaceProxy {
    private:
-    // ara::com::ServiceHandleType mHandle;
+    ara::com::HandleType mHandle;
    public:
-    using HandleType = ara::com::ServiceHandleType;
-    explicit RequiredInterfaceProxy()
+    using HandleType = ara::com::HandleType;
+    explicit RequiredInterfaceProxy(const HandleType& handle): mHandle(handle)
     {
-      // std::string sTopicName;
-      // sTopicName = "In1";
-      // In1.Init(ara::com::EventFactory::CreateProxyEvent<double, proxy_io::
-      //     RequiredInterface_In1_t>(handle, sTopicName));
+    //   std::string sTopicName;
+    //   sTopicName = "In1";
+    //   In1.Init(ara::com::EventFactory::CreateProxyEvent<Double, proxy_io::
+    //            RequiredInterface_In1_t>(handle, sTopicName));
     }
 
     virtual ~RequiredInterfaceProxy()
     {
     //   In1.Deinit();
     }
+
 
     RequiredInterfaceProxy(const RequiredInterfaceProxy&) = delete;
     RequiredInterfaceProxy& operator = (const RequiredInterfaceProxy&) = delete;

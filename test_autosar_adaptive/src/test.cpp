@@ -64,8 +64,7 @@ void test::initialize()
     if (resultPtr->HasValue()) {
       handles = resultPtr->Value();
       if (handles.size() > 0U) {
-        // RequiredPort = std::make_shared< proxy::RequiredInterfaceProxy >
-        //   (*handles.begin());
+        RequiredPort = std::make_shared< proxy::RequiredInterfaceProxy >(*handles.begin());
 
       //   // Subscribe event
       //   RequiredPort->In1.Subscribe(1U);
