@@ -12,7 +12,7 @@
 #include <memory>
 #include <utility>
 #include "../ara/com/proxy_event.h"
-#include "../ara/com/service_handle_type.h"
+#include "../ara/com/handle_type.h"
 #include "../ara/com/instance_identifier.h"
 #include "../ara/com/instance_identifier_container.h"
 #include "../ara/com/service_handle_container.h"
@@ -37,26 +37,28 @@ namespace proxy
   class RequiredInterfaceProxy {
    private:
     ara::com::HandleType mHandle;
+
    public:
     using HandleType = ara::com::HandleType;
+	  proxy::events::In1 In1;
+
     explicit RequiredInterfaceProxy(const HandleType& handle): mHandle(handle)
     {
-    //   std::string sTopicName;
-    //   sTopicName = "In1";
-    //   In1.Init(ara::com::EventFactory::CreateProxyEvent<Double, proxy_io::
-    //            RequiredInterface_In1_t>(handle, sTopicName));
+      std::string sTopicName;
+      sTopicName = "In1";
+      In1.Init(handle, sTopicName);
     }
+	
+    RequiredInterfaceProxy(const RequiredInterfaceProxy&) = delete;
+    RequiredInterfaceProxy& operator = (const RequiredInterfaceProxy&) = delete;
+    RequiredInterfaceProxy(RequiredInterfaceProxy&&) = default;
+    RequiredInterfaceProxy& operator = (RequiredInterfaceProxy&&) = default;
 
     virtual ~RequiredInterfaceProxy()
     {
     //   In1.Deinit();
     }
 
-
-    RequiredInterfaceProxy(const RequiredInterfaceProxy&) = delete;
-    RequiredInterfaceProxy& operator = (const RequiredInterfaceProxy&) = delete;
-    RequiredInterfaceProxy(RequiredInterfaceProxy&&) = default;
-    RequiredInterfaceProxy& operator = (RequiredInterfaceProxy&&) = default;
     
     static inline ara::core::Result<ara::com::ServiceHandleContainer<RequiredInterfaceProxy::HandleType>> 
     FindService(ara::com::InstanceIdentifier instance)
@@ -124,7 +126,6 @@ namespace proxy
     //   return mHandle;
     // }
 
-    proxy::events::In1 In1;
   };
 }                                      /* namespace proxy */
 
