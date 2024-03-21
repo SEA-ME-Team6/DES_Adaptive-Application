@@ -16,6 +16,7 @@
 #include "../ara/com/instance_identifier.h"
 #include "../ara/com/instance_identifier_container.h"
 #include "../ara/com/service_handle_container.h"
+#include "../ara/com/resolve_instance.h"
 
 // #include "requiredinterface_common.h"
 
@@ -65,29 +66,28 @@ namespace proxy
     {
       ara::com::ServiceHandleContainer<RequiredInterfaceProxy::HandleType>
         retResult;
-      // *Replace FindService to register_availability_handler
+      // Hane to replace FindService to register_availability_handler
       // retResult.push_back(ara::com::ServiceFactory::FindService(instance));
       return ara::core::Result<ara::com::ServiceHandleContainer<RequiredInterfaceProxy::HandleType>>{ retResult };
     }
 
-    // static inline ara::core::Result<ara::com::ServiceHandleContainer<
-    //   RequiredInterfaceProxy::HandleType>> FindService(ara::core::
-    //   InstanceSpecifier instanceSpec)
-    // {
-    //   ara::com::ServiceHandleContainer<RequiredInterfaceProxy::HandleType>
-    //     retResult;
-    //   ara::core::Result<ara::com::InstanceIdentifierContainer> vecInstance (ara::
-    //     com::runtime::ResolveInstanceIDs(instanceSpec));
-    //   if (!vecInstance->empty()) {
-    //     // *Replace FindService to register_availability_handler
-    //     // retResult = FindService(vecInstance->front()).Value();
-    //   } else {
-    //     // retResult = FindService(ara::com::InstanceIdentifier::Any).Value();
-    //   }                                /* if */
+    static inline ara::core::Result<ara::com::ServiceHandleContainer<
+      RequiredInterfaceProxy::HandleType>> FindService(ara::core::
+      InstanceSpecifier instanceSpec)
+    {
+      ara::com::ServiceHandleContainer<RequiredInterfaceProxy::HandleType>
+        retResult;
+      ara::core::Result<ara::com::InstanceIdentifierContainer> vecInstance (ara::com::runtime::ResolveInstanceIDs(instanceSpec));
+      if (!vecInstance->empty()) {
+        // *Replace FindService to register_availability_handler
+        // retResult = FindService(vecInstance->front()).Value();
+      } else {
+        // retResult = FindService(ara::com::InstanceIdentifier::Any).Value();
+      }                                /* if */
 
-    //   return ara::core::Result<ara::com::ServiceHandleContainer<
-    //     RequiredInterfaceProxy::HandleType>>{ retResult };
-    // }
+      return ara::core::Result<ara::com::ServiceHandleContainer<
+        RequiredInterfaceProxy::HandleType>>{ retResult };
+    }
 
     // static inline ara::core::Result<ara::com::FindServiceHandle>
     //   StartFindService(ara::com::FindServiceHandler<RequiredInterfaceProxy::

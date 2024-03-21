@@ -1,11 +1,18 @@
+#ifndef INSTANCE_IDENTIFIER_CONTAINER_H
+#define INSTANCE_IDENTIFIER_CONTAINER_H
+
 #include <vector>
+
+#include <instance_identifier.h>
 
 namespace ara 
 {
     namespace com 
     {
-        template <typename T>
-        using InstanceIdentifierContainer = std::vector<T>;
+        using InstanceIdentifierContainer = std::vector<InstanceIdentifier>;
+
 
     } // namespace com
 } // namespace ara
+
+#endif

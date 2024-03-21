@@ -1,3 +1,6 @@
+#ifndef PROXY_EVENT_H
+#define PROXY_EVENT_H
+
 #include <functional>
 #include <limits>
 #include "../core/result.h"
@@ -19,6 +22,7 @@ namespace ara
 
             explicit ProxyEvent() = default;  
 
+            // Init() is Non Standard
             void Init(const HandleType& handle, const std::string& eventId) {
                 mInstanceId = handle.GetInstanceId().ToString();
                 mEventId = eventId;
@@ -32,3 +36,5 @@ namespace ara
         };
     }
 }
+
+#endif
