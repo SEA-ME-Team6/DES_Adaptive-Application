@@ -24,7 +24,7 @@ namespace proxy
 {
   namespace events
   {
-    using In1 = ara::com::ProxyEvent<double>;
+    using In1 = ara::com::ProxyEvent;
   }                                    /* namespace events */
 
   namespace methods

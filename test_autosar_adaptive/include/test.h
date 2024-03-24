@@ -29,6 +29,7 @@
 #include "../ara/com/service_handle_container.h"
 #include "../ara/com/instance_identifier.h"
 #include "../ara/core/instance_specifier.h"
+#include "../ara/com/sampleptr.h"
 // #include "providedinterface_skeleton.h"
 
 // Class declaration for model test
@@ -57,7 +58,7 @@ class test final
   void initialize();
 
   // // model step function
-  // void step();
+  void step();
 
   // // model terminate function
   // void terminate();
@@ -76,8 +77,7 @@ class test final
   // std::shared_ptr<skeleton::ProvidedInterfaceSkeleton> ProvidedPort;
 
   // private member function(s) for subsystem '<Root>'
-  // void RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::
-  //   SampleType const > elementPtr);
+  void RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::SampleType const > elementPtr);
 };
 
 //-

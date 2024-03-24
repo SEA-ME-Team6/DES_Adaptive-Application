@@ -16,32 +16,30 @@
 //  Code generation objective: MISRA C:2012 guidelines
 //  Validation result: Not run
 
-
 #include "test.h"
 #include <stdint.h>
 #include <string>
 
-// void test::RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::SampleType const > elementPtr)
-// {
-//   // Receive: '<S1>/Event Receive'
-//   test_B.EventReceive = *elementPtr;
-// }
+void test::RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::SampleType const > elementPtr)
+{
+  // Receive: '<S1>/Event Receive'
+  test_B.EventReceive = *elementPtr;
+}
 
 // Model step function
-// void test::step()
-// {
-//   std::shared_ptr<ara::core::Result<size_t>> resultPtr;
-//   if (RequiredPort) {
-//     resultPtr = std::make_shared< ara::core::Result<size_t> >
-//       (RequiredPort->In1.GetNewSamples(std::move(std::bind(&test::
-//           RequiredPortIn1Receive, this, std::placeholders::_1)), 1U));
-//     resultPtr->ValueOrThrow();
-//   }
+void test::step()
+{
+  std::shared_ptr<ara::core::Result<size_t>> resultPtr;
+  if (RequiredPort) {
+    resultPtr = std::make_shared< ara::core::Result<size_t> >
+      (RequiredPort->In1.GetNewSamples(std::move(std::bind(&test::RequiredPortIn1Receive, this, std::placeholders::_1)), 1U));
+    resultPtr->ValueOrThrow();
+  }
 
-//   // Send: '<S2>/Event Send'
-//   // Send event
-//   ProvidedPort->Out1.Send(test_B.EventReceive);
-// }
+  // Send: '<S2>/Event Send'
+  // Send event
+  // ProvidedPort->Out1.Send(test_B.EventReceive);
+}
 
 // Model initialize function
 void test::initialize()
@@ -66,9 +64,8 @@ void test::initialize()
       if (handles.size() > 0U) {
         RequiredPort = std::make_shared< proxy::RequiredInterfaceProxy >(*handles.begin());
 
-      //   // Subscribe event
-      //   RequiredPort->In1.Subscribe(1U);
-      // }
+        // Subscribe event
+        RequiredPort->In1.Subscribe(1U);
       }
     }
 }
