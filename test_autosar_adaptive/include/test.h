@@ -25,12 +25,12 @@
 #include <memory>
 #include "complex_types.h"
 #include "requiredinterface_proxy.h"
+#include "providedinterface_skeleton.h"
 #include "test_types.h"
 #include "../ara/com/service_handle_container.h"
 #include "../ara/com/instance_identifier.h"
 #include "../ara/core/instance_specifier.h"
 #include "../ara/com/sampleptr.h"
-// #include "providedinterface_skeleton.h"
 
 // Class declaration for model test
 class test final
@@ -74,7 +74,7 @@ class test final
   // Block signals
   B_test_T test_B;
   std::shared_ptr<proxy::RequiredInterfaceProxy> RequiredPort;
-  // std::shared_ptr<skeleton::ProvidedInterfaceSkeleton> ProvidedPort;
+  std::shared_ptr<skeleton::ProvidedInterfaceSkeleton> ProvidedPort;
 
   // private member function(s) for subsystem '<Root>'
   void RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::SampleType const > elementPtr);

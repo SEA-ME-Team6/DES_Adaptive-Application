@@ -4,6 +4,8 @@ namespace ara
 {
     namespace com
     {
+        InstanceIdentifier::InstanceIdentifier() {}
+        
         InstanceIdentifier::InstanceIdentifier(
             std::string serializedFormat) : serializedFormat_{serializedFormat}
         {

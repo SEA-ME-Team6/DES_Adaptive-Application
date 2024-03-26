@@ -38,27 +38,22 @@ void test::step()
 
   // Send: '<S2>/Event Send'
   // Send event
-  // ProvidedPort->Out1.Send(test_B.EventReceive);
+  ProvidedPort->Out1.Send(test_B.EventReceive);
 }
 
 // Model initialize function
 void test::initialize()
 {
-    ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >
-      handles;
-    std::shared_ptr<ara::core::Result<ara::com::ServiceHandleContainer< proxy::
-      RequiredInterfaceProxy::HandleType >>> resultPtr;
+    ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >handles;
+    std::shared_ptr<ara::core::Result<ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >>> resultPtr;
 
     // Initialize service provider instance - ProvidedPort
-    // ProvidedPort = std::make_shared< skeleton::ProvidedInterfaceSkeleton >(ara::
-    //   core::InstanceSpecifier(ara::core::StringView(
-    //   "test/test_RootSwComponentPrototype/ProvidedPort")), ara::com::
-    //   MethodCallProcessingMode::kEventSingleThread);
-    // ProvidedPort->OfferService();
+    ProvidedPort = std::make_shared< skeleton::ProvidedInterfaceSkeleton >(ara::com::InstanceIdentifier(std::string("2")), ara::com::MethodCallProcessingMode::kEventSingleThread);
+    ProvidedPort->OfferService();
 
     // Initialize service requester instance - RequiredPort
     resultPtr = std::make_shared< ara::core::Result<ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >> >
-      (proxy::RequiredInterfaceProxy::FindService(ara::com::InstanceIdentifier("1")));
+      (proxy::RequiredInterfaceProxy::FindService(ara::com::InstanceIdentifier(std::string("1"))));
     if (resultPtr->HasValue()) {
       handles = resultPtr->Value();
       if (handles.size() > 0U) {

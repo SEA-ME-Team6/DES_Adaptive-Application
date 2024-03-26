@@ -9,6 +9,8 @@ namespace ara
     {
         class HandleType {
         public:
+            ara::com::InstanceIdentifier instanceId;
+
             HandleType() = default;            
             explicit HandleType(const ara::com::InstanceIdentifier& id) : instanceId(id) {}
             
@@ -24,9 +26,8 @@ namespace ara
             const ara::com::InstanceIdentifier& GetInstanceId() const {
                 return instanceId;
             }
-
         private:
-            ara::com::InstanceIdentifier instanceId;
+            
         };
 
     } // namespace com

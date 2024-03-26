@@ -24,7 +24,7 @@ namespace proxy
 {
   namespace events
   {
-    using In1 = ara::com::ProxyEvent;
+    using In1 = ara::com::ProxyEvent<double>;
   }                                    /* namespace events */
 
   namespace methods
@@ -41,15 +41,18 @@ namespace proxy
 
    public:
     using HandleType = ara::com::HandleType;
-	  proxy::events::In1 In1;
+	proxy::events::In1 In1;
 
     explicit RequiredInterfaceProxy(const HandleType& handle): mHandle(handle)
     {
-      std::string sTopicName;
-      sTopicName = "In1";
-      In1.Init(handle, sTopicName);
+      uint16_t mEventId, mEventGroupId;
+      uint32_t queueLength{ 1 };
+      
+      mEventId = 47336;
+      mEventGroupId = 43345;
+      In1.Init(handle, mEventId, mEventGroupId);
     }
-	
+
     RequiredInterfaceProxy(const RequiredInterfaceProxy&) = delete;
     RequiredInterfaceProxy& operator = (const RequiredInterfaceProxy&) = delete;
     RequiredInterfaceProxy(RequiredInterfaceProxy&&) = default;
@@ -121,10 +124,10 @@ namespace proxy
     //   ara::com::ServiceFactory::StopFindService(handle);
     // }
 
-    // RequiredInterfaceProxy::HandleType GetHandle() const
-    // {
-    //   return mHandle;
-    // }
+    RequiredInterfaceProxy::HandleType GetHandle() const
+    {
+      return mHandle;
+    }
 
   };
 }                                      /* namespace proxy */

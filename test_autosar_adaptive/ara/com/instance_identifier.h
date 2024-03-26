@@ -18,16 +18,13 @@ namespace ara
         public:
             /// @brief Constructor
             /// @param serializedFormat Shortname-path
+            InstanceIdentifier();
             explicit InstanceIdentifier(std::string serializedFormat);
-
             InstanceIdentifier(const InstanceIdentifier &other);
             InstanceIdentifier(InstanceIdentifier &&other) noexcept;
 
             InstanceIdentifier &operator=(const InstanceIdentifier &other);
             InstanceIdentifier &operator=(InstanceIdentifier &&other);
-
-            InstanceIdentifier() = delete;
-            ~InstanceIdentifier() noexcept = default;
 
             /// @brief InstanceIdentifier factory
             /// @param serializedFormat Shortname-path
