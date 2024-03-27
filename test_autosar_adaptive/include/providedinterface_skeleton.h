@@ -51,10 +51,10 @@ namespace skeleton
 		// static ara::core::Result<ProvidedInterfaceSkeleton> Create(const ara::core::InstanceSpecifier &instance, ara::com::MethodCallProcessingMode mode = ara::com::MethodCallProcessingMode::kEvent) noexcept {};
 
 
-		// virtual ~ProvidedInterfaceSkeleton()
-		// {
-		//   StopOfferService();
-		// }
+		virtual ~ProvidedInterfaceSkeleton()
+		{
+		  StopOfferService();
+		}
 
 		ProvidedInterfaceSkeleton(const ProvidedInterfaceSkeleton&) = delete;
 		ProvidedInterfaceSkeleton& operator = (const ProvidedInterfaceSkeleton&) = delete;
@@ -67,13 +67,14 @@ namespace skeleton
 			mEventId = 46921;
 			mEventGroupId = 60307;
 			Out1.Init(mHandle, mEventId, mEventGroupId);
+			// Have to Register service
 		}
 
-    // inline void StopOfferService()
-    // {
-    //   Out1.Deinit();
-    //   ara::com::ServiceFactory::DestroyService(mHandle);
-    // }
+    inline void StopOfferService()
+    {
+		Out1.Deinit();
+
+    }
 
   	};
 }                                      /* namespace skeleton */

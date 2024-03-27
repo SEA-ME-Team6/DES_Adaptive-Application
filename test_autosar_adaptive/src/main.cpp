@@ -70,52 +70,52 @@ int32_t main() {
       }
     } /* if */
 
-//     if (bProceed) {
-//       /* Create an executor instance to schedule the periodic step functions */
-//       /* Whenever the period of a step function passes, the executor */
-//       /* schedules that step function to be executed on a thread. */
-//       platform::runtime::Executor fcnExecutor;
+    if (bProceed) {
+      /* Create an executor instance to schedule the periodic step functions */
+      /* Whenever the period of a step function passes, the executor */
+      /* schedules that step function to be executed on a thread. */
+      platform::runtime::Executor fcnExecutor;
 
-//       /* Base rate is the time unit of a tick */
-//       const double baseRate{0.200000};
-//       fcnExecutor.setBaseRateInSeconds(std::chrono::duration<double>(baseRate));
+      /* Base rate is the time unit of a tick */
+      const double baseRate{0.200000};
+      fcnExecutor.setBaseRateInSeconds(std::chrono::duration<double>(baseRate));
 
-//       /* Register periodic step functions in the executor. */
-//       fcnExecutor.addPeriodicEvent(
-//           [&test_Obj, &araLog]() {
-//             try {
-//               test_Obj.step();
-//             } catch (std::exception const &e) {
-//               araLog.LogError() << "Error executing step: " << e.what();
-//             }
-//           },
-//           1);
+      /* Register periodic step functions in the executor. */
+      fcnExecutor.addPeriodicEvent(
+          [&test_Obj, &araLog]() {
+            try {
+              test_Obj.step();
+            } catch (std::exception const &e) {
+              araLog.LogError() << "Error executing step: " << e.what();
+            }
+          },
+          1);
 
-//       araLog.LogVerbose() << "Starting Step function.";
-// #if defined(rtmSetStopRequested) && defined(rtmGetStopRequested)
-//       fcnExecutor.run(
-//           [&test_Obj]() { return rtmGetStopRequested(test_Obj.getRTM()); },
-//           araLog);
-// #else
-//       fcnExecutor.run(araLog);
-// #endif
-//     } /* if */
+      araLog.LogVerbose() << "Starting Step function.";
+#if defined(rtmSetStopRequested) && defined(rtmGetStopRequested)
+      fcnExecutor.run(
+          [&test_Obj]() { return rtmGetStopRequested(test_Obj.getRTM()); },
+          araLog);
+#else
+      fcnExecutor.run(araLog);
+#endif
+    } /* if */
 
-//     if (bProceed) {
-//       try {
-//         /* Terminate Functions */
-//         test_Obj.terminate();
-//       } catch (std::exception const &e) {
-//         araLog.LogError() << "Unable to terminate: " << e.what() << ".\n";
-//         bProceed = false;
-//       }
-//     } /* if */
+    if (bProceed) {
+      try {
+        /* Terminate Functions */
+        test_Obj.terminate();
+      } catch (std::exception const &e) {
+        araLog.LogError() << "Unable to terminate: " << e.what() << ".\n";
+        bProceed = false;
+      }
+    } /* if */
 
-//     araLog.LogVerbose() << "Exiting adaptive application.\n";
-//     const ara::core::Result<void> deinitStatus{ara::core::Deinitialize()};
-//     if (!deinitStatus.HasValue()) {
-//       bAraInitialized = false;
-//     } /* if */
+    araLog.LogVerbose() << "Exiting adaptive application.\n";
+    const ara::core::Result<void> deinitStatus{ara::core::Deinitialize()};
+    if (!deinitStatus.HasValue()) {
+      bAraInitialized = false;
+    } /* if */
   }   /* if */
 
 //   constexpr int32_t APP_SUCCESS{0};

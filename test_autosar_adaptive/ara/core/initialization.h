@@ -13,6 +13,11 @@ namespace ara
             return Result<void>();
         };
 
+        Result<void> Deinitialize() noexcept
+        {
+            return Result<void>();
+        };
+
     }
 }
 

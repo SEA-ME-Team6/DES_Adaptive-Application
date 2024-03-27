@@ -66,10 +66,10 @@ void test::initialize()
 }
 
 // Model terminate function
-// void test::terminate()
-// {
-//   ProvidedPort->StopOfferService();
-// }
+void test::terminate()
+{
+  ProvidedPort->StopOfferService();
+}
 
 // Constructor
 test::test():

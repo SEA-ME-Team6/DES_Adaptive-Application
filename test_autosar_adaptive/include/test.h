@@ -57,11 +57,11 @@ class test final
   // model initialize function
   void initialize();
 
-  // // model step function
+  // model step function
   void step();
 
-  // // model terminate function
-  // void terminate();
+  // model terminate function
+  void terminate();
 
   // Constructor
   test();

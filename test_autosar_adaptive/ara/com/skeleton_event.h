@@ -26,6 +26,8 @@ namespace ara
                 this->mEventGroupId = mEventGroupId;
             }
 
+            void Deinit() {};
+
             ara::core::Result<void> Send(const SampleType &data) {};
 
             ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate() {};

@@ -42,6 +42,14 @@ namespace ara
             return *this;
         }
 
+        LogStream &LogStream::operator<<(size_t value)
+        {
+            std::string _valueString = std::to_string(value);
+            concat(std::move(_valueString));
+
+            return *this;
+        }
+
         LogStream &LogStream::operator<<(uint8_t value)
         {
             std::string _valueString = std::to_string(value);
