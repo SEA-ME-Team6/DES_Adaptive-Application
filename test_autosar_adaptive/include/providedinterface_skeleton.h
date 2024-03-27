@@ -73,6 +73,7 @@ namespace skeleton
     inline void StopOfferService()
     {
 		Out1.Deinit();
+		// Have to delete handle
 
     }
 
