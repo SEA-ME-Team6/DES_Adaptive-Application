@@ -7,50 +7,88 @@
 //
 // Code generated for Simulink model 'Perception'.
 //
-// Model version                  : 1.5
+// Model version                  : 1.6
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Tue Feb  6 16:08:14 2024
+// C/C++ source code generated on : Fri Mar  1 10:44:42 2024
 //
 // Target selection: ert.tlc
-// Embedded hardware selection: Intel->x86-64 (Linux 64)
+// Embedded hardware selection: ARM Compatible->ARM Cortex
 // Code generation objectives:
 //    1. Execution efficiency
 //    2. RAM efficiency
 // Validation result: Not run
 //
 #include "Perception.h"
-#include <stdint.h>
-#include <stdbool.h>
-#include <cstring>
-#include <array>
+#include "rtwtypes.h"
+#include "coder_array.h"
+#include <string.h>
 #include <stddef.h>
-#include <cmath>
-#include <emmintrin.h>
+#include <math.h>
 #define NumBitsPerChar                 8U
 
-extern void makeConstraintMatrix_Projective_D_D(const double pts1[], const
-  double pts2[], uint32_t sampleNum, uint32_t maxSampleNum, double constraint[]);
-extern void normPts_D_D(const double pts[], const uint32_t samples[], uint32_t
-  ptsNum, uint32_t sampleNum, double ptsNorm[], double scale[], double cents[]);
-extern void QRV2Norm_double(const double V[], int32_t N, double v2norm[]);
-extern void QRDC_double(double xVec[], double qrAux[], int32_t jpvt[], double
-  work[], int32_t M, int32_t N);
-extern void QRCompQy_double(double qr[], const double qrAuxj[], double y[],
-  int32_t n, int32_t j);
-extern void QRSL1_double(double qr[], const double qrAux[], double y[], int32_t
-  n, int32_t k);
-extern void QRE_double(double outQ[], double outR[], double outE[], double
-  qrAux[], double work[], int32_t jpvt[], double sPtr[], int32_t M, int32_t N,
-  bool economy);
-extern double rt_hypotd_snf(double u0, double u1);
+// Block signals and states (default storage)
+DW rtDW;
+
+// External outputs (root outports fed by signals with default storage)
+ExtY rtY;
+
+// Real-time model
+RT_MODEL rtM_ = RT_MODEL();
+RT_MODEL *const rtM = &rtM_;
+extern void makeConstraintMatrix_Projective_D_D(const real_T pts1[], const
+  real_T pts2[], uint32_T sampleNum, uint32_T maxSampleNum, real_T constraint[]);
+extern void normPts_D_D(const real_T pts[], const uint32_T samples[], uint32_T
+  ptsNum, uint32_T sampleNum, real_T ptsNorm[], real_T scale[], real_T cents[]);
+extern void QRCompQy_real_T(real_T qr[], const real_T qrAuxj[], real_T y[],
+  int32_T n, int32_T j);
+extern void QRSL1_real_T(real_T qr[], const real_T qrAux[], real_T y[], int32_T
+  n, int32_T k);
+extern real_T rt_hypotd_snf(real_T u0, real_T u1);
+
+// Forward declaration for local functions
+static void QRV2Norm_real_T_k(const real_T V[], int32_T N, real_T v2norm[]);
+static void QRDC_real_T_k(real_T xVec[], real_T qrAux[], int32_T jpvt[], real_T
+  work[], int32_T M, int32_T N);
+static void QRE_real_T_k(real_T outQ[], real_T outR[], real_T outE[], real_T
+  qrAux[], real_T work[], int32_T jpvt[], real_T sPtr[], int32_T M, int32_T N,
+  boolean_T economy);
+static void Warp_stepImpl(vision_internal_blocks_Warp *b_this, const boolean_T
+  Image[900000], const real_T input2[9], boolean_T Jout[900000]);
+static void do_vectors(const int32_T a_data[], const int32_T a_size[1], const
+  int32_T b_data[], const int32_T b_size[1], int32_T c_data[], int32_T c_size[1],
+  int32_T ia_data[], int32_T ia_size[1], int32_T ib_data[], int32_T ib_size[1]);
+static void findpeaks(const real_T Yin[1200], real_T Ypk_data[], int32_T
+                      Ypk_size[2], real_T Xpk_data[], int32_T Xpk_size[2]);
+static void eml_find(const boolean_T x[900000], coder::array<int32_T, 1U> &i,
+                     coder::array<int32_T, 1U> &j);
+static void binary_expand_op_1(coder::array<boolean_T, 1U> &in1, const coder::
+  array<boolean_T, 1U> &in2, const coder::array<real_T, 1U> &in3, real_T in4);
+static void binary_expand_op(coder::array<boolean_T, 1U> &in1, const coder::
+  array<real_T, 1U> &in2, real_T in3);
+static void and_k(coder::array<boolean_T, 1U> &in1, const coder::array<boolean_T,
+                  1U> &in2, const coder::array<boolean_T, 1U> &in3);
+static real_T mean(const coder::array<real_T, 1U> &x);
+static real_T xnrm2(int32_T n, const coder::array<real_T, 2U> &x, int32_T ix0);
+static void xswap(int32_T n, coder::array<real_T, 2U> &x, int32_T ix0, int32_T
+                  iy0);
+static void xzlarf(int32_T m, int32_T n, int32_T iv0, real_T tau, coder::array<
+                   real_T, 2U> &C, int32_T ic0, int32_T ldc, real_T work[3]);
+static void qrpf(coder::array<real_T, 2U> &A, int32_T m, real_T tau_data[],
+                 int32_T jpvt[3]);
+static void xgeqp3(coder::array<real_T, 2U> &A, real_T tau_data[], int32_T
+                   tau_size[1], int32_T jpvt[3]);
+static void qrsolve(const coder::array<real_T, 2U> &A, const coder::array<real_T,
+                    1U> &B_0, real_T Y[3], int32_T *rankA);
+static void polyfit(const coder::array<real_T, 1U> &x, const coder::array<real_T,
+                    1U> &y, real_T p[3]);
 extern "C"
 {
-  double rtInf;
-  double rtMinusInf;
-  double rtNaN;
-  float rtInfF;
-  float rtMinusInfF;
-  float rtNaNF;
+  real_T rtInf;
+  real_T rtMinusInf;
+  real_T rtNaN;
+  real32_T rtInfF;
+  real32_T rtMinusInfF;
+  real32_T rtNaNF;
 }
 
 extern "C"
@@ -59,18 +97,16 @@ extern "C"
   // Initialize rtInf needed by the generated code.
   // Inf is initialized as non-signaling. Assumes IEEE.
   //
-  static double rtGetInf(void)
+  static real_T rtGetInf(void)
   {
-    size_t bitsPerReal{ sizeof(double) * (NumBitsPerChar) };
-
-    double inf{ 0.0 };
-
+    size_t bitsPerReal = sizeof(real_T) * (NumBitsPerChar);
+    real_T inf = 0.0;
     if (bitsPerReal == 32U) {
       inf = rtGetInfF();
     } else {
       union {
         LittleEndianIEEEDouble bitVal;
-        double fltVal;
+        real_T fltVal;
       } tmpVal;
 
       tmpVal.bitVal.words.wordH = 0x7FF00000U;
@@ -85,7 +121,7 @@ extern "C"
   // Initialize rtInfF needed by the generated code.
   // Inf is initialized as non-signaling. Assumes IEEE.
   //
-  static float rtGetInfF(void)
+  static real32_T rtGetInfF(void)
   {
     IEEESingle infF;
     infF.wordL.wordLuint = 0x7F800000U;
@@ -96,18 +132,16 @@ extern "C"
   // Initialize rtMinusInf needed by the generated code.
   // Inf is initialized as non-signaling. Assumes IEEE.
   //
-  static double rtGetMinusInf(void)
+  static real_T rtGetMinusInf(void)
   {
-    size_t bitsPerReal{ sizeof(double) * (NumBitsPerChar) };
-
-    double minf{ 0.0 };
-
+    size_t bitsPerReal = sizeof(real_T) * (NumBitsPerChar);
+    real_T minf = 0.0;
     if (bitsPerReal == 32U) {
       minf = rtGetMinusInfF();
     } else {
       union {
         LittleEndianIEEEDouble bitVal;
-        double fltVal;
+        real_T fltVal;
       } tmpVal;
 
       tmpVal.bitVal.words.wordH = 0xFFF00000U;
@@ -122,7 +156,7 @@ extern "C"
   // Initialize rtMinusInfF needed by the generated code.
   // Inf is initialized as non-signaling. Assumes IEEE.
   //
-  static float rtGetMinusInfF(void)
+  static real32_T rtGetMinusInfF(void)
   {
     IEEESingle minfF;
     minfF.wordL.wordLuint = 0xFF800000U;
@@ -136,18 +170,16 @@ extern "C"
   // Initialize rtNaN needed by the generated code.
   // NaN is initialized as non-signaling. Assumes IEEE.
   //
-  static double rtGetNaN(void)
+  static real_T rtGetNaN(void)
   {
-    size_t bitsPerReal{ sizeof(double) * (NumBitsPerChar) };
-
-    double nan{ 0.0 };
-
+    size_t bitsPerReal = sizeof(real_T) * (NumBitsPerChar);
+    real_T nan = 0.0;
     if (bitsPerReal == 32U) {
       nan = rtGetNaNF();
     } else {
       union {
         LittleEndianIEEEDouble bitVal;
-        double fltVal;
+        real_T fltVal;
       } tmpVal;
 
       tmpVal.bitVal.words.wordH = 0xFFF80000U;
@@ -162,9 +194,9 @@ extern "C"
   // Initialize rtNaNF needed by the generated code.
   // NaN is initialized as non-signaling. Assumes IEEE.
   //
-  static float rtGetNaNF(void)
+  static real32_T rtGetNaNF(void)
   {
-    IEEESingle nanF{ { 0.0F } };
+    IEEESingle nanF = { { 0.0F } };
 
     nanF.wordL.wordLuint = 0xFFC00000U;
     return nanF.wordL.wordLreal;
@@ -189,65 +221,64 @@ extern "C"
   }
 
   // Test if value is infinite
-  static bool rtIsInf(double value)
+  static boolean_T rtIsInf(real_T value)
   {
-    return (bool)((value==rtInf || value==rtMinusInf) ? 1U : 0U);
+    return (boolean_T)((value==rtInf || value==rtMinusInf) ? 1U : 0U);
   }
 
   // Test if single-precision value is infinite
-  static bool rtIsInfF(float value)
+  static boolean_T rtIsInfF(real32_T value)
   {
-    return (bool)(((value)==rtInfF || (value)==rtMinusInfF) ? 1U : 0U);
+    return (boolean_T)(((value)==rtInfF || (value)==rtMinusInfF) ? 1U : 0U);
   }
 
   // Test if value is not a number
-  static bool rtIsNaN(double value)
+  static boolean_T rtIsNaN(real_T value)
   {
-    bool result{ (bool) 0 };
-
-    size_t bitsPerReal{ sizeof(double) * (NumBitsPerChar) };
-
+    boolean_T result = (boolean_T) 0;
+    size_t bitsPerReal = sizeof(real_T) * (NumBitsPerChar);
     if (bitsPerReal == 32U) {
-      result = rtIsNaNF((float)value);
+      result = rtIsNaNF((real32_T)value);
     } else {
       union {
         LittleEndianIEEEDouble bitVal;
-        double fltVal;
+        real_T fltVal;
       } tmpVal;
 
       tmpVal.fltVal = value;
-      result = (bool)((tmpVal.bitVal.words.wordH & 0x7FF00000) == 0x7FF00000 &&
-                      ( (tmpVal.bitVal.words.wordH & 0x000FFFFF) != 0 ||
-                       (tmpVal.bitVal.words.wordL != 0) ));
+      result = (boolean_T)((tmpVal.bitVal.words.wordH & 0x7FF00000) ==
+                           0x7FF00000 &&
+                           ( (tmpVal.bitVal.words.wordH & 0x000FFFFF) != 0 ||
+                            (tmpVal.bitVal.words.wordL != 0) ));
     }
 
     return result;
   }
 
   // Test if single-precision value is not a number
-  static bool rtIsNaNF(float value)
+  static boolean_T rtIsNaNF(real32_T value)
   {
     IEEESingle tmp;
     tmp.wordL.wordLreal = value;
-    return (bool)( (tmp.wordL.wordLuint & 0x7F800000) == 0x7F800000 &&
-                  (tmp.wordL.wordLuint & 0x007FFFFF) != 0 );
+    return (boolean_T)( (tmp.wordL.wordLuint & 0x7F800000) == 0x7F800000 &&
+                       (tmp.wordL.wordLuint & 0x007FFFFF) != 0 );
   }
 }
 
-void makeConstraintMatrix_Projective_D_D(const double pts1[], const double pts2[],
-  uint32_t sampleNum, uint32_t maxSampleNum, double constraint[])
+void makeConstraintMatrix_Projective_D_D(const real_T pts1[], const real_T pts2[],
+  uint32_T sampleNum, uint32_T maxSampleNum, real_T constraint[])
 {
-  uint32_t j;
-  uint32_t k;
+  uint32_T j;
+  uint32_T k;
 
   // S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
   // Generate the constraint matrix.
   j = 0U;
   k = 6U;
-  for (uint32_t i{0U}; i < sampleNum; i++) {
-    double tmp;
-    double tmp_1;
-    uint32_t tmp_0;
+  for (uint32_T i = 0U; i < sampleNum; i++) {
+    real_T tmp;
+    real_T tmp_1;
+    uint32_T tmp_0;
     constraint[k - 6U] = 0.0;
     constraint[k + 4294967291U] = 0.0;
     constraint[k + 4294967292U] = 0.0;
@@ -255,7 +286,7 @@ void makeConstraintMatrix_Projective_D_D(const double pts1[], const double pts2[
     tmp = pts1[tmp_0];
     constraint[k + 4294967293U] = -tmp;
     constraint[k + 4294967294U] = -pts1[j];
-    constraint[k + UINT32_MAX] = -1.0;
+    constraint[k + MAX_uint32_T] = -1.0;
     constraint[k] = pts2[j];
     constraint[k] *= tmp;
     constraint[k + 1U] = pts2[j];
@@ -280,17 +311,17 @@ void makeConstraintMatrix_Projective_D_D(const double pts1[], const double pts2[
   // End of S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
 }
 
-void normPts_D_D(const double pts[], const uint32_t samples[], uint32_t ptsNum,
-                 uint32_t sampleNum, double ptsNorm[], double scale[], double
+void normPts_D_D(const real_T pts[], const uint32_T samples[], uint32_T ptsNum,
+                 uint32_T sampleNum, real_T ptsNorm[], real_T scale[], real_T
                  cents[])
 {
-  double sumDis;
+  real_T sumDis;
 
   // S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
   // Normalize the points.
   cents[0U] = 0.0;
   cents[1U] = 0.0;
-  for (uint32_t i{0U}; i < sampleNum; i++) {
+  for (uint32_T i = 0U; i < sampleNum; i++) {
     sumDis = pts[samples[i] + ptsNum];
     ptsNorm[i + sampleNum] = sumDis;
     cents[0U] += sumDis;
@@ -299,22 +330,22 @@ void normPts_D_D(const double pts[], const uint32_t samples[], uint32_t ptsNum,
     cents[1U] += sumDis;
   }
 
-  cents[0U] /= static_cast<double>(sampleNum);
-  cents[1U] /= static_cast<double>(sampleNum);
+  cents[0U] /= static_cast<real_T>(sampleNum);
+  cents[1U] /= static_cast<real_T>(sampleNum);
   sumDis = 0.0;
-  for (uint32_t i{0U}; i < sampleNum; i++) {
-    uint32_t j;
+  for (uint32_T i = 0U; i < sampleNum; i++) {
+    uint32_T j;
     j = i + sampleNum;
     ptsNorm[j] -= cents[0U];
     ptsNorm[i] -= cents[1U];
-    sumDis += std::sqrt(ptsNorm[j] * ptsNorm[j] + ptsNorm[i] * ptsNorm[i]);
+    sumDis += sqrt(ptsNorm[j] * ptsNorm[j] + ptsNorm[i] * ptsNorm[i]);
   }
 
   if (sumDis > 0.0) {
     scale[0U] = 1.4142135623730951;
-    scale[0U] *= static_cast<double>(sampleNum);
+    scale[0U] *= static_cast<real_T>(sampleNum);
     scale[0U] /= sumDis;
-    for (uint32_t i{0U}; i < sampleNum + sampleNum; i++) {
+    for (uint32_T i = 0U; i < sampleNum + sampleNum; i++) {
       ptsNorm[i] *= scale[0U];
     }
   }
@@ -322,115 +353,115 @@ void normPts_D_D(const double pts[], const uint32_t samples[], uint32_t ptsNum,
   // End of S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
 }
 
-void QRV2Norm_double(const double V[], int32_t N, double v2norm[])
+static void QRV2Norm_real_T_k(const real_T V[], int32_T N, real_T v2norm[])
 {
-  double tmpQRSL;
-  int32_t vi;
+  int32_T vi;
 
   // S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
-  tmpQRSL = 0.0;
+  rtDW.tmpQRSL = 0.0;
   vi = 0;
-  for (int32_t i{0}; i < N; i++) {
-    double tmp;
-    double tmp_0;
-    tmp = tmpQRSL;
-    tmp_0 = std::abs(V[vi]);
-    if (tmpQRSL > tmp_0) {
-      tmpQRSL = V[vi] / tmpQRSL;
-      tmpQRSL = std::sqrt(tmpQRSL * tmpQRSL + 1.0) * tmp;
+  for (int32_T i = 0; i < N; i++) {
+    rtDW.d = rtDW.tmpQRSL;
+    rtDW.d1 = fabs(V[vi]);
+    if (rtDW.tmpQRSL > rtDW.d1) {
+      rtDW.tmpQRSL = V[vi] / rtDW.tmpQRSL;
+      rtDW.tmpQRSL = sqrt(rtDW.tmpQRSL * rtDW.tmpQRSL + 1.0) * rtDW.d;
     } else if (V[vi] == 0.0) {
-      tmpQRSL = 0.0;
+      rtDW.tmpQRSL = 0.0;
     } else {
-      tmpQRSL /= V[vi];
-      tmpQRSL = std::sqrt(tmpQRSL * tmpQRSL + 1.0) * tmp_0;
+      rtDW.tmpQRSL /= V[vi];
+      rtDW.tmpQRSL = sqrt(rtDW.tmpQRSL * rtDW.tmpQRSL + 1.0) * rtDW.d1;
     }
 
     vi++;
   }
 
-  v2norm[0U] = tmpQRSL;
+  v2norm[0U] = rtDW.tmpQRSL;
 
   // End of S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
 }
 
-void QRDC_double(double xVec[], double qrAux[], int32_t jpvt[], double work[],
-                 int32_t M, int32_t N)
+static void QRDC_real_T_k(real_T xVec[], real_T qrAux[], int32_T jpvt[], real_T
+  work[], int32_T M, int32_T N)
 {
-  double maxnrm;
-  double nrmxl;
-  double t;
-  double tt;
-  int32_t i;
-  int32_t j;
-  int32_t l;
-  int32_t maxj;
-  int32_t minVal;
-  int32_t mml;
-  int32_t pl;
-  int32_t plj;
-  int32_t pu;
-  int32_t px;
-  int32_t px2;
+  int32_T i;
+  int32_T l;
+  int32_T maxj;
+  int32_T minVal;
+  int32_T mml;
+  int32_T pl;
+  int32_T plj;
+  int32_T pu;
+  int32_T px;
+  int32_T px2;
 
   // S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
   pl = 0;
-  for (j = 0; j < N; j++) {
-    pu = (jpvt[j] > 0);
-    if (jpvt[j] < 0) {
-      jpvt[j] = -j;
+  rtDW.j_b = 0;
+  while (rtDW.j_b < N) {
+    pu = (jpvt[rtDW.j_b] > 0);
+    if (jpvt[rtDW.j_b] < 0) {
+      jpvt[rtDW.j_b] = -rtDW.j_b;
     } else {
-      jpvt[j] = j;
+      jpvt[rtDW.j_b] = rtDW.j_b;
     }
 
     if (pu == 1) {
-      if (j != pl) {
+      if (rtDW.j_b != pl) {
         // Swap columns pl and j
         px = pl * M;
-        px2 = j * M;
+        px2 = rtDW.j_b * M;
         for (i = M; i > 0; i--) {
-          maxnrm = xVec[px];
+          rtDW.maxnrm = xVec[px];
           xVec[px] = xVec[px2];
-          xVec[px2] = maxnrm;
+          xVec[px2] = rtDW.maxnrm;
           px++;
           px2++;
         }
       }
 
-      jpvt[j] = jpvt[pl];
-      jpvt[pl] = j;
+      jpvt[rtDW.j_b] = jpvt[pl];
+      jpvt[pl] = rtDW.j_b;
       pl++;
     }
+
+    rtDW.j_b++;
   }
 
   pu = N - 1;
-  for (j = N - 1; j >= 0; j--) {
-    if (jpvt[j] < 0) {
-      jpvt[j] = -jpvt[j];
-      if (j != pu) {
+  rtDW.j_b = N - 1;
+  while (rtDW.j_b >= 0) {
+    if (jpvt[rtDW.j_b] < 0) {
+      jpvt[rtDW.j_b] = -jpvt[rtDW.j_b];
+      if (rtDW.j_b != pu) {
         // Swap columns pu and j
         px = pu * M;
-        px2 = j * M;
+        px2 = rtDW.j_b * M;
         for (i = M; i > 0; i--) {
-          maxnrm = xVec[px];
+          rtDW.maxnrm = xVec[px];
           xVec[px] = xVec[px2];
-          xVec[px2] = maxnrm;
+          xVec[px2] = rtDW.maxnrm;
           px++;
           px2++;
         }
 
         px = jpvt[pu];
-        jpvt[pu] = jpvt[j];
-        jpvt[j] = px;
+        jpvt[pu] = jpvt[rtDW.j_b];
+        jpvt[rtDW.j_b] = px;
       }
 
       pu--;
     }
+
+    rtDW.j_b--;
   }
 
   // compute the norms of the free columns
-  for (j = pl; j <= pu; j++) {
-    QRV2Norm_double(&xVec[j * M], M, &qrAux[j]);
-    work[j] = qrAux[j];
+  rtDW.j_b = pl;
+  while (rtDW.j_b <= pu) {
+    QRV2Norm_real_T_k(&xVec[rtDW.j_b * M], M, &qrAux[rtDW.j_b]);
+    work[rtDW.j_b] = qrAux[rtDW.j_b];
+    rtDW.j_b++;
   }
 
   // perform the Householder reduction of x
@@ -445,13 +476,16 @@ void QRDC_double(double xVec[], double qrAux[], int32_t jpvt[], double work[],
 
     // locate the column of largest norm and bring it into the pivot position
     if ((l >= pl) && (l < pu)) {
-      maxnrm = 0.0;
+      rtDW.maxnrm = 0.0;
       maxj = l;
-      for (j = l; j <= pu; j++) {
-        if (qrAux[j] > maxnrm) {
-          maxnrm = qrAux[j];
-          maxj = j;
+      rtDW.j_b = l;
+      while (rtDW.j_b <= pu) {
+        if (qrAux[rtDW.j_b] > rtDW.maxnrm) {
+          rtDW.maxnrm = qrAux[rtDW.j_b];
+          maxj = rtDW.j_b;
         }
+
+        rtDW.j_b++;
       }
 
       if (maxj != l) {
@@ -459,9 +493,9 @@ void QRDC_double(double xVec[], double qrAux[], int32_t jpvt[], double work[],
         px = l * M;
         px2 = maxj * M;
         for (i = M; i > 0; i--) {
-          maxnrm = xVec[px];
+          rtDW.maxnrm = xVec[px];
           xVec[px] = xVec[px2];
-          xVec[px2] = maxnrm;
+          xVec[px2] = rtDW.maxnrm;
           px++;
           px2++;
         }
@@ -479,28 +513,28 @@ void QRDC_double(double xVec[], double qrAux[], int32_t jpvt[], double work[],
       // Compute the Householder transformation for column l
       maxj = (M + 1) * l;
       px = maxj;
-      QRV2Norm_double(&xVec[maxj], mml, &nrmxl);
-      maxnrm = std::abs(nrmxl);
-      if (maxnrm != 0.0) {
-        if (std::abs(xVec[maxj]) != 0.0) {
+      QRV2Norm_real_T_k(&xVec[maxj], mml, &rtDW.nrmxl);
+      rtDW.maxnrm = fabs(rtDW.nrmxl);
+      if (rtDW.maxnrm != 0.0) {
+        if (fabs(xVec[maxj]) != 0.0) {
           if (xVec[maxj] >= 0.0) {
-            nrmxl = maxnrm;
+            rtDW.nrmxl = rtDW.maxnrm;
           } else {
-            nrmxl = -maxnrm;
+            rtDW.nrmxl = -rtDW.maxnrm;
           }
         }
 
         // Check if it's safe to multiply by 1/nrmxl instead of dividing by nrmxl 
         px2 = maxj;
-        if (5.0E-20 * nrmxl != 0.0) {
-          maxnrm = 1.0 / nrmxl;
+        if (5.0E-20 * rtDW.nrmxl != 0.0) {
+          rtDW.maxnrm = 1.0 / rtDW.nrmxl;
           for (i = mml; i > 0; i--) {
-            xVec[px2] *= maxnrm;
+            xVec[px2] *= rtDW.maxnrm;
             px2++;
           }
         } else {
           for (i = mml; i > 0; i--) {
-            xVec[px2] /= nrmxl;
+            xVec[px2] /= rtDW.nrmxl;
             px2++;
           }
         }
@@ -508,54 +542,57 @@ void QRDC_double(double xVec[], double qrAux[], int32_t jpvt[], double work[],
         xVec[maxj]++;
 
         // apply the transformation to the remaining columns, updating the norms. 
-        for (j = l + 1; j < N; j++) {
-          plj = j * M + l;
+        rtDW.j_b = l + 1;
+        while (rtDW.j_b < N) {
+          plj = rtDW.j_b * M + l;
           px2 = plj;
-          t = 0.0;
+          rtDW.t = 0.0;
           for (i = mml; i > 0; i--) {
-            t -= xVec[px] * xVec[px2];
+            rtDW.t -= xVec[px] * xVec[px2];
             px++;
             px2++;
           }
 
           px = maxj;
           px2 = plj;
-          t /= xVec[maxj];
+          rtDW.t /= xVec[maxj];
           for (i = mml; i > 0; i--) {
-            xVec[px2] += t * xVec[px];
+            xVec[px2] += rtDW.t * xVec[px];
             px++;
             px2++;
           }
 
           px = maxj;
           px2 = 0;
-          if (qrAux[j] == 0.0) {
+          if (qrAux[rtDW.j_b] == 0.0) {
             px2 = 1;
           }
 
-          if ((j >= pl) && (j <= pu) && (px2 == 0)) {
-            maxnrm = std::abs(xVec[plj]) / qrAux[j];
-            tt = 1.0 - maxnrm * maxnrm;
-            if (tt < 0.0) {
-              tt = 0.0;
+          if ((rtDW.j_b >= pl) && (rtDW.j_b <= pu) && (px2 == 0)) {
+            rtDW.maxnrm = fabs(xVec[plj]) / qrAux[rtDW.j_b];
+            rtDW.tt = 1.0 - rtDW.maxnrm * rtDW.maxnrm;
+            if (rtDW.tt < 0.0) {
+              rtDW.tt = 0.0;
             }
 
-            t = tt;
-            maxnrm = qrAux[j] / work[j];
-            tt = 0.05 * tt * maxnrm * maxnrm + 1.0;
-            if (tt != 1.0) {
-              qrAux[j] *= std::sqrt(t);
+            rtDW.t = rtDW.tt;
+            rtDW.maxnrm = qrAux[rtDW.j_b] / work[rtDW.j_b];
+            rtDW.tt = 0.05 * rtDW.tt * rtDW.maxnrm * rtDW.maxnrm + 1.0;
+            if (rtDW.tt != 1.0) {
+              qrAux[rtDW.j_b] *= sqrt(rtDW.t);
             } else {
-              QRV2Norm_double(&xVec[plj + 1], mml - 1, &maxnrm);
-              qrAux[j] = maxnrm;
-              work[j] = qrAux[j];
+              QRV2Norm_real_T_k(&xVec[plj + 1], mml - 1, &rtDW.maxnrm);
+              qrAux[rtDW.j_b] = rtDW.maxnrm;
+              work[rtDW.j_b] = qrAux[rtDW.j_b];
             }
           }
+
+          rtDW.j_b++;
         }
 
         // save the transformation.
         qrAux[l] = xVec[px];
-        xVec[px] = -nrmxl;
+        xVec[px] = -rtDW.nrmxl;
       }
     }
   }
@@ -563,17 +600,17 @@ void QRDC_double(double xVec[], double qrAux[], int32_t jpvt[], double work[],
   // End of S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
 }
 
-void QRCompQy_double(double qr[], const double qrAuxj[], double y[], int32_t n,
-                     int32_t j)
+void QRCompQy_real_T(real_T qr[], const real_T qrAuxj[], real_T y[], int32_T n,
+                     int32_T j)
 {
   // S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
-  if (std::abs(qrAuxj[0U]) != 0.0) {
-    double t;
-    double temp;
-    int32_t nmj;
-    int32_t pjj;
-    int32_t pqr;
-    int32_t py;
+  if (fabs(qrAuxj[0U]) != 0.0) {
+    real_T t;
+    real_T temp;
+    int32_T nmj;
+    int32_T pjj;
+    int32_T pqr;
+    int32_T py;
     nmj = n - j;
     pjj = (n + 1) * j;
     pqr = pjj;
@@ -581,7 +618,7 @@ void QRCompQy_double(double qr[], const double qrAuxj[], double y[], int32_t n,
     qr[pjj] = qrAuxj[0U];
     t = 0.0;
     py = 0;
-    for (int32_t i{nmj}; i > 0; i--) {
+    for (int32_T i = nmj; i > 0; i--) {
       t -= y[py] * qr[pqr];
       pqr++;
       py++;
@@ -590,7 +627,7 @@ void QRCompQy_double(double qr[], const double qrAuxj[], double y[], int32_t n,
     pqr = pjj;
     t /= qr[pjj];
     py = 0;
-    for (int32_t i{nmj}; i > 0; i--) {
+    for (int32_T i = nmj; i > 0; i--) {
       y[py] += t * qr[pqr];
       pqr++;
       py++;
@@ -602,12 +639,12 @@ void QRCompQy_double(double qr[], const double qrAuxj[], double y[], int32_t n,
   // End of S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
 }
 
-void QRSL1_double(double qr[], const double qrAux[], double y[], int32_t n,
-                  int32_t k)
+void QRSL1_real_T(real_T qr[], const real_T qrAux[], real_T y[], int32_T n,
+                  int32_T k)
 {
-  int32_t j;
-  int32_t pqraux;
-  int32_t y_0;
+  int32_T j;
+  int32_T pqraux;
+  int32_T y_0;
 
   // S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
   if (k <= n - 1) {
@@ -623,7 +660,7 @@ void QRSL1_double(double qr[], const double qrAux[], double y[], int32_t n,
     pqraux--;
     y_0--;
     while (j + 1 > 0) {
-      QRCompQy_double(&qr[0], &qrAux[pqraux], &y[y_0], n, j);
+      QRCompQy_real_T(&qr[0], &qrAux[pqraux], &y[y_0], n, j);
       y_0 = pqraux - 1;
       pqraux--;
       j--;
@@ -633,335 +670,329 @@ void QRSL1_double(double qr[], const double qrAux[], double y[], int32_t n,
   // End of S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
 }
 
-void QRE_double(double outQ[], double outR[], double outE[], double qrAux[],
-                double work[], int32_t jpvt[], double sPtr[], int32_t M, int32_t
-                N, bool economy)
+static void QRE_real_T_k(real_T outQ[], real_T outR[], real_T outE[], real_T
+  qrAux[], real_T work[], int32_T jpvt[], real_T sPtr[], int32_T M, int32_T N,
+  boolean_T economy)
 {
-  int32_t L;
-  int32_t L_tmp;
-  int32_t j;
-  int32_t ps;
-
   // S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
-  QRDC_double(&outR[0], &qrAux[0], &jpvt[0], &work[0], M, N);
+  QRDC_real_T_k(&outR[0], &qrAux[0], &jpvt[0], &work[0], M, N);
 
   // explicitly form q by manipulating identity
   if (economy) {
     if (M <= N) {
-      L = M;
+      rtDW.L = M;
     } else {
-      L = N;
+      rtDW.L = N;
     }
   } else {
-    L = M;
+    rtDW.L = M;
   }
 
-  L_tmp = 0;
-  for (j = 0; j < M * L; j++) {
-    outQ[j] = 0.0;
+  rtDW.L_tmp = 0;
+  rtDW.j_o = 0;
+  while (rtDW.j_o < M * rtDW.L) {
+    outQ[rtDW.j_o] = 0.0;
+    rtDW.j_o++;
   }
 
-  for (j = 0; j < L; j++) {
-    outQ[L_tmp] = 1.0;
-    L_tmp = (L_tmp + M) + 1;
+  rtDW.j_o = 0;
+  while (rtDW.j_o < rtDW.L) {
+    outQ[rtDW.L_tmp] = 1.0;
+    rtDW.L_tmp = (rtDW.L_tmp + M) + 1;
+    rtDW.j_o++;
   }
 
   // Convert cols of identity into cols of q. Use info stored in lower triangle of r and in vector qraux to work on columns of identity matrix I and transform them into q*I(:,j) i.e. the columns of q. 
-  L_tmp = 0;
-  for (j = 0; j < L; j++) {
-    QRSL1_double(&outR[0], &qrAux[0], &outQ[L_tmp], M, N);
-    L_tmp += M;
+  rtDW.L_tmp = 0;
+  rtDW.j_o = 0;
+  while (rtDW.j_o < rtDW.L) {
+    QRSL1_real_T(&outR[0], &qrAux[0], &outQ[rtDW.L_tmp], M, N);
+    rtDW.L_tmp += M;
+    rtDW.j_o++;
   }
 
   if (economy && (M > N)) {
     // Copy upper triangle of r to s
-    L = 0;
-    ps = 0;
-    for (j = 1; j - 1 < N; j++) {
-      for (L_tmp = 0; L_tmp < j; L_tmp++) {
-        sPtr[ps] = outR[L];
-        ps++;
-        L++;
+    rtDW.L = 0;
+    rtDW.ps = 0;
+    rtDW.j_o = 1;
+    while (rtDW.j_o - 1 < N) {
+      rtDW.L_tmp = 0;
+      while (rtDW.L_tmp <= rtDW.j_o - 1) {
+        sPtr[rtDW.ps] = outR[rtDW.L];
+        rtDW.ps++;
+        rtDW.L++;
+        rtDW.L_tmp++;
       }
 
-      L = (L + M) - j;
-      for (L_tmp = 0; L_tmp < N - j; L_tmp++) {
-        sPtr[ps] = 0.0;
-        ps++;
+      rtDW.L = (rtDW.L + M) - rtDW.j_o;
+      rtDW.L_tmp = 0;
+      while (rtDW.L_tmp < N - rtDW.j_o) {
+        sPtr[rtDW.ps] = 0.0;
+        rtDW.ps++;
+        rtDW.L_tmp++;
       }
+
+      rtDW.j_o++;
     }
   } else {
     // Zero strict lower triangle of r
-    L = M * N - 1;
-    for (j = N; j - 1 >= 0; j--) {
-      for (L_tmp = M; L_tmp > j; L_tmp--) {
-        outR[L] = 0.0;
-        L--;
+    rtDW.L = M * N - 1;
+    rtDW.j_o = N;
+    while (rtDW.j_o - 1 >= 0) {
+      rtDW.L_tmp = M;
+      while (rtDW.L_tmp > rtDW.j_o) {
+        outR[rtDW.L] = 0.0;
+        rtDW.L--;
+        rtDW.L_tmp--;
       }
 
-      if (M < j) {
-        L -= M;
+      if (M < rtDW.j_o) {
+        rtDW.L -= M;
       } else {
-        L -= j;
+        rtDW.L -= rtDW.j_o;
       }
+
+      rtDW.j_o--;
     }
   }
 
   // form permutation vector e
-  L = 0;
-  L_tmp = 0;
-  for (j = 0; j < N; j++) {
-    outE[L] = jpvt[L_tmp] + 1;
-    L_tmp = L + 1;
-    L++;
+  rtDW.L = 0;
+  rtDW.L_tmp = 0;
+  rtDW.j_o = 0;
+  while (rtDW.j_o < N) {
+    outE[rtDW.L] = jpvt[rtDW.L_tmp] + 1;
+    rtDW.L_tmp = rtDW.L + 1;
+    rtDW.L++;
+    rtDW.j_o++;
   }
 
   // End of S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
 }
 
-void Perception::Warp_stepImpl(vision_internal_blocks_Warp *b_this, const bool
-  Image[900000], const double input2[9], bool Jout[900000])
+static void Warp_stepImpl(vision_internal_blocks_Warp *b_this, const boolean_T
+  Image[900000], const real_T input2[9], boolean_T Jout[900000])
 {
-  __m128d tmp_0;
-  __m128d tmp_1;
-  std::array<double, 9> B_0;
-  std::array<double, 3> b_inputImageSize;
-  std::array<double, 2> b_outputImageSize;
-  std::array<bool, 2> x;
-  std::array<double, 9> x_0;
-  double absx11;
-  double absx21;
-  double absx31;
-  double b_B_idx_0;
-  double b_B_idx_1;
-  double b_B_idx_2;
-  int32_t p1;
-  int32_t p2;
-  int32_t p3;
-  bool guard1;
-
-  // Start for MATLABSystem: '<S1>/Warp'
-  std::memcpy(&b_this->TformProjective.T[0], &input2[0], 9U * sizeof(double));
-  for (p1 = 0; p1 < 3; p1++) {
-    B_0[3 * p1] = b_this->TformProjective.T[p1];
-    B_0[3 * p1 + 1] = b_this->TformProjective.T[p1 + 3];
-    B_0[3 * p1 + 2] = b_this->TformProjective.T[p1 + 6];
+  real_T tinv;
+  real_T tinv_0;
+  int32_T itmp;
+  int32_T p1;
+  int32_T p2;
+  int32_T p3;
+  for (p2 = 0; p2 < 9; p2++) {
+    // Start for MATLABSystem: '<S1>/Warp'
+    rtDW.absx11 = input2[p2];
+    b_this->TformProjective.T[p2] = rtDW.absx11;
+    rtDW.x[p2] = rtDW.absx11;
   }
 
+  p1 = 1;
+  p2 = 3;
+  p3 = 6;
+
+  // Start for MATLABSystem: '<S1>/Warp'
+  rtDW.absx11 = fabs(b_this->TformProjective.T[0]);
+  rtDW.absx21 = fabs(b_this->TformProjective.T[1]);
+  rtDW.absx31 = fabs(b_this->TformProjective.T[2]);
+  if ((rtDW.absx21 > rtDW.absx11) && (rtDW.absx21 > rtDW.absx31)) {
+    p1 = 4;
+    p2 = 0;
+    rtDW.x[0] = b_this->TformProjective.T[1];
+    rtDW.x[1] = b_this->TformProjective.T[0];
+    rtDW.x[3] = b_this->TformProjective.T[4];
+    rtDW.x[4] = b_this->TformProjective.T[3];
+    rtDW.x[6] = b_this->TformProjective.T[7];
+    rtDW.x[7] = b_this->TformProjective.T[6];
+  } else if (rtDW.absx31 > rtDW.absx11) {
+    p1 = 7;
+    p3 = 0;
+    rtDW.x[0] = b_this->TformProjective.T[2];
+    rtDW.x[2] = b_this->TformProjective.T[0];
+    rtDW.x[3] = b_this->TformProjective.T[5];
+    rtDW.x[5] = b_this->TformProjective.T[3];
+    rtDW.x[6] = b_this->TformProjective.T[8];
+    rtDW.x[8] = b_this->TformProjective.T[6];
+  }
+
+  rtDW.absx31 = rtDW.x[1] / rtDW.x[0];
+  rtDW.x[1] = rtDW.absx31;
+
+  // Start for MATLABSystem: '<S1>/Warp'
+  rtDW.absx11 = rtDW.x[2] / rtDW.x[0];
+  rtDW.x[2] = rtDW.absx11;
+  rtDW.x[4] -= rtDW.absx31 * rtDW.x[3];
+  rtDW.x[5] -= rtDW.absx11 * rtDW.x[3];
+  rtDW.x[7] -= rtDW.absx31 * rtDW.x[6];
+  rtDW.x[8] -= rtDW.absx11 * rtDW.x[6];
+
+  // Start for MATLABSystem: '<S1>/Warp'
+  if (fabs(rtDW.x[5]) > fabs(rtDW.x[4])) {
+    itmp = p2;
+    p2 = p3;
+    p3 = itmp;
+    rtDW.x[1] = rtDW.absx11;
+    rtDW.x[2] = rtDW.absx31;
+    rtDW.absx11 = rtDW.x[4];
+    rtDW.x[4] = rtDW.x[5];
+    rtDW.x[5] = rtDW.absx11;
+    rtDW.absx11 = rtDW.x[7];
+    rtDW.x[7] = rtDW.x[8];
+    rtDW.x[8] = rtDW.absx11;
+  }
+
+  rtDW.absx31 = rtDW.x[5] / rtDW.x[4];
+  rtDW.x[8] -= rtDW.absx31 * rtDW.x[7];
+
+  // Start for MATLABSystem: '<S1>/Warp'
+  rtDW.absx11 = (rtDW.x[1] * rtDW.absx31 - rtDW.x[2]) / rtDW.x[8];
+  rtDW.absx21 = -(rtDW.x[7] * rtDW.absx11 + rtDW.x[1]) / rtDW.x[4];
+  rtDW.tinv[p1 - 1] = ((1.0 - rtDW.x[3] * rtDW.absx21) - rtDW.x[6] * rtDW.absx11)
+    / rtDW.x[0];
+  rtDW.tinv[p1] = rtDW.absx21;
+  rtDW.tinv[p1 + 1] = rtDW.absx11;
+  rtDW.absx11 = -rtDW.absx31 / rtDW.x[8];
+  rtDW.absx21 = (1.0 - rtDW.x[7] * rtDW.absx11) / rtDW.x[4];
+  rtDW.tinv[p2] = -(rtDW.x[3] * rtDW.absx21 + rtDW.x[6] * rtDW.absx11) / rtDW.x
+    [0];
+  rtDW.tinv[p2 + 1] = rtDW.absx21;
+  rtDW.tinv[p2 + 2] = rtDW.absx11;
+  rtDW.absx11 = 1.0 / rtDW.x[8];
+  rtDW.absx21 = -rtDW.x[7] * rtDW.absx11 / rtDW.x[4];
+  rtDW.tinv[p3] = -(rtDW.x[3] * rtDW.absx21 + rtDW.x[6] * rtDW.absx11) / rtDW.x
+    [0];
+  rtDW.tinv[p3 + 1] = rtDW.absx21;
+  rtDW.tinv[p3 + 2] = rtDW.absx11;
+  rtDW.absx21 = rtDW.tinv[6];
+  rtDW.absx31 = rtDW.tinv[7];
+  rtDW.tinv_g = rtDW.tinv[8];
+
+  // Start for MATLABSystem: '<S1>/Warp'
+  rtDW.tinv_g1 = rtDW.tinv[0];
+  rtDW.tinv_m = rtDW.tinv[1];
+  rtDW.tinv_n = rtDW.tinv[2];
+  rtDW.tinv_p = rtDW.tinv[3];
+  tinv = rtDW.tinv[4];
+  tinv_0 = rtDW.tinv[5];
   for (p1 = 0; p1 < 1200; p1++) {
     for (p2 = 0; p2 < 750; p2++) {
-      p3 = 750 * p1 + p2;
-
       // Start for MATLABSystem: '<S1>/Warp'
-      rtDW.xp[p3] = static_cast<double>(p1) + 1.0;
-      rtDW.yp[p3] = static_cast<double>(p2) + 1.0;
+      rtDW.absx11 = ((((static_cast<real_T>(p1) + 1.0) - 0.5) + 0.5) *
+                     rtDW.absx21 + (((static_cast<real_T>(p2) + 1.0) - 0.5) +
+        0.5) * rtDW.absx31) + rtDW.tinv_g;
+      itmp = 750 * p1 + p2;
+      rtDW.srcXIntrinsic[itmp] = ((((((static_cast<real_T>(p1) + 1.0) - 0.5) +
+        0.5) * rtDW.tinv_g1 + (((static_cast<real_T>(p2) + 1.0) - 0.5) + 0.5) *
+        rtDW.tinv_m) + rtDW.tinv_n) / rtDW.absx11 - 0.5) + 0.5;
+      rtDW.srcYIntrinsic[itmp] = ((((((static_cast<real_T>(p1) + 1.0) - 0.5) +
+        0.5) * rtDW.tinv_p + (((static_cast<real_T>(p2) + 1.0) - 0.5) + 0.5) *
+        tinv) + tinv_0) / rtDW.absx11 - 0.5) + 0.5;
     }
   }
 
-  for (p1 = 0; p1 <= 899998; p1 += 2) {
+  for (p2 = 0; p2 < 900000; p2++) {
     // Start for MATLABSystem: '<S1>/Warp'
-    tmp_0 = _mm_loadu_pd(&rtDW.xp[p1]);
-    tmp_1 = _mm_set1_pd(0.5);
-
-    // Start for MATLABSystem: '<S1>/Warp'
-    _mm_storeu_pd(&rtDW.xp[p1], _mm_add_pd(_mm_sub_pd(tmp_0, tmp_1), tmp_1));
-    tmp_0 = _mm_loadu_pd(&rtDW.yp[p1]);
-    _mm_storeu_pd(&rtDW.yp[p1], _mm_add_pd(_mm_sub_pd(tmp_0, tmp_1), tmp_1));
+    rtDW.inputImage[p2] = static_cast<int8_T>(Image[p2]);
   }
 
-  // Start for MATLABSystem: '<S1>/Warp'
-  guard1 = false;
-  if (B_0[8] == 1.0) {
-    bool exitg1;
-    bool y;
-    x[0] = (B_0[2] == 0.0);
-    x[1] = (B_0[5] == 0.0);
-    y = true;
-    p1 = 0;
-    exitg1 = false;
-    while ((!exitg1) && (p1 < 2)) {
-      if (!x[p1]) {
-        y = false;
-        exitg1 = true;
-      } else {
-        p1++;
-      }
-    }
+  for (p1 = 0; p1 < 900000; p1++) {
+    real32_T qx2;
 
-    if (y) {
-      if (std::abs(B_0[1]) > std::abs(B_0[0])) {
-        absx11 = B_0[0] / B_0[1];
-        absx21 = 1.0 / (absx11 * B_0[4] - B_0[3]);
-        b_B_idx_0 = B_0[4] / B_0[1] * absx21;
-        b_B_idx_1 = -absx21;
-        b_B_idx_2 = -B_0[3] / B_0[1] * absx21;
-        absx21 *= absx11;
-      } else {
-        absx11 = B_0[1] / B_0[0];
-        absx21 = 1.0 / (B_0[4] - absx11 * B_0[3]);
-        b_B_idx_0 = B_0[4] / B_0[0] * absx21;
-        b_B_idx_1 = -absx11 * absx21;
-        b_B_idx_2 = -B_0[3] / B_0[0] * absx21;
-      }
+    // Start for MATLABSystem: '<S1>/Warp'
+    rtDW.absx11 = rtDW.srcXIntrinsic[p1];
+    if ((rtDW.absx11 >= 1.0) && (rtDW.absx11 <= 1200.0)) {
+      rtDW.absx21 = rtDW.srcYIntrinsic[p1];
+      if ((rtDW.absx21 >= 1.0) && (rtDW.absx21 <= 750.0)) {
+        real32_T qx1;
+        if (rtDW.absx11 <= 1.0) {
+          p3 = 1;
+        } else if (rtDW.absx11 <= 1199.0) {
+          p3 = static_cast<int32_T>(floor(rtDW.absx11));
+        } else {
+          p3 = 1199;
+        }
 
-      absx11 = B_0[6];
-      absx31 = B_0[7];
-      for (p1 = 0; p1 <= 899998; p1 += 2) {
-        tmp_0 = _mm_loadu_pd(&rtDW.xp[p1]);
-        tmp_0 = _mm_sub_pd(tmp_0, _mm_set1_pd(absx11));
-        tmp_1 = _mm_loadu_pd(&rtDW.yp[p1]);
-        tmp_1 = _mm_sub_pd(tmp_1, _mm_set1_pd(absx31));
-        _mm_storeu_pd(&rtDW.yp[p1], tmp_1);
-        _mm_storeu_pd(&rtDW.b_varargout_1[p1], _mm_add_pd(_mm_mul_pd(_mm_set1_pd
-          (b_B_idx_0), tmp_0), _mm_mul_pd(_mm_set1_pd(b_B_idx_2), tmp_1)));
-        _mm_storeu_pd(&rtDW.xp[p1], _mm_add_pd(_mm_mul_pd(_mm_set1_pd(b_B_idx_1),
-          tmp_0), _mm_mul_pd(_mm_set1_pd(absx21), tmp_1)));
+        rtDW.absx21 = rtDW.srcYIntrinsic[p1];
+        if (rtDW.absx21 <= 1.0) {
+          itmp = 1;
+        } else if (rtDW.absx21 <= 749.0) {
+          itmp = static_cast<int32_T>(floor(rtDW.absx21));
+        } else {
+          itmp = 749;
+        }
+
+        if (rtDW.absx11 == p3) {
+          p2 = (p3 - 1) * 750 + itmp;
+          qx1 = rtDW.inputImage[p2 - 1];
+          qx2 = rtDW.inputImage[p2];
+        } else if (static_cast<real_T>(p3) + 1.0 == rtDW.absx11) {
+          p2 = 750 * p3 + itmp;
+          qx1 = rtDW.inputImage[p2 - 1];
+          qx2 = rtDW.inputImage[p2];
+        } else {
+          int8_T tmp;
+          int8_T tmp_0;
+          rtDW.absx11 -= static_cast<real_T>(p3);
+          p2 = (p3 - 1) * 750 + itmp;
+          tmp = rtDW.inputImage[p2 - 1];
+          p3 = 750 * p3 + itmp;
+          tmp_0 = rtDW.inputImage[p3 - 1];
+          if (tmp == tmp_0) {
+            qx1 = tmp;
+          } else {
+            qx1 = static_cast<real32_T>(1.0 - rtDW.absx11) *
+              static_cast<real32_T>(tmp) + static_cast<real32_T>(tmp_0) *
+              static_cast<real32_T>(rtDW.absx11);
+          }
+
+          tmp = rtDW.inputImage[p2];
+          tmp_0 = rtDW.inputImage[p3];
+          if (tmp == tmp_0) {
+            qx2 = tmp;
+          } else {
+            qx2 = static_cast<real32_T>(1.0 - rtDW.absx11) *
+              static_cast<real32_T>(tmp) + static_cast<real32_T>(tmp_0) *
+              static_cast<real32_T>(rtDW.absx11);
+          }
+        }
+
+        if ((rtDW.absx21 == itmp) || (qx1 == qx2)) {
+          qx2 = qx1;
+        } else if (!(static_cast<real_T>(itmp) + 1.0 == rtDW.absx21)) {
+          rtDW.absx11 = rtDW.absx21 - static_cast<real_T>(itmp);
+          qx2 = static_cast<real32_T>(1.0 - rtDW.absx11) * qx1 +
+            static_cast<real32_T>(rtDW.absx11) * qx2;
+        }
+      } else {
+        qx2 = 0.0F;
       }
     } else {
-      guard1 = true;
-    }
-  } else {
-    guard1 = true;
-  }
-
-  if (guard1) {
-    double B_1;
-    double B_2;
-    double B_3;
-    std::memcpy(&x_0[0], &B_0[0], 9U * sizeof(double));
-    p1 = 1;
-    p2 = 3;
-    p3 = 6;
-    absx11 = std::abs(B_0[0]);
-    absx21 = std::abs(B_0[1]);
-    absx31 = std::abs(B_0[2]);
-    if ((absx21 > absx11) && (absx21 > absx31)) {
-      p1 = 4;
-      p2 = 0;
-      x_0[0] = B_0[1];
-      x_0[1] = B_0[0];
-      x_0[3] = B_0[4];
-      x_0[4] = B_0[3];
-      x_0[6] = B_0[7];
-      x_0[7] = B_0[6];
-    } else if (absx31 > absx11) {
-      p1 = 7;
-      p3 = 0;
-      x_0[0] = B_0[2];
-      x_0[2] = B_0[0];
-      x_0[3] = B_0[5];
-      x_0[5] = B_0[3];
-      x_0[6] = B_0[8];
-      x_0[8] = B_0[6];
+      qx2 = 0.0F;
     }
 
-    absx31 = x_0[1] / x_0[0];
-    x_0[1] = absx31;
-    absx11 = x_0[2] / x_0[0];
-    x_0[2] = absx11;
-    x_0[4] -= absx31 * x_0[3];
-    x_0[5] -= absx11 * x_0[3];
-    x_0[7] -= absx31 * x_0[6];
-    x_0[8] -= absx11 * x_0[6];
-    if (std::abs(x_0[5]) > std::abs(x_0[4])) {
-      int32_t itmp;
-      itmp = p2;
-      p2 = p3;
-      p3 = itmp;
-      x_0[1] = absx11;
-      x_0[2] = absx31;
-      absx11 = x_0[4];
-      x_0[4] = x_0[5];
-      x_0[5] = absx11;
-      absx11 = x_0[7];
-      x_0[7] = x_0[8];
-      x_0[8] = absx11;
-    }
-
-    absx31 = x_0[5] / x_0[4];
-    x_0[8] -= absx31 * x_0[7];
-    absx11 = (x_0[1] * absx31 - x_0[2]) / x_0[8];
-    absx21 = -(x_0[7] * absx11 + x_0[1]) / x_0[4];
-    B_0[p1 - 1] = ((1.0 - x_0[3] * absx21) - x_0[6] * absx11) / x_0[0];
-    B_0[p1] = absx21;
-    B_0[p1 + 1] = absx11;
-    absx11 = -absx31 / x_0[8];
-    absx21 = (1.0 - x_0[7] * absx11) / x_0[4];
-    B_0[p2] = -(x_0[3] * absx21 + x_0[6] * absx11) / x_0[0];
-    B_0[p2 + 1] = absx21;
-    B_0[p2 + 2] = absx11;
-    absx11 = 1.0 / x_0[8];
-    absx21 = -x_0[7] * absx11 / x_0[4];
-    B_0[p3] = -(x_0[3] * absx21 + x_0[6] * absx11) / x_0[0];
-    B_0[p3 + 1] = absx21;
-    B_0[p3 + 2] = absx11;
-    absx11 = B_0[2];
-    absx31 = B_0[5];
-    absx21 = B_0[0];
-    b_B_idx_0 = B_0[3];
-    b_B_idx_1 = B_0[1];
-    b_B_idx_2 = B_0[4];
-    B_1 = B_0[8];
-    B_2 = B_0[6];
-    B_3 = B_0[7];
-    for (p1 = 0; p1 <= 899998; p1 += 2) {
-      __m128d tmp;
-      tmp_0 = _mm_loadu_pd(&rtDW.xp[p1]);
-      tmp_1 = _mm_loadu_pd(&rtDW.yp[p1]);
-      tmp = _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(absx11), tmp_0),
-        _mm_mul_pd(_mm_set1_pd(absx31), tmp_1)), _mm_set1_pd(B_1));
-      _mm_storeu_pd(&rtDW.b_varargout_1[p1], _mm_div_pd(_mm_add_pd(_mm_add_pd
-        (_mm_mul_pd(_mm_set1_pd(absx21), tmp_0), _mm_mul_pd(_mm_set1_pd
-        (b_B_idx_0), tmp_1)), _mm_set1_pd(B_2)), tmp));
-      _mm_storeu_pd(&rtDW.xp[p1], _mm_div_pd(_mm_add_pd(_mm_add_pd(_mm_mul_pd
-        (_mm_set1_pd(b_B_idx_1), tmp_0), _mm_mul_pd(_mm_set1_pd(b_B_idx_2),
-        tmp_1)), _mm_set1_pd(B_3)), tmp));
-    }
-  }
-
-  for (p1 = 0; p1 < 900000; p1++) {
-    // Start for MATLABSystem: '<S1>/Warp'
-    rtDW.b_varargout_1[p1] = (rtDW.b_varargout_1[p1] - 0.5) + 0.5;
-    rtDW.xp[p1] = (rtDW.xp[p1] - 0.5) + 0.5;
-    rtDW.inputImage_[p1] = Image[p1];
-  }
-
-  uint8_t fillValues;
-  fillValues = 0U;
-
-  // Start for MATLABSystem: '<S1>/Warp'
-  b_inputImageSize[0] = 750.0;
-  b_inputImageSize[1] = 1200.0;
-  b_inputImageSize[2] = 1.0;
-  b_outputImageSize[0] = 750.0;
-  b_outputImageSize[1] = 1200.0;
-  imterp2d64f_uint8(&rtDW.inputImage_[0], &b_inputImageSize[0], &rtDW.xp[0],
-                    &rtDW.b_varargout_1[0], &b_outputImageSize[0], 2.0, true,
-                    &fillValues, &rtDW.outputImage[0]);
-  for (p1 = 0; p1 < 900000; p1++) {
-    // Start for MATLABSystem: '<S1>/Warp'
-    Jout[p1] = (rtDW.outputImage[p1] > 0.5);
+    Jout[p1] = (qx2 > 0.5F);
   }
 }
 
 // Function for MATLAB Function: '<S1>/MATLAB Function3'
-void Perception::do_vectors(const int32_t a_data[], const int32_t *a_size, const
-  int32_t b_data[], const int32_t *b_size, int32_t c_data[], int32_t *c_size,
-  int32_t ia_data[], int32_t *ia_size, int32_t ib_data[], int32_t *ib_size)
+static void do_vectors(const int32_T a_data[], const int32_T a_size[1], const
+  int32_T b_data[], const int32_T b_size[1], int32_T c_data[], int32_T c_size[1],
+  int32_T ia_data[], int32_T ia_size[1], int32_T ib_data[], int32_T ib_size[1])
 {
-  int32_t c_ialast;
-  int32_t iafirst;
-  int32_t ialast;
-  int32_t ibfirst;
-  int32_t iblast;
-  int32_t nc;
-  int32_t ncmax;
-  int32_t nia;
-  int32_t nib;
-  ncmax = *a_size + *b_size;
-  *c_size = ncmax;
-  *ia_size = *a_size;
-  *ib_size = *b_size;
+  int32_T c_ialast;
+  int32_T iafirst;
+  int32_T ialast;
+  int32_T ibfirst;
+  int32_T iblast;
+  int32_T nc;
+  int32_T nia;
+  int32_T nib;
+  rtDW.na = a_size[0];
+  rtDW.nb = b_size[0];
+  rtDW.ncmax = a_size[0] + b_size[0];
+  c_size[0] = rtDW.ncmax;
+  ia_size[0] = a_size[0];
+  ib_size[0] = b_size[0];
   nc = -1;
   nia = -1;
   nib = 0;
@@ -969,20 +1000,20 @@ void Perception::do_vectors(const int32_t a_data[], const int32_t *a_size, const
   ialast = 0;
   ibfirst = 0;
   iblast = 0;
-  while ((ialast + 1 <= *a_size) && (iblast + 1 <= *b_size)) {
-    int32_t ak;
-    int32_t b_iblast;
-    int32_t bk;
+  while ((ialast + 1 <= rtDW.na) && (iblast + 1 <= rtDW.nb)) {
+    int32_T ak;
+    int32_T b_iblast;
+    int32_T bk;
     c_ialast = ialast + 1;
     ak = a_data[ialast];
-    while ((c_ialast < *a_size) && (a_data[c_ialast] == ak)) {
+    while ((c_ialast < a_size[0]) && (a_data[c_ialast] == ak)) {
       c_ialast++;
     }
 
     ialast = c_ialast - 1;
     b_iblast = iblast + 1;
     bk = b_data[iblast];
-    while ((b_iblast < *b_size) && (b_data[b_iblast] == bk)) {
+    while ((b_iblast < b_size[0]) && (b_data[b_iblast] == bk)) {
       b_iblast++;
     }
 
@@ -1013,9 +1044,9 @@ void Perception::do_vectors(const int32_t a_data[], const int32_t *a_size, const
     }
   }
 
-  while (ialast + 1 <= *a_size) {
+  while (ialast + 1 <= rtDW.na) {
     c_ialast = ialast + 1;
-    while ((c_ialast < *a_size) && (a_data[c_ialast] == a_data[ialast])) {
+    while ((c_ialast < a_size[0]) && (a_data[c_ialast] == a_data[ialast])) {
       c_ialast++;
     }
 
@@ -1027,170 +1058,175 @@ void Perception::do_vectors(const int32_t a_data[], const int32_t *a_size, const
     iafirst = c_ialast + 1;
   }
 
-  while (iblast + 1 <= *b_size) {
-    iafirst = iblast + 1;
-    while ((iafirst < *b_size) && (b_data[iafirst] == b_data[iblast])) {
-      iafirst++;
+  while (iblast + 1 <= rtDW.nb) {
+    rtDW.na = iblast + 1;
+    while ((rtDW.na < b_size[0]) && (b_data[rtDW.na] == b_data[iblast])) {
+      rtDW.na++;
     }
 
     nc++;
     nib++;
     c_data[nc] = b_data[iblast];
     ib_data[nib - 1] = ibfirst + 1;
-    iblast = iafirst;
-    ibfirst = iafirst;
+    iblast = rtDW.na;
+    ibfirst = rtDW.na;
   }
 
-  if (*a_size > 0) {
+  if (a_size[0] > 0) {
     if (nia + 1 < 1) {
-      *ia_size = 0;
+      ia_size[0] = 0;
     } else {
-      *ia_size = nia + 1;
+      ia_size[0] = nia + 1;
     }
   }
 
-  if (*b_size > 0) {
+  if (b_size[0] > 0) {
     if (nib < 1) {
-      *ib_size = 0;
+      ib_size[0] = 0;
     } else {
-      *ib_size = nib;
+      ib_size[0] = nib;
     }
   }
 
-  if (ncmax > 0) {
+  if (rtDW.ncmax > 0) {
     if (nc + 1 < 1) {
-      *c_size = 0;
+      c_size[0] = 0;
     } else {
-      *c_size = nc + 1;
+      c_size[0] = nc + 1;
     }
   }
 }
 
 // Function for MATLAB Function: '<S1>/MATLAB Function3'
-void Perception::findpeaks(const double Yin[1200], double Ypk_data[], int32_t
-  Ypk_size[2], double Xpk_data[], int32_t Xpk_size[2])
+static void findpeaks(const real_T Yin[1200], real_T Ypk_data[], int32_T
+                      Ypk_size[2], real_T Xpk_data[], int32_T Xpk_size[2])
 {
-  double Yin_0;
-  double ykfirst;
-  int32_t fPk;
-  int32_t ib_size;
-  int32_t k;
-  int32_t kfirst;
-  int32_t nPk;
-  char dir;
-  char previousdir;
-  bool isinfykfirst;
-  nPk = -1;
+  char_T dir;
+  char_T previousdir;
+  boolean_T isinfykfirst;
+  rtDW.nPk = -1;
   dir = 'n';
-  kfirst = -1;
-  ykfirst = (rtInf);
+  rtDW.kfirst = -1;
+  rtDW.ykfirst = (rtInf);
   isinfykfirst = true;
-  for (k = 0; k < 1200; k++) {
-    Yin_0 = Yin[k];
-    if (Yin_0 != ykfirst) {
+  for (rtDW.k_n = 0; rtDW.k_n < 1200; rtDW.k_n++) {
+    rtDW.Yin = Yin[rtDW.k_n];
+    if (rtDW.Yin != rtDW.ykfirst) {
       previousdir = dir;
       if (isinfykfirst) {
         dir = 'n';
-      } else if (Yin_0 < ykfirst) {
+      } else if (rtDW.Yin < rtDW.ykfirst) {
         dir = 'd';
         if (previousdir == 'i') {
-          nPk++;
-          rtDW.fPk_data[nPk] = kfirst + 1;
+          rtDW.nPk++;
+          rtDW.fPk_data[rtDW.nPk] = rtDW.kfirst + 1;
         }
       } else {
         dir = 'i';
       }
 
-      ykfirst = Yin_0;
-      kfirst = k;
+      rtDW.ykfirst = rtDW.Yin;
+      rtDW.kfirst = rtDW.k_n;
       isinfykfirst = false;
     }
   }
 
-  if (nPk + 1 < 1) {
-    nPk = -1;
+  if (rtDW.nPk + 1 < 1) {
+    rtDW.nPk = -1;
   }
 
-  kfirst = 0;
-  for (k = 0; k <= nPk; k++) {
-    fPk = rtDW.fPk_data[k];
-    if (Yin[fPk - 1] - std::fmax(Yin[fPk - 2], Yin[fPk]) >= 0.0) {
-      kfirst++;
-      rtDW.b_iPk_data[kfirst - 1] = fPk;
+  rtDW.kfirst = 0;
+  for (rtDW.k_n = 0; rtDW.k_n <= rtDW.nPk; rtDW.k_n++) {
+    rtDW.fPk = rtDW.fPk_data[rtDW.k_n];
+    rtDW.ykfirst = Yin[rtDW.fPk - 2];
+    rtDW.Yin = Yin[rtDW.fPk];
+    if ((rtDW.ykfirst >= rtDW.Yin) || rtIsNaN(rtDW.Yin)) {
+      rtDW.Yin = rtDW.ykfirst;
+    }
+
+    if (Yin[rtDW.fPk - 1] - rtDW.Yin >= 0.0) {
+      rtDW.kfirst++;
+      rtDW.b_iPk_data[rtDW.kfirst - 1] = rtDW.fPk;
     }
   }
 
-  if (kfirst < 1) {
-    k = 0;
+  if (rtDW.kfirst < 1) {
+    rtDW.b_iPk_size[0] = 0;
   } else {
-    k = kfirst;
+    rtDW.b_iPk_size[0] = rtDW.kfirst;
   }
 
-  kfirst = 0;
-  do_vectors(rtDW.b_iPk_data, &k, rtDW.b_iPk_data, &kfirst, rtDW.iPk_data, &nPk,
-             rtDW.fPk_data, &fPk, rtDW.ib_data, &ib_size);
-  if (nPk > 0) {
+  rtDW.iInfinite_size[0] = 0;
+  do_vectors(rtDW.b_iPk_data, rtDW.b_iPk_size, rtDW.b_iPk_data,
+             rtDW.iInfinite_size, rtDW.iPk_data, rtDW.iPk_size, rtDW.fPk_data,
+             rtDW.fPk_size, rtDW.ib_data, rtDW.ib_size);
+  rtDW.nPk = rtDW.iPk_size[0];
+  rtDW.fPk = rtDW.iPk_size[0];
+  if (rtDW.iPk_size[0] > 0) {
     rtDW.y_data[0] = 1;
-    kfirst = 1;
-    for (k = 2; k <= nPk; k++) {
-      kfirst++;
-      rtDW.y_data[k - 1] = static_cast<int16_t>(kfirst);
+    rtDW.kfirst = 1;
+    for (rtDW.k_n = 2; rtDW.k_n <= rtDW.nPk; rtDW.k_n++) {
+      rtDW.kfirst++;
+      rtDW.y_data[rtDW.k_n - 1] = static_cast<int16_T>(rtDW.kfirst);
     }
   }
 
-  if (nPk - 1 >= 0) {
-    std::memcpy(&rtDW.idx_data[0], &rtDW.y_data[0], static_cast<uint32_t>(nPk) *
-                sizeof(int16_t));
+  if (rtDW.fPk - 1 >= 0) {
+    memcpy(&rtDW.idx_data[0], &rtDW.y_data[0], static_cast<uint32_T>(rtDW.fPk) *
+           sizeof(int16_T));
   }
 
-  if (nPk > 1200) {
-    fPk = 1200;
+  if (rtDW.iPk_size[0] > 1200) {
+    rtDW.fPk_size[0] = 1200;
   } else {
-    fPk = nPk;
+    rtDW.fPk_size[0] = rtDW.iPk_size[0];
   }
 
-  if (fPk < 1) {
-    nPk = -1;
+  if (rtDW.fPk_size[0] < 1) {
+    rtDW.nPk = -1;
   } else {
-    nPk = fPk - 1;
+    rtDW.nPk = rtDW.fPk_size[0] - 1;
   }
 
-  k = nPk + 1;
-  for (kfirst = 0; kfirst <= nPk; kfirst++) {
-    rtDW.b_iPk_data[kfirst] = rtDW.iPk_data[rtDW.idx_data[kfirst] - 1];
+  rtDW.b_iPk_size[0] = rtDW.nPk + 1;
+  for (rtDW.kfirst = 0; rtDW.kfirst <= rtDW.nPk; rtDW.kfirst++) {
+    rtDW.b_iPk_data[rtDW.kfirst] = rtDW.iPk_data[rtDW.idx_data[rtDW.kfirst] - 1];
   }
 
   Ypk_size[0] = 1;
-  Ypk_size[1] = nPk + 1;
-  nPk++;
+  Ypk_size[1] = rtDW.nPk + 1;
+  rtDW.nPk++;
   Xpk_size[0] = 1;
-  Xpk_size[1] = k;
-  for (kfirst = 0; kfirst < nPk; kfirst++) {
-    k = rtDW.b_iPk_data[kfirst];
-    Ypk_data[kfirst] = Yin[k - 1];
-    Xpk_data[kfirst] = static_cast<int16_t>(static_cast<int16_t>(k - 1) + 1);
+  Xpk_size[1] = rtDW.b_iPk_size[0];
+  for (rtDW.kfirst = 0; rtDW.kfirst < rtDW.nPk; rtDW.kfirst++) {
+    rtDW.k_n = rtDW.b_iPk_data[rtDW.kfirst];
+    Ypk_data[rtDW.kfirst] = Yin[rtDW.k_n - 1];
+    Xpk_data[rtDW.kfirst] = static_cast<int16_T>(static_cast<int16_T>(rtDW.k_n -
+      1) + 1);
   }
 }
 
 // Function for MATLAB Function: '<S1>/MATLAB Function3'
-void Perception::eml_find(const bool x[900000], int32_t i_data[], int32_t
-  *i_size, int32_t j_data[], int32_t *j_size)
+static void eml_find(const boolean_T x[900000], coder::array<int32_T, 1U> &i,
+                     coder::array<int32_T, 1U> &j)
 {
-  int32_t idx;
-  int32_t ii;
-  int32_t jj;
-  bool exitg1;
+  int32_T idx;
+  int32_T ii;
+  int32_T jj;
+  boolean_T exitg1;
   idx = 0;
+  i.set_size(900000);
+  j.set_size(900000);
   ii = 1;
   jj = 1;
   exitg1 = false;
   while ((!exitg1) && (jj <= 1200)) {
-    bool guard1;
+    boolean_T guard1;
     guard1 = false;
     if (x[((jj - 1) * 750 + ii) - 1]) {
       idx++;
-      i_data[idx - 1] = ii;
-      j_data[idx - 1] = jj;
+      i[idx - 1] = ii;
+      j[idx - 1] = jj;
       if (idx >= 900000) {
         exitg1 = true;
       } else {
@@ -1210,128 +1246,97 @@ void Perception::eml_find(const bool x[900000], int32_t i_data[], int32_t
   }
 
   if (idx < 1) {
-    *i_size = 0;
-    *j_size = 0;
+    i.set_size(0);
+    j.set_size(0);
   } else {
-    *i_size = idx;
-    *j_size = idx;
+    i.set_size(idx);
+    j.set_size(idx);
   }
 }
 
-void Perception::binary_expand_op_1(bool in1_data[], int32_t *in1_size, const
-  bool in2_data[], const int32_t *in2_size, const double in3_data[], const
-  int32_t *in3_size, double in4)
+static void binary_expand_op_1(coder::array<boolean_T, 1U> &in1, const coder::
+  array<boolean_T, 1U> &in2, const coder::array<real_T, 1U> &in3, real_T in4)
 {
-  int32_t loop_ub;
-  int32_t stride_0_0;
-  int32_t stride_1_0;
+  int32_T loop_ub;
+  int32_T stride_0_0;
+  int32_T stride_1_0;
 
   // MATLAB Function: '<S1>/MATLAB Function3'
-  if (*in3_size == 1) {
-    *in1_size = *in2_size;
-  } else {
-    *in1_size = *in3_size;
-  }
-
-  stride_0_0 = (*in2_size != 1);
-  stride_1_0 = (*in3_size != 1);
-  if (*in3_size == 1) {
-    loop_ub = *in2_size;
-  } else {
-    loop_ub = *in3_size;
-  }
-
-  for (int32_t i{0}; i < loop_ub; i++) {
-    in1_data[i] = (in2_data[i * stride_0_0] && (in3_data[i * stride_1_0] >= in4
-      - 80.0));
+  loop_ub = in3.size(0) == 1 ? in2.size(0) : in3.size(0);
+  in1.set_size(loop_ub);
+  stride_0_0 = (in2.size(0) != 1);
+  stride_1_0 = (in3.size(0) != 1);
+  for (int32_T i = 0; i < loop_ub; i++) {
+    in1[i] = (in2[i * stride_0_0] && (in3[i * stride_1_0] >= in4 - 80.0));
   }
 
   // End of MATLAB Function: '<S1>/MATLAB Function3'
 }
 
-void Perception::binary_expand_op(bool in1_data[], int32_t *in1_size, const
-  double in2_data[], const int32_t *in2_size, double in3)
+static void binary_expand_op(coder::array<boolean_T, 1U> &in1, const coder::
+  array<real_T, 1U> &in2, real_T in3)
 {
-  int32_t in1_size_idx_0;
-  int32_t stride_0_0;
-  int32_t stride_1_0;
+  coder::array<boolean_T, 1U> in1_0;
+  int32_T loop_ub;
+  int32_T stride_0_0;
+  int32_T stride_1_0;
 
   // MATLAB Function: '<S1>/MATLAB Function3'
-  if (*in2_size == 1) {
-    in1_size_idx_0 = *in1_size;
-  } else {
-    in1_size_idx_0 = *in2_size;
+  loop_ub = in2.size(0) == 1 ? in1.size(0) : in2.size(0);
+  in1_0.set_size(loop_ub);
+  stride_0_0 = (in1.size(0) != 1);
+  stride_1_0 = (in2.size(0) != 1);
+  for (int32_T i = 0; i < loop_ub; i++) {
+    in1_0[i] = (in1[i * stride_0_0] && (in2[i * stride_1_0] >= in3 - 80.0));
   }
 
-  stride_0_0 = (*in1_size != 1);
-  stride_1_0 = (*in2_size != 1);
-  if (*in2_size == 1) {
-  } else {
-    *in1_size = *in2_size;
-  }
-
-  for (int32_t i{0}; i < *in1_size; i++) {
-    rtDW.in1_data[i] = (in1_data[i * stride_0_0] && (in2_data[i * stride_1_0] >=
-      in3 - 80.0));
-  }
-
-  *in1_size = in1_size_idx_0;
-  if (in1_size_idx_0 - 1 >= 0) {
-    std::memcpy(&in1_data[0], &rtDW.in1_data[0], static_cast<uint32_t>
-                (in1_size_idx_0) * sizeof(bool));
+  in1.set_size(in1_0.size(0));
+  loop_ub = in1_0.size(0);
+  for (int32_T i = 0; i < loop_ub; i++) {
+    in1[i] = in1_0[i];
   }
 
   // End of MATLAB Function: '<S1>/MATLAB Function3'
 }
 
-void Perception::and_k(bool in1_data[], int32_t *in1_size, const bool in2_data[],
-  const int32_t *in2_size, const bool in3_data[], const int32_t *in3_size)
+static void and_k(coder::array<boolean_T, 1U> &in1, const coder::array<boolean_T,
+                  1U> &in2, const coder::array<boolean_T, 1U> &in3)
 {
-  int32_t loop_ub;
-  int32_t stride_0_0;
-  int32_t stride_1_0;
+  int32_T loop_ub;
+  int32_T stride_0_0;
+  int32_T stride_1_0;
 
   // MATLAB Function: '<S1>/MATLAB Function3'
-  if (*in3_size == 1) {
-    *in1_size = *in2_size;
-  } else {
-    *in1_size = *in3_size;
-  }
-
-  stride_0_0 = (*in2_size != 1);
-  stride_1_0 = (*in3_size != 1);
-  if (*in3_size == 1) {
-    loop_ub = *in2_size;
-  } else {
-    loop_ub = *in3_size;
-  }
-
-  for (int32_t i{0}; i < loop_ub; i++) {
-    in1_data[i] = (in2_data[i * stride_0_0] && in3_data[i * stride_1_0]);
+  loop_ub = in3.size(0) == 1 ? in2.size(0) : in3.size(0);
+  in1.set_size(loop_ub);
+  stride_0_0 = (in2.size(0) != 1);
+  stride_1_0 = (in3.size(0) != 1);
+  for (int32_T i = 0; i < loop_ub; i++) {
+    in1[i] = (in2[i * stride_0_0] && in3[i * stride_1_0]);
   }
 
   // End of MATLAB Function: '<S1>/MATLAB Function3'
 }
 
 // Function for MATLAB Function: '<S1>/MATLAB Function3'
-double Perception::mean(const double x_data[], const int32_t *x_size)
+static real_T mean(const coder::array<real_T, 1U> &x)
 {
-  double b_y;
-  if (*x_size == 0) {
+  real_T b_y;
+  if (x.size(0) == 0) {
     b_y = 0.0;
   } else {
-    int32_t firstBlockLength;
-    int32_t lastBlockLength;
-    int32_t nblocks;
-    int32_t xblockoffset;
-    if (*x_size <= 1024) {
-      firstBlockLength = *x_size;
+    int32_T firstBlockLength;
+    int32_T lastBlockLength;
+    int32_T nblocks;
+    int32_T xblockoffset;
+    if (x.size(0) <= 1024) {
+      firstBlockLength = x.size(0);
       lastBlockLength = 0;
       nblocks = 1;
     } else {
       firstBlockLength = 1024;
-      nblocks = static_cast<int32_t>(static_cast<uint32_t>(*x_size) >> 10);
-      lastBlockLength = *x_size - (nblocks << 10);
+      nblocks = static_cast<int32_T>(static_cast<uint32_T>(x.size(0)) >> 10);
+      lastBlockLength = x.size(0) - (nblocks << 10);
       if (lastBlockLength > 0) {
         nblocks++;
       } else {
@@ -1339,63 +1344,62 @@ double Perception::mean(const double x_data[], const int32_t *x_size)
       }
     }
 
-    b_y = x_data[0];
+    b_y = x[0];
     for (xblockoffset = 2; xblockoffset <= firstBlockLength; xblockoffset++) {
-      b_y += x_data[xblockoffset - 1];
+      b_y += x[xblockoffset - 1];
     }
 
     for (firstBlockLength = 2; firstBlockLength <= nblocks; firstBlockLength++)
     {
-      double bsum;
-      int32_t hi;
+      real_T bsum;
+      int32_T hi;
       xblockoffset = (firstBlockLength - 1) << 10;
-      bsum = x_data[xblockoffset];
+      bsum = x[xblockoffset];
       if (firstBlockLength == nblocks) {
         hi = lastBlockLength;
       } else {
         hi = 1024;
       }
 
-      for (int32_t b_k{2}; b_k <= hi; b_k++) {
-        bsum += x_data[(xblockoffset + b_k) - 1];
+      for (int32_T b_k = 2; b_k <= hi; b_k++) {
+        bsum += x[(xblockoffset + b_k) - 1];
       }
 
       b_y += bsum;
     }
   }
 
-  return b_y / static_cast<double>(*x_size);
+  return b_y / static_cast<real_T>(x.size(0));
 }
 
 // Function for MATLAB Function: '<S1>/MATLAB Function3'
-double Perception::xnrm2(int32_t n, const double x_data[], int32_t ix0)
+static real_T xnrm2(int32_T n, const coder::array<real_T, 2U> &x, int32_T ix0)
 {
-  double y;
+  real_T y;
   y = 0.0;
   if (n >= 1) {
     if (n == 1) {
-      y = std::abs(x_data[ix0 - 1]);
+      y = fabs(x[ix0 - 1]);
     } else {
-      double scale;
-      int32_t kend;
-      scale = 3.3121686421112381E-170;
+      int32_T kend;
+      rtDW.scale = 3.3121686421112381E-170;
       kend = (ix0 + n) - 1;
-      for (int32_t k{ix0}; k <= kend; k++) {
-        double absxk;
-        absxk = std::abs(x_data[k - 1]);
-        if (absxk > scale) {
-          double t;
-          t = scale / absxk;
+      for (int32_T k = ix0; k <= kend; k++) {
+        real_T absxk;
+        absxk = fabs(x[k - 1]);
+        if (absxk > rtDW.scale) {
+          real_T t;
+          t = rtDW.scale / absxk;
           y = y * t * t + 1.0;
-          scale = absxk;
+          rtDW.scale = absxk;
         } else {
-          double t;
-          t = absxk / scale;
+          real_T t;
+          t = absxk / rtDW.scale;
           y += t * t;
         }
       }
 
-      y = scale * std::sqrt(y);
+      y = rtDW.scale * sqrt(y);
     }
   }
 
@@ -1403,34 +1407,35 @@ double Perception::xnrm2(int32_t n, const double x_data[], int32_t ix0)
 }
 
 // Function for MATLAB Function: '<S1>/MATLAB Function3'
-void Perception::xswap(int32_t n, double x_data[], int32_t ix0, int32_t iy0)
+static void xswap(int32_T n, coder::array<real_T, 2U> &x, int32_T ix0, int32_T
+                  iy0)
 {
-  for (int32_t k{0}; k < n; k++) {
-    double temp;
-    int32_t temp_tmp;
-    int32_t tmp;
+  for (int32_T k = 0; k < n; k++) {
+    real_T temp;
+    int32_T temp_tmp;
+    int32_T tmp;
     temp_tmp = (ix0 + k) - 1;
-    temp = x_data[temp_tmp];
+    temp = x[temp_tmp];
     tmp = (iy0 + k) - 1;
-    x_data[temp_tmp] = x_data[tmp];
-    x_data[tmp] = temp;
+    x[temp_tmp] = x[tmp];
+    x[tmp] = temp;
   }
 }
 
-double rt_hypotd_snf(double u0, double u1)
+real_T rt_hypotd_snf(real_T u0, real_T u1)
 {
-  double a;
-  double b;
-  double y;
-  a = std::abs(u0);
-  b = std::abs(u1);
+  real_T a;
+  real_T b;
+  real_T y;
+  a = fabs(u0);
+  b = fabs(u1);
   if (a < b) {
     a /= b;
-    y = std::sqrt(a * a + 1.0) * b;
+    y = sqrt(a * a + 1.0) * b;
   } else if (a > b) {
     b /= a;
-    y = std::sqrt(b * b + 1.0) * a;
-  } else if (std::isnan(b)) {
+    y = sqrt(b * b + 1.0) * a;
+  } else if (rtIsNaN(b)) {
     y = (rtNaN);
   } else {
     y = a * 1.4142135623730951;
@@ -1440,18 +1445,18 @@ double rt_hypotd_snf(double u0, double u1)
 }
 
 // Function for MATLAB Function: '<S1>/MATLAB Function3'
-void Perception::xzlarf(int32_t m, int32_t n, int32_t iv0, double tau, double
-  C_data[], int32_t ic0, int32_t ldc, double work[3])
+static void xzlarf(int32_T m, int32_T n, int32_T iv0, real_T tau, coder::array<
+                   real_T, 2U> &C, int32_T ic0, int32_T ldc, real_T work[3])
 {
-  int32_t i;
-  int32_t jA;
-  int32_t lastc;
-  int32_t lastv;
+  int32_T i;
+  int32_T jA;
+  int32_T lastc;
+  int32_T lastv;
   if (tau != 0.0) {
-    bool exitg2;
+    boolean_T exitg2;
     lastv = m;
     i = iv0 + m;
-    while ((lastv > 0) && (C_data[i - 2] == 0.0)) {
+    while ((lastv > 0) && (C[i - 2] == 0.0)) {
       lastv--;
       i--;
     }
@@ -1459,13 +1464,13 @@ void Perception::xzlarf(int32_t m, int32_t n, int32_t iv0, double tau, double
     lastc = n;
     exitg2 = false;
     while ((!exitg2) && (lastc > 0)) {
-      int32_t exitg1;
+      int32_T exitg1;
       i = (lastc - 1) * ldc + ic0;
       jA = i;
       do {
         exitg1 = 0;
         if (jA <= (i + lastv) - 1) {
-          if (C_data[jA - 1] != 0.0) {
+          if (C[jA - 1] != 0.0) {
             exitg1 = 1;
           } else {
             jA++;
@@ -1486,36 +1491,35 @@ void Perception::xzlarf(int32_t m, int32_t n, int32_t iv0, double tau, double
   }
 
   if (lastv > 0) {
-    double c;
-    int32_t d;
-    int32_t e;
+    int32_T d;
+    int32_T e;
     if (lastc != 0) {
-      int32_t jy;
-      std::memset(&work[0], 0, static_cast<uint8_t>(lastc) * sizeof(double));
+      int32_T jy;
+      memset(&work[0], 0, static_cast<uint8_T>(lastc) * sizeof(real_T));
       jy = 0;
       d = (lastc - 1) * ldc + ic0;
       for (i = ic0; ldc < 0 ? i >= d : i <= d; i += ldc) {
-        c = 0.0;
+        rtDW.c = 0.0;
         e = (i + lastv) - 1;
         for (jA = i; jA <= e; jA++) {
-          c += C_data[((iv0 + jA) - i) - 1] * C_data[jA - 1];
+          rtDW.c += C[((iv0 + jA) - i) - 1] * C[jA - 1];
         }
 
-        work[jy] += c;
+        work[jy] += rtDW.c;
         jy++;
       }
     }
 
     if (!(-tau == 0.0)) {
       jA = ic0;
-      d = static_cast<uint8_t>(lastc);
+      d = static_cast<uint8_T>(lastc);
       for (lastc = 0; lastc < d; lastc++) {
-        c = work[lastc];
-        if (c != 0.0) {
-          c *= -tau;
+        rtDW.c = work[lastc];
+        if (rtDW.c != 0.0) {
+          rtDW.c *= -tau;
           e = lastv + jA;
           for (i = jA; i < e; i++) {
-            C_data[i - 1] += C_data[((iv0 + i) - jA) - 1] * c;
+            C[i - 1] = C[((iv0 + i) - jA) - 1] * rtDW.c + C[i - 1];
           }
         }
 
@@ -1526,182 +1530,151 @@ void Perception::xzlarf(int32_t m, int32_t n, int32_t iv0, double tau, double
 }
 
 // Function for MATLAB Function: '<S1>/MATLAB Function3'
-void Perception::qrpf(double A_data[], const int32_t A_size[2], int32_t m,
-                      double tau_data[], int32_t jpvt[3])
+static void qrpf(coder::array<real_T, 2U> &A, int32_T m, real_T tau_data[],
+                 int32_T jpvt[3])
 {
-  __m128d tmp;
-  std::array<double, 3> vn1;
-  std::array<double, 3> vn2;
-  std::array<double, 3> work;
-  double s;
-  double smax;
-  double vn1_0;
-  int32_t b;
-  int32_t ii;
-  int32_t itemp;
-  int32_t ix;
-  int32_t j;
-  int32_t knt;
-  int32_t ma;
-  int32_t mmi;
-  int32_t pvt;
-  int32_t vectorUB;
-  int32_t vectorUB_tmp;
-  ma = A_size[0];
-  work[0] = 0.0;
-  vn1_0 = xnrm2(m, A_data, 1);
-  vn1[0] = vn1_0;
-  vn2[0] = vn1_0;
-  work[1] = 0.0;
-  vn1_0 = xnrm2(m, A_data, A_size[0] + 1);
-  vn1[1] = vn1_0;
-  vn2[1] = vn1_0;
-  work[2] = 0.0;
-  vn1_0 = xnrm2(m, A_data, (A_size[0] << 1) + 1);
-  vn1[2] = vn1_0;
-  vn2[2] = vn1_0;
+  int32_T b;
+  int32_T itemp;
+  int32_T ix;
+  int32_T j;
+  int32_T knt;
+  rtDW.ma = A.size(0);
+  rtDW.work[0] = 0.0;
+  rtDW.vn1_f = xnrm2(m, A, 1);
+  rtDW.vn1[0] = rtDW.vn1_f;
+  rtDW.vn2[0] = rtDW.vn1_f;
+  rtDW.work[1] = 0.0;
+  rtDW.vn1_f = xnrm2(m, A, A.size(0) + 1);
+  rtDW.vn1[1] = rtDW.vn1_f;
+  rtDW.vn2[1] = rtDW.vn1_f;
+  rtDW.work[2] = 0.0;
+  rtDW.vn1_f = xnrm2(m, A, (A.size(0) << 1) + 1);
+  rtDW.vn1[2] = rtDW.vn1_f;
+  rtDW.vn2[2] = rtDW.vn1_f;
   if (m <= 3) {
-    b = static_cast<uint8_t>(m);
+    b = static_cast<uint8_T>(m);
   } else {
     b = 3;
   }
 
   for (j = 0; j < b; j++) {
-    ix = j * ma;
-    ii = ix + j;
-    mmi = m - j;
+    ix = j * rtDW.ma;
+    rtDW.ii_l = ix + j;
+    rtDW.mmi = m - j;
     itemp = 3 - j;
     knt = 0;
     if (3 - j > 1) {
-      smax = std::abs(vn1[j]);
-      for (pvt = 2; pvt <= itemp; pvt++) {
-        s = std::abs(vn1[(j + pvt) - 1]);
-        if (s > smax) {
-          knt = pvt - 1;
-          smax = s;
+      rtDW.smax = fabs(rtDW.vn1[j]);
+      for (rtDW.pvt = 2; rtDW.pvt <= itemp; rtDW.pvt++) {
+        rtDW.s = fabs(rtDW.vn1[(j + rtDW.pvt) - 1]);
+        if (rtDW.s > rtDW.smax) {
+          knt = rtDW.pvt - 1;
+          rtDW.smax = rtDW.s;
         }
       }
     }
 
-    pvt = j + knt;
-    if (pvt != j) {
-      xswap(m, A_data, pvt * ma + 1, ix + 1);
-      itemp = jpvt[pvt];
-      jpvt[pvt] = jpvt[j];
+    rtDW.pvt = j + knt;
+    if (rtDW.pvt != j) {
+      xswap(m, A, rtDW.pvt * rtDW.ma + 1, ix + 1);
+      itemp = jpvt[rtDW.pvt];
+      jpvt[rtDW.pvt] = jpvt[j];
       jpvt[j] = itemp;
-      vn1[pvt] = vn1[j];
-      vn2[pvt] = vn2[j];
+      rtDW.vn1[rtDW.pvt] = rtDW.vn1[j];
+      rtDW.vn2[rtDW.pvt] = rtDW.vn2[j];
     }
 
     if (j + 1 < m) {
-      s = A_data[ii];
-      pvt = ii + 2;
+      rtDW.s = A[rtDW.ii_l];
+      rtDW.pvt = rtDW.ii_l + 2;
       tau_data[j] = 0.0;
-      if (mmi > 0) {
-        vn1_0 = xnrm2(mmi - 1, A_data, ii + 2);
-        if (vn1_0 != 0.0) {
-          smax = rt_hypotd_snf(A_data[ii], vn1_0);
-          if (A_data[ii] >= 0.0) {
-            smax = -smax;
+      if (rtDW.mmi > 0) {
+        rtDW.vn1_f = xnrm2(rtDW.mmi - 1, A, rtDW.ii_l + 2);
+        if (rtDW.vn1_f != 0.0) {
+          rtDW.smax = rt_hypotd_snf(A[rtDW.ii_l], rtDW.vn1_f);
+          if (A[rtDW.ii_l] >= 0.0) {
+            rtDW.smax = -rtDW.smax;
           }
 
-          if (std::abs(smax) < 1.0020841800044864E-292) {
+          if (fabs(rtDW.smax) < 1.0020841800044864E-292) {
             knt = 0;
-            itemp = ii + mmi;
+            itemp = rtDW.ii_l + rtDW.mmi;
             do {
               knt++;
-              vectorUB = (((((itemp - ii) - 1) / 2) << 1) + ii) + 2;
-              vectorUB_tmp = vectorUB - 2;
-              for (ix = pvt; ix <= vectorUB_tmp; ix += 2) {
-                tmp = _mm_loadu_pd(&A_data[ix - 1]);
-                _mm_storeu_pd(&A_data[ix - 1], _mm_mul_pd(tmp, _mm_set1_pd
-                  (9.9792015476736E+291)));
+              for (ix = rtDW.pvt; ix <= itemp; ix++) {
+                A[ix - 1] = A[ix - 1] * 9.9792015476736E+291;
               }
 
-              for (ix = vectorUB; ix <= itemp; ix++) {
-                A_data[ix - 1] *= 9.9792015476736E+291;
-              }
+              rtDW.smax *= 9.9792015476736E+291;
+              rtDW.s *= 9.9792015476736E+291;
+            } while ((fabs(rtDW.smax) < 1.0020841800044864E-292) && (knt < 20));
 
-              smax *= 9.9792015476736E+291;
-              s *= 9.9792015476736E+291;
-            } while ((std::abs(smax) < 1.0020841800044864E-292) && (knt < 20));
-
-            smax = rt_hypotd_snf(s, xnrm2(mmi - 1, A_data, ii + 2));
-            if (s >= 0.0) {
-              smax = -smax;
+            rtDW.smax = rt_hypotd_snf(rtDW.s, xnrm2(rtDW.mmi - 1, A, rtDW.ii_l +
+              2));
+            if (rtDW.s >= 0.0) {
+              rtDW.smax = -rtDW.smax;
             }
 
-            tau_data[j] = (smax - s) / smax;
-            s = 1.0 / (s - smax);
-            for (ix = pvt; ix <= vectorUB_tmp; ix += 2) {
-              tmp = _mm_loadu_pd(&A_data[ix - 1]);
-              _mm_storeu_pd(&A_data[ix - 1], _mm_mul_pd(tmp, _mm_set1_pd(s)));
+            tau_data[j] = (rtDW.smax - rtDW.s) / rtDW.smax;
+            rtDW.s = 1.0 / (rtDW.s - rtDW.smax);
+            for (ix = rtDW.pvt; ix <= itemp; ix++) {
+              A[ix - 1] = A[ix - 1] * rtDW.s;
             }
 
-            for (ix = vectorUB; ix <= itemp; ix++) {
-              A_data[ix - 1] *= s;
+            for (rtDW.pvt = 0; rtDW.pvt < knt; rtDW.pvt++) {
+              rtDW.smax *= 1.0020841800044864E-292;
             }
 
-            for (pvt = 0; pvt < knt; pvt++) {
-              smax *= 1.0020841800044864E-292;
-            }
-
-            s = smax;
+            rtDW.s = rtDW.smax;
           } else {
-            tau_data[j] = (smax - A_data[ii]) / smax;
-            s = 1.0 / (A_data[ii] - smax);
-            ix = ii + mmi;
-            itemp = (((((ix - ii) - 1) / 2) << 1) + ii) + 2;
-            vectorUB = itemp - 2;
-            for (knt = pvt; knt <= vectorUB; knt += 2) {
-              tmp = _mm_loadu_pd(&A_data[knt - 1]);
-              _mm_storeu_pd(&A_data[knt - 1], _mm_mul_pd(tmp, _mm_set1_pd(s)));
+            tau_data[j] = (rtDW.smax - A[rtDW.ii_l]) / rtDW.smax;
+            rtDW.s = 1.0 / (A[rtDW.ii_l] - rtDW.smax);
+            ix = rtDW.ii_l + rtDW.mmi;
+            for (knt = rtDW.pvt; knt <= ix; knt++) {
+              A[knt - 1] = A[knt - 1] * rtDW.s;
             }
 
-            for (knt = itemp; knt <= ix; knt++) {
-              A_data[knt - 1] *= s;
-            }
-
-            s = smax;
+            rtDW.s = rtDW.smax;
           }
         }
       }
 
-      A_data[ii] = s;
+      A[rtDW.ii_l] = rtDW.s;
     } else {
       tau_data[j] = 0.0;
     }
 
     if (j + 1 < 3) {
-      smax = A_data[ii];
-      A_data[ii] = 1.0;
-      xzlarf(mmi, 2 - j, ii + 1, tau_data[j], A_data, (ii + ma) + 1, ma, &work[0]);
-      A_data[ii] = smax;
+      rtDW.smax = A[rtDW.ii_l];
+      A[rtDW.ii_l] = 1.0;
+      xzlarf(rtDW.mmi, 2 - j, rtDW.ii_l + 1, tau_data[j], A, (rtDW.ii_l +
+              rtDW.ma) + 1, rtDW.ma, rtDW.work);
+      A[rtDW.ii_l] = rtDW.smax;
     }
 
-    for (ii = j + 2; ii < 4; ii++) {
-      pvt = (ii - 1) * ma + j;
-      vn1_0 = vn1[ii - 1];
-      if (vn1_0 != 0.0) {
-        smax = std::abs(A_data[pvt]) / vn1_0;
-        smax = 1.0 - smax * smax;
-        if (smax < 0.0) {
-          smax = 0.0;
+    for (rtDW.ii_l = j + 2; rtDW.ii_l < 4; rtDW.ii_l++) {
+      rtDW.pvt = (rtDW.ii_l - 1) * rtDW.ma + j;
+      rtDW.vn1_f = rtDW.vn1[rtDW.ii_l - 1];
+      if (rtDW.vn1_f != 0.0) {
+        rtDW.smax = fabs(A[rtDW.pvt]) / rtDW.vn1_f;
+        rtDW.smax = 1.0 - rtDW.smax * rtDW.smax;
+        if (rtDW.smax < 0.0) {
+          rtDW.smax = 0.0;
         }
 
-        s = vn1_0 / vn2[ii - 1];
-        s = s * s * smax;
-        if (s <= 1.4901161193847656E-8) {
+        rtDW.s = rtDW.vn1_f / rtDW.vn2[rtDW.ii_l - 1];
+        rtDW.s = rtDW.s * rtDW.s * rtDW.smax;
+        if (rtDW.s <= 1.4901161193847656E-8) {
           if (j + 1 < m) {
-            vn1_0 = xnrm2(mmi - 1, A_data, pvt + 2);
-            vn1[ii - 1] = vn1_0;
-            vn2[ii - 1] = vn1_0;
+            rtDW.vn1_f = xnrm2(rtDW.mmi - 1, A, rtDW.pvt + 2);
+            rtDW.vn1[rtDW.ii_l - 1] = rtDW.vn1_f;
+            rtDW.vn2[rtDW.ii_l - 1] = rtDW.vn1_f;
           } else {
-            vn1[ii - 1] = 0.0;
-            vn2[ii - 1] = 0.0;
+            rtDW.vn1[rtDW.ii_l - 1] = 0.0;
+            rtDW.vn2[rtDW.ii_l - 1] = 0.0;
           }
         } else {
-          vn1[ii - 1] = vn1_0 * std::sqrt(smax);
+          rtDW.vn1[rtDW.ii_l - 1] = rtDW.vn1_f * sqrt(rtDW.smax);
         }
       }
     }
@@ -1709,50 +1682,44 @@ void Perception::qrpf(double A_data[], const int32_t A_size[2], int32_t m,
 }
 
 // Function for MATLAB Function: '<S1>/MATLAB Function3'
-void Perception::xgeqp3(double A_data[], int32_t A_size[2], double tau_data[],
-  int32_t *tau_size, int32_t jpvt[3])
+static void xgeqp3(coder::array<real_T, 2U> &A, real_T tau_data[], int32_T
+                   tau_size[1], int32_T jpvt[3])
 {
-  int32_t b_A_size[2];
-  int32_t b_A;
-  int32_t i;
-  int32_t loop_ub;
-  bool guard1;
-  b_A_size[0] = A_size[0];
-  b_A_size[1] = 3;
-  loop_ub = A_size[0] * 3;
-  if (loop_ub - 1 >= 0) {
-    std::memcpy(&rtDW.b_A_data_c[0], &A_data[0], static_cast<uint32_t>(loop_ub) *
-                sizeof(double));
+  boolean_T guard1;
+  rtDW.b_A_k.set_size(A.size(0), 3);
+  rtDW.loop_ub = A.size(0) * 3;
+  for (rtDW.i_dy = 0; rtDW.i_dy < rtDW.loop_ub; rtDW.i_dy++) {
+    rtDW.b_A_k[rtDW.i_dy] = A[rtDW.i_dy];
   }
 
-  if (A_size[0] <= 3) {
-    loop_ub = A_size[0];
+  if (A.size(0) <= 3) {
+    rtDW.loop_ub = A.size(0);
   } else {
-    loop_ub = 3;
+    rtDW.loop_ub = 3;
   }
 
-  *tau_size = loop_ub;
-  if (loop_ub - 1 >= 0) {
-    std::memset(&tau_data[0], 0, static_cast<uint32_t>(loop_ub) * sizeof(double));
+  tau_size[0] = rtDW.loop_ub;
+  if (rtDW.loop_ub - 1 >= 0) {
+    memset(&tau_data[0], 0, static_cast<uint32_T>(rtDW.loop_ub) * sizeof(real_T));
   }
 
   guard1 = false;
-  if (A_size[0] == 0) {
+  if (A.size(0) == 0) {
     guard1 = true;
   } else {
-    if (A_size[0] <= 3) {
-      i = A_size[0];
+    if (A.size(0) <= 3) {
+      rtDW.i_dy = A.size(0);
     } else {
-      i = 3;
+      rtDW.i_dy = 3;
     }
 
-    if (i < 1) {
+    if (rtDW.i_dy < 1) {
       guard1 = true;
     } else {
       jpvt[0] = 1;
       jpvt[1] = 2;
       jpvt[2] = 3;
-      qrpf(rtDW.b_A_data_c, b_A_size, A_size[0], tau_data, jpvt);
+      qrpf(rtDW.b_A_k, A.size(0), tau_data, jpvt);
     }
   }
 
@@ -1762,230 +1729,143 @@ void Perception::xgeqp3(double A_data[], int32_t A_size[2], double tau_data[],
     jpvt[2] = 3;
   }
 
-  A_size[0] = b_A_size[0];
-  A_size[1] = 3;
-  loop_ub = b_A_size[0];
-  for (i = 0; i < 3; i++) {
-    for (b_A = 0; b_A < loop_ub; b_A++) {
-      A_data[b_A + A_size[0] * i] = rtDW.b_A_data_c[b_A_size[0] * i + b_A];
+  A.set_size(rtDW.b_A_k.size(0), 3);
+  rtDW.loop_ub = rtDW.b_A_k.size(0);
+  for (rtDW.i_dy = 0; rtDW.i_dy < 3; rtDW.i_dy++) {
+    for (rtDW.b_A_d = 0; rtDW.b_A_d < rtDW.loop_ub; rtDW.b_A_d++) {
+      A[rtDW.b_A_d + A.size(0) * rtDW.i_dy] = rtDW.b_A_k[rtDW.b_A_k.size(0) *
+        rtDW.i_dy + rtDW.b_A_d];
     }
   }
 }
 
 // Function for MATLAB Function: '<S1>/MATLAB Function3'
-void Perception::qrsolve(const double A_data[], const int32_t A_size[2], const
-  double B_data[], const int32_t *B_size, double Y[3], int32_t *rankA)
+static void qrsolve(const coder::array<real_T, 2U> &A, const coder::array<real_T,
+                    1U> &B_0, real_T Y[3], int32_T *rankA)
 {
-  __m128d tmp;
-  __m128d tmp_0;
-  std::array<int32_t, 3> jpvt;
-  double tau_data[3];
-  double tol;
-  int32_t b_A_size[2];
-  int32_t b_j;
-  int32_t c_i;
-  int32_t k;
-  int32_t maxmn;
-  int32_t minmn;
-  int32_t scalarLB;
-  int32_t vectorUB;
-  b_A_size[0] = A_size[0];
-  b_A_size[1] = 3;
-  maxmn = A_size[0] * 3;
-  if (maxmn - 1 >= 0) {
-    std::memcpy(&rtDW.b_A_data[0], &A_data[0], static_cast<uint32_t>(maxmn) *
-                sizeof(double));
+  rtDW.b_A.set_size(A.size(0), 3);
+  rtDW.maxmn = A.size(0) * 3;
+  for (rtDW.b_j = 0; rtDW.b_j < rtDW.maxmn; rtDW.b_j++) {
+    rtDW.b_A[rtDW.b_j] = A[rtDW.b_j];
   }
 
-  xgeqp3(rtDW.b_A_data, b_A_size, tau_data, &maxmn, &jpvt[0]);
+  xgeqp3(rtDW.b_A, rtDW.tau_data, rtDW.tau_size, rtDW.jpvt);
   *rankA = 0;
-  if (b_A_size[0] < 3) {
-    minmn = b_A_size[0];
-    maxmn = 3;
+  if (rtDW.b_A.size(0) < 3) {
+    rtDW.minmn = rtDW.b_A.size(0);
+    rtDW.maxmn = 3;
   } else {
-    minmn = 3;
-    maxmn = b_A_size[0];
+    rtDW.minmn = 3;
+    rtDW.maxmn = rtDW.b_A.size(0);
   }
 
-  if (minmn > 0) {
-    tol = 2.2204460492503131E-15 * static_cast<double>(maxmn) * std::abs
-      (rtDW.b_A_data[0]);
-    while ((*rankA < minmn) && (!(std::abs(rtDW.b_A_data[b_A_size[0] * *rankA + *
-              rankA]) <= tol))) {
+  if (rtDW.minmn > 0) {
+    rtDW.tol = 2.2204460492503131E-15 * static_cast<real_T>(rtDW.maxmn) * fabs
+      (rtDW.b_A[0]);
+    while ((*rankA < rtDW.minmn) && (!(fabs(rtDW.b_A[rtDW.b_A.size(0) * *rankA +
+              *rankA]) <= rtDW.tol))) {
       (*rankA)++;
     }
   }
 
-  minmn = 0;
-  if (b_A_size[0] <= 3) {
-    maxmn = b_A_size[0];
+  rtDW.minmn = 0;
+  if (rtDW.b_A.size(0) <= 3) {
+    rtDW.maxmn = rtDW.b_A.size(0);
   } else {
-    maxmn = 3;
+    rtDW.maxmn = 3;
   }
 
-  if (maxmn > 0) {
-    for (k = 0; k < maxmn; k++) {
-      if (rtDW.b_A_data[b_A_size[0] * k + k] != 0.0) {
-        minmn++;
+  if (rtDW.maxmn > 0) {
+    for (rtDW.k_l = 0; rtDW.k_l < rtDW.maxmn; rtDW.k_l++) {
+      if (rtDW.b_A[rtDW.b_A.size(0) * rtDW.k_l + rtDW.k_l] != 0.0) {
+        rtDW.minmn++;
       }
     }
   }
 
-  if (*B_size - 1 >= 0) {
-    std::memcpy(&rtDW.b_B_data[0], &B_data[0], static_cast<uint32_t>(*B_size) *
-                sizeof(double));
+  rtDW.b_B.set_size(B_0.size(0));
+  rtDW.maxmn = B_0.size(0);
+  for (rtDW.b_j = 0; rtDW.b_j < rtDW.maxmn; rtDW.b_j++) {
+    rtDW.b_B[rtDW.b_j] = B_0[rtDW.b_j];
   }
 
   Y[0] = 0.0;
   Y[1] = 0.0;
   Y[2] = 0.0;
-  maxmn = b_A_size[0];
-  if (b_A_size[0] <= 3) {
-    k = b_A_size[0];
+  rtDW.maxmn = rtDW.b_A.size(0);
+  if (rtDW.b_A.size(0) <= 3) {
+    rtDW.k_l = rtDW.b_A.size(0);
   } else {
-    k = 3;
+    rtDW.k_l = 3;
   }
 
-  for (b_j = 0; b_j < k; b_j++) {
-    if (tau_data[b_j] != 0.0) {
-      tol = rtDW.b_B_data[b_j];
-      for (c_i = b_j + 2; c_i <= maxmn; c_i++) {
-        tol += rtDW.b_A_data[(b_A_size[0] * b_j + c_i) - 1] * rtDW.b_B_data[c_i
-          - 1];
+  for (rtDW.b_j = 0; rtDW.b_j < rtDW.k_l; rtDW.b_j++) {
+    if (rtDW.tau_data[rtDW.b_j] != 0.0) {
+      rtDW.tol = rtDW.b_B[rtDW.b_j];
+      for (rtDW.c_i = rtDW.b_j + 2; rtDW.c_i <= rtDW.maxmn; rtDW.c_i++) {
+        rtDW.tol += rtDW.b_A[(rtDW.b_A.size(0) * rtDW.b_j + rtDW.c_i) - 1] *
+          rtDW.b_B[rtDW.c_i - 1];
       }
 
-      tol *= tau_data[b_j];
-      if (tol != 0.0) {
-        rtDW.b_B_data[b_j] -= tol;
-        scalarLB = (((((maxmn - b_j) - 1) / 2) << 1) + b_j) + 2;
-        vectorUB = scalarLB - 2;
-        for (c_i = b_j + 2; c_i <= vectorUB; c_i += 2) {
-          tmp = _mm_loadu_pd(&rtDW.b_A_data[(b_A_size[0] * b_j + c_i) - 1]);
-          tmp_0 = _mm_loadu_pd(&rtDW.b_B_data[c_i - 1]);
-          _mm_storeu_pd(&rtDW.b_B_data[c_i - 1], _mm_sub_pd(tmp_0, _mm_mul_pd
-            (tmp, _mm_set1_pd(tol))));
-        }
-
-        for (c_i = scalarLB; c_i <= maxmn; c_i++) {
-          rtDW.b_B_data[c_i - 1] -= rtDW.b_A_data[(b_A_size[0] * b_j + c_i) - 1]
-            * tol;
+      rtDW.tol *= rtDW.tau_data[rtDW.b_j];
+      if (rtDW.tol != 0.0) {
+        rtDW.b_B[rtDW.b_j] = rtDW.b_B[rtDW.b_j] - rtDW.tol;
+        for (rtDW.c_i = rtDW.b_j + 2; rtDW.c_i <= rtDW.maxmn; rtDW.c_i++) {
+          rtDW.b_B[rtDW.c_i - 1] = rtDW.b_B[rtDW.c_i - 1] - rtDW.b_A
+            [(rtDW.b_A.size(0) * rtDW.b_j + rtDW.c_i) - 1] * rtDW.tol;
         }
       }
     }
   }
 
-  for (maxmn = 0; maxmn < minmn; maxmn++) {
-    Y[jpvt[maxmn] - 1] = rtDW.b_B_data[maxmn];
+  for (rtDW.maxmn = 0; rtDW.maxmn < rtDW.minmn; rtDW.maxmn++) {
+    Y[rtDW.jpvt[rtDW.maxmn] - 1] = rtDW.b_B[rtDW.maxmn];
   }
 
-  for (maxmn = minmn; maxmn >= 1; maxmn--) {
-    k = jpvt[maxmn - 1];
-    c_i = (maxmn - 1) * b_A_size[0];
-    Y[k - 1] /= rtDW.b_A_data[(maxmn + c_i) - 1];
-    for (b_j = 0; b_j <= maxmn - 2; b_j++) {
-      Y[jpvt[b_j] - 1] -= Y[k - 1] * rtDW.b_A_data[b_j + c_i];
+  for (rtDW.maxmn = rtDW.minmn; rtDW.maxmn >= 1; rtDW.maxmn--) {
+    rtDW.k_l = rtDW.jpvt[rtDW.maxmn - 1];
+    Y[rtDW.k_l - 1] /= rtDW.b_A[((rtDW.maxmn - 1) * rtDW.b_A.size(0) +
+      rtDW.maxmn) - 1];
+    for (rtDW.b_j = 0; rtDW.b_j <= rtDW.maxmn - 2; rtDW.b_j++) {
+      Y[rtDW.jpvt[rtDW.b_j] - 1] -= rtDW.b_A[(rtDW.maxmn - 1) * rtDW.b_A.size(0)
+        + rtDW.b_j] * Y[rtDW.k_l - 1];
     }
   }
 }
 
 // Function for MATLAB Function: '<S1>/MATLAB Function3'
-void Perception::polyfit(const double x_data[], const int32_t *x_size, const
-  double y_data[], const int32_t *y_size, double p[3])
+static void polyfit(const coder::array<real_T, 1U> &x, const coder::array<real_T,
+                    1U> &y, real_T p[3])
 {
-  __m128d tmp;
-  __m128d tmp_0;
-  int32_t V_size[2];
-  int32_t b;
-  int32_t k;
-  int32_t scalarLB;
-  int32_t vectorUB;
-  V_size[0] = *x_size;
-  V_size[1] = 3;
-  if (*x_size != 0) {
-    b = *x_size;
-    for (k = 0; k < b; k++) {
-      rtDW.V_data[k + (V_size[0] << 1)] = 1.0;
+  rtDW.V.set_size(x.size(0), 3);
+  if (x.size(0) != 0) {
+    rtDW.b = x.size(0);
+    for (rtDW.k = 0; rtDW.k < rtDW.b; rtDW.k++) {
+      rtDW.V[rtDW.k + (rtDW.V.size(0) << 1)] = 1.0;
     }
 
-    for (k = 0; k < b; k++) {
-      rtDW.V_data[k + V_size[0]] = x_data[k];
+    rtDW.b = x.size(0);
+    for (rtDW.k = 0; rtDW.k < rtDW.b; rtDW.k++) {
+      rtDW.V[rtDW.k + rtDW.V.size(0)] = x[rtDW.k];
     }
 
-    scalarLB = (*x_size / 2) << 1;
-    vectorUB = scalarLB - 2;
-    for (k = 0; k <= vectorUB; k += 2) {
-      tmp = _mm_loadu_pd(&x_data[k]);
-      tmp_0 = _mm_loadu_pd(&rtDW.V_data[k + V_size[0]]);
-      _mm_storeu_pd(&rtDW.V_data[k], _mm_mul_pd(tmp, tmp_0));
-    }
-
-    for (k = scalarLB; k < b; k++) {
-      rtDW.V_data[k] = rtDW.V_data[k + V_size[0]] * x_data[k];
+    rtDW.b = x.size(0);
+    for (rtDW.k = 0; rtDW.k < rtDW.b; rtDW.k++) {
+      rtDW.V[rtDW.k] = rtDW.V[rtDW.k + rtDW.V.size(0)] * x[rtDW.k];
     }
   }
 
-  qrsolve(rtDW.V_data, V_size, y_data, y_size, p, &b);
+  qrsolve(rtDW.V, y, p, &rtDW.b);
 }
 
 // Model step function
-void Perception::step()
+void Perception_step(void)
 {
-  std::cout << "STEP: " << i++ << std::endl;
-  static const std::array<int16_t, 8> tmp{ { 519, 675, 113, 1049, 411, 411, 587,
-      587 } };
-
-  static const std::array<int16_t, 8> tmp_0{ { 450, 750, 450, 750, 0, 0, 750,
-      750 } };
-
-  std::array<double, 72> Constraint;
-  std::array<double, 8> E;
-  std::array<int8_t, 4> EstimateGeometricTransformation_DW_BEST_SAMPLE;
-  std::array<double, 72> EstimateGeometricTransformation_DW_CONSTRT_ALL;
-  std::array<double, 4> EstimateGeometricTransformation_DW_DISTANCE;
-  std::array<double, 8> EstimateGeometricTransformation_DW_PTSNORM1;
-  std::array<double, 8> EstimateGeometricTransformation_DW_PTSNORM2;
-  std::array<uint32_t, 4> EstimateGeometricTransformation_DW_SAMPLEIDX;
-  std::array<int32_t, 8> JPVT;
-  std::array<double, 72> Q;
-  std::array<double, 8> Qraux;
-  std::array<double, 81> RV;
-  std::array<double, 8> Work;
-  std::array<double, 3> b_p;
-  std::array<double, 9> bestTFormCompact;
-  std::array<double, 2> cents1;
-  std::array<double, 2> cents2;
-  std::array<double, 3> p;
-  std::array<double, 9> rtb_EstimateGeometricTransformation;
-  std::array<double, 8> rtb_pts1;
-  std::array<double, 8> rtb_pts2;
-  std::array<double, 9> tformCompact;
-  std::array<double, 9> tformCompact_0;
-  double ImageDataTypeConversion;
-  double ImageDataTypeConversion_0;
-  double ImageDataTypeConversion_1;
-  double bestInlierDis;
-  double count_right;
-  double leftx_current;
-  double rightx_current;
-  double s1DivS2;
-  int32_t a__1_size[2];
-  int32_t locs_size[2];
-  int32_t b_tmp_size;
-  int32_t b_tmp_tmp_size;
-  int32_t end;
-  int32_t i;
-  int32_t i_0;
-  int32_t j;
-  int32_t jj_size;
-  int32_t m;
-  int32_t s;
-  int32_t tmp_size;
-  int32_t trueCount;
-  uint32_t bestCol;
-  uint32_t s1DivS2_tmp;
-  int16_t tmp_data[1200];
-  char *sErr;
+  char_T *sErr;
   void *source_R;
+  static const int16_T tmp[8] = { 519, 675, 113, 1049, 411, 411, 587, 587 };
+
+  static const int16_T tmp_0[8] = { 450, 750, 450, 750, 0, 0, 750, 750 };
 
   // S-Function (sdspwmmfi2): '<Root>/From Multimedia File'
   sErr = GetErrorBuffer(&rtDW.FromMultimediaFile_HostLib[0U]);
@@ -1994,8 +1874,8 @@ void Perception::step()
                         GetNullPointer(), source_R, GetNullPointer(),
                         GetNullPointer());
   if (*sErr != 0) {
-    rtmSetErrorStatus((&rtM), sErr);
-    rtmSetStopRequested((&rtM), 1);
+    rtmSetErrorStatus(rtM, sErr);
+    rtmSetStopRequested(rtM, 1);
   }
 
   // End of S-Function (sdspwmmfi2): '<Root>/From Multimedia File'
@@ -2003,248 +1883,262 @@ void Perception::step()
   // S-Function (svipscalenconvert): '<S1>/Image Data Type Conversion' incorporates:
   //   S-Function (sdspwmmfi2): '<Root>/From Multimedia File'
 
-  for (i = 0; i < 2700000; i++) {
-    if (rtDW.FromMultimediaFile[i] > 1.0F) {
-      rtDW.ImageDataTypeConversion[i] = 1.0;
-    } else if (rtDW.FromMultimediaFile[i] < 0.0F) {
-      rtDW.ImageDataTypeConversion[i] = 0.0;
+  for (rtDW.i = 0; rtDW.i < 2700000; rtDW.i++) {
+    if (rtDW.FromMultimediaFile[rtDW.i] > 1.0F) {
+      rtDW.ImageDataTypeConversion[rtDW.i] = 1.0;
+    } else if (rtDW.FromMultimediaFile[rtDW.i] < 0.0F) {
+      rtDW.ImageDataTypeConversion[rtDW.i] = 0.0;
     } else {
-      rtDW.ImageDataTypeConversion[i] = rtDW.FromMultimediaFile[i];
+      rtDW.ImageDataTypeConversion[rtDW.i] = rtDW.FromMultimediaFile[rtDW.i];
     }
   }
 
   // End of S-Function (svipscalenconvert): '<S1>/Image Data Type Conversion'
   // temporary variables for in-place operation
-  for (i = 0; i < 900000; i++) {
+  for (rtDW.i = 0; rtDW.i < 900000; rtDW.i++) {
     // S-Function (svipcolorconv): '<S1>/Color Space  Conversion' incorporates:
     //   S-Function (svipscalenconvert): '<S1>/Image Data Type Conversion'
 
     // First get the min and max of the RGB triplet
-    ImageDataTypeConversion = rtDW.ImageDataTypeConversion[i];
-    ImageDataTypeConversion_0 = rtDW.ImageDataTypeConversion[i + 900000];
-    if (ImageDataTypeConversion > ImageDataTypeConversion_0) {
-      ImageDataTypeConversion_1 = rtDW.ImageDataTypeConversion[i + 1800000];
-      if (ImageDataTypeConversion_0 < ImageDataTypeConversion_1) {
-        count_right = ImageDataTypeConversion_0;
+    rtDW.ImageDataTypeConversion_b = rtDW.ImageDataTypeConversion[rtDW.i];
+    rtDW.ImageDataTypeConversion_p = rtDW.ImageDataTypeConversion[rtDW.i +
+      900000];
+    if (rtDW.ImageDataTypeConversion_b > rtDW.ImageDataTypeConversion_p) {
+      rtDW.ImageDataTypeConversion_c = rtDW.ImageDataTypeConversion[rtDW.i +
+        1800000];
+      if (rtDW.ImageDataTypeConversion_p < rtDW.ImageDataTypeConversion_c) {
+        rtDW.count_right = rtDW.ImageDataTypeConversion_p;
       } else {
-        count_right = ImageDataTypeConversion_1;
+        rtDW.count_right = rtDW.ImageDataTypeConversion_c;
       }
 
-      if (ImageDataTypeConversion > ImageDataTypeConversion_1) {
-        bestInlierDis = ImageDataTypeConversion;
+      if (rtDW.ImageDataTypeConversion_b > rtDW.ImageDataTypeConversion_c) {
+        rtDW.bestInlierDis = rtDW.ImageDataTypeConversion_b;
       } else {
-        bestInlierDis = ImageDataTypeConversion_1;
+        rtDW.bestInlierDis = rtDW.ImageDataTypeConversion_c;
       }
     } else {
-      ImageDataTypeConversion_1 = rtDW.ImageDataTypeConversion[i + 1800000];
-      if (ImageDataTypeConversion < ImageDataTypeConversion_1) {
-        count_right = ImageDataTypeConversion;
+      rtDW.ImageDataTypeConversion_c = rtDW.ImageDataTypeConversion[rtDW.i +
+        1800000];
+      if (rtDW.ImageDataTypeConversion_b < rtDW.ImageDataTypeConversion_c) {
+        rtDW.count_right = rtDW.ImageDataTypeConversion_b;
       } else {
-        count_right = ImageDataTypeConversion_1;
+        rtDW.count_right = rtDW.ImageDataTypeConversion_c;
       }
 
-      if (ImageDataTypeConversion_0 > ImageDataTypeConversion_1) {
-        bestInlierDis = ImageDataTypeConversion_0;
+      if (rtDW.ImageDataTypeConversion_p > rtDW.ImageDataTypeConversion_c) {
+        rtDW.bestInlierDis = rtDW.ImageDataTypeConversion_p;
       } else {
-        bestInlierDis = ImageDataTypeConversion_1;
+        rtDW.bestInlierDis = rtDW.ImageDataTypeConversion_c;
       }
     }
 
-    s1DivS2 = bestInlierDis - count_right;
-    if (bestInlierDis != 0.0) {
-      count_right = s1DivS2 / bestInlierDis;
+    rtDW.s1DivS2 = rtDW.bestInlierDis - rtDW.count_right;
+    if (rtDW.bestInlierDis != 0.0) {
+      rtDW.count_right = rtDW.s1DivS2 / rtDW.bestInlierDis;
     } else {
-      count_right = 0.0;
+      rtDW.count_right = 0.0;
     }
 
-    if (s1DivS2 != 0.0) {
-      if (ImageDataTypeConversion == bestInlierDis) {
-        s1DivS2 = (ImageDataTypeConversion_0 - ImageDataTypeConversion_1) /
-          s1DivS2;
-      } else if (ImageDataTypeConversion_0 == bestInlierDis) {
-        s1DivS2 = (ImageDataTypeConversion_1 - ImageDataTypeConversion) /
-          s1DivS2 + 2.0;
+    if (rtDW.s1DivS2 != 0.0) {
+      if (rtDW.ImageDataTypeConversion_b == rtDW.bestInlierDis) {
+        rtDW.s1DivS2 = (rtDW.ImageDataTypeConversion_p -
+                        rtDW.ImageDataTypeConversion_c) / rtDW.s1DivS2;
+      } else if (rtDW.ImageDataTypeConversion_p == rtDW.bestInlierDis) {
+        rtDW.s1DivS2 = (rtDW.ImageDataTypeConversion_c -
+                        rtDW.ImageDataTypeConversion_b) / rtDW.s1DivS2 + 2.0;
       } else {
-        s1DivS2 = (ImageDataTypeConversion - ImageDataTypeConversion_0) /
-          s1DivS2 + 4.0;
+        rtDW.s1DivS2 = (rtDW.ImageDataTypeConversion_b -
+                        rtDW.ImageDataTypeConversion_p) / rtDW.s1DivS2 + 4.0;
       }
 
-      s1DivS2 /= 6.0;
-      if (s1DivS2 < 0.0) {
-        s1DivS2++;
+      rtDW.s1DivS2 /= 6.0;
+      if (rtDW.s1DivS2 < 0.0) {
+        rtDW.s1DivS2++;
       }
     } else {
-      s1DivS2 = 0.0;
+      rtDW.s1DivS2 = 0.0;
     }
 
     // assign the results
-    rtDW.ColorSpaceConversion[i] = s1DivS2;
+    rtDW.ColorSpaceConversion[rtDW.i] = rtDW.s1DivS2;
 
     // S-Function (svipcolorconv): '<S1>/Color Space  Conversion'
-    rtDW.ColorSpaceConversion[i + 900000] = count_right;
+    rtDW.ColorSpaceConversion[rtDW.i + 900000] = rtDW.count_right;
 
     // S-Function (svipcolorconv): '<S1>/Color Space  Conversion'
-    rtDW.ColorSpaceConversion[i + 1800000] = bestInlierDis;
+    rtDW.ColorSpaceConversion[rtDW.i + 1800000] = rtDW.bestInlierDis;
 
     // MATLAB Function: '<S1>/MATLAB Function4' incorporates:
     //   S-Function (svipcolorconv): '<S1>/Color Space  Conversion'
 
-    rtDW.S_Channel[i] = count_right;
+    rtDW.S_Channel[rtDW.i] = rtDW.count_right;
   }
 
-  for (i_0 = 0; i_0 < 8; i_0++) {
+  for (rtDW.i_d = 0; rtDW.i_d < 8; rtDW.i_d++) {
     // MATLAB Function: '<S1>/MATLAB Function1'
-    rtb_pts1[i_0] = tmp[i_0];
+    rtDW.pts1[rtDW.i_d] = tmp[rtDW.i_d];
 
     // MATLAB Function: '<S1>/MATLAB Function2'
-    rtb_pts2[i_0] = tmp_0[i_0];
+    rtDW.pts2[rtDW.i_d] = tmp_0[rtDW.i_d];
   }
 
   // S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
-  std::memset(&rtb_EstimateGeometricTransformation[0], 0, 9U * sizeof(double));
-  EstimateGeometricTransformation_DW_BEST_SAMPLE[0] = 0;
-  EstimateGeometricTransformation_DW_BEST_SAMPLE[1] = 1;
-  EstimateGeometricTransformation_DW_BEST_SAMPLE[2] = 2;
-  EstimateGeometricTransformation_DW_BEST_SAMPLE[3] = 3;
-  makeConstraintMatrix_Projective_D_D((const double *)&rtb_pts1[0], (const
-    double *)&rtb_pts2[0], 4U, 4U,
-    &EstimateGeometricTransformation_DW_CONSTRT_ALL[0]);
-  for (i = 0; i < 4; i++) {
-    EstimateGeometricTransformation_DW_SAMPLEIDX[i] = static_cast<uint32_t>
-      (EstimateGeometricTransformation_DW_BEST_SAMPLE[i]);
+  memset(&rtDW.EstimateGeometricTransformation[0], 0, 9U * sizeof(real_T));
+  rtDW.EstimateGeometricTransformation_DW_BEST_SAMPLE[0] = 0;
+  rtDW.EstimateGeometricTransformation_DW_BEST_SAMPLE[1] = 1;
+  rtDW.EstimateGeometricTransformation_DW_BEST_SAMPLE[2] = 2;
+  rtDW.EstimateGeometricTransformation_DW_BEST_SAMPLE[3] = 3;
+  makeConstraintMatrix_Projective_D_D((const real_T *)&rtDW.pts1[0], (const
+    real_T *)&rtDW.pts2[0], 4U, 4U,
+    &rtDW.EstimateGeometricTransformation_DW_CONSTRT_ALL[0]);
+  rtDW.i = 0;
+  while (rtDW.i < 4) {
+    rtDW.EstimateGeometricTransformation_DW_SAMPLEIDX[rtDW.i] = static_cast<
+      uint32_T>(rtDW.EstimateGeometricTransformation_DW_BEST_SAMPLE[rtDW.i]);
+    rtDW.i++;
   }
 
-  bestCol = 0U;
-  normPts_D_D((const double *)&rtb_pts1[0], (const uint32_t *)
-              &EstimateGeometricTransformation_DW_SAMPLEIDX[0], 4U, 4U,
-              &EstimateGeometricTransformation_DW_PTSNORM1[0], &rightx_current,
-              &cents1[0]);
-  normPts_D_D((const double *)&rtb_pts2[0], (const uint32_t *)
-              &EstimateGeometricTransformation_DW_SAMPLEIDX[0], 4U, 4U,
-              &EstimateGeometricTransformation_DW_PTSNORM2[0], &leftx_current,
-              &cents2[0]);
-  makeConstraintMatrix_Projective_D_D((const double *)
-    &EstimateGeometricTransformation_DW_PTSNORM1[0], (const double *)
-    &EstimateGeometricTransformation_DW_PTSNORM2[0], 4U, 4U, &Constraint[0]);
-  for (i = 0; i < 8; i++) {
-    JPVT[static_cast<uint32_t>(i)] = 0;
+  rtDW.bestCol = 0U;
+  normPts_D_D((const real_T *)&rtDW.pts1[0], (const uint32_T *)
+              &rtDW.EstimateGeometricTransformation_DW_SAMPLEIDX[0], 4U, 4U,
+              &rtDW.EstimateGeometricTransformation_DW_PTSNORM1[0],
+              &rtDW.rightx_current, &rtDW.cents1[0]);
+  normPts_D_D((const real_T *)&rtDW.pts2[0], (const uint32_T *)
+              &rtDW.EstimateGeometricTransformation_DW_SAMPLEIDX[0], 4U, 4U,
+              &rtDW.EstimateGeometricTransformation_DW_PTSNORM2[0],
+              &rtDW.leftx_current, &rtDW.cents2[0]);
+  makeConstraintMatrix_Projective_D_D((const real_T *)
+    &rtDW.EstimateGeometricTransformation_DW_PTSNORM1[0], (const real_T *)
+    &rtDW.EstimateGeometricTransformation_DW_PTSNORM2[0], 4U, 4U,
+    &rtDW.Constraint[0]);
+  for (rtDW.i = 0; rtDW.i < 8; rtDW.i++) {
+    rtDW.JPVT[static_cast<uint32_T>(rtDW.i)] = 0;
   }
 
-  QRE_double(&Q[0], &Constraint[0], &E[0], &Qraux[0], &Work[0], &JPVT[0], &RV[0],
-             9, 8, true);
-  count_right = 0.0;
-  for (i = 0; i < 9; i++) {
-    for (j = 0; j < 9; j++) {
-      if (static_cast<uint32_t>(i) != static_cast<uint32_t>(j)) {
-        s1DivS2 = 0.0;
+  QRE_real_T_k(&rtDW.Q[0], &rtDW.Constraint[0], &rtDW.E[0], &rtDW.Qraux[0],
+               &rtDW.Work[0], &rtDW.JPVT[0], &rtDW.RV[0], 9, 8, true);
+  rtDW.count_right = 0.0;
+  for (rtDW.i = 0; rtDW.i < 9; rtDW.i++) {
+    for (rtDW.j = 0; rtDW.j < 9; rtDW.j++) {
+      if (static_cast<uint32_T>(rtDW.i) != static_cast<uint32_T>(rtDW.j)) {
+        rtDW.s1DivS2 = 0.0;
       } else {
-        s1DivS2 = -1.0;
+        rtDW.s1DivS2 = -1.0;
       }
 
-      for (m = 0; m < 8; m++) {
-        s1DivS2_tmp = static_cast<uint32_t>(m) * 9U;
-        s1DivS2 += Q[s1DivS2_tmp + static_cast<uint32_t>(i)] * Q[s1DivS2_tmp +
-          static_cast<uint32_t>(j)];
+      for (rtDW.m = 0; rtDW.m < 8; rtDW.m++) {
+        rtDW.s1DivS2_tmp = static_cast<uint32_T>(rtDW.m) * 9U;
+        rtDW.s1DivS2 += rtDW.Q[rtDW.s1DivS2_tmp + static_cast<uint32_T>(rtDW.i)]
+          * rtDW.Q[rtDW.s1DivS2_tmp + static_cast<uint32_T>(rtDW.j)];
       }
 
-      RV[static_cast<uint32_t>(i) * 9U + static_cast<uint32_t>(j)] = s1DivS2;
-      if (!(s1DivS2 >= 0.0)) {
-        s1DivS2 = -s1DivS2;
+      rtDW.RV[static_cast<uint32_T>(rtDW.i) * 9U + static_cast<uint32_T>(rtDW.j)]
+        = rtDW.s1DivS2;
+      if (!(rtDW.s1DivS2 >= 0.0)) {
+        rtDW.s1DivS2 = -rtDW.s1DivS2;
       }
 
-      if (count_right < s1DivS2) {
-        count_right = s1DivS2;
-        bestCol = static_cast<uint32_t>(i);
+      if (rtDW.count_right < rtDW.s1DivS2) {
+        rtDW.count_right = rtDW.s1DivS2;
+        rtDW.bestCol = static_cast<uint32_T>(rtDW.i);
       }
     }
   }
 
-  j = static_cast<int32_t>(bestCol * 9U);
-  for (i = 0; i < 9; i++) {
-    tformCompact[static_cast<uint32_t>(i)] = RV[static_cast<uint32_t>(j) +
-      static_cast<uint32_t>(i)];
+  rtDW.j = static_cast<int32_T>(rtDW.bestCol * 9U);
+  for (rtDW.i = 0; rtDW.i < 9; rtDW.i++) {
+    rtDW.tformCompact[static_cast<uint32_T>(rtDW.i)] = rtDW.RV
+      [static_cast<uint32_T>(rtDW.j) + static_cast<uint32_T>(rtDW.i)];
   }
 
-  count_right = 1.0 / leftx_current;
-  s1DivS2 = rightx_current * count_right;
-  tformCompact_0[6] = tformCompact[6] * rightx_current;
-  tformCompact_0[7] = tformCompact[7] * rightx_current;
-  tformCompact_0[8] = (tformCompact[8] - cents1[0] * tformCompact_0[6]) -
-    cents1[1] * tformCompact_0[7];
-  tformCompact_0[0] = tformCompact[0] * s1DivS2;
-  tformCompact_0[1] = tformCompact[1] * s1DivS2;
-  tformCompact_0[2] = ((cents2[0] * tformCompact_0[8] - tformCompact_0[0] *
-                        cents1[0]) - tformCompact_0[1] * cents1[1]) +
-    tformCompact[2] * count_right;
-  tformCompact_0[3] = tformCompact[3] * s1DivS2;
-  tformCompact_0[4] = tformCompact[4] * s1DivS2;
-  tformCompact_0[5] = ((cents2[1] * tformCompact_0[8] - cents1[0] *
-                        tformCompact_0[3]) - cents1[1] * tformCompact_0[4]) +
-    tformCompact[5] * count_right;
-  tformCompact_0[0] += cents2[0] * tformCompact_0[6];
-  tformCompact_0[1] += cents2[0] * tformCompact_0[7];
-  tformCompact_0[3] += cents2[1] * tformCompact_0[6];
-  tformCompact_0[4] += cents2[1] * tformCompact_0[7];
-  if (tformCompact_0[8U] != 0.0) {
-    count_right = 1.0 / tformCompact_0[8];
-    for (i = 0; i < 8; i++) {
-      tformCompact_0[static_cast<uint32_t>(i)] *= count_right;
+  rtDW.count_right = 1.0 / rtDW.leftx_current;
+  rtDW.s1DivS2 = rtDW.rightx_current * rtDW.count_right;
+  rtDW.tformCompact_c[6] = rtDW.tformCompact[6] * rtDW.rightx_current;
+  rtDW.tformCompact_c[7] = rtDW.tformCompact[7] * rtDW.rightx_current;
+  rtDW.tformCompact_c[8] = (rtDW.tformCompact[8] - rtDW.cents1[0] *
+    rtDW.tformCompact_c[6]) - rtDW.cents1[1] * rtDW.tformCompact_c[7];
+  rtDW.tformCompact_c[0] = rtDW.tformCompact[0] * rtDW.s1DivS2;
+  rtDW.tformCompact_c[1] = rtDW.tformCompact[1] * rtDW.s1DivS2;
+  rtDW.tformCompact_c[2] = ((rtDW.cents2[0] * rtDW.tformCompact_c[8] -
+    rtDW.tformCompact_c[0] * rtDW.cents1[0]) - rtDW.tformCompact_c[1] *
+    rtDW.cents1[1]) + rtDW.tformCompact[2] * rtDW.count_right;
+  rtDW.tformCompact_c[3] = rtDW.tformCompact[3] * rtDW.s1DivS2;
+  rtDW.tformCompact_c[4] = rtDW.tformCompact[4] * rtDW.s1DivS2;
+  rtDW.tformCompact_c[5] = ((rtDW.cents2[1] * rtDW.tformCompact_c[8] -
+    rtDW.cents1[0] * rtDW.tformCompact_c[3]) - rtDW.cents1[1] *
+    rtDW.tformCompact_c[4]) + rtDW.tformCompact[5] * rtDW.count_right;
+  rtDW.tformCompact_c[0] += rtDW.cents2[0] * rtDW.tformCompact_c[6];
+  rtDW.tformCompact_c[1] += rtDW.cents2[0] * rtDW.tformCompact_c[7];
+  rtDW.tformCompact_c[3] += rtDW.cents2[1] * rtDW.tformCompact_c[6];
+  rtDW.tformCompact_c[4] += rtDW.cents2[1] * rtDW.tformCompact_c[7];
+  if (rtDW.tformCompact_c[8U] != 0.0) {
+    rtDW.count_right = 1.0 / rtDW.tformCompact_c[8];
+    for (rtDW.i = 0; rtDW.i < 8; rtDW.i++) {
+      rtDW.tformCompact_c[static_cast<uint32_T>(rtDW.i)] *= rtDW.count_right;
     }
 
-    tformCompact_0[8] = 1.0;
-    bestCol = 0U;
-    for (i = 0; i < 4; i++) {
-      EstimateGeometricTransformation_DW_DISTANCE[static_cast<uint32_t>(i)] =
-        0.0;
-      for (j = 0; j < 2; j++) {
-        count_right = 0.0;
-        for (m = 0; m < 9; m++) {
-          count_right += EstimateGeometricTransformation_DW_CONSTRT_ALL[bestCol
-            + static_cast<uint32_t>(m)] * tformCompact_0[static_cast<uint32_t>(m)];
+    rtDW.tformCompact_c[8] = 1.0;
+    rtDW.bestCol = 0U;
+    for (rtDW.i = 0; rtDW.i < 4; rtDW.i++) {
+      rtDW.EstimateGeometricTransformation_DW_DISTANCE[static_cast<uint32_T>
+        (rtDW.i)] = 0.0;
+      for (rtDW.j = 0; rtDW.j < 2; rtDW.j++) {
+        rtDW.count_right = 0.0;
+        for (rtDW.m = 0; rtDW.m < 9; rtDW.m++) {
+          rtDW.count_right +=
+            rtDW.EstimateGeometricTransformation_DW_CONSTRT_ALL[rtDW.bestCol +
+            static_cast<uint32_T>(rtDW.m)] * rtDW.tformCompact_c
+            [static_cast<uint32_T>(rtDW.m)];
         }
 
-        bestCol += 9U;
-        EstimateGeometricTransformation_DW_DISTANCE[static_cast<uint32_t>(i)] +=
-          count_right * count_right;
+        rtDW.bestCol += 9U;
+        rtDW.EstimateGeometricTransformation_DW_DISTANCE[static_cast<uint32_T>
+          (rtDW.i)] += rtDW.count_right * rtDW.count_right;
       }
     }
 
-    std::memcpy(&bestTFormCompact[0], &tformCompact_0[0], 9U * sizeof(double));
-    i = 0;
-    if (EstimateGeometricTransformation_DW_DISTANCE[0] <= 2.5) {
-      i = 1;
+    memcpy(&rtDW.bestTFormCompact[0], &rtDW.tformCompact_c[0], 9U * sizeof
+           (real_T));
+    rtDW.i = 0;
+    if (rtDW.EstimateGeometricTransformation_DW_DISTANCE[0] <=
+        rtP.EstimateGeometricTransformation_distanceAlg) {
+      rtDW.i = 1;
     }
 
-    if (EstimateGeometricTransformation_DW_DISTANCE[1] <= 2.5) {
-      i = static_cast<int32_t>(static_cast<uint32_t>(i) + 1U);
+    if (rtDW.EstimateGeometricTransformation_DW_DISTANCE[1] <=
+        rtP.EstimateGeometricTransformation_distanceAlg) {
+      rtDW.i = static_cast<int32_T>(static_cast<uint32_T>(rtDW.i) + 1U);
     }
 
-    if (EstimateGeometricTransformation_DW_DISTANCE[2] <= 2.5) {
-      i = static_cast<int32_t>(static_cast<uint32_t>(i) + 1U);
+    if (rtDW.EstimateGeometricTransformation_DW_DISTANCE[2] <=
+        rtP.EstimateGeometricTransformation_distanceAlg) {
+      rtDW.i = static_cast<int32_T>(static_cast<uint32_T>(rtDW.i) + 1U);
     }
 
-    if (EstimateGeometricTransformation_DW_DISTANCE[3] <= 2.5) {
-      i = static_cast<int32_t>(static_cast<uint32_t>(i) + 1U);
+    if (rtDW.EstimateGeometricTransformation_DW_DISTANCE[3] <=
+        rtP.EstimateGeometricTransformation_distanceAlg) {
+      rtDW.i = static_cast<int32_T>(static_cast<uint32_T>(rtDW.i) + 1U);
     }
   } else {
-    i = 0;
+    rtDW.i = 0;
   }
 
-  if (static_cast<uint32_t>(i) >= 4U) {
-    rtb_EstimateGeometricTransformation[0] = bestTFormCompact[4];
-    rtb_EstimateGeometricTransformation[1] = bestTFormCompact[3];
-    rtb_EstimateGeometricTransformation[2] = bestTFormCompact[5];
-    rtb_EstimateGeometricTransformation[3] = bestTFormCompact[1];
-    rtb_EstimateGeometricTransformation[4] = bestTFormCompact[0];
-    rtb_EstimateGeometricTransformation[5] = bestTFormCompact[2];
-    rtb_EstimateGeometricTransformation[6] = bestTFormCompact[7];
-    rtb_EstimateGeometricTransformation[7] = bestTFormCompact[6];
-    rtb_EstimateGeometricTransformation[8] = bestTFormCompact[8];
+  if (static_cast<uint32_T>(rtDW.i) >= 4U) {
+    rtDW.EstimateGeometricTransformation[0] = rtDW.bestTFormCompact[4];
+    rtDW.EstimateGeometricTransformation[1] = rtDW.bestTFormCompact[3];
+    rtDW.EstimateGeometricTransformation[2] = rtDW.bestTFormCompact[5];
+    rtDW.EstimateGeometricTransformation[3] = rtDW.bestTFormCompact[1];
+    rtDW.EstimateGeometricTransformation[4] = rtDW.bestTFormCompact[0];
+    rtDW.EstimateGeometricTransformation[5] = rtDW.bestTFormCompact[2];
+    rtDW.EstimateGeometricTransformation[6] = rtDW.bestTFormCompact[7];
+    rtDW.EstimateGeometricTransformation[7] = rtDW.bestTFormCompact[6];
+    rtDW.EstimateGeometricTransformation[8] = rtDW.bestTFormCompact[8];
   }
 
   // MATLAB Function: '<S1>/MATLAB Function6'
-  for (i_0 = 0; i_0 < 900000; i_0++) {
-    rtDW.rtb_S_Channel_l[i_0] = (rtDW.S_Channel[i_0] > 0.75);
+  for (rtDW.i_d = 0; rtDW.i_d < 900000; rtDW.i_d++) {
+    rtDW.rtb_S_Channel_b[rtDW.i_d] = (rtDW.S_Channel[rtDW.i_d] > 0.75);
   }
 
   // End of MATLAB Function: '<S1>/MATLAB Function6'
@@ -2252,40 +2146,41 @@ void Perception::step()
   // MATLABSystem: '<S1>/Warp' incorporates:
   //   S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
 
-  Warp_stepImpl(&rtDW.obj, &rtDW.rtb_S_Channel_l[0],
-                &rtb_EstimateGeometricTransformation[0], &rtDW.bv[0]);
+  Warp_stepImpl(&rtDW.obj, rtDW.rtb_S_Channel_b,
+                rtDW.EstimateGeometricTransformation, rtDW.bv);
 
   // MATLAB Function: '<S1>/MATLAB Function3' incorporates:
   //   MATLABSystem: '<S1>/Warp'
 
-  for (i = 0; i < 1200; i++) {
-    m = i * 376;
-    i_0 = rtDW.bv[(m / 376 * 750 + m % 376) + 374];
-    for (j = 0; j < 375; j++) {
-      s = (m + j) + 1;
-      i_0 += rtDW.bv[(s / 376 * 750 + s % 376) + 374];
+  for (rtDW.i = 0; rtDW.i < 1200; rtDW.i++) {
+    rtDW.m = rtDW.i * 376;
+    rtDW.nz_g = rtDW.bv[(rtDW.m / 376 * 750 + rtDW.m % 376) + 374];
+    for (rtDW.j = 0; rtDW.j < 375; rtDW.j++) {
+      rtDW.s_j = (rtDW.m + rtDW.j) + 1;
+      rtDW.nz_g += rtDW.bv[(rtDW.s_j / 376 * 750 + rtDW.s_j % 376) + 374];
     }
 
-    rtDW.nz[i] = i_0;
+    rtDW.nz[rtDW.i] = rtDW.nz_g;
   }
 
-  findpeaks(&rtDW.nz[0], rtDW.a__1_data, a__1_size, rtDW.locs_data, locs_size);
-  end = locs_size[1] - 1;
-  trueCount = 0;
-  for (i = 0; i <= end; i++) {
+  findpeaks(rtDW.nz, rtDW.a__1_data, rtDW.a__1_size, rtDW.locs_data,
+            rtDW.locs_size);
+  rtDW.end = rtDW.locs_size[1] - 1;
+  rtDW.trueCount = 0;
+  for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
     // MATLAB Function: '<S1>/MATLAB Function3'
-    if (rtDW.locs_data[i] - rtDW.locs_data[0] > 200.0) {
-      trueCount++;
+    if (rtDW.locs_data[rtDW.i] - rtDW.locs_data[0] > 200.0) {
+      rtDW.trueCount++;
     }
   }
 
-  i_0 = trueCount;
-  trueCount = 0;
-  for (i = 0; i <= end; i++) {
+  rtDW.i_d = rtDW.trueCount;
+  rtDW.trueCount = 0;
+  for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
     // MATLAB Function: '<S1>/MATLAB Function3'
-    if (rtDW.locs_data[i] - rtDW.locs_data[0] > 200.0) {
-      tmp_data[trueCount] = static_cast<int16_t>(i);
-      trueCount++;
+    if (rtDW.locs_data[rtDW.i] - rtDW.locs_data[0] > 200.0) {
+      rtDW.tmp_data[rtDW.trueCount] = static_cast<int16_T>(rtDW.i);
+      rtDW.trueCount++;
     }
   }
 
@@ -2293,346 +2188,391 @@ void Perception::step()
   //   MATLABSystem: '<S1>/Warp'
   //   S-Function (svipesttform): '<S1>/Estimate Geometric Transformation'
 
-  rightx_current = rtDW.locs_data[tmp_data[i_0 - 1]];
-  leftx_current = rtDW.locs_data[0];
-  std::memset(&rtDW.left_lane_index[0], 0, 200000U * sizeof(int32_t));
-  std::memset(&rtDW.right_lane_index[0], 0, 200000U * sizeof(int32_t));
-  eml_find(&rtDW.bv[0], rtDW.ii_data, &s, rtDW.jj_data, &jj_size);
-  bestInlierDis = 0.0;
-  count_right = 0.0;
-  for (i = 0; i < 10; i++) {
-    j = 750 - (i + 1) * 75;
-    m = 750 - i * 75;
-    for (i_0 = 0; i_0 < jj_size; i_0++) {
-      rtDW.n_tmp_data[i_0] = rtDW.jj_data[i_0];
+  rtDW.rightx_current = rtDW.locs_data[rtDW.tmp_data[rtDW.i_d - 1]];
+  rtDW.leftx_current = rtDW.locs_data[0];
+  memset(&rtDW.left_lane_index_l[0], 0, 200000U * sizeof(int32_T));
+  memset(&rtDW.right_lane_index[0], 0, 200000U * sizeof(int32_T));
+  eml_find(rtDW.bv, rtDW.ii, rtDW.jj);
+  rtDW.bestInlierDis = 0.0;
+  rtDW.count_right = 0.0;
+  rtDW.nz_g = rtDW.jj.size(0);
+  rtDW.s_j = rtDW.ii.size(0);
+  for (rtDW.i = 0; rtDW.i < 10; rtDW.i++) {
+    rtDW.j = 750 - (rtDW.i + 1) * 75;
+    rtDW.m = 750 - rtDW.i * 75;
+    rtDW.n_tmp.set_size(rtDW.jj.size(0));
+    for (rtDW.i_d = 0; rtDW.i_d < rtDW.nz_g; rtDW.i_d++) {
+      rtDW.n_tmp[rtDW.i_d] = rtDW.jj[rtDW.i_d];
     }
 
-    b_tmp_tmp_size = s;
-    for (i_0 = 0; i_0 < s; i_0++) {
-      end = rtDW.ii_data[i_0];
-      rtDW.b_tmp_tmp_data[i_0] = ((end >= j) && (end < m));
+    rtDW.b_tmp_tmp.set_size(rtDW.ii.size(0));
+    for (rtDW.i_d = 0; rtDW.i_d < rtDW.s_j; rtDW.i_d++) {
+      rtDW.end = rtDW.ii[rtDW.i_d];
+      rtDW.b_tmp_tmp[rtDW.i_d] = ((rtDW.end >= rtDW.j) && (rtDW.end < rtDW.m));
     }
 
-    if (s == jj_size) {
-      b_tmp_size = s;
-      for (i_0 = 0; i_0 < s; i_0++) {
-        rtDW.b_tmp_data[i_0] = (rtDW.b_tmp_tmp_data[i_0] && (rtDW.n_tmp_data[i_0]
-          >= leftx_current - 80.0));
+    if (rtDW.b_tmp_tmp.size(0) == rtDW.n_tmp.size(0)) {
+      rtDW.b_tmp.set_size(rtDW.b_tmp_tmp.size(0));
+      rtDW.j = rtDW.b_tmp_tmp.size(0);
+      for (rtDW.i_d = 0; rtDW.i_d < rtDW.j; rtDW.i_d++) {
+        rtDW.b_tmp[rtDW.i_d] = (rtDW.b_tmp_tmp[rtDW.i_d] && (rtDW.n_tmp[rtDW.i_d]
+          >= rtDW.leftx_current - 80.0));
       }
     } else {
-      binary_expand_op_1(rtDW.b_tmp_data, &b_tmp_size, rtDW.b_tmp_tmp_data, &s,
-                         rtDW.n_tmp_data, &jj_size, leftx_current);
+      binary_expand_op_1(rtDW.b_tmp, rtDW.b_tmp_tmp, rtDW.n_tmp,
+                         rtDW.leftx_current);
     }
 
-    for (i_0 = 0; i_0 < jj_size; i_0++) {
-      rtDW.o_data[i_0] = (rtDW.n_tmp_data[i_0] < leftx_current + 80.0);
+    rtDW.o.set_size(rtDW.n_tmp.size(0));
+    rtDW.j = rtDW.n_tmp.size(0);
+    for (rtDW.i_d = 0; rtDW.i_d < rtDW.j; rtDW.i_d++) {
+      rtDW.o[rtDW.i_d] = (rtDW.n_tmp[rtDW.i_d] < rtDW.leftx_current + 80.0);
     }
 
-    if (s == jj_size) {
-      for (i_0 = 0; i_0 < s; i_0++) {
-        rtDW.b_tmp_tmp_data[i_0] = (rtDW.b_tmp_tmp_data[i_0] &&
-          (rtDW.n_tmp_data[i_0] >= rightx_current - 80.0));
+    if (rtDW.b_tmp_tmp.size(0) == rtDW.n_tmp.size(0)) {
+      rtDW.j = rtDW.b_tmp_tmp.size(0);
+      for (rtDW.i_d = 0; rtDW.i_d < rtDW.j; rtDW.i_d++) {
+        rtDW.b_tmp_tmp[rtDW.i_d] = (rtDW.b_tmp_tmp[rtDW.i_d] &&
+          (rtDW.n_tmp[rtDW.i_d] >= rtDW.rightx_current - 80.0));
       }
     } else {
-      binary_expand_op(rtDW.b_tmp_tmp_data, &b_tmp_tmp_size, rtDW.n_tmp_data,
-                       &jj_size, rightx_current);
+      binary_expand_op(rtDW.b_tmp_tmp, rtDW.n_tmp, rtDW.rightx_current);
     }
 
-    for (i_0 = 0; i_0 < jj_size; i_0++) {
-      rtDW.r_data[i_0] = (rtDW.n_tmp_data[i_0] < rightx_current + 80.0);
+    rtDW.r.set_size(rtDW.n_tmp.size(0));
+    rtDW.j = rtDW.n_tmp.size(0);
+    for (rtDW.i_d = 0; rtDW.i_d < rtDW.j; rtDW.i_d++) {
+      rtDW.r[rtDW.i_d] = (rtDW.n_tmp[rtDW.i_d] < rtDW.rightx_current + 80.0);
     }
 
-    ImageDataTypeConversion = bestInlierDis + 1.0;
-    if (b_tmp_size == jj_size) {
-      end = b_tmp_size;
-      for (i_0 = 0; i_0 < b_tmp_size; i_0++) {
-        rtDW.tmp_data_f[i_0] = (rtDW.b_tmp_data[i_0] && rtDW.o_data[i_0]);
+    rtDW.ImageDataTypeConversion_b = rtDW.bestInlierDis + 1.0;
+    if (rtDW.b_tmp.size(0) == rtDW.o.size(0)) {
+      rtDW.r_m.set_size(rtDW.b_tmp.size(0));
+      rtDW.j = rtDW.b_tmp.size(0);
+      for (rtDW.i_d = 0; rtDW.i_d < rtDW.j; rtDW.i_d++) {
+        rtDW.r_m[rtDW.i_d] = (rtDW.b_tmp[rtDW.i_d] && rtDW.o[rtDW.i_d]);
       }
     } else {
-      and_k(rtDW.tmp_data_f, &end, rtDW.b_tmp_data, &b_tmp_size, rtDW.o_data,
-            &jj_size);
+      and_k(rtDW.r_m, rtDW.b_tmp, rtDW.o);
     }
 
-    end--;
-    trueCount = 0;
-    for (i_0 = 0; i_0 <= end; i_0++) {
-      if (rtDW.tmp_data_f[i_0]) {
-        trueCount++;
+    rtDW.end = rtDW.r_m.size(0) - 1;
+    rtDW.trueCount = 0;
+    for (rtDW.i_d = 0; rtDW.i_d <= rtDW.end; rtDW.i_d++) {
+      if (rtDW.r_m[rtDW.i_d]) {
+        rtDW.trueCount++;
       }
     }
 
-    m = static_cast<int32_t>((1.0 - (bestInlierDis + 1.0)) + static_cast<double>
-      (trueCount));
-    for (j = 0; j < m; j++) {
-      s1DivS2 = ImageDataTypeConversion + static_cast<double>(j);
-      if (b_tmp_size == jj_size) {
-        end = b_tmp_size;
-        for (i_0 = 0; i_0 < b_tmp_size; i_0++) {
-          rtDW.tmp_data_g1[i_0] = (rtDW.b_tmp_data[i_0] && rtDW.o_data[i_0]);
+    rtDW.m = static_cast<int32_T>((1.0 - (rtDW.bestInlierDis + 1.0)) +
+      static_cast<real_T>(rtDW.trueCount));
+    for (rtDW.j = 0; rtDW.j < rtDW.m; rtDW.j++) {
+      rtDW.s1DivS2 = rtDW.ImageDataTypeConversion_b + static_cast<real_T>(rtDW.j);
+      rtDW.end = rtDW.b_tmp.size(0);
+      if (rtDW.b_tmp.size(0) == rtDW.o.size(0)) {
+        rtDW.r2.set_size(rtDW.b_tmp.size(0));
+        for (rtDW.i_d = 0; rtDW.i_d < rtDW.end; rtDW.i_d++) {
+          rtDW.r2[rtDW.i_d] = (rtDW.b_tmp[rtDW.i_d] && rtDW.o[rtDW.i_d]);
         }
       } else {
-        and_k(rtDW.tmp_data_g1, &end, rtDW.b_tmp_data, &b_tmp_size, rtDW.o_data,
-              &jj_size);
+        and_k(rtDW.r2, rtDW.b_tmp, rtDW.o);
       }
 
-      if (b_tmp_size == jj_size) {
-        tmp_size = b_tmp_size;
-        for (i_0 = 0; i_0 < b_tmp_size; i_0++) {
-          rtDW.tmp_data_m[i_0] = (rtDW.b_tmp_data[i_0] && rtDW.o_data[i_0]);
+      rtDW.end = rtDW.b_tmp.size(0);
+      if (rtDW.b_tmp.size(0) == rtDW.o.size(0)) {
+        rtDW.r3.set_size(rtDW.b_tmp.size(0));
+        for (rtDW.i_d = 0; rtDW.i_d < rtDW.end; rtDW.i_d++) {
+          rtDW.r3[rtDW.i_d] = (rtDW.b_tmp[rtDW.i_d] && rtDW.o[rtDW.i_d]);
         }
       } else {
-        and_k(rtDW.tmp_data_m, &tmp_size, rtDW.b_tmp_data, &b_tmp_size,
-              rtDW.o_data, &jj_size);
+        and_k(rtDW.r3, rtDW.b_tmp, rtDW.o);
       }
 
-      end--;
-      trueCount = 0;
-      for (i_0 = 0; i_0 <= end; i_0++) {
-        if (rtDW.tmp_data_g1[i_0]) {
-          rtDW.tmp_data[trueCount] = i_0;
-          trueCount++;
+      rtDW.end = rtDW.r2.size(0) - 1;
+      rtDW.trueCount = 0;
+      for (rtDW.i_d = 0; rtDW.i_d <= rtDW.end; rtDW.i_d++) {
+        if (rtDW.r2[rtDW.i_d]) {
+          rtDW.trueCount++;
         }
       }
 
-      end = tmp_size - 1;
-      trueCount = 0;
-      for (i_0 = 0; i_0 <= end; i_0++) {
-        if (rtDW.tmp_data_m[i_0]) {
-          rtDW.tmp_data_k[trueCount] = i_0;
-          trueCount++;
+      rtDW.r10.set_size(rtDW.trueCount);
+      rtDW.trueCount = 0;
+      for (rtDW.i_d = 0; rtDW.i_d <= rtDW.end; rtDW.i_d++) {
+        if (rtDW.r2[rtDW.i_d]) {
+          rtDW.r10[rtDW.trueCount] = rtDW.i_d;
+          rtDW.trueCount++;
         }
       }
 
-      rtDW.left_lane_index[static_cast<int32_t>(s1DivS2) - 1] =
-        rtDW.jj_data[rtDW.tmp_data[static_cast<int32_t>(s1DivS2) - 1]];
-      rtDW.left_lane_index[static_cast<int32_t>(s1DivS2) + 99999] =
-        rtDW.ii_data[rtDW.tmp_data_k[static_cast<int32_t>(s1DivS2) - 1]];
-      bestInlierDis++;
+      rtDW.end = rtDW.r3.size(0) - 1;
+      rtDW.trueCount = 0;
+      for (rtDW.i_d = 0; rtDW.i_d <= rtDW.end; rtDW.i_d++) {
+        if (rtDW.r3[rtDW.i_d]) {
+          rtDW.trueCount++;
+        }
+      }
+
+      rtDW.r11.set_size(rtDW.trueCount);
+      rtDW.trueCount = 0;
+      for (rtDW.i_d = 0; rtDW.i_d <= rtDW.end; rtDW.i_d++) {
+        if (rtDW.r3[rtDW.i_d]) {
+          rtDW.r11[rtDW.trueCount] = rtDW.i_d;
+          rtDW.trueCount++;
+        }
+      }
+
+      rtDW.left_lane_index_l[static_cast<int32_T>(rtDW.s1DivS2) - 1] =
+        rtDW.jj[rtDW.r10[static_cast<int32_T>(rtDW.s1DivS2) - 1]];
+      rtDW.left_lane_index_l[static_cast<int32_T>(rtDW.s1DivS2) + 99999] =
+        rtDW.ii[rtDW.r11[static_cast<int32_T>(rtDW.s1DivS2) - 1]];
+      rtDW.bestInlierDis++;
     }
 
-    ImageDataTypeConversion = count_right + 1.0;
-    if (b_tmp_tmp_size == jj_size) {
-      end = b_tmp_tmp_size;
-      for (i_0 = 0; i_0 < b_tmp_tmp_size; i_0++) {
-        rtDW.tmp_data_g[i_0] = (rtDW.b_tmp_tmp_data[i_0] && rtDW.r_data[i_0]);
+    rtDW.ImageDataTypeConversion_b = rtDW.count_right + 1.0;
+    if (rtDW.b_tmp_tmp.size(0) == rtDW.r.size(0)) {
+      rtDW.r1.set_size(rtDW.b_tmp_tmp.size(0));
+      rtDW.j = rtDW.b_tmp_tmp.size(0);
+      for (rtDW.i_d = 0; rtDW.i_d < rtDW.j; rtDW.i_d++) {
+        rtDW.r1[rtDW.i_d] = (rtDW.b_tmp_tmp[rtDW.i_d] && rtDW.r[rtDW.i_d]);
       }
     } else {
-      and_k(rtDW.tmp_data_g, &end, rtDW.b_tmp_tmp_data, &b_tmp_tmp_size,
-            rtDW.r_data, &jj_size);
+      and_k(rtDW.r1, rtDW.b_tmp_tmp, rtDW.r);
     }
 
-    end--;
-    trueCount = 0;
-    for (i_0 = 0; i_0 <= end; i_0++) {
-      if (rtDW.tmp_data_g[i_0]) {
-        trueCount++;
+    rtDW.end = rtDW.r1.size(0) - 1;
+    rtDW.trueCount = 0;
+    for (rtDW.i_d = 0; rtDW.i_d <= rtDW.end; rtDW.i_d++) {
+      if (rtDW.r1[rtDW.i_d]) {
+        rtDW.trueCount++;
       }
     }
 
-    m = static_cast<int32_t>((1.0 - (count_right + 1.0)) + static_cast<double>
-      (trueCount));
-    for (j = 0; j < m; j++) {
-      s1DivS2 = ImageDataTypeConversion + static_cast<double>(j);
-      if (b_tmp_tmp_size == jj_size) {
-        end = b_tmp_tmp_size;
-        for (i_0 = 0; i_0 < b_tmp_tmp_size; i_0++) {
-          rtDW.tmp_data_l[i_0] = (rtDW.b_tmp_tmp_data[i_0] && rtDW.r_data[i_0]);
+    rtDW.m = static_cast<int32_T>((1.0 - (rtDW.count_right + 1.0)) +
+      static_cast<real_T>(rtDW.trueCount));
+    for (rtDW.j = 0; rtDW.j < rtDW.m; rtDW.j++) {
+      rtDW.s1DivS2 = rtDW.ImageDataTypeConversion_b + static_cast<real_T>(rtDW.j);
+      rtDW.end = rtDW.b_tmp_tmp.size(0);
+      if (rtDW.b_tmp_tmp.size(0) == rtDW.r.size(0)) {
+        rtDW.r6.set_size(rtDW.b_tmp_tmp.size(0));
+        for (rtDW.i_d = 0; rtDW.i_d < rtDW.end; rtDW.i_d++) {
+          rtDW.r6[rtDW.i_d] = (rtDW.b_tmp_tmp[rtDW.i_d] && rtDW.r[rtDW.i_d]);
         }
       } else {
-        and_k(rtDW.tmp_data_l, &end, rtDW.b_tmp_tmp_data, &b_tmp_tmp_size,
-              rtDW.r_data, &jj_size);
+        and_k(rtDW.r6, rtDW.b_tmp_tmp, rtDW.r);
       }
 
-      if (b_tmp_tmp_size == jj_size) {
-        tmp_size = b_tmp_tmp_size;
-        for (i_0 = 0; i_0 < b_tmp_tmp_size; i_0++) {
-          rtDW.tmp_data_d[i_0] = (rtDW.b_tmp_tmp_data[i_0] && rtDW.r_data[i_0]);
+      rtDW.end = rtDW.b_tmp_tmp.size(0);
+      if (rtDW.b_tmp_tmp.size(0) == rtDW.r.size(0)) {
+        rtDW.r8.set_size(rtDW.b_tmp_tmp.size(0));
+        for (rtDW.i_d = 0; rtDW.i_d < rtDW.end; rtDW.i_d++) {
+          rtDW.r8[rtDW.i_d] = (rtDW.b_tmp_tmp[rtDW.i_d] && rtDW.r[rtDW.i_d]);
         }
       } else {
-        and_k(rtDW.tmp_data_d, &tmp_size, rtDW.b_tmp_tmp_data, &b_tmp_tmp_size,
-              rtDW.r_data, &jj_size);
+        and_k(rtDW.r8, rtDW.b_tmp_tmp, rtDW.r);
       }
 
-      end--;
-      trueCount = 0;
-      for (i_0 = 0; i_0 <= end; i_0++) {
-        if (rtDW.tmp_data_l[i_0]) {
-          rtDW.tmp_data_b[trueCount] = i_0;
-          trueCount++;
+      rtDW.end = rtDW.r6.size(0) - 1;
+      rtDW.trueCount = 0;
+      for (rtDW.i_d = 0; rtDW.i_d <= rtDW.end; rtDW.i_d++) {
+        if (rtDW.r6[rtDW.i_d]) {
+          rtDW.trueCount++;
         }
       }
 
-      end = tmp_size - 1;
-      trueCount = 0;
-      for (i_0 = 0; i_0 <= end; i_0++) {
-        if (rtDW.tmp_data_d[i_0]) {
-          rtDW.tmp_data_p[trueCount] = i_0;
-          trueCount++;
+      rtDW.r13.set_size(rtDW.trueCount);
+      rtDW.trueCount = 0;
+      for (rtDW.i_d = 0; rtDW.i_d <= rtDW.end; rtDW.i_d++) {
+        if (rtDW.r6[rtDW.i_d]) {
+          rtDW.r13[rtDW.trueCount] = rtDW.i_d;
+          rtDW.trueCount++;
         }
       }
 
-      rtDW.right_lane_index[static_cast<int32_t>(s1DivS2) - 1] =
-        rtDW.jj_data[rtDW.tmp_data_b[static_cast<int32_t>(s1DivS2) - 1]];
-      rtDW.right_lane_index[static_cast<int32_t>(s1DivS2) + 99999] =
-        rtDW.ii_data[rtDW.tmp_data_p[static_cast<int32_t>(s1DivS2) - 1]];
-      count_right++;
+      rtDW.end = rtDW.r8.size(0) - 1;
+      rtDW.trueCount = 0;
+      for (rtDW.i_d = 0; rtDW.i_d <= rtDW.end; rtDW.i_d++) {
+        if (rtDW.r8[rtDW.i_d]) {
+          rtDW.trueCount++;
+        }
+      }
+
+      rtDW.r14.set_size(rtDW.trueCount);
+      rtDW.trueCount = 0;
+      for (rtDW.i_d = 0; rtDW.i_d <= rtDW.end; rtDW.i_d++) {
+        if (rtDW.r8[rtDW.i_d]) {
+          rtDW.r14[rtDW.trueCount] = rtDW.i_d;
+          rtDW.trueCount++;
+        }
+      }
+
+      rtDW.right_lane_index[static_cast<int32_T>(rtDW.s1DivS2) - 1] =
+        rtDW.jj[rtDW.r13[static_cast<int32_T>(rtDW.s1DivS2) - 1]];
+      rtDW.right_lane_index[static_cast<int32_T>(rtDW.s1DivS2) + 99999] =
+        rtDW.ii[rtDW.r14[static_cast<int32_T>(rtDW.s1DivS2) - 1]];
+      rtDW.count_right++;
     }
 
-    if (b_tmp_size == jj_size) {
-      end = b_tmp_size;
-      for (i_0 = 0; i_0 < b_tmp_size; i_0++) {
-        rtDW.tmp_data_n[i_0] = (rtDW.b_tmp_data[i_0] && rtDW.o_data[i_0]);
+    if (rtDW.b_tmp.size(0) == rtDW.o.size(0)) {
+      rtDW.r4.set_size(rtDW.b_tmp.size(0));
+      rtDW.j = rtDW.b_tmp.size(0);
+      for (rtDW.i_d = 0; rtDW.i_d < rtDW.j; rtDW.i_d++) {
+        rtDW.r4[rtDW.i_d] = (rtDW.b_tmp[rtDW.i_d] && rtDW.o[rtDW.i_d]);
       }
     } else {
-      and_k(rtDW.tmp_data_n, &end, rtDW.b_tmp_data, &b_tmp_size, rtDW.o_data,
-            &jj_size);
+      and_k(rtDW.r4, rtDW.b_tmp, rtDW.o);
     }
 
-    end--;
-    trueCount = 0;
-    for (i_0 = 0; i_0 <= end; i_0++) {
-      if (rtDW.tmp_data_n[i_0]) {
-        trueCount++;
+    rtDW.end = rtDW.r4.size(0) - 1;
+    rtDW.trueCount = 0;
+    for (rtDW.i_d = 0; rtDW.i_d <= rtDW.end; rtDW.i_d++) {
+      if (rtDW.r4[rtDW.i_d]) {
+        rtDW.trueCount++;
       }
     }
 
-    if (trueCount > 40) {
-      if (b_tmp_size == jj_size) {
-        end = b_tmp_size;
-        for (i_0 = 0; i_0 < b_tmp_size; i_0++) {
-          rtDW.tmp_data_pp[i_0] = (rtDW.b_tmp_data[i_0] && rtDW.o_data[i_0]);
+    if (rtDW.trueCount > 40) {
+      if (rtDW.b_tmp.size(0) == rtDW.o.size(0)) {
+        rtDW.r5.set_size(rtDW.b_tmp.size(0));
+        rtDW.j = rtDW.b_tmp.size(0);
+        for (rtDW.i_d = 0; rtDW.i_d < rtDW.j; rtDW.i_d++) {
+          rtDW.r5[rtDW.i_d] = (rtDW.b_tmp[rtDW.i_d] && rtDW.o[rtDW.i_d]);
         }
       } else {
-        and_k(rtDW.tmp_data_pp, &end, rtDW.b_tmp_data, &b_tmp_size, rtDW.o_data,
-              &jj_size);
+        and_k(rtDW.r5, rtDW.b_tmp, rtDW.o);
       }
 
-      end--;
-      trueCount = 0;
-      for (i_0 = 0; i_0 <= end; i_0++) {
-        if (rtDW.tmp_data_pp[i_0]) {
-          trueCount++;
+      rtDW.end = rtDW.r5.size(0) - 1;
+      rtDW.trueCount = 0;
+      for (rtDW.i_d = 0; rtDW.i_d <= rtDW.end; rtDW.i_d++) {
+        if (rtDW.r5[rtDW.i_d]) {
+          rtDW.trueCount++;
         }
       }
 
-      j = trueCount;
-      trueCount = 0;
-      for (i_0 = 0; i_0 <= end; i_0++) {
-        if (rtDW.tmp_data_pp[i_0]) {
-          rtDW.tmp_data_c[trueCount] = i_0;
-          trueCount++;
+      rtDW.r12.set_size(rtDW.trueCount);
+      rtDW.trueCount = 0;
+      for (rtDW.i_d = 0; rtDW.i_d <= rtDW.end; rtDW.i_d++) {
+        if (rtDW.r5[rtDW.i_d]) {
+          rtDW.r12[rtDW.trueCount] = rtDW.i_d;
+          rtDW.trueCount++;
         }
       }
 
-      for (i_0 = 0; i_0 < j; i_0++) {
-        rtDW.n_tmp_data[i_0] = rtDW.jj_data[rtDW.tmp_data_c[i_0]];
+      rtDW.j = rtDW.r12.size(0);
+      rtDW.n_tmp.set_size(rtDW.r12.size(0));
+      for (rtDW.i_d = 0; rtDW.i_d < rtDW.j; rtDW.i_d++) {
+        rtDW.n_tmp[rtDW.i_d] = rtDW.jj[rtDW.r12[rtDW.i_d]];
       }
 
-      leftx_current = mean(rtDW.n_tmp_data, &j);
+      rtDW.leftx_current = mean(rtDW.n_tmp);
     }
 
-    if (b_tmp_tmp_size == jj_size) {
-      end = b_tmp_tmp_size;
-      for (i_0 = 0; i_0 < b_tmp_tmp_size; i_0++) {
-        rtDW.tmp_data_j[i_0] = (rtDW.b_tmp_tmp_data[i_0] && rtDW.r_data[i_0]);
+    if (rtDW.b_tmp_tmp.size(0) == rtDW.r.size(0)) {
+      rtDW.r7.set_size(rtDW.b_tmp_tmp.size(0));
+      rtDW.j = rtDW.b_tmp_tmp.size(0);
+      for (rtDW.i_d = 0; rtDW.i_d < rtDW.j; rtDW.i_d++) {
+        rtDW.r7[rtDW.i_d] = (rtDW.b_tmp_tmp[rtDW.i_d] && rtDW.r[rtDW.i_d]);
       }
     } else {
-      and_k(rtDW.tmp_data_j, &end, rtDW.b_tmp_tmp_data, &b_tmp_tmp_size,
-            rtDW.r_data, &jj_size);
+      and_k(rtDW.r7, rtDW.b_tmp_tmp, rtDW.r);
     }
 
-    end--;
-    trueCount = 0;
-    for (i_0 = 0; i_0 <= end; i_0++) {
-      if (rtDW.tmp_data_j[i_0]) {
-        trueCount++;
+    rtDW.end = rtDW.r7.size(0) - 1;
+    rtDW.trueCount = 0;
+    for (rtDW.i_d = 0; rtDW.i_d <= rtDW.end; rtDW.i_d++) {
+      if (rtDW.r7[rtDW.i_d]) {
+        rtDW.trueCount++;
       }
     }
 
-    if (trueCount > 40) {
-      if (b_tmp_tmp_size == jj_size) {
-        end = b_tmp_tmp_size;
-        for (i_0 = 0; i_0 < b_tmp_tmp_size; i_0++) {
-          rtDW.tmp_data_gu[i_0] = (rtDW.b_tmp_tmp_data[i_0] && rtDW.r_data[i_0]);
+    if (rtDW.trueCount > 40) {
+      if (rtDW.b_tmp_tmp.size(0) == rtDW.r.size(0)) {
+        rtDW.r9.set_size(rtDW.b_tmp_tmp.size(0));
+        rtDW.j = rtDW.b_tmp_tmp.size(0);
+        for (rtDW.i_d = 0; rtDW.i_d < rtDW.j; rtDW.i_d++) {
+          rtDW.r9[rtDW.i_d] = (rtDW.b_tmp_tmp[rtDW.i_d] && rtDW.r[rtDW.i_d]);
         }
       } else {
-        and_k(rtDW.tmp_data_gu, &end, rtDW.b_tmp_tmp_data, &b_tmp_tmp_size,
-              rtDW.r_data, &jj_size);
+        and_k(rtDW.r9, rtDW.b_tmp_tmp, rtDW.r);
       }
 
-      end--;
-      trueCount = 0;
-      for (i_0 = 0; i_0 <= end; i_0++) {
-        if (rtDW.tmp_data_gu[i_0]) {
-          trueCount++;
+      rtDW.end = rtDW.r9.size(0) - 1;
+      rtDW.trueCount = 0;
+      for (rtDW.i_d = 0; rtDW.i_d <= rtDW.end; rtDW.i_d++) {
+        if (rtDW.r9[rtDW.i_d]) {
+          rtDW.trueCount++;
         }
       }
 
-      j = trueCount;
-      trueCount = 0;
-      for (i_0 = 0; i_0 <= end; i_0++) {
-        if (rtDW.tmp_data_gu[i_0]) {
-          rtDW.tmp_data_cv[trueCount] = i_0;
-          trueCount++;
+      rtDW.r15.set_size(rtDW.trueCount);
+      rtDW.trueCount = 0;
+      for (rtDW.i_d = 0; rtDW.i_d <= rtDW.end; rtDW.i_d++) {
+        if (rtDW.r9[rtDW.i_d]) {
+          rtDW.r15[rtDW.trueCount] = rtDW.i_d;
+          rtDW.trueCount++;
         }
       }
 
-      for (i_0 = 0; i_0 < j; i_0++) {
-        rtDW.n_tmp_data[i_0] = rtDW.jj_data[rtDW.tmp_data_cv[i_0]];
+      rtDW.j = rtDW.r15.size(0);
+      rtDW.n_tmp.set_size(rtDW.r15.size(0));
+      for (rtDW.i_d = 0; rtDW.i_d < rtDW.j; rtDW.i_d++) {
+        rtDW.n_tmp[rtDW.i_d] = rtDW.jj[rtDW.r15[rtDW.i_d]];
       }
 
-      rightx_current = mean(rtDW.n_tmp_data, &j);
+      rtDW.rightx_current = mean(rtDW.n_tmp);
     }
   }
 
-  if (bestInlierDis < 1.0) {
-    i = -1;
+  if (rtDW.bestInlierDis < 1.0) {
+    rtDW.i = -1;
   } else {
-    i = static_cast<int32_t>(bestInlierDis) - 1;
+    rtDW.i = static_cast<int32_T>(rtDW.bestInlierDis) - 1;
   }
 
-  if (count_right < 1.0) {
-    j = -1;
+  if (rtDW.count_right < 1.0) {
+    rtDW.j = -1;
   } else {
-    j = static_cast<int32_t>(count_right) - 1;
+    rtDW.j = static_cast<int32_T>(rtDW.count_right) - 1;
   }
 
-  m = i + 1;
-  s = i + 1;
-  for (i_0 = 0; i_0 <= i; i_0++) {
-    rtDW.left_lane_index_data[i_0] = rtDW.left_lane_index[i_0 + 100000];
-    rtDW.left_lane_index_data_m[i_0] = rtDW.left_lane_index[i_0];
+  rtDW.left_lane_index.set_size(rtDW.i + 1);
+  rtDW.left_lane_index_c.set_size(rtDW.i + 1);
+  for (rtDW.i_d = 0; rtDW.i_d <= rtDW.i; rtDW.i_d++) {
+    rtDW.left_lane_index[rtDW.i_d] = rtDW.left_lane_index_l[rtDW.i_d + 100000];
+    rtDW.left_lane_index_c[rtDW.i_d] = rtDW.left_lane_index_l[rtDW.i_d];
   }
 
-  polyfit(rtDW.left_lane_index_data, &m, rtDW.left_lane_index_data_m, &s, &p[0]);
-  m = j + 1;
-  s = j + 1;
-  for (i_0 = 0; i_0 <= j; i_0++) {
-    rtDW.left_lane_index_data[i_0] = rtDW.right_lane_index[i_0 + 100000];
-    rtDW.left_lane_index_data_m[i_0] = rtDW.right_lane_index[i_0];
+  polyfit(rtDW.left_lane_index, rtDW.left_lane_index_c, rtDW.p);
+  rtDW.left_lane_index.set_size(rtDW.j + 1);
+  rtDW.left_lane_index_c.set_size(rtDW.j + 1);
+  for (rtDW.i_d = 0; rtDW.i_d <= rtDW.j; rtDW.i_d++) {
+    rtDW.left_lane_index[rtDW.i_d] = rtDW.right_lane_index[rtDW.i_d + 100000];
+    rtDW.left_lane_index_c[rtDW.i_d] = rtDW.right_lane_index[rtDW.i_d];
   }
 
-  polyfit(rtDW.left_lane_index_data, &m, rtDW.left_lane_index_data_m, &s, &b_p[0]);
-  for (i_0 = 0; i_0 < 751; i_0++) {
-    rtDW.xleft[i_0] = p[0];
+  polyfit(rtDW.left_lane_index, rtDW.left_lane_index_c, rtDW.b_p);
+  for (rtDW.i_d = 0; rtDW.i_d < 751; rtDW.i_d++) {
+    rtDW.xleft[rtDW.i_d] = rtDW.p[0];
   }
 
-  for (i = 0; i < 2; i++) {
-    count_right = p[i + 1];
-    for (i_0 = 0; i_0 < 751; i_0++) {
-      rtDW.xleft[i_0] = static_cast<double>(i_0) * rtDW.xleft[i_0] + count_right;
+  for (rtDW.i = 0; rtDW.i < 2; rtDW.i++) {
+    rtDW.count_right = rtDW.p[rtDW.i + 1];
+    for (rtDW.i_d = 0; rtDW.i_d < 751; rtDW.i_d++) {
+      rtDW.xleft[rtDW.i_d] = static_cast<real_T>(rtDW.i_d) * rtDW.xleft[rtDW.i_d]
+        + rtDW.count_right;
     }
   }
 
-  for (i_0 = 0; i_0 < 751; i_0++) {
-    rtDW.xright[i_0] = b_p[0];
+  for (rtDW.i_d = 0; rtDW.i_d < 751; rtDW.i_d++) {
+    rtDW.xright[rtDW.i_d] = rtDW.b_p[0];
   }
 
-  for (i = 0; i < 2; i++) {
-    count_right = b_p[i + 1];
-    for (i_0 = 0; i_0 < 751; i_0++) {
-      rtDW.xright[i_0] = static_cast<double>(i_0) * rtDW.xright[i_0] +
-        count_right;
+  for (rtDW.i = 0; rtDW.i < 2; rtDW.i++) {
+    rtDW.count_right = rtDW.b_p[rtDW.i + 1];
+    for (rtDW.i_d = 0; rtDW.i_d < 751; rtDW.i_d++) {
+      rtDW.xright[rtDW.i_d] = static_cast<real_T>(rtDW.i_d) *
+        rtDW.xright[rtDW.i_d] + rtDW.count_right;
     }
   }
 
@@ -2640,36 +2580,20 @@ void Perception::step()
   //   MATLAB Function: '<S1>/MATLAB Function3'
 
   rtY.Out1 = 600.0 - (rtDW.xleft[750] + rtDW.xright[750]) / 2.0;
-
-  finish = time(NULL);
-step
-    duration = (double)(finish - start);
-  std::cout << "Time: " << duration << std::endl;
-  std::cout << "Error: " << rtY.Out1 << std::endl;
-  std::cout << "cnt_flag: " << cnt_flag << std::endl;
-  if (rtY.Out1 >= 111.133 && cnt_flag == 0){
-    std::cout << "@@@@@@@@@@@@@@@@@@@" << std::endl;
-    cnt_flag = 1;
-  }
-  else if (rtY.Out1 >= 111.133 && cnt_flag == 1){
-    exit(0);
-  }
 }
 
 // Model initialize function
-void Perception::initialize()
+void Perception_initialize(void)
 {
   // Registration code
-  start = time(NULL);
 
   // initialize non-finites
-  rt_InitInfAndNaN(sizeof(double));
+  rt_InitInfAndNaN(sizeof(real_T));
 
   {
-    static const std::array<int8_t, 9> self_T{ { 1, 0, 0, 0, 1, 0, 0, 0, 1 } };
-
-    int32_t i;
-    char *sErr;
+    int32_T i;
+    char_T *sErr;
+    static const int8_T self_T[9] = { 1, 0, 0, 0, 1, 0, 0, 0, 1 };
 
     // Start for S-Function (sdspwmmfi2): '<Root>/From Multimedia File'
     sErr = GetErrorBuffer(&rtDW.FromMultimediaFile_HostLib[0U]);
@@ -2679,7 +2603,7 @@ void Perception::initialize()
     createVideoInfo(&rtDW.FromMultimediaFile_VideoInfo[0U], 1U, 5.0, 5.0, "RGB ",
                     1, 3, 1200, 750, 1U, 1, 1, GetNullPointer());
     if (*sErr == 0) {
-      LibCreate_FromMMFile(&rtDW.FromMultimediaFile_HostLib[0U], nullptr,
+      LibCreate_FromMMFile(&rtDW.FromMultimediaFile_HostLib[0U], NULL,
                            "/home/seame-workstation09/DES_Adaptive-Application/Perception/Final.mp4",
                            1,
                            "/usr/local/MATLAB/R2023b/toolbox/shared/multimedia/bin/glnxa64/video/libmwvideofilegstreaderplugin.so",
@@ -2696,8 +2620,8 @@ void Perception::initialize()
     if (*sErr != 0) {
       DestroyHostLibrary(&rtDW.FromMultimediaFile_HostLib[0U]);
       if (*sErr != 0) {
-        rtmSetErrorStatus((&rtM), sErr);
-        rtmSetStopRequested((&rtM), 1);
+        rtmSetErrorStatus(rtM, sErr);
+        rtmSetStopRequested(rtM, 1);
       }
     }
 
@@ -2717,25 +2641,6 @@ void Perception::initialize()
 
     // End of Start for MATLABSystem: '<S1>/Warp'
   }
-}
-
-// Constructor
-Perception::Perception() :
-  rtY(),
-  rtDW(),
-  rtM()
-{
-  // Currently there is no constructor body generated.
-}
-
-// Destructor
-// Currently there is no destructor body generated.
-Perception::~Perception() = default;
-
-// Real-Time Model get method
-Perception::RT_MODEL * Perception::getRTM()
-{
-  return (&rtM);
 }
 
 //

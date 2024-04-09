@@ -7,12 +7,12 @@
 //
 //  Code generation for model "Rpi_cam".
 //
-//  Model version              : 1.94
+//  Model version              : 1.149
 //  Simulink Coder version : 23.2 (R2023b) 01-Aug-2023
-//  C++ source code generated on : Tue Mar 12 16:09:41 2024
+//  C++ source code generated on : Thu Apr  4 14:40:47 2024
 //
 //  Target selection: autosar_adaptive.tlc
-//  Embedded hardware selection: Intel->x86-64 (Linux 64)
+//  Embedded hardware selection: ARM Compatible->ARM Cortex-A (64-bit)
 //  Code generation objectives:
 //     1. Execution efficiency
 //     2. RAM efficiency
@@ -23,20 +23,9 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <cstring>
-#include "makeConstraintMatrix_Projective_D_D.h"
-#include "normPts_D_D.h"
-#include <array>
-#include <emmintrin.h>
 #include <cmath>
-#include "QRSL1_double.h"
-
-extern "C"
-{
-
-#include "rt_nonfinite.h"
-
-}
-
+#include <array>
+#include <stddef.h>
 #ifndef UCHAR_MAX
 #include <limits.h>
 #endif
@@ -77,6 +66,14 @@ preprocessor word size checks.
 // Skipping ulong/long check: insufficient preprocessor integer range.
 
 // Skipping ulong_long/long_long check: insufficient preprocessor integer range. 
+extern void makeConstraintMatrix_Projective_D_D(const double pts1[], const
+  double pts2[], uint32_t sampleNum, uint32_t maxSampleNum, double constraint[]);
+extern void normPts_D_D(const double pts[], const uint32_t samples[], uint32_t
+  ptsNum, uint32_t sampleNum, double ptsNorm[], double scale[], double cents[]);
+extern void QRCompQy_double(double qr[], const double qrAuxj[], double y[],
+  int32_t n, int32_t j);
+extern void QRSL1_double(double qr[], const double qrAux[], double y[], int32_t
+  n, int32_t k);
 void Rpi_cam::v4l2Capture_updateV4L2Settings
   (codertarget_raspi_internal_Raspiv4l2Capture *obj, bool forceUpdate)
 {
@@ -180,10 +177,10 @@ void Rpi_cam::v4l2Capture_updateV4L2Settings
   if ((!obj->EnableManualFocusInternal) || forceUpdate) {
     obj->EnableManualFocusInternal = true;
     for (int32_t i{0}; i < 18; i++) {
-      rtDW.i_f[i] = i_0[i];
+      rtDW.i_n[i] = i_0[i];
     }
 
-    EXT_updateV4L2Control(&rtDW.i_f[0], 1.0F, 0, &status);
+    EXT_updateV4L2Control(&rtDW.i_n[0], 1.0F, 0, &status);
   }
 
   if ((obj->ManualFocus != obj->ManualFocusInternal) || forceUpdate) {
@@ -207,7 +204,95 @@ void Rpi_cam::SystemCore_step(codertarget_raspi_internal_Raspiv4l2Capture *obj,
 
   // Start for MATLABSystem: '<Root>/V4L2 Video Capture'
   v4l2Capture_updateV4L2Settings(obj, false);
-  EXT_webcamReadFrame(0, &ts, &varargout_1[0], &varargout_2[0], &varargout_3[0]);
+  EXT_webcamCapture(0, 0, &ts, &varargout_1[0], &varargout_2[0], &varargout_3[0]);
+}
+
+void makeConstraintMatrix_Projective_D_D(const double pts1[], const double pts2[],
+  uint32_t sampleNum, uint32_t maxSampleNum, double constraint[])
+{
+  uint32_t j;
+  uint32_t k;
+
+  // S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
+  // Generate the constraint matrix.
+  j = 0U;
+  k = 6U;
+  for (uint32_t i{0U}; i < sampleNum; i++) {
+    double tmp;
+    double tmp_1;
+    uint32_t tmp_0;
+    constraint[k - 6U] = 0.0;
+    constraint[k + 4294967291U] = 0.0;
+    constraint[k + 4294967292U] = 0.0;
+    tmp_0 = j + maxSampleNum;
+    tmp = pts1[tmp_0];
+    constraint[k + 4294967293U] = -tmp;
+    constraint[k + 4294967294U] = -pts1[j];
+    constraint[k + UINT32_MAX] = -1.0;
+    constraint[k] = pts2[j];
+    constraint[k] *= tmp;
+    constraint[k + 1U] = pts2[j];
+    constraint[k + 1U] *= pts1[j];
+    constraint[k + 2U] = pts2[j];
+    constraint[k + 3U] = tmp;
+    constraint[k + 4U] = pts1[j];
+    constraint[k + 5U] = 1.0;
+    constraint[k + 6U] = 0.0;
+    constraint[k + 7U] = 0.0;
+    constraint[k + 8U] = 0.0;
+    tmp_1 = -pts2[tmp_0];
+    constraint[k + 9U] = tmp_1;
+    constraint[k + 9U] *= tmp;
+    constraint[k + 10U] = tmp_1;
+    constraint[k + 10U] *= pts1[j];
+    constraint[k + 11U] = tmp_1;
+    k += 18U;
+    j++;
+  }
+
+  // End of S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
+}
+
+void normPts_D_D(const double pts[], const uint32_t samples[], uint32_t ptsNum,
+                 uint32_t sampleNum, double ptsNorm[], double scale[], double
+                 cents[])
+{
+  double sumDis;
+
+  // S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
+  // Normalize the points.
+  cents[0U] = 0.0;
+  cents[1U] = 0.0;
+  for (uint32_t i{0U}; i < sampleNum; i++) {
+    sumDis = pts[samples[i] + ptsNum];
+    ptsNorm[i + sampleNum] = sumDis;
+    cents[0U] += sumDis;
+    sumDis = pts[samples[i]];
+    ptsNorm[i] = sumDis;
+    cents[1U] += sumDis;
+  }
+
+  cents[0U] /= static_cast<double>(sampleNum);
+  cents[1U] /= static_cast<double>(sampleNum);
+  sumDis = 0.0;
+  for (uint32_t i{0U}; i < sampleNum; i++) {
+    uint32_t j;
+    j = i + sampleNum;
+    ptsNorm[j] -= cents[0U];
+    ptsNorm[i] -= cents[1U];
+    sumDis += std::sqrt(ptsNorm[j] * ptsNorm[j] + ptsNorm[i] * ptsNorm[i]);
+  }
+
+  if (sumDis > 0.0) {
+    scale[0U] = 1.4142135623730951;
+    scale[0U] *= static_cast<double>(sampleNum);
+    scale[0U] /= sumDis;
+    for (uint32_t i{0U}; i < sampleNum + sampleNum; i++) {
+      ptsNorm[i] *= scale[0U];
+    }
+  }
+
+  // End of S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
 }
 
 void Rpi_cam::QRV2Norm_double_o(const double V[], int32_t N, double v2norm[])
@@ -444,13 +529,81 @@ void Rpi_cam::QRDC_double_o(double xVec[], double qrAux[], int32_t jpvt[],
   // End of S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
 }
 
+void QRCompQy_double(double qr[], const double qrAuxj[], double y[], int32_t n,
+                     int32_t j)
+{
+  // S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
+  if (std::abs(qrAuxj[0U]) != 0.0) {
+    double t;
+    double temp;
+    int32_t nmj;
+    int32_t pjj;
+    int32_t pqr;
+    int32_t py;
+    nmj = n - j;
+    pjj = (n + 1) * j;
+    pqr = pjj;
+    temp = qr[pjj];
+    qr[pjj] = qrAuxj[0U];
+    t = 0.0;
+    py = 0;
+    for (int32_t i{nmj}; i > 0; i--) {
+      t -= y[py] * qr[pqr];
+      pqr++;
+      py++;
+    }
+
+    pqr = pjj;
+    t /= qr[pjj];
+    py = 0;
+    for (int32_t i{nmj}; i > 0; i--) {
+      y[py] += t * qr[pqr];
+      pqr++;
+      py++;
+    }
+
+    qr[pjj] = temp;
+  }
+
+  // End of S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
+}
+
+void QRSL1_double(double qr[], const double qrAux[], double y[], int32_t n,
+                  int32_t k)
+{
+  int32_t j;
+  int32_t pqraux;
+  int32_t y_0;
+
+  // S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
+  if (k <= n - 1) {
+    y_0 = k;
+    pqraux = k;
+  } else {
+    y_0 = n - 1;
+    pqraux = n - 1;
+  }
+
+  j = pqraux - 1;
+  if (y_0 != 0) {
+    pqraux--;
+    y_0--;
+    while (j + 1 > 0) {
+      QRCompQy_double(&qr[0], &qrAux[pqraux], &y[y_0], n, j);
+      y_0 = pqraux - 1;
+      pqraux--;
+      j--;
+    }
+  }
+
+  // End of S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
+}
+
 void Rpi_cam::QRE_double_o(double outQ[], double outR[], double outE[], double
   qrAux[], double work[], int32_t jpvt[], double sPtr[], int32_t M, int32_t N,
   bool economy)
 {
-  int32_t L;
   int32_t L_tmp;
-  int32_t ps;
 
   // S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
   QRDC_double_o(&outR[0], &qrAux[0], &jpvt[0], &work[0], M, N);
@@ -458,86 +611,86 @@ void Rpi_cam::QRE_double_o(double outQ[], double outR[], double outE[], double
   // explicitly form q by manipulating identity
   if (economy) {
     if (M <= N) {
-      L = M;
+      rtDW.L = M;
     } else {
-      L = N;
+      rtDW.L = N;
     }
   } else {
-    L = M;
+    rtDW.L = M;
   }
 
   L_tmp = 0;
-  rtDW.j_i = 0;
-  while (rtDW.j_i < M * L) {
-    outQ[rtDW.j_i] = 0.0;
-    rtDW.j_i++;
+  rtDW.j_b = 0;
+  while (rtDW.j_b < M * rtDW.L) {
+    outQ[rtDW.j_b] = 0.0;
+    rtDW.j_b++;
   }
 
-  rtDW.j_i = 0;
-  while (rtDW.j_i < L) {
+  rtDW.j_b = 0;
+  while (rtDW.j_b < rtDW.L) {
     outQ[L_tmp] = 1.0;
     L_tmp = (L_tmp + M) + 1;
-    rtDW.j_i++;
+    rtDW.j_b++;
   }
 
   // Convert cols of identity into cols of q. Use info stored in lower triangle of r and in vector qraux to work on columns of identity matrix I and transform them into q*I(:,j) i.e. the columns of q. 
   L_tmp = 0;
-  rtDW.j_i = 0;
-  while (rtDW.j_i < L) {
+  rtDW.j_b = 0;
+  while (rtDW.j_b < rtDW.L) {
     QRSL1_double(&outR[0], &qrAux[0], &outQ[L_tmp], M, N);
     L_tmp += M;
-    rtDW.j_i++;
+    rtDW.j_b++;
   }
 
   if (economy && (M > N)) {
     // Copy upper triangle of r to s
-    L = 0;
-    ps = 0;
-    rtDW.j_i = 1;
-    while (rtDW.j_i - 1 < N) {
-      for (L_tmp = 0; L_tmp < rtDW.j_i; L_tmp++) {
-        sPtr[ps] = outR[L];
-        ps++;
-        L++;
+    rtDW.L = 0;
+    rtDW.ps = 0;
+    rtDW.j_b = 1;
+    while (rtDW.j_b - 1 < N) {
+      for (L_tmp = 0; L_tmp < rtDW.j_b; L_tmp++) {
+        sPtr[rtDW.ps] = outR[rtDW.L];
+        rtDW.ps++;
+        rtDW.L++;
       }
 
-      L = (L + M) - rtDW.j_i;
-      for (L_tmp = 0; L_tmp < N - rtDW.j_i; L_tmp++) {
-        sPtr[ps] = 0.0;
-        ps++;
+      rtDW.L = (rtDW.L + M) - rtDW.j_b;
+      for (L_tmp = 0; L_tmp < N - rtDW.j_b; L_tmp++) {
+        sPtr[rtDW.ps] = 0.0;
+        rtDW.ps++;
       }
 
-      rtDW.j_i++;
+      rtDW.j_b++;
     }
   } else {
     // Zero strict lower triangle of r
-    L = M * N - 1;
-    rtDW.j_i = N;
-    while (rtDW.j_i - 1 >= 0) {
-      for (L_tmp = M; L_tmp > rtDW.j_i; L_tmp--) {
-        outR[L] = 0.0;
-        L--;
+    rtDW.L = M * N - 1;
+    rtDW.j_b = N;
+    while (rtDW.j_b - 1 >= 0) {
+      for (L_tmp = M; L_tmp > rtDW.j_b; L_tmp--) {
+        outR[rtDW.L] = 0.0;
+        rtDW.L--;
       }
 
-      if (M < rtDW.j_i) {
-        L -= M;
+      if (M < rtDW.j_b) {
+        rtDW.L -= M;
       } else {
-        L -= rtDW.j_i;
+        rtDW.L -= rtDW.j_b;
       }
 
-      rtDW.j_i--;
+      rtDW.j_b--;
     }
   }
 
   // form permutation vector e
-  L = 0;
+  rtDW.L = 0;
   L_tmp = 0;
-  rtDW.j_i = 0;
-  while (rtDW.j_i < N) {
-    outE[L] = jpvt[L_tmp] + 1;
-    L_tmp = L + 1;
-    L++;
-    rtDW.j_i++;
+  rtDW.j_b = 0;
+  while (rtDW.j_b < N) {
+    outE[rtDW.L] = jpvt[L_tmp] + 1;
+    L_tmp = rtDW.L + 1;
+    rtDW.L++;
+    rtDW.j_b++;
   }
 
   // End of S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
@@ -546,216 +699,199 @@ void Rpi_cam::QRE_double_o(double outQ[], double outR[], double outE[], double
 void Rpi_cam::Warp_stepImpl(vision_internal_blocks_Warp *b_this, const bool
   Image[307200], const double input2[9], bool Jout[307200])
 {
-  __m128d tmp_0;
-  __m128d tmp_1;
-  std::array<bool, 2> x;
+  int32_t itmp;
+  int32_t p1;
   int32_t p2;
   int32_t p3;
-  bool guard1;
-
-  // Start for MATLABSystem: '<S4>/Warp'
-  std::memcpy(&b_this->TformProjective.T[0], &input2[0], 9U * sizeof(double));
-  for (rtDW.p1 = 0; rtDW.p1 < 3; rtDW.p1++) {
-    rtDW.B_c[3 * rtDW.p1] = b_this->TformProjective.T[rtDW.p1];
-    rtDW.B_c[3 * rtDW.p1 + 1] = b_this->TformProjective.T[rtDW.p1 + 3];
-    rtDW.B_c[3 * rtDW.p1 + 2] = b_this->TformProjective.T[rtDW.p1 + 6];
+  for (p2 = 0; p2 < 9; p2++) {
+    // Start for MATLABSystem: '<S4>/Warp'
+    rtDW.absx11 = input2[p2];
+    b_this->TformProjective.T[p2] = rtDW.absx11;
+    rtDW.x[p2] = rtDW.absx11;
   }
 
-  for (rtDW.p1 = 0; rtDW.p1 < 640; rtDW.p1++) {
+  p1 = 1;
+  p2 = 3;
+  p3 = 6;
+
+  // Start for MATLABSystem: '<S4>/Warp'
+  rtDW.absx11 = std::abs(b_this->TformProjective.T[0]);
+  rtDW.absx21 = std::abs(b_this->TformProjective.T[1]);
+  rtDW.absx31 = std::abs(b_this->TformProjective.T[2]);
+  if ((rtDW.absx21 > rtDW.absx11) && (rtDW.absx21 > rtDW.absx31)) {
+    p1 = 4;
+    p2 = 0;
+    rtDW.x[0] = b_this->TformProjective.T[1];
+    rtDW.x[1] = b_this->TformProjective.T[0];
+    rtDW.x[3] = b_this->TformProjective.T[4];
+    rtDW.x[4] = b_this->TformProjective.T[3];
+    rtDW.x[6] = b_this->TformProjective.T[7];
+    rtDW.x[7] = b_this->TformProjective.T[6];
+  } else if (rtDW.absx31 > rtDW.absx11) {
+    p1 = 7;
+    p3 = 0;
+    rtDW.x[0] = b_this->TformProjective.T[2];
+    rtDW.x[2] = b_this->TformProjective.T[0];
+    rtDW.x[3] = b_this->TformProjective.T[5];
+    rtDW.x[5] = b_this->TformProjective.T[3];
+    rtDW.x[6] = b_this->TformProjective.T[8];
+    rtDW.x[8] = b_this->TformProjective.T[6];
+  }
+
+  rtDW.absx31 = rtDW.x[1] / rtDW.x[0];
+  rtDW.x[1] = rtDW.absx31;
+
+  // Start for MATLABSystem: '<S4>/Warp'
+  rtDW.absx11 = rtDW.x[2] / rtDW.x[0];
+  rtDW.x[2] = rtDW.absx11;
+  rtDW.x[4] -= rtDW.absx31 * rtDW.x[3];
+  rtDW.x[5] -= rtDW.absx11 * rtDW.x[3];
+  rtDW.x[7] -= rtDW.absx31 * rtDW.x[6];
+  rtDW.x[8] -= rtDW.absx11 * rtDW.x[6];
+
+  // Start for MATLABSystem: '<S4>/Warp'
+  if (std::abs(rtDW.x[5]) > std::abs(rtDW.x[4])) {
+    itmp = p2;
+    p2 = p3;
+    p3 = itmp;
+    rtDW.x[1] = rtDW.absx11;
+    rtDW.x[2] = rtDW.absx31;
+    rtDW.absx11 = rtDW.x[4];
+    rtDW.x[4] = rtDW.x[5];
+    rtDW.x[5] = rtDW.absx11;
+    rtDW.absx11 = rtDW.x[7];
+    rtDW.x[7] = rtDW.x[8];
+    rtDW.x[8] = rtDW.absx11;
+  }
+
+  rtDW.absx31 = rtDW.x[5] / rtDW.x[4];
+  rtDW.x[8] -= rtDW.absx31 * rtDW.x[7];
+
+  // Start for MATLABSystem: '<S4>/Warp'
+  rtDW.absx11 = (rtDW.x[1] * rtDW.absx31 - rtDW.x[2]) / rtDW.x[8];
+  rtDW.absx21 = -(rtDW.x[7] * rtDW.absx11 + rtDW.x[1]) / rtDW.x[4];
+  rtDW.tinv[p1 - 1] = ((1.0 - rtDW.x[3] * rtDW.absx21) - rtDW.x[6] * rtDW.absx11)
+    / rtDW.x[0];
+  rtDW.tinv[p1] = rtDW.absx21;
+  rtDW.tinv[p1 + 1] = rtDW.absx11;
+  rtDW.absx11 = -rtDW.absx31 / rtDW.x[8];
+  rtDW.absx21 = (1.0 - rtDW.x[7] * rtDW.absx11) / rtDW.x[4];
+  rtDW.tinv[p2] = -(rtDW.x[3] * rtDW.absx21 + rtDW.x[6] * rtDW.absx11) / rtDW.x
+    [0];
+  rtDW.tinv[p2 + 1] = rtDW.absx21;
+  rtDW.tinv[p2 + 2] = rtDW.absx11;
+  rtDW.absx11 = 1.0 / rtDW.x[8];
+  rtDW.absx21 = -rtDW.x[7] * rtDW.absx11 / rtDW.x[4];
+  rtDW.tinv[p3] = -(rtDW.x[3] * rtDW.absx21 + rtDW.x[6] * rtDW.absx11) / rtDW.x
+    [0];
+  rtDW.tinv[p3 + 1] = rtDW.absx21;
+  rtDW.tinv[p3 + 2] = rtDW.absx11;
+  rtDW.absx21 = rtDW.tinv[6];
+  rtDW.absx31 = rtDW.tinv[7];
+  rtDW.tinv_b = rtDW.tinv[8];
+
+  // Start for MATLABSystem: '<S4>/Warp'
+  rtDW.tinv_p = rtDW.tinv[0];
+  rtDW.tinv_c = rtDW.tinv[1];
+  rtDW.tinv_f = rtDW.tinv[2];
+  rtDW.tinv_g = rtDW.tinv[3];
+  rtDW.tinv_g1 = rtDW.tinv[4];
+  rtDW.tinv_m = rtDW.tinv[5];
+  for (p1 = 0; p1 < 640; p1++) {
     for (p2 = 0; p2 < 480; p2++) {
-      p3 = 480 * rtDW.p1 + p2;
-
       // Start for MATLABSystem: '<S4>/Warp'
-      rtDW.xp[p3] = static_cast<double>(rtDW.p1) + 1.0;
-      rtDW.yp[p3] = static_cast<double>(p2) + 1.0;
+      rtDW.absx11 = ((((static_cast<double>(p1) + 1.0) - 0.5) + 0.5) *
+                     rtDW.absx21 + (((static_cast<double>(p2) + 1.0) - 0.5) +
+        0.5) * rtDW.absx31) + rtDW.tinv_b;
+      itmp = 480 * p1 + p2;
+      rtDW.srcXIntrinsic[itmp] = ((((((static_cast<double>(p1) + 1.0) - 0.5) +
+        0.5) * rtDW.tinv_p + (((static_cast<double>(p2) + 1.0) - 0.5) + 0.5) *
+        rtDW.tinv_c) + rtDW.tinv_f) / rtDW.absx11 - 0.5) + 0.5;
+      rtDW.srcYIntrinsic[itmp] = ((((((static_cast<double>(p1) + 1.0) - 0.5) +
+        0.5) * rtDW.tinv_g + (((static_cast<double>(p2) + 1.0) - 0.5) + 0.5) *
+        rtDW.tinv_g1) + rtDW.tinv_m) / rtDW.absx11 - 0.5) + 0.5;
     }
   }
 
-  for (rtDW.p1 = 0; rtDW.p1 <= 307198; rtDW.p1 += 2) {
+  for (p2 = 0; p2 < 307200; p2++) {
     // Start for MATLABSystem: '<S4>/Warp'
-    tmp_0 = _mm_loadu_pd(&rtDW.xp[rtDW.p1]);
-    tmp_1 = _mm_set1_pd(0.5);
-
-    // Start for MATLABSystem: '<S4>/Warp'
-    _mm_storeu_pd(&rtDW.xp[rtDW.p1], _mm_add_pd(_mm_sub_pd(tmp_0, tmp_1), tmp_1));
-    tmp_0 = _mm_loadu_pd(&rtDW.yp[rtDW.p1]);
-    _mm_storeu_pd(&rtDW.yp[rtDW.p1], _mm_add_pd(_mm_sub_pd(tmp_0, tmp_1), tmp_1));
+    rtDW.inputImage[p2] = static_cast<int8_t>(Image[p2]);
   }
 
-  // Start for MATLABSystem: '<S4>/Warp'
-  guard1 = false;
-  if (rtDW.B_c[8] == 1.0) {
-    bool exitg1;
-    bool y;
-    x[0] = (rtDW.B_c[2] == 0.0);
-    x[1] = (rtDW.B_c[5] == 0.0);
-    y = true;
-    rtDW.p1 = 0;
-    exitg1 = false;
-    while ((!exitg1) && (rtDW.p1 < 2)) {
-      if (!x[rtDW.p1]) {
-        y = false;
-        exitg1 = true;
-      } else {
-        rtDW.p1++;
-      }
-    }
+  for (p1 = 0; p1 < 307200; p1++) {
+    float qx2;
 
-    if (y) {
-      if (std::abs(rtDW.B_c[1]) > std::abs(rtDW.B_c[0])) {
-        rtDW.absx11 = rtDW.B_c[0] / rtDW.B_c[1];
-        rtDW.absx21 = 1.0 / (rtDW.absx11 * rtDW.B_c[4] - rtDW.B_c[3]);
-        rtDW.b_B_idx_0 = rtDW.B_c[4] / rtDW.B_c[1] * rtDW.absx21;
-        rtDW.b_B_idx_1 = -rtDW.absx21;
-        rtDW.b_B_idx_2 = -rtDW.B_c[3] / rtDW.B_c[1] * rtDW.absx21;
-        rtDW.absx21 *= rtDW.absx11;
-      } else {
-        rtDW.absx11 = rtDW.B_c[1] / rtDW.B_c[0];
-        rtDW.absx21 = 1.0 / (rtDW.B_c[4] - rtDW.absx11 * rtDW.B_c[3]);
-        rtDW.b_B_idx_0 = rtDW.B_c[4] / rtDW.B_c[0] * rtDW.absx21;
-        rtDW.b_B_idx_1 = -rtDW.absx11 * rtDW.absx21;
-        rtDW.b_B_idx_2 = -rtDW.B_c[3] / rtDW.B_c[0] * rtDW.absx21;
-      }
+    // Start for MATLABSystem: '<S4>/Warp'
+    rtDW.absx11 = rtDW.srcXIntrinsic[p1];
+    if ((rtDW.absx11 >= 1.0) && (rtDW.absx11 <= 640.0)) {
+      rtDW.absx21 = rtDW.srcYIntrinsic[p1];
+      if ((rtDW.absx21 >= 1.0) && (rtDW.absx21 <= 480.0)) {
+        float qx1;
+        if (rtDW.absx11 <= 1.0) {
+          p3 = 1;
+        } else if (rtDW.absx11 <= 639.0) {
+          p3 = static_cast<int32_t>(std::floor(rtDW.absx11));
+        } else {
+          p3 = 639;
+        }
 
-      rtDW.absx11 = rtDW.B_c[6];
-      rtDW.absx31 = rtDW.B_c[7];
-      for (rtDW.p1 = 0; rtDW.p1 <= 307198; rtDW.p1 += 2) {
-        tmp_0 = _mm_loadu_pd(&rtDW.xp[rtDW.p1]);
-        tmp_0 = _mm_sub_pd(tmp_0, _mm_set1_pd(rtDW.absx11));
-        tmp_1 = _mm_loadu_pd(&rtDW.yp[rtDW.p1]);
-        tmp_1 = _mm_sub_pd(tmp_1, _mm_set1_pd(rtDW.absx31));
-        _mm_storeu_pd(&rtDW.yp[rtDW.p1], tmp_1);
-        _mm_storeu_pd(&rtDW.b_varargout_1[rtDW.p1], _mm_add_pd(_mm_mul_pd
-          (_mm_set1_pd(rtDW.b_B_idx_0), tmp_0), _mm_mul_pd(_mm_set1_pd
-          (rtDW.b_B_idx_2), tmp_1)));
-        _mm_storeu_pd(&rtDW.xp[rtDW.p1], _mm_add_pd(_mm_mul_pd(_mm_set1_pd
-          (rtDW.b_B_idx_1), tmp_0), _mm_mul_pd(_mm_set1_pd(rtDW.absx21), tmp_1)));
+        rtDW.absx21 = rtDW.srcYIntrinsic[p1];
+        if (rtDW.absx21 <= 1.0) {
+          itmp = 1;
+        } else if (rtDW.absx21 <= 479.0) {
+          itmp = static_cast<int32_t>(std::floor(rtDW.absx21));
+        } else {
+          itmp = 479;
+        }
+
+        if (rtDW.absx11 == p3) {
+          p2 = (p3 - 1) * 480 + itmp;
+          qx1 = rtDW.inputImage[p2 - 1];
+          qx2 = rtDW.inputImage[p2];
+        } else if (static_cast<double>(p3) + 1.0 == rtDW.absx11) {
+          p2 = 480 * p3 + itmp;
+          qx1 = rtDW.inputImage[p2 - 1];
+          qx2 = rtDW.inputImage[p2];
+        } else {
+          int8_t tmp;
+          int8_t tmp_0;
+          rtDW.absx11 -= static_cast<double>(p3);
+          p2 = (p3 - 1) * 480 + itmp;
+          tmp = rtDW.inputImage[p2 - 1];
+          p3 = 480 * p3 + itmp;
+          tmp_0 = rtDW.inputImage[p3 - 1];
+          if (tmp == tmp_0) {
+            qx1 = tmp;
+          } else {
+            qx1 = static_cast<float>(1.0 - rtDW.absx11) * static_cast<float>(tmp)
+              + static_cast<float>(tmp_0) * static_cast<float>(rtDW.absx11);
+          }
+
+          tmp = rtDW.inputImage[p2];
+          tmp_0 = rtDW.inputImage[p3];
+          if (tmp == tmp_0) {
+            qx2 = tmp;
+          } else {
+            qx2 = static_cast<float>(1.0 - rtDW.absx11) * static_cast<float>(tmp)
+              + static_cast<float>(tmp_0) * static_cast<float>(rtDW.absx11);
+          }
+        }
+
+        if ((rtDW.absx21 == itmp) || (qx1 == qx2)) {
+          qx2 = qx1;
+        } else if (!(static_cast<double>(itmp) + 1.0 == rtDW.absx21)) {
+          rtDW.absx11 = rtDW.absx21 - static_cast<double>(itmp);
+          qx2 = static_cast<float>(1.0 - rtDW.absx11) * qx1 + static_cast<float>
+            (rtDW.absx11) * qx2;
+        }
+      } else {
+        qx2 = 0.0F;
       }
     } else {
-      guard1 = true;
-    }
-  } else {
-    guard1 = true;
-  }
-
-  if (guard1) {
-    std::memcpy(&rtDW.x[0], &rtDW.B_c[0], 9U * sizeof(double));
-    rtDW.p1 = 1;
-    p2 = 3;
-    p3 = 6;
-    rtDW.absx11 = std::abs(rtDW.B_c[0]);
-    rtDW.absx21 = std::abs(rtDW.B_c[1]);
-    rtDW.absx31 = std::abs(rtDW.B_c[2]);
-    if ((rtDW.absx21 > rtDW.absx11) && (rtDW.absx21 > rtDW.absx31)) {
-      rtDW.p1 = 4;
-      p2 = 0;
-      rtDW.x[0] = rtDW.B_c[1];
-      rtDW.x[1] = rtDW.B_c[0];
-      rtDW.x[3] = rtDW.B_c[4];
-      rtDW.x[4] = rtDW.B_c[3];
-      rtDW.x[6] = rtDW.B_c[7];
-      rtDW.x[7] = rtDW.B_c[6];
-    } else if (rtDW.absx31 > rtDW.absx11) {
-      rtDW.p1 = 7;
-      p3 = 0;
-      rtDW.x[0] = rtDW.B_c[2];
-      rtDW.x[2] = rtDW.B_c[0];
-      rtDW.x[3] = rtDW.B_c[5];
-      rtDW.x[5] = rtDW.B_c[3];
-      rtDW.x[6] = rtDW.B_c[8];
-      rtDW.x[8] = rtDW.B_c[6];
+      qx2 = 0.0F;
     }
 
-    rtDW.absx31 = rtDW.x[1] / rtDW.x[0];
-    rtDW.x[1] = rtDW.absx31;
-    rtDW.absx11 = rtDW.x[2] / rtDW.x[0];
-    rtDW.x[2] = rtDW.absx11;
-    rtDW.x[4] -= rtDW.absx31 * rtDW.x[3];
-    rtDW.x[5] -= rtDW.absx11 * rtDW.x[3];
-    rtDW.x[7] -= rtDW.absx31 * rtDW.x[6];
-    rtDW.x[8] -= rtDW.absx11 * rtDW.x[6];
-    if (std::abs(rtDW.x[5]) > std::abs(rtDW.x[4])) {
-      int32_t itmp;
-      itmp = p2;
-      p2 = p3;
-      p3 = itmp;
-      rtDW.x[1] = rtDW.absx11;
-      rtDW.x[2] = rtDW.absx31;
-      rtDW.absx11 = rtDW.x[4];
-      rtDW.x[4] = rtDW.x[5];
-      rtDW.x[5] = rtDW.absx11;
-      rtDW.absx11 = rtDW.x[7];
-      rtDW.x[7] = rtDW.x[8];
-      rtDW.x[8] = rtDW.absx11;
-    }
-
-    rtDW.absx31 = rtDW.x[5] / rtDW.x[4];
-    rtDW.x[8] -= rtDW.absx31 * rtDW.x[7];
-    rtDW.absx11 = (rtDW.x[1] * rtDW.absx31 - rtDW.x[2]) / rtDW.x[8];
-    rtDW.absx21 = -(rtDW.x[7] * rtDW.absx11 + rtDW.x[1]) / rtDW.x[4];
-    rtDW.B_c[rtDW.p1 - 1] = ((1.0 - rtDW.x[3] * rtDW.absx21) - rtDW.x[6] *
-      rtDW.absx11) / rtDW.x[0];
-    rtDW.B_c[rtDW.p1] = rtDW.absx21;
-    rtDW.B_c[rtDW.p1 + 1] = rtDW.absx11;
-    rtDW.absx11 = -rtDW.absx31 / rtDW.x[8];
-    rtDW.absx21 = (1.0 - rtDW.x[7] * rtDW.absx11) / rtDW.x[4];
-    rtDW.B_c[p2] = -(rtDW.x[3] * rtDW.absx21 + rtDW.x[6] * rtDW.absx11) /
-      rtDW.x[0];
-    rtDW.B_c[p2 + 1] = rtDW.absx21;
-    rtDW.B_c[p2 + 2] = rtDW.absx11;
-    rtDW.absx11 = 1.0 / rtDW.x[8];
-    rtDW.absx21 = -rtDW.x[7] * rtDW.absx11 / rtDW.x[4];
-    rtDW.B_c[p3] = -(rtDW.x[3] * rtDW.absx21 + rtDW.x[6] * rtDW.absx11) /
-      rtDW.x[0];
-    rtDW.B_c[p3 + 1] = rtDW.absx21;
-    rtDW.B_c[p3 + 2] = rtDW.absx11;
-    rtDW.absx11 = rtDW.B_c[2];
-    rtDW.absx31 = rtDW.B_c[5];
-    rtDW.absx21 = rtDW.B_c[0];
-    rtDW.b_B_idx_0 = rtDW.B_c[3];
-    rtDW.b_B_idx_1 = rtDW.B_c[1];
-    rtDW.b_B_idx_2 = rtDW.B_c[4];
-    rtDW.B_f = rtDW.B_c[8];
-    rtDW.B_g = rtDW.B_c[6];
-    rtDW.B_g1 = rtDW.B_c[7];
-    for (rtDW.p1 = 0; rtDW.p1 <= 307198; rtDW.p1 += 2) {
-      __m128d tmp;
-      tmp_0 = _mm_loadu_pd(&rtDW.xp[rtDW.p1]);
-      tmp_1 = _mm_loadu_pd(&rtDW.yp[rtDW.p1]);
-      tmp = _mm_add_pd(_mm_add_pd(_mm_mul_pd(_mm_set1_pd(rtDW.absx11), tmp_0),
-        _mm_mul_pd(_mm_set1_pd(rtDW.absx31), tmp_1)), _mm_set1_pd(rtDW.B_f));
-      _mm_storeu_pd(&rtDW.b_varargout_1[rtDW.p1], _mm_div_pd(_mm_add_pd
-        (_mm_add_pd(_mm_mul_pd(_mm_set1_pd(rtDW.absx21), tmp_0), _mm_mul_pd
-                    (_mm_set1_pd(rtDW.b_B_idx_0), tmp_1)), _mm_set1_pd(rtDW.B_g)),
-        tmp));
-      _mm_storeu_pd(&rtDW.xp[rtDW.p1], _mm_div_pd(_mm_add_pd(_mm_add_pd
-        (_mm_mul_pd(_mm_set1_pd(rtDW.b_B_idx_1), tmp_0), _mm_mul_pd(_mm_set1_pd
-        (rtDW.b_B_idx_2), tmp_1)), _mm_set1_pd(rtDW.B_g1)), tmp));
-    }
-  }
-
-  for (rtDW.p1 = 0; rtDW.p1 < 307200; rtDW.p1++) {
-    // Start for MATLABSystem: '<S4>/Warp'
-    rtDW.b_varargout_1[rtDW.p1] = (rtDW.b_varargout_1[rtDW.p1] - 0.5) + 0.5;
-    rtDW.xp[rtDW.p1] = (rtDW.xp[rtDW.p1] - 0.5) + 0.5;
-    rtDW.inputImage_[rtDW.p1] = Image[rtDW.p1];
-  }
-
-  uint8_t fillValues;
-  fillValues = 0U;
-
-  // Start for MATLABSystem: '<S4>/Warp'
-  rtDW.b_inputImageSize[0] = 480.0;
-  rtDW.b_inputImageSize[1] = 640.0;
-  rtDW.b_inputImageSize[2] = 1.0;
-  rtDW.b_outputImageSize[0] = 480.0;
-  rtDW.b_outputImageSize[1] = 640.0;
-  imterp2d64f_uint8(&rtDW.inputImage_[0], &rtDW.b_inputImageSize[0], &rtDW.xp[0],
-                    &rtDW.b_varargout_1[0], &rtDW.b_outputImageSize[0], 2.0,
-                    true, &fillValues, &rtDW.outputImage_o[0]);
-  for (rtDW.p1 = 0; rtDW.p1 < 307200; rtDW.p1++) {
-    // Start for MATLABSystem: '<S4>/Warp'
-    Jout[rtDW.p1] = (rtDW.outputImage_o[rtDW.p1] > 0.5);
+    Jout[p1] = (qx2 > 0.5F);
   }
 }
 
@@ -805,71 +941,6 @@ void Rpi_cam::eml_find(const bool x[307200], int32_t i_data[], int32_t *i_size,
   }
 }
 
-void Rpi_cam::binary_expand_op_5(bool in1_data[], int32_t *in1_size, const bool
-  in2_data[], const int32_t *in2_size, const int32_t in3_data[], const int32_t
-  *in3_size)
-{
-  int32_t loop_ub;
-  int32_t stride_0_0;
-  int32_t stride_1_0;
-
-  // MATLAB Function: '<S2>/MATLAB Function1'
-  if (*in3_size == 1) {
-    *in1_size = *in2_size;
-  } else {
-    *in1_size = *in3_size;
-  }
-
-  stride_0_0 = (*in2_size != 1);
-  stride_1_0 = (*in3_size != 1);
-  if (*in3_size == 1) {
-    loop_ub = *in2_size;
-  } else {
-    loop_ub = *in3_size;
-  }
-
-  for (int32_t i{0}; i < loop_ub; i++) {
-    in1_data[i] = (in2_data[i * stride_0_0] && (in3_data[i * stride_1_0] >= 0));
-  }
-
-  // End of MATLAB Function: '<S2>/MATLAB Function1'
-}
-
-void Rpi_cam::binary_expand_op_4(bool in1_data[], int32_t *in1_size, const
-  int32_t in2_data[], const int32_t *in2_size)
-{
-  int32_t in1_size_idx_0;
-  int32_t stride_0_0;
-  int32_t stride_1_0;
-
-  // MATLAB Function: '<S2>/MATLAB Function1'
-  if (*in2_size == 1) {
-    in1_size_idx_0 = *in1_size;
-  } else {
-    in1_size_idx_0 = *in2_size;
-  }
-
-  stride_0_0 = (*in1_size != 1);
-  stride_1_0 = (*in2_size != 1);
-  if (*in2_size == 1) {
-  } else {
-    *in1_size = *in2_size;
-  }
-
-  for (int32_t i{0}; i < *in1_size; i++) {
-    rtDW.in1_data_b[i] = (in1_data[i * stride_0_0] && (in2_data[i * stride_1_0] >=
-      480));
-  }
-
-  *in1_size = in1_size_idx_0;
-  if (in1_size_idx_0 - 1 >= 0) {
-    std::memcpy(&in1_data[0], &rtDW.in1_data_b[0], static_cast<uint32_t>
-                (in1_size_idx_0) * sizeof(bool));
-  }
-
-  // End of MATLAB Function: '<S2>/MATLAB Function1'
-}
-
 void Rpi_cam::and_o(bool in1_data[], int32_t *in1_size, const bool in2_data[],
                     const int32_t *in2_size, const bool in3_data[], const
                     int32_t *in3_size)
@@ -879,22 +950,34 @@ void Rpi_cam::and_o(bool in1_data[], int32_t *in1_size, const bool in2_data[],
   int32_t stride_1_0;
 
   // MATLAB Function: '<S2>/MATLAB Function1'
-  if (*in3_size == 1) {
-    *in1_size = *in2_size;
-  } else {
-    *in1_size = *in3_size;
-  }
-
+  loop_ub = *in3_size == 1 ? *in2_size : *in3_size;
+  *in1_size = loop_ub;
   stride_0_0 = (*in2_size != 1);
   stride_1_0 = (*in3_size != 1);
-  if (*in3_size == 1) {
-    loop_ub = *in2_size;
-  } else {
-    loop_ub = *in3_size;
-  }
-
   for (int32_t i{0}; i < loop_ub; i++) {
     in1_data[i] = (in2_data[i * stride_0_0] && in3_data[i * stride_1_0]);
+  }
+
+  // End of MATLAB Function: '<S2>/MATLAB Function1'
+}
+
+void Rpi_cam::binary_expand_op_3(bool in1_data[], int32_t *in1_size, const bool
+  in2_data[], const int32_t *in2_size, const int32_t in3_data[], const int32_t
+  *in3_size)
+{
+  int32_t loop_ub;
+  int32_t stride_0_0;
+  int32_t stride_1_0_tmp;
+
+  // MATLAB Function: '<S2>/MATLAB Function1'
+  loop_ub = *in3_size == 1 ? *in3_size == 1 ? *in2_size : *in3_size : *in3_size;
+  *in1_size = loop_ub;
+  stride_0_0 = (*in2_size != 1);
+  stride_1_0_tmp = (*in3_size != 1);
+  for (int32_t i{0}; i < loop_ub; i++) {
+    int32_t tmp;
+    tmp = in3_data[i * stride_1_0_tmp];
+    in1_data[i] = (in2_data[i * stride_0_0] && (tmp >= 0) && (tmp < 160));
   }
 
   // End of MATLAB Function: '<S2>/MATLAB Function1'
@@ -983,603 +1066,76 @@ double Rpi_cam::maximum(const double x_data[], const int32_t *x_size)
   return ex;
 }
 
-void Rpi_cam::binary_expand_op_1(bool in1_data[], int32_t *in1_size, const bool
+void Rpi_cam::binary_expand_op_2(bool in1_data[], int32_t *in1_size, const bool
   in2_data[], const int32_t *in2_size, const bool in3_data[], const bool
-  in4_data[], const int32_t *in4_size)
+  in4_data[], const int32_t *in4_size, const bool in5_data[], const int32_t
+  *in5_size)
+{
+  int32_t loop_ub;
+  int32_t stride_0_0;
+  int32_t stride_1_0;
+  int32_t stride_2_0;
+
+  // MATLAB Function: '<S2>/MATLAB Function1'
+  loop_ub = *in5_size == 1 ? *in4_size == 1 ? *in2_size : *in4_size : *in5_size;
+  *in1_size = loop_ub;
+  stride_0_0 = (*in2_size != 1);
+  stride_1_0 = (*in4_size != 1);
+  stride_2_0 = (*in5_size != 1);
+  for (int32_t i{0}; i < loop_ub; i++) {
+    int32_t tmp;
+    tmp = i * stride_0_0;
+    in1_data[i] = (in2_data[tmp] && in3_data[tmp] && in4_data[i * stride_1_0] &&
+                   in5_data[i * stride_2_0]);
+  }
+
+  // End of MATLAB Function: '<S2>/MATLAB Function1'
+}
+
+void Rpi_cam::binary_expand_op(bool in1_data[], int32_t *in1_size, const int32_t
+  in2_data[], const int32_t *in2_size, double in3, double in4, const int32_t
+  in5_data[], const int32_t *in5_size, double in6)
 {
   int32_t loop_ub;
   int32_t stride_0_0;
   int32_t stride_1_0;
 
   // MATLAB Function: '<S2>/MATLAB Function1'
-  if (*in4_size == 1) {
-    *in1_size = *in2_size;
-  } else {
-    *in1_size = *in4_size;
-  }
-
+  loop_ub = *in5_size == 1 ? *in2_size : *in5_size;
+  *in1_size = loop_ub;
   stride_0_0 = (*in2_size != 1);
-  stride_1_0 = (*in4_size != 1);
-  if (*in4_size == 1) {
-    loop_ub = *in2_size;
-  } else {
-    loop_ub = *in4_size;
-  }
-
+  stride_1_0 = (*in5_size != 1);
   for (int32_t i{0}; i < loop_ub; i++) {
-    int32_t tmp;
-    tmp = i * stride_0_0;
-    in1_data[i] = (in2_data[tmp] && in3_data[tmp] && in4_data[i * stride_1_0]);
+    double tmp;
+    tmp = in2_data[i * stride_0_0];
+    in1_data[i] = ((tmp >= in3) && (tmp < in4) && (in5_data[i * stride_1_0] >=
+      in6 - 40.0));
   }
 
   // End of MATLAB Function: '<S2>/MATLAB Function1'
 }
 
-void Rpi_cam::binary_expand_op(bool in1_data[], int32_t *in1_size, const bool
-  in2_data[], const bool in3_data[], const int32_t *in3_size)
+void Rpi_cam::binary_expand_op_1(bool in1_data[], int32_t *in1_size, const
+  double in2_data[], const int32_t *in2_size, double in3, double in4, const
+  double in5_data[], const int32_t *in5_size, double in6)
 {
-  int32_t in1_size_idx_0;
+  int32_t loop_ub;
   int32_t stride_0_0;
   int32_t stride_1_0;
 
   // MATLAB Function: '<S2>/MATLAB Function1'
-  if (*in3_size == 1) {
-    in1_size_idx_0 = *in1_size;
-  } else {
-    in1_size_idx_0 = *in3_size;
-  }
-
-  stride_0_0 = (*in1_size != 1);
-  stride_1_0 = (*in3_size != 1);
-  if (*in3_size == 1) {
-  } else {
-    *in1_size = *in3_size;
-  }
-
-  for (int32_t i{0}; i < *in1_size; i++) {
-    int32_t in1_tmp;
-    in1_tmp = i * stride_0_0;
-    rtDW.in1_data[i] = (in1_data[in1_tmp] && in2_data[in1_tmp] && in3_data[i *
-                        stride_1_0]);
-  }
-
-  *in1_size = in1_size_idx_0;
-  if (in1_size_idx_0 - 1 >= 0) {
-    std::memcpy(&in1_data[0], &rtDW.in1_data[0], static_cast<uint32_t>
-                (in1_size_idx_0) * sizeof(bool));
+  loop_ub = *in5_size == 1 ? *in2_size : *in5_size;
+  *in1_size = loop_ub;
+  stride_0_0 = (*in2_size != 1);
+  stride_1_0 = (*in5_size != 1);
+  for (int32_t i{0}; i < loop_ub; i++) {
+    double tmp;
+    tmp = in2_data[i * stride_0_0];
+    in1_data[i] = ((tmp >= in3) && (tmp < in4) && (in5_data[i * stride_1_0] >=
+      in6 - 40.0));
   }
 
   // End of MATLAB Function: '<S2>/MATLAB Function1'
-}
-
-// Function for MATLAB Function: '<S2>/MATLAB Function1'
-double Rpi_cam::xnrm2(int32_t n, const double x_data[], int32_t ix0)
-{
-  double y;
-  y = 0.0;
-  if (n >= 1) {
-    if (n == 1) {
-      y = std::abs(x_data[ix0 - 1]);
-    } else {
-      rtDW.scale = 3.3121686421112381E-170;
-      rtDW.kend = (ix0 + n) - 1;
-      for (rtDW.k_f = ix0; rtDW.k_f <= rtDW.kend; rtDW.k_f++) {
-        rtDW.absxk = std::abs(x_data[rtDW.k_f - 1]);
-        if (rtDW.absxk > rtDW.scale) {
-          rtDW.t_m = rtDW.scale / rtDW.absxk;
-          y = y * rtDW.t_m * rtDW.t_m + 1.0;
-          rtDW.scale = rtDW.absxk;
-        } else {
-          rtDW.t_m = rtDW.absxk / rtDW.scale;
-          y += rtDW.t_m * rtDW.t_m;
-        }
-      }
-
-      y = rtDW.scale * std::sqrt(y);
-    }
-  }
-
-  return y;
-}
-
-// Function for MATLAB Function: '<S2>/MATLAB Function1'
-void Rpi_cam::xswap(int32_t n, double x_data[], int32_t ix0, int32_t iy0)
-{
-  for (rtDW.k_i = 0; rtDW.k_i < n; rtDW.k_i++) {
-    rtDW.temp_tmp = (ix0 + rtDW.k_i) - 1;
-    rtDW.temp = x_data[rtDW.temp_tmp];
-    rtDW.i1 = (iy0 + rtDW.k_i) - 1;
-    x_data[rtDW.temp_tmp] = x_data[rtDW.i1];
-    x_data[rtDW.i1] = rtDW.temp;
-  }
-}
-
-double Rpi_cam::rt_hypotd_snf_o(double u0, double u1)
-{
-  double y;
-  rtDW.a = std::abs(u0);
-  rtDW.b = std::abs(u1);
-  if (rtDW.a < rtDW.b) {
-    rtDW.a /= rtDW.b;
-    y = std::sqrt(rtDW.a * rtDW.a + 1.0) * rtDW.b;
-  } else if (rtDW.a > rtDW.b) {
-    rtDW.b /= rtDW.a;
-    y = std::sqrt(rtDW.b * rtDW.b + 1.0) * rtDW.a;
-  } else if (std::isnan(rtDW.b)) {
-    y = (rtNaN);
-  } else {
-    y = rtDW.a * 1.4142135623730951;
-  }
-
-  return y;
-}
-
-// Function for MATLAB Function: '<S2>/MATLAB Function1'
-void Rpi_cam::xzlarf(int32_t m, int32_t n, int32_t iv0, double tau, double
-                     C_data[], int32_t ic0, int32_t ldc, double work[3])
-{
-  if (tau != 0.0) {
-    bool exitg2;
-    rtDW.lastv = m;
-    rtDW.i_o = iv0 + m;
-    while ((rtDW.lastv > 0) && (C_data[rtDW.i_o - 2] == 0.0)) {
-      rtDW.lastv--;
-      rtDW.i_o--;
-    }
-
-    rtDW.lastc = n;
-    exitg2 = false;
-    while ((!exitg2) && (rtDW.lastc > 0)) {
-      int32_t exitg1;
-      rtDW.i_o = (rtDW.lastc - 1) * ldc + ic0;
-      rtDW.jA = rtDW.i_o;
-      do {
-        exitg1 = 0;
-        if (rtDW.jA <= (rtDW.i_o + rtDW.lastv) - 1) {
-          if (C_data[rtDW.jA - 1] != 0.0) {
-            exitg1 = 1;
-          } else {
-            rtDW.jA++;
-          }
-        } else {
-          rtDW.lastc--;
-          exitg1 = 2;
-        }
-      } while (exitg1 == 0);
-
-      if (exitg1 == 1) {
-        exitg2 = true;
-      }
-    }
-  } else {
-    rtDW.lastv = 0;
-    rtDW.lastc = 0;
-  }
-
-  if (rtDW.lastv > 0) {
-    if (rtDW.lastc != 0) {
-      rtDW.jA = static_cast<uint8_t>(rtDW.lastc);
-      std::memset(&work[0], 0, static_cast<uint32_t>(rtDW.jA) * sizeof(double));
-      rtDW.jy = 0;
-      rtDW.d_o = (rtDW.lastc - 1) * ldc + ic0;
-      for (rtDW.i_o = ic0; ldc < 0 ? rtDW.i_o >= rtDW.d_o : rtDW.i_o <= rtDW.d_o;
-           rtDW.i_o += ldc) {
-        rtDW.c = 0.0;
-        rtDW.e = (rtDW.i_o + rtDW.lastv) - 1;
-        for (rtDW.jA = rtDW.i_o; rtDW.jA <= rtDW.e; rtDW.jA++) {
-          rtDW.c += C_data[((iv0 + rtDW.jA) - rtDW.i_o) - 1] * C_data[rtDW.jA -
-            1];
-        }
-
-        work[rtDW.jy] += rtDW.c;
-        rtDW.jy++;
-      }
-    }
-
-    if (!(-tau == 0.0)) {
-      rtDW.jA = ic0;
-      rtDW.d_o = static_cast<uint8_t>(rtDW.lastc);
-      for (rtDW.lastc = 0; rtDW.lastc < rtDW.d_o; rtDW.lastc++) {
-        rtDW.c = work[rtDW.lastc];
-        if (rtDW.c != 0.0) {
-          rtDW.c *= -tau;
-          rtDW.e = rtDW.lastv + rtDW.jA;
-          for (rtDW.i_o = rtDW.jA; rtDW.i_o < rtDW.e; rtDW.i_o++) {
-            C_data[rtDW.i_o - 1] += C_data[((iv0 + rtDW.i_o) - rtDW.jA) - 1] *
-              rtDW.c;
-          }
-        }
-
-        rtDW.jA += ldc;
-      }
-    }
-  }
-}
-
-// Function for MATLAB Function: '<S2>/MATLAB Function1'
-void Rpi_cam::qrpf(double A_data[], const int32_t A_size[2], int32_t m, double
-                   tau_data[], int32_t jpvt[3])
-{
-  __m128d tmp;
-  rtDW.ma = A_size[0];
-  rtDW.work[0] = 0.0;
-  rtDW.vn1_c = xnrm2(m, A_data, 1);
-  rtDW.vn1[0] = rtDW.vn1_c;
-  rtDW.vn2[0] = rtDW.vn1_c;
-  rtDW.work[1] = 0.0;
-  rtDW.vn1_c = xnrm2(m, A_data, A_size[0] + 1);
-  rtDW.vn1[1] = rtDW.vn1_c;
-  rtDW.vn2[1] = rtDW.vn1_c;
-  rtDW.work[2] = 0.0;
-  rtDW.vn1_c = xnrm2(m, A_data, (A_size[0] << 1) + 1);
-  rtDW.vn1[2] = rtDW.vn1_c;
-  rtDW.vn2[2] = rtDW.vn1_c;
-  if (m <= 3) {
-    rtDW.b_i = static_cast<uint8_t>(m);
-  } else {
-    rtDW.b_i = 3;
-  }
-
-  for (rtDW.j_a = 0; rtDW.j_a < rtDW.b_i; rtDW.j_a++) {
-    rtDW.ix = rtDW.j_a * rtDW.ma;
-    rtDW.ii = rtDW.ix + rtDW.j_a;
-    rtDW.mmi = m - rtDW.j_a;
-    rtDW.itemp = 3 - rtDW.j_a;
-    rtDW.knt = 0;
-    if (3 - rtDW.j_a > 1) {
-      rtDW.smax = std::abs(rtDW.vn1[rtDW.j_a]);
-      for (rtDW.pvt = 2; rtDW.pvt <= rtDW.itemp; rtDW.pvt++) {
-        rtDW.s = std::abs(rtDW.vn1[(rtDW.j_a + rtDW.pvt) - 1]);
-        if (rtDW.s > rtDW.smax) {
-          rtDW.knt = rtDW.pvt - 1;
-          rtDW.smax = rtDW.s;
-        }
-      }
-    }
-
-    rtDW.pvt = rtDW.j_a + rtDW.knt;
-    if (rtDW.pvt != rtDW.j_a) {
-      xswap(m, A_data, rtDW.pvt * rtDW.ma + 1, rtDW.ix + 1);
-      rtDW.itemp = jpvt[rtDW.pvt];
-      jpvt[rtDW.pvt] = jpvt[rtDW.j_a];
-      jpvt[rtDW.j_a] = rtDW.itemp;
-      rtDW.vn1[rtDW.pvt] = rtDW.vn1[rtDW.j_a];
-      rtDW.vn2[rtDW.pvt] = rtDW.vn2[rtDW.j_a];
-    }
-
-    if (rtDW.j_a + 1 < m) {
-      rtDW.s = A_data[rtDW.ii];
-      rtDW.pvt = rtDW.ii + 2;
-      tau_data[rtDW.j_a] = 0.0;
-      if (rtDW.mmi > 0) {
-        rtDW.vn1_c = xnrm2(rtDW.mmi - 1, A_data, rtDW.ii + 2);
-        if (rtDW.vn1_c != 0.0) {
-          rtDW.smax = rt_hypotd_snf_o(A_data[rtDW.ii], rtDW.vn1_c);
-          if (A_data[rtDW.ii] >= 0.0) {
-            rtDW.smax = -rtDW.smax;
-          }
-
-          if (std::abs(rtDW.smax) < 1.0020841800044864E-292) {
-            rtDW.knt = 0;
-            rtDW.itemp = rtDW.ii + rtDW.mmi;
-            do {
-              rtDW.knt++;
-              rtDW.vectorUB_l = (((((rtDW.itemp - rtDW.ii) - 1) / 2) << 1) +
-                                 rtDW.ii) + 2;
-              rtDW.vectorUB_tmp = rtDW.vectorUB_l - 2;
-              for (rtDW.ix = rtDW.pvt; rtDW.ix <= rtDW.vectorUB_tmp; rtDW.ix +=
-                   2) {
-                tmp = _mm_loadu_pd(&A_data[rtDW.ix - 1]);
-                _mm_storeu_pd(&A_data[rtDW.ix - 1], _mm_mul_pd(tmp, _mm_set1_pd
-                  (9.9792015476736E+291)));
-              }
-
-              for (rtDW.ix = rtDW.vectorUB_l; rtDW.ix <= rtDW.itemp; rtDW.ix++)
-              {
-                A_data[rtDW.ix - 1] *= 9.9792015476736E+291;
-              }
-
-              rtDW.smax *= 9.9792015476736E+291;
-              rtDW.s *= 9.9792015476736E+291;
-            } while ((std::abs(rtDW.smax) < 1.0020841800044864E-292) &&
-                     (rtDW.knt < 20));
-
-            rtDW.smax = rt_hypotd_snf_o(rtDW.s, xnrm2(rtDW.mmi - 1, A_data,
-              rtDW.ii + 2));
-            if (rtDW.s >= 0.0) {
-              rtDW.smax = -rtDW.smax;
-            }
-
-            tau_data[rtDW.j_a] = (rtDW.smax - rtDW.s) / rtDW.smax;
-            rtDW.s = 1.0 / (rtDW.s - rtDW.smax);
-            for (rtDW.ix = rtDW.pvt; rtDW.ix <= rtDW.vectorUB_tmp; rtDW.ix += 2)
-            {
-              tmp = _mm_loadu_pd(&A_data[rtDW.ix - 1]);
-              _mm_storeu_pd(&A_data[rtDW.ix - 1], _mm_mul_pd(tmp, _mm_set1_pd
-                (rtDW.s)));
-            }
-
-            for (rtDW.ix = rtDW.vectorUB_l; rtDW.ix <= rtDW.itemp; rtDW.ix++) {
-              A_data[rtDW.ix - 1] *= rtDW.s;
-            }
-
-            for (rtDW.pvt = 0; rtDW.pvt < rtDW.knt; rtDW.pvt++) {
-              rtDW.smax *= 1.0020841800044864E-292;
-            }
-
-            rtDW.s = rtDW.smax;
-          } else {
-            tau_data[rtDW.j_a] = (rtDW.smax - A_data[rtDW.ii]) / rtDW.smax;
-            rtDW.s = 1.0 / (A_data[rtDW.ii] - rtDW.smax);
-            rtDW.ix = rtDW.ii + rtDW.mmi;
-            rtDW.itemp = (((((rtDW.ix - rtDW.ii) - 1) / 2) << 1) + rtDW.ii) + 2;
-            rtDW.vectorUB_l = rtDW.itemp - 2;
-            for (rtDW.knt = rtDW.pvt; rtDW.knt <= rtDW.vectorUB_l; rtDW.knt += 2)
-            {
-              tmp = _mm_loadu_pd(&A_data[rtDW.knt - 1]);
-              _mm_storeu_pd(&A_data[rtDW.knt - 1], _mm_mul_pd(tmp, _mm_set1_pd
-                (rtDW.s)));
-            }
-
-            for (rtDW.knt = rtDW.itemp; rtDW.knt <= rtDW.ix; rtDW.knt++) {
-              A_data[rtDW.knt - 1] *= rtDW.s;
-            }
-
-            rtDW.s = rtDW.smax;
-          }
-        }
-      }
-
-      A_data[rtDW.ii] = rtDW.s;
-    } else {
-      tau_data[rtDW.j_a] = 0.0;
-    }
-
-    if (rtDW.j_a + 1 < 3) {
-      rtDW.smax = A_data[rtDW.ii];
-      A_data[rtDW.ii] = 1.0;
-      xzlarf(rtDW.mmi, 2 - rtDW.j_a, rtDW.ii + 1, tau_data[rtDW.j_a], A_data,
-             (rtDW.ii + rtDW.ma) + 1, rtDW.ma, &rtDW.work[0]);
-      A_data[rtDW.ii] = rtDW.smax;
-    }
-
-    for (rtDW.ii = rtDW.j_a + 2; rtDW.ii < 4; rtDW.ii++) {
-      rtDW.pvt = (rtDW.ii - 1) * rtDW.ma + rtDW.j_a;
-      rtDW.vn1_c = rtDW.vn1[rtDW.ii - 1];
-      if (rtDW.vn1_c != 0.0) {
-        rtDW.smax = std::abs(A_data[rtDW.pvt]) / rtDW.vn1_c;
-        rtDW.smax = 1.0 - rtDW.smax * rtDW.smax;
-        if (rtDW.smax < 0.0) {
-          rtDW.smax = 0.0;
-        }
-
-        rtDW.s = rtDW.vn1_c / rtDW.vn2[rtDW.ii - 1];
-        rtDW.s = rtDW.s * rtDW.s * rtDW.smax;
-        if (rtDW.s <= 1.4901161193847656E-8) {
-          if (rtDW.j_a + 1 < m) {
-            rtDW.vn1_c = xnrm2(rtDW.mmi - 1, A_data, rtDW.pvt + 2);
-            rtDW.vn1[rtDW.ii - 1] = rtDW.vn1_c;
-            rtDW.vn2[rtDW.ii - 1] = rtDW.vn1_c;
-          } else {
-            rtDW.vn1[rtDW.ii - 1] = 0.0;
-            rtDW.vn2[rtDW.ii - 1] = 0.0;
-          }
-        } else {
-          rtDW.vn1[rtDW.ii - 1] = rtDW.vn1_c * std::sqrt(rtDW.smax);
-        }
-      }
-    }
-  }
-}
-
-// Function for MATLAB Function: '<S2>/MATLAB Function1'
-void Rpi_cam::xgeqp3(double A_data[], int32_t A_size[2], double tau_data[],
-                     int32_t *tau_size, int32_t jpvt[3])
-{
-  bool guard1;
-  rtDW.b_A_size_l[0] = A_size[0];
-  rtDW.b_A_size_l[1] = 3;
-  rtDW.loop_ub = A_size[0] * 3;
-  if (rtDW.loop_ub - 1 >= 0) {
-    std::memcpy(&rtDW.b_A_data_c[0], &A_data[0], static_cast<uint32_t>
-                (rtDW.loop_ub) * sizeof(double));
-  }
-
-  if (A_size[0] <= 3) {
-    rtDW.loop_ub = A_size[0];
-  } else {
-    rtDW.loop_ub = 3;
-  }
-
-  *tau_size = rtDW.loop_ub;
-  if (rtDW.loop_ub - 1 >= 0) {
-    std::memset(&tau_data[0], 0, static_cast<uint32_t>(rtDW.loop_ub) * sizeof
-                (double));
-  }
-
-  guard1 = false;
-  if (A_size[0] == 0) {
-    guard1 = true;
-  } else {
-    if (A_size[0] <= 3) {
-      rtDW.i_a = A_size[0];
-    } else {
-      rtDW.i_a = 3;
-    }
-
-    if (rtDW.i_a < 1) {
-      guard1 = true;
-    } else {
-      jpvt[0] = 1;
-      jpvt[1] = 2;
-      jpvt[2] = 3;
-      qrpf(rtDW.b_A_data_c, rtDW.b_A_size_l, A_size[0], tau_data, jpvt);
-    }
-  }
-
-  if (guard1) {
-    jpvt[0] = 1;
-    jpvt[1] = 2;
-    jpvt[2] = 3;
-  }
-
-  A_size[0] = rtDW.b_A_size_l[0];
-  A_size[1] = 3;
-  rtDW.loop_ub = rtDW.b_A_size_l[0];
-  for (rtDW.i_a = 0; rtDW.i_a < 3; rtDW.i_a++) {
-    for (rtDW.b_A = 0; rtDW.b_A < rtDW.loop_ub; rtDW.b_A++) {
-      A_data[rtDW.b_A + A_size[0] * rtDW.i_a] = rtDW.b_A_data_c[rtDW.b_A_size_l
-        [0] * rtDW.i_a + rtDW.b_A];
-    }
-  }
-}
-
-// Function for MATLAB Function: '<S2>/MATLAB Function1'
-void Rpi_cam::qrsolve(const double A_data[], const int32_t A_size[2], const
-                      double B_data[], const int32_t *B_size, double Y[3],
-                      int32_t *rankA)
-{
-  __m128d tmp;
-  __m128d tmp_0;
-  rtDW.b_A_size[0] = A_size[0];
-  rtDW.b_A_size[1] = 3;
-  rtDW.maxmn = A_size[0] * 3;
-  if (rtDW.maxmn - 1 >= 0) {
-    std::memcpy(&rtDW.b_A_data[0], &A_data[0], static_cast<uint32_t>(rtDW.maxmn)
-                * sizeof(double));
-  }
-
-  xgeqp3(rtDW.b_A_data, rtDW.b_A_size, rtDW.tau_data, &rtDW.tau_size,
-         &rtDW.jpvt[0]);
-  *rankA = 0;
-  if (rtDW.b_A_size[0] < 3) {
-    rtDW.minmn = rtDW.b_A_size[0];
-    rtDW.maxmn = 3;
-  } else {
-    rtDW.minmn = 3;
-    rtDW.maxmn = rtDW.b_A_size[0];
-  }
-
-  if (rtDW.minmn > 0) {
-    rtDW.tol = 2.2204460492503131E-15 * static_cast<double>(rtDW.maxmn) * std::
-      abs(rtDW.b_A_data[0]);
-    while ((*rankA < rtDW.minmn) && (!(std::abs(rtDW.b_A_data[rtDW.b_A_size[0] *
-              *rankA + *rankA]) <= rtDW.tol))) {
-      (*rankA)++;
-    }
-  }
-
-  rtDW.minmn = 0;
-  if (rtDW.b_A_size[0] <= 3) {
-    rtDW.maxmn = rtDW.b_A_size[0];
-  } else {
-    rtDW.maxmn = 3;
-  }
-
-  if (rtDW.maxmn > 0) {
-    for (rtDW.k_p = 0; rtDW.k_p < rtDW.maxmn; rtDW.k_p++) {
-      if (rtDW.b_A_data[rtDW.b_A_size[0] * rtDW.k_p + rtDW.k_p] != 0.0) {
-        rtDW.minmn++;
-      }
-    }
-  }
-
-  rtDW.maxmn = *B_size;
-  if (rtDW.maxmn - 1 >= 0) {
-    std::memcpy(&rtDW.b_B_data[0], &B_data[0], static_cast<uint32_t>(rtDW.maxmn)
-                * sizeof(double));
-  }
-
-  Y[0] = 0.0;
-  Y[1] = 0.0;
-  Y[2] = 0.0;
-  rtDW.maxmn = rtDW.b_A_size[0];
-  if (rtDW.b_A_size[0] <= 3) {
-    rtDW.k_p = rtDW.b_A_size[0];
-  } else {
-    rtDW.k_p = 3;
-  }
-
-  for (rtDW.b_j = 0; rtDW.b_j < rtDW.k_p; rtDW.b_j++) {
-    if (rtDW.tau_data[rtDW.b_j] != 0.0) {
-      rtDW.tol = rtDW.b_B_data[rtDW.b_j];
-      for (rtDW.c_i = rtDW.b_j + 2; rtDW.c_i <= rtDW.maxmn; rtDW.c_i++) {
-        rtDW.tol += rtDW.b_A_data[(rtDW.b_A_size[0] * rtDW.b_j + rtDW.c_i) - 1] *
-          rtDW.b_B_data[rtDW.c_i - 1];
-      }
-
-      rtDW.tol *= rtDW.tau_data[rtDW.b_j];
-      if (rtDW.tol != 0.0) {
-        rtDW.b_B_data[rtDW.b_j] -= rtDW.tol;
-        rtDW.scalarLB_a = (((((rtDW.maxmn - rtDW.b_j) - 1) / 2) << 1) + rtDW.b_j)
-          + 2;
-        rtDW.vectorUB_e = rtDW.scalarLB_a - 2;
-        for (rtDW.c_i = rtDW.b_j + 2; rtDW.c_i <= rtDW.vectorUB_e; rtDW.c_i += 2)
-        {
-          tmp = _mm_loadu_pd(&rtDW.b_A_data[(rtDW.b_A_size[0] * rtDW.b_j +
-            rtDW.c_i) - 1]);
-          tmp_0 = _mm_loadu_pd(&rtDW.b_B_data[rtDW.c_i - 1]);
-          _mm_storeu_pd(&rtDW.b_B_data[rtDW.c_i - 1], _mm_sub_pd(tmp_0,
-            _mm_mul_pd(tmp, _mm_set1_pd(rtDW.tol))));
-        }
-
-        for (rtDW.c_i = rtDW.scalarLB_a; rtDW.c_i <= rtDW.maxmn; rtDW.c_i++) {
-          rtDW.b_B_data[rtDW.c_i - 1] -= rtDW.b_A_data[(rtDW.b_A_size[0] *
-            rtDW.b_j + rtDW.c_i) - 1] * rtDW.tol;
-        }
-      }
-    }
-  }
-
-  for (rtDW.maxmn = 0; rtDW.maxmn < rtDW.minmn; rtDW.maxmn++) {
-    Y[rtDW.jpvt[rtDW.maxmn] - 1] = rtDW.b_B_data[rtDW.maxmn];
-  }
-
-  for (rtDW.maxmn = rtDW.minmn; rtDW.maxmn >= 1; rtDW.maxmn--) {
-    rtDW.k_p = rtDW.jpvt[rtDW.maxmn - 1];
-    rtDW.c_i = (rtDW.maxmn - 1) * rtDW.b_A_size[0];
-    Y[rtDW.k_p - 1] /= rtDW.b_A_data[(rtDW.maxmn + rtDW.c_i) - 1];
-    for (rtDW.b_j = 0; rtDW.b_j <= rtDW.maxmn - 2; rtDW.b_j++) {
-      Y[rtDW.jpvt[rtDW.b_j] - 1] -= Y[rtDW.k_p - 1] * rtDW.b_A_data[rtDW.b_j +
-        rtDW.c_i];
-    }
-  }
-}
-
-// Function for MATLAB Function: '<S2>/MATLAB Function1'
-void Rpi_cam::polyfit(const double x_data[], const int32_t *x_size, const double
-                      y_data[], const int32_t *y_size, double p[3])
-{
-  __m128d tmp;
-  __m128d tmp_0;
-  rtDW.V_size[0] = *x_size;
-  rtDW.V_size[1] = 3;
-  if (*x_size != 0) {
-    rtDW.b_px = *x_size;
-    for (rtDW.k = 0; rtDW.k < rtDW.b_px; rtDW.k++) {
-      rtDW.V_data[rtDW.k + (rtDW.V_size[0] << 1)] = 1.0;
-    }
-
-    rtDW.b_px = *x_size;
-    for (rtDW.k = 0; rtDW.k < rtDW.b_px; rtDW.k++) {
-      rtDW.V_data[rtDW.k + rtDW.V_size[0]] = x_data[rtDW.k];
-    }
-
-    rtDW.b_px = *x_size;
-    rtDW.scalarLB = (*x_size / 2) << 1;
-    rtDW.vectorUB = rtDW.scalarLB - 2;
-    for (rtDW.k = 0; rtDW.k <= rtDW.vectorUB; rtDW.k += 2) {
-      tmp = _mm_loadu_pd(&x_data[rtDW.k]);
-      tmp_0 = _mm_loadu_pd(&rtDW.V_data[rtDW.k + rtDW.V_size[0]]);
-      _mm_storeu_pd(&rtDW.V_data[rtDW.k], _mm_mul_pd(tmp, tmp_0));
-    }
-
-    for (rtDW.k = rtDW.scalarLB; rtDW.k < rtDW.b_px; rtDW.k++) {
-      rtDW.V_data[rtDW.k] = rtDW.V_data[rtDW.k + rtDW.V_size[0]] * x_data[rtDW.k];
-    }
-  }
-
-  qrsolve(rtDW.V_data, rtDW.V_size, y_data, y_size, p, &rtDW.b_px);
 }
 
 codertarget_raspi_internal_Raspiv4l2Capture *Rpi_cam::
@@ -1604,60 +1160,52 @@ codertarget_raspi_internal_Raspiv4l2Capture *Rpi_cam::
   return b_obj;
 }
 
-void Rpi_cam::SystemCore_setup(codertarget_raspi_internal_Raspiv4l2Capture *obj)
+void Rpi_cam::SystemCore_setup(codertarget_raspi_internal_RaspiTCPSend *obj)
 {
-  static const std::array<char, 101> b_errorMessage{ { 'W', 'e', 'b', 'c', 'a',
-      'm', ' ', 'c', 'a', 'n', 'n', 'o', 't', ' ', 'b', 'e', ' ', 'i', 'n', 'i',
-      't', 'i', 'a', 'l', 'i', 'z', 'e', 'd', ' ', 'p', 'r', 'o', 'p', 'e', 'r',
-      'l', 'y', '.', ' ', 'P', 'l', 'e', 'a', 's', 'e', ' ', 'c', 'h', 'e', 'c',
-      'k', ' ', 'i', 'f', ' ', 't', 'h', 'e', ' ', 'd', 'e', 'v', 'i', 'c', 'e',
-      ' ', 's', 'u', 'p', 'p', 'o', 'r', 't', 's', ' ', 't', 'h', 'e', ' ', 's',
-      'p', 'e', 'c', 'i', 'f', 'i', 'e', 'd', ' ', 'r', 'e', 's', 'o', 'l', 'u',
-      't', 'i', 'o', 'n', '.', '\x00' } };
+  static const std::array<char, 14> ipaddr_0{ { '1', '9', '2', '.', '1', '6',
+      '8', '.', '1', '.', '1', '4', '1', '\x00' } };
 
-  static const std::array<char, 12> devName{ { '/', 'd', 'e', 'v', '/', 'v', 'i',
-      'd', 'e', 'o', '0', '\x00' } };
+  std::array<char, 14> ipaddr;
+  double tmp;
+  int16_t errorNo;
+  uint16_t tmp_0;
 
-  int32_t i;
-  int8_t resolutionStatus;
-  uint8_t camIndex;
-  obj->isSetupComplete = false;
-
-  // Start for MATLABSystem: '<Root>/V4L2 Video Capture'
+  // Start for MATLABSystem: '<Root>/TCP//IP Send1'
   obj->isInitialized = 1;
-  getCameraList();
-  for (i = 0; i < 12; i++) {
-    rtDW.devName[i] = devName[i];
+  obj->isServer_ = 0.0;
+  for (int32_t i{0}; i < 14; i++) {
+    ipaddr[i] = ipaddr_0[i];
   }
 
-  // Start for MATLABSystem: '<Root>/V4L2 Video Capture'
-  camIndex = getCameraAddrIndex(&rtDW.devName[0], 11U);
-  resolutionStatus = validateResolution(camIndex, 640, 480);
-  if (resolutionStatus >= 0) {
-    // Start for MATLABSystem: '<Root>/V4L2 Video Capture'
-    EXT_webcamInit(0, 0, 0, 0, 0, 0, 640U, 480U, 2U, 2U, 1U, 0.1);
+  // Start for MATLABSystem: '<Root>/TCP//IP Send1'
+  tmp = std::round(obj->isServer_);
+  if (tmp < 65536.0) {
+    if (tmp >= 0.0) {
+      tmp_0 = static_cast<uint16_t>(tmp);
+    } else {
+      tmp_0 = 0U;
+    }
   } else {
-    // Start for MATLABSystem: '<Root>/V4L2 Video Capture'
-    std::memcpy(&rtDW.b_errorMessage[0], &b_errorMessage[0], 101U * sizeof(char));
-    std::perror(&rtDW.b_errorMessage[0]);
-
-    // Start for MATLABSystem: '<Root>/V4L2 Video Capture'
-    std::exit(0);
+    tmp_0 = UINT16_MAX;
   }
 
-  // Start for MATLABSystem: '<Root>/V4L2 Video Capture'
-  v4l2Capture_updateV4L2Settings(obj, true);
-  obj->isSetupComplete = true;
+  // Start for MATLABSystem: '<Root>/TCP//IP Send1'
+  TCPStreamSetup(3333, 0, &obj->connStream_, tmp_0, 0.0, &errorNo, &ipaddr[0]);
+  littleEndianCheck(&obj->isLittleEnd_);
 }
 
 // Model step function
 void Rpi_cam::step()
 {
-  static const std::array<int16_t, 8> tmp{ { 110, 500, 1, 639, 300, 300, 390,
+  static const std::array<int16_t, 8> tmp_0{ { 145, 500, 27, 639, 300, 300, 415,
       415 } };
 
-  static const std::array<int16_t, 8> tmp_0{ { 40, 600, 40, 600, 300, 300, 480,
+  static const std::array<int16_t, 8> tmp_1{ { 40, 600, 40, 600, 300, 300, 480,
       480 } };
+
+  int16_t errorNo;
+  uint16_t tmp;
+  uint8_t xtmp;
 
   // MATLABSystem: '<Root>/V4L2 Video Capture'
   if (rtDW.obj.Brightness != 0.5) {
@@ -1692,7 +1240,7 @@ void Rpi_cam::step()
     rtDW.obj.ManualFocus = 0.5;
   }
 
-  SystemCore_step(&rtDW.obj, &rtDW.b_varargout_1_g[0], &rtDW.b_varargout_2[0],
+  SystemCore_step(&rtDW.obj, &rtDW.b_varargout_1[0], &rtDW.b_varargout_2[0],
                   &rtDW.b_varargout_3[0]);
 
   // Math: '<S3>/Transpose' incorporates:
@@ -1700,12 +1248,12 @@ void Rpi_cam::step()
   //
   for (rtDW.i = 0; rtDW.i < 640; rtDW.i++) {
     for (rtDW.inlierNum = 0; rtDW.inlierNum < 480; rtDW.inlierNum++) {
-      rtDW.b_varargout_1_c[rtDW.inlierNum + 480 * rtDW.i] =
-        rtDW.b_varargout_1_g[640 * rtDW.inlierNum + rtDW.i];
+      rtDW.b_varargout_1_b[rtDW.inlierNum + 480 * rtDW.i] = rtDW.b_varargout_1
+        [640 * rtDW.inlierNum + rtDW.i];
     }
   }
 
-  std::memcpy(&rtDW.outputImage[0], &rtDW.b_varargout_1_c[0], 307200U * sizeof
+  std::memcpy(&rtDW.outputImage[0], &rtDW.b_varargout_1_b[0], 307200U * sizeof
               (uint8_t));
 
   // End of Math: '<S3>/Transpose'
@@ -1715,12 +1263,12 @@ void Rpi_cam::step()
   //
   for (rtDW.i = 0; rtDW.i < 640; rtDW.i++) {
     for (rtDW.inlierNum = 0; rtDW.inlierNum < 480; rtDW.inlierNum++) {
-      rtDW.b_varargout_1_g[rtDW.inlierNum + 480 * rtDW.i] = rtDW.b_varargout_2
-        [640 * rtDW.inlierNum + rtDW.i];
+      rtDW.b_varargout_1[rtDW.inlierNum + 480 * rtDW.i] = rtDW.b_varargout_2[640
+        * rtDW.inlierNum + rtDW.i];
     }
   }
 
-  std::memcpy(&rtDW.outputImage[307200], &rtDW.b_varargout_1_g[0], 307200U *
+  std::memcpy(&rtDW.outputImage[307200], &rtDW.b_varargout_1[0], 307200U *
               sizeof(uint8_t));
 
   // End of Math: '<S3>/Transpose1'
@@ -1745,24 +1293,22 @@ void Rpi_cam::step()
     for (rtDW.j = 0; rtDW.j < 640; rtDW.j++) {
       for (rtDW.svdRsltVar = 0; rtDW.svdRsltVar < 240; rtDW.svdRsltVar++) {
         rtDW.i = (480 * rtDW.j + rtDW.svdRsltVar) + 307200 * rtDW.inlierNum;
-        rtDW.xtmp = rtDW.outputImage[rtDW.i];
+        xtmp = rtDW.outputImage[rtDW.i];
         rtDW.outputImage_tmp = ((480 * rtDW.j - rtDW.svdRsltVar) + 307200 *
           rtDW.inlierNum) + 479;
         rtDW.outputImage[rtDW.i] = rtDW.outputImage[rtDW.outputImage_tmp];
-        rtDW.outputImage[rtDW.outputImage_tmp] = rtDW.xtmp;
+        rtDW.outputImage[rtDW.outputImage_tmp] = xtmp;
       }
     }
-  }
 
-  for (rtDW.svdRsltVar = 0; rtDW.svdRsltVar < 3; rtDW.svdRsltVar++) {
-    for (rtDW.inlierNum = 0; rtDW.inlierNum < 320; rtDW.inlierNum++) {
+    for (rtDW.svdRsltVar = 0; rtDW.svdRsltVar < 320; rtDW.svdRsltVar++) {
       for (rtDW.j = 0; rtDW.j < 480; rtDW.j++) {
-        rtDW.i = (480 * rtDW.inlierNum + rtDW.j) + 307200 * rtDW.svdRsltVar;
-        rtDW.xtmp = rtDW.outputImage[rtDW.i];
-        rtDW.outputImage_tmp = ((639 - rtDW.inlierNum) * 480 + rtDW.j) + 307200 *
-          rtDW.svdRsltVar;
+        rtDW.i = (480 * rtDW.svdRsltVar + rtDW.j) + 307200 * rtDW.inlierNum;
+        xtmp = rtDW.outputImage[rtDW.i];
+        rtDW.outputImage_tmp = ((639 - rtDW.svdRsltVar) * 480 + rtDW.j) + 307200
+          * rtDW.inlierNum;
         rtDW.outputImage[rtDW.i] = rtDW.outputImage[rtDW.outputImage_tmp];
-        rtDW.outputImage[rtDW.outputImage_tmp] = rtDW.xtmp;
+        rtDW.outputImage[rtDW.outputImage_tmp] = xtmp;
       }
     }
   }
@@ -1782,69 +1328,70 @@ void Rpi_cam::step()
     //   S-Function (svipscalenconvert): '<S4>/Image Data Type Conversion'
 
     // First get the min and max of the RGB triplet
-    rtDW.win_y_high = rtDW.ImageDataTypeConversion[rtDW.svdRsltVar];
-    rtDW.ImageDataTypeConversion_b =
+    rtDW.ImageDataTypeConversion_c =
+      rtDW.ImageDataTypeConversion[rtDW.svdRsltVar];
+    rtDW.ImageDataTypeConversion_k =
       rtDW.ImageDataTypeConversion[rtDW.svdRsltVar + 307200];
-    if (rtDW.win_y_high > rtDW.ImageDataTypeConversion_b) {
-      rtDW.ImageDataTypeConversion_p =
+    if (rtDW.ImageDataTypeConversion_c > rtDW.ImageDataTypeConversion_k) {
+      rtDW.ImageDataTypeConversion_cx =
         rtDW.ImageDataTypeConversion[rtDW.svdRsltVar + 614400];
-      if (rtDW.ImageDataTypeConversion_b < rtDW.ImageDataTypeConversion_p) {
-        rtDW.count_right = rtDW.ImageDataTypeConversion_b;
+      if (rtDW.ImageDataTypeConversion_k < rtDW.ImageDataTypeConversion_cx) {
+        rtDW.win_y_high = rtDW.ImageDataTypeConversion_k;
       } else {
-        rtDW.count_right = rtDW.ImageDataTypeConversion_p;
+        rtDW.win_y_high = rtDW.ImageDataTypeConversion_cx;
       }
 
-      if (rtDW.win_y_high > rtDW.ImageDataTypeConversion_p) {
-        rtDW.bestInlierDis = rtDW.win_y_high;
+      if (rtDW.ImageDataTypeConversion_c > rtDW.ImageDataTypeConversion_cx) {
+        rtDW.bestInlierDis = rtDW.ImageDataTypeConversion_c;
       } else {
-        rtDW.bestInlierDis = rtDW.ImageDataTypeConversion_p;
+        rtDW.bestInlierDis = rtDW.ImageDataTypeConversion_cx;
       }
     } else {
-      rtDW.ImageDataTypeConversion_p =
+      rtDW.ImageDataTypeConversion_cx =
         rtDW.ImageDataTypeConversion[rtDW.svdRsltVar + 614400];
-      if (rtDW.win_y_high < rtDW.ImageDataTypeConversion_p) {
-        rtDW.count_right = rtDW.win_y_high;
+      if (rtDW.ImageDataTypeConversion_c < rtDW.ImageDataTypeConversion_cx) {
+        rtDW.win_y_high = rtDW.ImageDataTypeConversion_c;
       } else {
-        rtDW.count_right = rtDW.ImageDataTypeConversion_p;
+        rtDW.win_y_high = rtDW.ImageDataTypeConversion_cx;
       }
 
-      if (rtDW.ImageDataTypeConversion_b > rtDW.ImageDataTypeConversion_p) {
-        rtDW.bestInlierDis = rtDW.ImageDataTypeConversion_b;
+      if (rtDW.ImageDataTypeConversion_k > rtDW.ImageDataTypeConversion_cx) {
+        rtDW.bestInlierDis = rtDW.ImageDataTypeConversion_k;
       } else {
-        rtDW.bestInlierDis = rtDW.ImageDataTypeConversion_p;
+        rtDW.bestInlierDis = rtDW.ImageDataTypeConversion_cx;
       }
     }
 
-    rtDW.win_y_low = rtDW.bestInlierDis - rtDW.count_right;
+    rtDW.s1DivS2 = rtDW.bestInlierDis - rtDW.win_y_high;
     if (rtDW.bestInlierDis != 0.0) {
-      rtDW.count_right = rtDW.win_y_low / rtDW.bestInlierDis;
+      rtDW.win_y_high = rtDW.s1DivS2 / rtDW.bestInlierDis;
     } else {
-      rtDW.count_right = 0.0;
+      rtDW.win_y_high = 0.0;
     }
 
-    if (rtDW.win_y_low != 0.0) {
-      if (rtDW.win_y_high == rtDW.bestInlierDis) {
-        rtDW.win_y_low = (rtDW.ImageDataTypeConversion_b -
-                          rtDW.ImageDataTypeConversion_p) / rtDW.win_y_low;
-      } else if (rtDW.ImageDataTypeConversion_b == rtDW.bestInlierDis) {
-        rtDW.win_y_low = (rtDW.ImageDataTypeConversion_p - rtDW.win_y_high) /
-          rtDW.win_y_low + 2.0;
+    if (rtDW.s1DivS2 != 0.0) {
+      if (rtDW.ImageDataTypeConversion_c == rtDW.bestInlierDis) {
+        rtDW.s1DivS2 = (rtDW.ImageDataTypeConversion_k -
+                        rtDW.ImageDataTypeConversion_cx) / rtDW.s1DivS2;
+      } else if (rtDW.ImageDataTypeConversion_k == rtDW.bestInlierDis) {
+        rtDW.s1DivS2 = (rtDW.ImageDataTypeConversion_cx -
+                        rtDW.ImageDataTypeConversion_c) / rtDW.s1DivS2 + 2.0;
       } else {
-        rtDW.win_y_low = (rtDW.win_y_high - rtDW.ImageDataTypeConversion_b) /
-          rtDW.win_y_low + 4.0;
+        rtDW.s1DivS2 = (rtDW.ImageDataTypeConversion_c -
+                        rtDW.ImageDataTypeConversion_k) / rtDW.s1DivS2 + 4.0;
       }
 
-      rtDW.win_y_low /= 6.0;
-      if (rtDW.win_y_low < 0.0) {
-        rtDW.win_y_low++;
+      rtDW.s1DivS2 /= 6.0;
+      if (rtDW.s1DivS2 < 0.0) {
+        rtDW.s1DivS2++;
       }
     } else {
-      rtDW.win_y_low = 0.0;
+      rtDW.s1DivS2 = 0.0;
     }
 
     // assign the results
-    rtDW.ColorSpaceConversion[rtDW.svdRsltVar] = rtDW.win_y_low;
-    rtDW.ColorSpaceConversion[rtDW.svdRsltVar + 307200] = rtDW.count_right;
+    rtDW.ColorSpaceConversion[rtDW.svdRsltVar] = rtDW.s1DivS2;
+    rtDW.ColorSpaceConversion[rtDW.svdRsltVar + 307200] = rtDW.win_y_high;
 
     // S-Function (svipcolorconv): '<S4>/Color Space  Conversion'
     rtDW.ColorSpaceConversion[rtDW.svdRsltVar + 614400] = rtDW.bestInlierDis;
@@ -1857,10 +1404,10 @@ void Rpi_cam::step()
 
   for (rtDW.i = 0; rtDW.i < 8; rtDW.i++) {
     // MATLAB Function: '<S4>/MATLAB Function1'
-    rtDW.pts1[rtDW.i] = tmp[rtDW.i];
+    rtDW.pts1[rtDW.i] = tmp_0[rtDW.i];
 
     // MATLAB Function: '<S4>/MATLAB Function2'
-    rtDW.pts2[rtDW.i] = tmp_0[rtDW.i];
+    rtDW.pts2[rtDW.i] = tmp_1[rtDW.i];
   }
 
   // S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
@@ -1883,12 +1430,12 @@ void Rpi_cam::step()
   rtDW.bestCol = 0U;
   normPts_D_D((const double *)&rtDW.pts1[0], (const uint32_t *)
               &rtDW.EstimateGeometricTransformation_DW_SAMPLEIDX[0], 4U, 4U,
-              &rtDW.EstimateGeometricTransformation_DW_PTSNORM1[0],
-              &rtDW.x_current, &rtDW.cents1[0]);
+              &rtDW.EstimateGeometricTransformation_DW_PTSNORM1[0], &rtDW.scale1,
+              &rtDW.cents1[0]);
   normPts_D_D((const double *)&rtDW.pts2[0], (const uint32_t *)
               &rtDW.EstimateGeometricTransformation_DW_SAMPLEIDX[0], 4U, 4U,
               &rtDW.EstimateGeometricTransformation_DW_PTSNORM2[0],
-              &rtDW.y_current, &rtDW.cents2[0]);
+              &rtDW.x_current, &rtDW.cents2[0]);
   makeConstraintMatrix_Projective_D_D((const double *)
     &rtDW.EstimateGeometricTransformation_DW_PTSNORM1[0], (const double *)
     &rtDW.EstimateGeometricTransformation_DW_PTSNORM2[0], 4U, 4U,
@@ -1899,29 +1446,29 @@ void Rpi_cam::step()
 
   QRE_double_o(&rtDW.Q[0], &rtDW.Constraint[0], &rtDW.E[0], &rtDW.Qraux[0],
                &rtDW.Work[0], &rtDW.JPVT[0], &rtDW.RV[0], 9, 8, true);
-  rtDW.count_right = 0.0;
+  rtDW.win_y_high = 0.0;
   for (rtDW.i = 0; rtDW.i < 9; rtDW.i++) {
     for (rtDW.j = 0; rtDW.j < 9; rtDW.j++) {
       if (static_cast<uint32_t>(rtDW.i) != static_cast<uint32_t>(rtDW.j)) {
-        rtDW.win_y_low = 0.0;
+        rtDW.s1DivS2 = 0.0;
       } else {
-        rtDW.win_y_low = -1.0;
+        rtDW.s1DivS2 = -1.0;
       }
 
       for (rtDW.inlierNum = 0; rtDW.inlierNum < 8; rtDW.inlierNum++) {
-        rtDW.win_y_low_tmp = static_cast<uint32_t>(rtDW.inlierNum) * 9U;
-        rtDW.win_y_low += rtDW.Q[rtDW.win_y_low_tmp + static_cast<uint32_t>
-          (rtDW.i)] * rtDW.Q[rtDW.win_y_low_tmp + static_cast<uint32_t>(rtDW.j)];
+        rtDW.s1DivS2_tmp = static_cast<uint32_t>(rtDW.inlierNum) * 9U;
+        rtDW.s1DivS2 += rtDW.Q[rtDW.s1DivS2_tmp + static_cast<uint32_t>(rtDW.i)]
+          * rtDW.Q[rtDW.s1DivS2_tmp + static_cast<uint32_t>(rtDW.j)];
       }
 
       rtDW.RV[static_cast<uint32_t>(rtDW.i) * 9U + static_cast<uint32_t>(rtDW.j)]
-        = rtDW.win_y_low;
-      if (!(rtDW.win_y_low >= 0.0)) {
-        rtDW.win_y_low = -rtDW.win_y_low;
+        = rtDW.s1DivS2;
+      if (!(rtDW.s1DivS2 >= 0.0)) {
+        rtDW.s1DivS2 = -rtDW.s1DivS2;
       }
 
-      if (rtDW.count_right < rtDW.win_y_low) {
-        rtDW.count_right = rtDW.win_y_low;
+      if (rtDW.win_y_high < rtDW.s1DivS2) {
+        rtDW.win_y_high = rtDW.s1DivS2;
         rtDW.bestCol = static_cast<uint32_t>(rtDW.i);
       }
     }
@@ -1933,53 +1480,53 @@ void Rpi_cam::step()
       [static_cast<uint32_t>(rtDW.j) + static_cast<uint32_t>(rtDW.i)];
   }
 
-  rtDW.count_right = 1.0 / rtDW.y_current;
-  rtDW.win_y_low = rtDW.x_current * rtDW.count_right;
-  rtDW.tformCompact_k[6] = rtDW.tformCompact[6] * rtDW.x_current;
-  rtDW.tformCompact_k[7] = rtDW.tformCompact[7] * rtDW.x_current;
-  rtDW.tformCompact_k[8] = (rtDW.tformCompact[8] - rtDW.cents1[0] *
-    rtDW.tformCompact_k[6]) - rtDW.cents1[1] * rtDW.tformCompact_k[7];
-  rtDW.tformCompact_k[0] = rtDW.tformCompact[0] * rtDW.win_y_low;
-  rtDW.tformCompact_k[1] = rtDW.tformCompact[1] * rtDW.win_y_low;
-  rtDW.tformCompact_k[2] = ((rtDW.cents2[0] * rtDW.tformCompact_k[8] -
-    rtDW.tformCompact_k[0] * rtDW.cents1[0]) - rtDW.tformCompact_k[1] *
-    rtDW.cents1[1]) + rtDW.tformCompact[2] * rtDW.count_right;
-  rtDW.tformCompact_k[3] = rtDW.tformCompact[3] * rtDW.win_y_low;
-  rtDW.tformCompact_k[4] = rtDW.tformCompact[4] * rtDW.win_y_low;
-  rtDW.tformCompact_k[5] = ((rtDW.cents2[1] * rtDW.tformCompact_k[8] -
-    rtDW.cents1[0] * rtDW.tformCompact_k[3]) - rtDW.cents1[1] *
-    rtDW.tformCompact_k[4]) + rtDW.tformCompact[5] * rtDW.count_right;
-  rtDW.tformCompact_k[0] += rtDW.cents2[0] * rtDW.tformCompact_k[6];
-  rtDW.tformCompact_k[1] += rtDW.cents2[0] * rtDW.tformCompact_k[7];
-  rtDW.tformCompact_k[3] += rtDW.cents2[1] * rtDW.tformCompact_k[6];
-  rtDW.tformCompact_k[4] += rtDW.cents2[1] * rtDW.tformCompact_k[7];
-  if (rtDW.tformCompact_k[8U] != 0.0) {
-    rtDW.count_right = 1.0 / rtDW.tformCompact_k[8];
+  rtDW.win_y_high = 1.0 / rtDW.x_current;
+  rtDW.s1DivS2 = rtDW.scale1 * rtDW.win_y_high;
+  rtDW.tformCompact_m[6] = rtDW.tformCompact[6] * rtDW.scale1;
+  rtDW.tformCompact_m[7] = rtDW.tformCompact[7] * rtDW.scale1;
+  rtDW.tformCompact_m[8] = (rtDW.tformCompact[8] - rtDW.cents1[0] *
+    rtDW.tformCompact_m[6]) - rtDW.cents1[1] * rtDW.tformCompact_m[7];
+  rtDW.tformCompact_m[0] = rtDW.tformCompact[0] * rtDW.s1DivS2;
+  rtDW.tformCompact_m[1] = rtDW.tformCompact[1] * rtDW.s1DivS2;
+  rtDW.tformCompact_m[2] = ((rtDW.cents2[0] * rtDW.tformCompact_m[8] -
+    rtDW.tformCompact_m[0] * rtDW.cents1[0]) - rtDW.tformCompact_m[1] *
+    rtDW.cents1[1]) + rtDW.tformCompact[2] * rtDW.win_y_high;
+  rtDW.tformCompact_m[3] = rtDW.tformCompact[3] * rtDW.s1DivS2;
+  rtDW.tformCompact_m[4] = rtDW.tformCompact[4] * rtDW.s1DivS2;
+  rtDW.tformCompact_m[5] = ((rtDW.cents2[1] * rtDW.tformCompact_m[8] -
+    rtDW.cents1[0] * rtDW.tformCompact_m[3]) - rtDW.cents1[1] *
+    rtDW.tformCompact_m[4]) + rtDW.tformCompact[5] * rtDW.win_y_high;
+  rtDW.tformCompact_m[0] += rtDW.cents2[0] * rtDW.tformCompact_m[6];
+  rtDW.tformCompact_m[1] += rtDW.cents2[0] * rtDW.tformCompact_m[7];
+  rtDW.tformCompact_m[3] += rtDW.cents2[1] * rtDW.tformCompact_m[6];
+  rtDW.tformCompact_m[4] += rtDW.cents2[1] * rtDW.tformCompact_m[7];
+  if (rtDW.tformCompact_m[8U] != 0.0) {
+    rtDW.win_y_high = 1.0 / rtDW.tformCompact_m[8];
     for (rtDW.i = 0; rtDW.i < 8; rtDW.i++) {
-      rtDW.tformCompact_k[static_cast<uint32_t>(rtDW.i)] *= rtDW.count_right;
+      rtDW.tformCompact_m[static_cast<uint32_t>(rtDW.i)] *= rtDW.win_y_high;
     }
 
-    rtDW.tformCompact_k[8] = 1.0;
+    rtDW.tformCompact_m[8] = 1.0;
     rtDW.bestCol = 0U;
     for (rtDW.i = 0; rtDW.i < 4; rtDW.i++) {
       rtDW.EstimateGeometricTransformation_DW_DISTANCE[static_cast<uint32_t>
         (rtDW.i)] = 0.0;
       for (rtDW.j = 0; rtDW.j < 2; rtDW.j++) {
-        rtDW.count_right = 0.0;
+        rtDW.win_y_high = 0.0;
         for (rtDW.inlierNum = 0; rtDW.inlierNum < 9; rtDW.inlierNum++) {
-          rtDW.count_right +=
+          rtDW.win_y_high +=
             rtDW.EstimateGeometricTransformation_DW_CONSTRT_ALL[rtDW.bestCol +
-            static_cast<uint32_t>(rtDW.inlierNum)] * rtDW.tformCompact_k[
+            static_cast<uint32_t>(rtDW.inlierNum)] * rtDW.tformCompact_m[
             static_cast<uint32_t>(rtDW.inlierNum)];
         }
 
         rtDW.bestCol += 9U;
         rtDW.EstimateGeometricTransformation_DW_DISTANCE[static_cast<uint32_t>
-          (rtDW.i)] += rtDW.count_right * rtDW.count_right;
+          (rtDW.i)] += rtDW.win_y_high * rtDW.win_y_high;
       }
     }
 
-    std::memcpy(&rtDW.bestTFormCompact[0], &rtDW.tformCompact_k[0], 9U * sizeof
+    std::memcpy(&rtDW.bestTFormCompact[0], &rtDW.tformCompact_m[0], 9U * sizeof
                 (double));
     rtDW.inlierNum = 0;
     if (rtDW.EstimateGeometricTransformation_DW_DISTANCE[0] <= 2.5) {
@@ -2016,11 +1563,9 @@ void Rpi_cam::step()
     rtDW.EstimateGeometricTransformation[8] = rtDW.bestTFormCompact[8];
   }
 
-  // End of S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
-
   // MATLAB Function: '<S4>/MATLAB Function8'
   for (rtDW.i = 0; rtDW.i < 307200; rtDW.i++) {
-    rtDW.rtb_V_Channel_o[rtDW.i] = (rtDW.V_Channel[rtDW.i] > 0.5);
+    rtDW.rtb_V_Channel_f[rtDW.i] = (rtDW.V_Channel[rtDW.i] > 0.5);
   }
 
   // End of MATLAB Function: '<S4>/MATLAB Function8'
@@ -2028,923 +1573,448 @@ void Rpi_cam::step()
   // MATLABSystem: '<S4>/Warp' incorporates:
   //   S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
 
-  Warp_stepImpl(&rtDW.obj_k, &rtDW.rtb_V_Channel_o[0],
+  Warp_stepImpl(&rtDW.obj_k, &rtDW.rtb_V_Channel_f[0],
                 &rtDW.EstimateGeometricTransformation[0], &rtDW.bv[0]);
-
-  // MATLABSystem: '<S4>/Warp'
-  std::memcpy(&rtDW.Warp[0], &rtDW.bv[0], 307200U * sizeof(bool));
 
   // MATLAB Function: '<S2>/MATLAB Function1' incorporates:
   //   MATLABSystem: '<S4>/Warp'
 
-  std::memset(&rtDW.left_lane_index[0], 0, 200000U * sizeof(double));
-  std::memset(&rtDW.right_lane_index[0], 0, 200000U * sizeof(double));
-  eml_find(&rtDW.Warp[0], rtDW.ii_data, &rtDW.ii_size, rtDW.jj_data_n,
+  rtDW.scale1 = 320.0;
+  eml_find(&rtDW.bv[0], rtDW.ii_data, &rtDW.ii_size, rtDW.jj_data_n,
            &rtDW.jj_size);
-  rtDW.b_tmp_tmp_size = rtDW.ii_size;
+  rtDW.c_size = rtDW.ii_size;
   rtDW.j = rtDW.ii_size;
   for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
     rtDW.outputImage_tmp = rtDW.ii_data[rtDW.i];
-    rtDW.b_tmp_tmp_data[rtDW.i] = ((rtDW.outputImage_tmp >= 456) &&
-      (rtDW.outputImage_tmp < 480));
+    rtDW.c_data[rtDW.i] = (rtDW.outputImage_tmp >= 456);
+    rtDW.d_data[rtDW.i] = (rtDW.outputImage_tmp < 480);
+  }
+
+  rtDW.g_size = rtDW.jj_size;
+  rtDW.j = rtDW.jj_size;
+  for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
+    rtDW.g_data[rtDW.i] = (rtDW.jj_data_n[rtDW.i] >= 480);
+  }
+
+  rtDW.b_tmp_size = rtDW.ii_size;
+  rtDW.j = rtDW.ii_size;
+  for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
+    rtDW.b_tmp_data[rtDW.i] = (rtDW.c_data[rtDW.i] && rtDW.d_data[rtDW.i]);
   }
 
   if (rtDW.ii_size == rtDW.jj_size) {
     // MATLAB Function: '<S2>/MATLAB Function1'
-    rtDW.b_tmp_size = rtDW.ii_size;
+    rtDW.b_size = rtDW.ii_size;
     rtDW.j = rtDW.ii_size;
     for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-      rtDW.b_tmp_data[rtDW.i] = (rtDW.b_tmp_tmp_data[rtDW.i] &&
-        (rtDW.jj_data_n[rtDW.i] >= 0));
+      rtDW.b_data[rtDW.i] = (rtDW.b_tmp_data[rtDW.i] && rtDW.g_data[rtDW.i]);
     }
   } else {
     // MATLAB Function: '<S2>/MATLAB Function1'
-    binary_expand_op_5(rtDW.b_tmp_data, &rtDW.b_tmp_size, rtDW.b_tmp_tmp_data,
-                       &rtDW.b_tmp_tmp_size, rtDW.jj_data_n, &rtDW.jj_size);
+    and_o(rtDW.b_data, &rtDW.b_size, rtDW.b_tmp_data, &rtDW.b_tmp_size,
+          rtDW.g_data, &rtDW.g_size);
   }
 
   // MATLAB Function: '<S2>/MATLAB Function1'
-  rtDW.r_size = rtDW.jj_size;
+  rtDW.h_size = rtDW.jj_size;
   rtDW.j = rtDW.jj_size;
   for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-    rtDW.r_data[rtDW.i] = (rtDW.jj_data_n[rtDW.i] < 160);
+    rtDW.h_data[rtDW.i] = (rtDW.jj_data_n[rtDW.i] < 640);
   }
 
-  if (rtDW.ii_size == rtDW.jj_size) {
+  if (rtDW.b_size == rtDW.jj_size) {
     // MATLAB Function: '<S2>/MATLAB Function1'
-    rtDW.j = rtDW.ii_size;
+    rtDW.tmp_size = rtDW.b_size;
+    rtDW.j = rtDW.b_size;
     for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-      rtDW.b_tmp_tmp_data[rtDW.i] = (rtDW.b_tmp_tmp_data[rtDW.i] &&
-        (rtDW.jj_data_n[rtDW.i] >= 480));
+      rtDW.tmp_data_ln[rtDW.i] = (rtDW.b_data[rtDW.i] && rtDW.h_data[rtDW.i]);
     }
   } else {
     // MATLAB Function: '<S2>/MATLAB Function1'
-    binary_expand_op_4(rtDW.b_tmp_tmp_data, &rtDW.b_tmp_tmp_size, rtDW.jj_data_n,
-                       &rtDW.jj_size);
+    and_o(rtDW.tmp_data_ln, &rtDW.tmp_size, rtDW.b_data, &rtDW.b_size,
+          rtDW.h_data, &rtDW.h_size);
   }
 
-  // MATLAB Function: '<S2>/MATLAB Function1'
-  rtDW.t_size = rtDW.jj_size;
-  rtDW.j = rtDW.jj_size;
-  for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-    rtDW.t_data[rtDW.i] = (rtDW.jj_data_n[rtDW.i] < 640);
-  }
-
-  if (rtDW.b_tmp_size == rtDW.jj_size) {
-    // MATLAB Function: '<S2>/MATLAB Function1'
-    rtDW.tmp_size = rtDW.b_tmp_size;
-    rtDW.j = rtDW.b_tmp_size;
-    for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-      rtDW.tmp_data_lm[rtDW.i] = (rtDW.b_tmp_data[rtDW.i] && rtDW.r_data[rtDW.i]);
-    }
-  } else {
-    // MATLAB Function: '<S2>/MATLAB Function1'
-    and_o(rtDW.tmp_data_lm, &rtDW.tmp_size, rtDW.b_tmp_data, &rtDW.b_tmp_size,
-          rtDW.r_data, &rtDW.r_size);
-  }
-
-  rtDW.end = rtDW.tmp_size - 1;
+  rtDW.j = rtDW.tmp_size - 1;
   rtDW.outputImage_tmp = 0;
-  for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
+  for (rtDW.i = 0; rtDW.i <= rtDW.j; rtDW.i++) {
     // MATLAB Function: '<S2>/MATLAB Function1'
-    if (rtDW.tmp_data_lm[rtDW.i]) {
+    if (rtDW.tmp_data_ln[rtDW.i]) {
       rtDW.outputImage_tmp++;
     }
   }
 
-  // MATLAB Function: '<S2>/MATLAB Function1'
-  for (rtDW.inlierNum = 0; rtDW.inlierNum < rtDW.outputImage_tmp; rtDW.inlierNum
-       ++) {
-    rtDW.svdRsltVar = rtDW.b_tmp_size;
-    if (rtDW.b_tmp_size == rtDW.r_size) {
-      rtDW.tmp_size_b = rtDW.b_tmp_size;
-      for (rtDW.i = 0; rtDW.i < rtDW.svdRsltVar; rtDW.i++) {
-        rtDW.tmp_data_mj[rtDW.i] = (rtDW.b_tmp_data[rtDW.i] &&
-          rtDW.r_data[rtDW.i]);
-      }
-    } else {
-      and_o(rtDW.tmp_data_mj, &rtDW.tmp_size_b, rtDW.b_tmp_data,
-            &rtDW.b_tmp_size, rtDW.r_data, &rtDW.r_size);
-    }
+  // MATLAB Function: '<S2>/MATLAB Function1' incorporates:
+  //   S-Function (svipcolorconv): '<S4>/Color Space  Conversion'
+  //   S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
 
-    rtDW.svdRsltVar = rtDW.b_tmp_size;
-    if (rtDW.b_tmp_size == rtDW.r_size) {
-      rtDW.tmp_size_d = rtDW.b_tmp_size;
-      for (rtDW.i = 0; rtDW.i < rtDW.svdRsltVar; rtDW.i++) {
-        rtDW.tmp_data_c[rtDW.i] = (rtDW.b_tmp_data[rtDW.i] && rtDW.r_data[rtDW.i]);
-      }
-    } else {
-      and_o(rtDW.tmp_data_c, &rtDW.tmp_size_d, rtDW.b_tmp_data, &rtDW.b_tmp_size,
-            rtDW.r_data, &rtDW.r_size);
-    }
-
-    rtDW.end = rtDW.tmp_size_b - 1;
-    rtDW.partialTrueCount = 0;
-    for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-      if (rtDW.tmp_data_mj[rtDW.i]) {
-        rtDW.n_tmp_data[rtDW.partialTrueCount] = rtDW.i;
-        rtDW.partialTrueCount++;
-      }
-    }
-
-    rtDW.end = rtDW.tmp_size_d - 1;
-    rtDW.partialTrueCount = 0;
-    for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-      if (rtDW.tmp_data_c[rtDW.i]) {
-        rtDW.tmp_data_p[rtDW.partialTrueCount] = rtDW.i;
-        rtDW.partialTrueCount++;
-      }
-    }
-
-    rtDW.left_lane_index[rtDW.inlierNum] =
-      rtDW.jj_data_n[rtDW.n_tmp_data[rtDW.inlierNum]];
-    rtDW.left_lane_index[rtDW.inlierNum + 100000] =
-      rtDW.ii_data[rtDW.tmp_data_p[rtDW.inlierNum]];
-  }
-
-  if (rtDW.b_tmp_tmp_size == rtDW.jj_size) {
-    // MATLAB Function: '<S2>/MATLAB Function1'
-    rtDW.tmp_size_h = rtDW.b_tmp_tmp_size;
-    rtDW.j = rtDW.b_tmp_tmp_size;
-    for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-      rtDW.tmp_data_m[rtDW.i] = (rtDW.b_tmp_tmp_data[rtDW.i] &&
-        rtDW.t_data[rtDW.i]);
-    }
-  } else {
-    // MATLAB Function: '<S2>/MATLAB Function1'
-    and_o(rtDW.tmp_data_m, &rtDW.tmp_size_h, rtDW.b_tmp_tmp_data,
-          &rtDW.b_tmp_tmp_size, rtDW.t_data, &rtDW.t_size);
-  }
-
-  rtDW.end = rtDW.tmp_size_h - 1;
-  rtDW.outputImage_tmp = 0;
-  for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-    // MATLAB Function: '<S2>/MATLAB Function1'
-    if (rtDW.tmp_data_m[rtDW.i]) {
-      rtDW.outputImage_tmp++;
-    }
-  }
-
-  // MATLAB Function: '<S2>/MATLAB Function1'
-  for (rtDW.inlierNum = 0; rtDW.inlierNum < rtDW.outputImage_tmp; rtDW.inlierNum
-       ++) {
-    rtDW.end = rtDW.b_tmp_tmp_size;
-    if (rtDW.b_tmp_tmp_size == rtDW.t_size) {
-      rtDW.tmp_size_bj = rtDW.b_tmp_tmp_size;
-      for (rtDW.i = 0; rtDW.i < rtDW.end; rtDW.i++) {
-        rtDW.tmp_data_p4[rtDW.i] = (rtDW.b_tmp_tmp_data[rtDW.i] &&
-          rtDW.t_data[rtDW.i]);
-      }
-    } else {
-      and_o(rtDW.tmp_data_p4, &rtDW.tmp_size_bj, rtDW.b_tmp_tmp_data,
-            &rtDW.b_tmp_tmp_size, rtDW.t_data, &rtDW.t_size);
-    }
-
-    rtDW.end = rtDW.b_tmp_tmp_size;
-    if (rtDW.b_tmp_tmp_size == rtDW.t_size) {
-      rtDW.tmp_size_j = rtDW.b_tmp_tmp_size;
-      for (rtDW.i = 0; rtDW.i < rtDW.end; rtDW.i++) {
-        rtDW.tmp_data_e[rtDW.i] = (rtDW.b_tmp_tmp_data[rtDW.i] &&
-          rtDW.t_data[rtDW.i]);
-      }
-    } else {
-      and_o(rtDW.tmp_data_e, &rtDW.tmp_size_j, rtDW.b_tmp_tmp_data,
-            &rtDW.b_tmp_tmp_size, rtDW.t_data, &rtDW.t_size);
-    }
-
-    rtDW.end = rtDW.tmp_size_bj - 1;
-    rtDW.partialTrueCount = 0;
-    for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-      if (rtDW.tmp_data_p4[rtDW.i]) {
-        rtDW.tmp_data_l[rtDW.partialTrueCount] = rtDW.i;
-        rtDW.partialTrueCount++;
-      }
-    }
-
-    rtDW.end = rtDW.tmp_size_j - 1;
-    rtDW.partialTrueCount = 0;
-    for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-      if (rtDW.tmp_data_e[rtDW.i]) {
-        rtDW.tmp_data_j[rtDW.partialTrueCount] = rtDW.i;
-        rtDW.partialTrueCount++;
-      }
-    }
-
-    rtDW.right_lane_index[rtDW.inlierNum] =
-      rtDW.jj_data_n[rtDW.tmp_data_l[rtDW.inlierNum]];
-    rtDW.right_lane_index[rtDW.inlierNum + 100000] =
-      rtDW.ii_data[rtDW.tmp_data_j[rtDW.inlierNum]];
-  }
-
-  if (rtDW.b_tmp_tmp_size == rtDW.jj_size) {
-    // MATLAB Function: '<S2>/MATLAB Function1'
-    rtDW.tmp_size_e = rtDW.b_tmp_tmp_size;
-    rtDW.j = rtDW.b_tmp_tmp_size;
-    for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-      rtDW.tmp_data_f[rtDW.i] = (rtDW.b_tmp_tmp_data[rtDW.i] &&
-        rtDW.t_data[rtDW.i]);
-    }
-  } else {
-    // MATLAB Function: '<S2>/MATLAB Function1'
-    and_o(rtDW.tmp_data_f, &rtDW.tmp_size_e, rtDW.b_tmp_tmp_data,
-          &rtDW.b_tmp_tmp_size, rtDW.t_data, &rtDW.t_size);
-  }
-
-  rtDW.end = rtDW.tmp_size_e - 1;
-  rtDW.outputImage_tmp = 0;
-  for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-    // MATLAB Function: '<S2>/MATLAB Function1'
-    if (rtDW.tmp_data_f[rtDW.i]) {
-      rtDW.outputImage_tmp++;
-    }
-  }
-
-  // MATLAB Function: '<S2>/MATLAB Function1'
   if (rtDW.outputImage_tmp > 30) {
     rtDW.inlierNum = 1;
-    if (rtDW.b_tmp_tmp_size == rtDW.jj_size) {
-      rtDW.tmp_size_f = rtDW.b_tmp_tmp_size;
-      rtDW.j = rtDW.b_tmp_tmp_size;
+    if (rtDW.b_size == rtDW.jj_size) {
+      rtDW.tmp_size_d = rtDW.b_size;
+      rtDW.j = rtDW.b_size;
       for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-        rtDW.tmp_data_o4[rtDW.i] = (rtDW.b_tmp_tmp_data[rtDW.i] &&
-          rtDW.t_data[rtDW.i]);
+        rtDW.tmp_data_h[rtDW.i] = (rtDW.b_data[rtDW.i] && rtDW.h_data[rtDW.i]);
       }
     } else {
-      and_o(rtDW.tmp_data_o4, &rtDW.tmp_size_f, rtDW.b_tmp_tmp_data,
-            &rtDW.b_tmp_tmp_size, rtDW.t_data, &rtDW.t_size);
+      and_o(rtDW.tmp_data_h, &rtDW.tmp_size_d, rtDW.b_data, &rtDW.b_size,
+            rtDW.h_data, &rtDW.h_size);
     }
 
-    rtDW.end = rtDW.tmp_size_f - 1;
+    rtDW.j = rtDW.tmp_size_d - 1;
     rtDW.outputImage_tmp = 0;
-    for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-      if (rtDW.tmp_data_o4[rtDW.i]) {
-        rtDW.outputImage_tmp++;
-      }
-    }
-
-    rtDW.partialTrueCount = 0;
-    for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-      if (rtDW.tmp_data_o4[rtDW.i]) {
-        rtDW.tmp_data_d[rtDW.partialTrueCount] = rtDW.i;
-        rtDW.partialTrueCount++;
-      }
-    }
-
-    rtDW.jj_size_c = rtDW.outputImage_tmp;
-    for (rtDW.i = 0; rtDW.i < rtDW.outputImage_tmp; rtDW.i++) {
-      rtDW.jj_data[rtDW.i] = rtDW.jj_data_n[rtDW.tmp_data_d[rtDW.i]];
-    }
-
-    rtDW.x_current = mean(rtDW.jj_data, &rtDW.jj_size_c);
-    if (rtDW.b_tmp_tmp_size == rtDW.jj_size) {
-      rtDW.tmp_size_a = rtDW.b_tmp_tmp_size;
-      rtDW.j = rtDW.b_tmp_tmp_size;
-      for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-        rtDW.tmp_data_h[rtDW.i] = (rtDW.b_tmp_tmp_data[rtDW.i] &&
-          rtDW.t_data[rtDW.i]);
-      }
-    } else {
-      and_o(rtDW.tmp_data_h, &rtDW.tmp_size_a, rtDW.b_tmp_tmp_data,
-            &rtDW.b_tmp_tmp_size, rtDW.t_data, &rtDW.t_size);
-    }
-
-    rtDW.end = rtDW.tmp_size_a - 1;
-    rtDW.outputImage_tmp = 0;
-    for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
+    for (rtDW.i = 0; rtDW.i <= rtDW.j; rtDW.i++) {
       if (rtDW.tmp_data_h[rtDW.i]) {
         rtDW.outputImage_tmp++;
       }
     }
 
-    rtDW.partialTrueCount = 0;
-    for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
+    rtDW.tmp_size_idx_0 = rtDW.outputImage_tmp;
+    rtDW.outputImage_tmp = 0;
+    for (rtDW.i = 0; rtDW.i <= rtDW.j; rtDW.i++) {
       if (rtDW.tmp_data_h[rtDW.i]) {
-        rtDW.tmp_data_g[rtDW.partialTrueCount] = rtDW.i;
-        rtDW.partialTrueCount++;
+        rtDW.tmp_data[rtDW.outputImage_tmp] = rtDW.i;
+        rtDW.outputImage_tmp++;
       }
     }
 
-    rtDW.jj_size_c = rtDW.outputImage_tmp;
-    for (rtDW.i = 0; rtDW.i < rtDW.outputImage_tmp; rtDW.i++) {
-      rtDW.jj_data[rtDW.i] = rtDW.ii_data[rtDW.tmp_data_g[rtDW.i]];
+    rtDW.jj_size_o = rtDW.tmp_size_idx_0;
+    for (rtDW.i = 0; rtDW.i < rtDW.tmp_size_idx_0; rtDW.i++) {
+      rtDW.jj_data[rtDW.i] = rtDW.jj_data_n[rtDW.tmp_data[rtDW.i]];
     }
 
-    rtDW.y_current = maximum(rtDW.jj_data, &rtDW.jj_size_c);
+    rtDW.x_current = mean(rtDW.jj_data, &rtDW.jj_size_o);
+    if ((rtDW.ii_size == rtDW.jj_size) && ((rtDW.ii_size == 1 ? rtDW.jj_size :
+          rtDW.ii_size) == rtDW.jj_size)) {
+      rtDW.tmp_size_g = rtDW.ii_size;
+      rtDW.j = rtDW.ii_size;
+      for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
+        rtDW.tmp_data_b[rtDW.i] = (rtDW.c_data[rtDW.i] && rtDW.d_data[rtDW.i] &&
+          rtDW.g_data[rtDW.i] && rtDW.h_data[rtDW.i]);
+      }
+    } else {
+      binary_expand_op_2(rtDW.tmp_data_b, &rtDW.tmp_size_g, rtDW.c_data,
+                         &rtDW.c_size, rtDW.d_data, rtDW.g_data, &rtDW.g_size,
+                         rtDW.h_data, &rtDW.h_size);
+    }
+
+    rtDW.j = rtDW.tmp_size_g - 1;
+    rtDW.outputImage_tmp = 0;
+    for (rtDW.i = 0; rtDW.i <= rtDW.j; rtDW.i++) {
+      if (rtDW.tmp_data_b[rtDW.i]) {
+        rtDW.outputImage_tmp++;
+      }
+    }
+
+    rtDW.tmp_size_idx_0 = rtDW.outputImage_tmp;
+    rtDW.outputImage_tmp = 0;
+    for (rtDW.i = 0; rtDW.i <= rtDW.j; rtDW.i++) {
+      if (rtDW.tmp_data_b[rtDW.i]) {
+        rtDW.tmp_data_p[rtDW.outputImage_tmp] = rtDW.i;
+        rtDW.outputImage_tmp++;
+      }
+    }
+
+    rtDW.jj_size_o = rtDW.tmp_size_idx_0;
+    for (rtDW.i = 0; rtDW.i < rtDW.tmp_size_idx_0; rtDW.i++) {
+      rtDW.jj_data[rtDW.i] = rtDW.ii_data[rtDW.tmp_data_p[rtDW.i]];
+    }
+
+    rtDW.bestInlierDis = maximum(rtDW.jj_data, &rtDW.jj_size_o);
   } else {
     rtDW.inlierNum = 2;
-    if (rtDW.b_tmp_size == rtDW.jj_size) {
-      rtDW.tmp_size_f = rtDW.b_tmp_size;
-      rtDW.j = rtDW.b_tmp_size;
+    if ((rtDW.ii_size == rtDW.jj_size) && ((rtDW.ii_size == 1 ? rtDW.jj_size :
+          rtDW.ii_size) == rtDW.jj_size)) {
+      rtDW.tmp_size_d = rtDW.ii_size;
+      rtDW.j = rtDW.ii_size;
       for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-        rtDW.tmp_data_o4[rtDW.i] = (rtDW.b_tmp_data[rtDW.i] &&
-          rtDW.r_data[rtDW.i]);
+        rtDW.outputImage_tmp = rtDW.jj_data_n[rtDW.i];
+        rtDW.tmp_data_h[rtDW.i] = (rtDW.b_tmp_data[rtDW.i] &&
+          (rtDW.outputImage_tmp >= 0) && (rtDW.outputImage_tmp < 160));
       }
     } else {
-      and_o(rtDW.tmp_data_o4, &rtDW.tmp_size_f, rtDW.b_tmp_data,
-            &rtDW.b_tmp_size, rtDW.r_data, &rtDW.r_size);
+      binary_expand_op_3(rtDW.tmp_data_h, &rtDW.tmp_size_d, rtDW.b_tmp_data,
+                         &rtDW.b_tmp_size, rtDW.jj_data_n, &rtDW.jj_size);
     }
 
-    rtDW.end = rtDW.tmp_size_f - 1;
+    rtDW.j = rtDW.tmp_size_d - 1;
     rtDW.outputImage_tmp = 0;
-    for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-      if (rtDW.tmp_data_o4[rtDW.i]) {
-        rtDW.outputImage_tmp++;
-      }
-    }
-
-    rtDW.partialTrueCount = 0;
-    for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-      if (rtDW.tmp_data_o4[rtDW.i]) {
-        rtDW.tmp_data_d[rtDW.partialTrueCount] = rtDW.i;
-        rtDW.partialTrueCount++;
-      }
-    }
-
-    rtDW.jj_size_c = rtDW.outputImage_tmp;
-    for (rtDW.i = 0; rtDW.i < rtDW.outputImage_tmp; rtDW.i++) {
-      rtDW.jj_data[rtDW.i] = rtDW.jj_data_n[rtDW.tmp_data_d[rtDW.i]];
-    }
-
-    rtDW.x_current = mean(rtDW.jj_data, &rtDW.jj_size_c);
-    if (rtDW.b_tmp_size == rtDW.jj_size) {
-      rtDW.tmp_size_a = rtDW.b_tmp_size;
-      rtDW.j = rtDW.b_tmp_size;
-      for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-        rtDW.tmp_data_h[rtDW.i] = (rtDW.b_tmp_data[rtDW.i] && rtDW.r_data[rtDW.i]);
-      }
-    } else {
-      and_o(rtDW.tmp_data_h, &rtDW.tmp_size_a, rtDW.b_tmp_data, &rtDW.b_tmp_size,
-            rtDW.r_data, &rtDW.r_size);
-    }
-
-    rtDW.end = rtDW.tmp_size_a - 1;
-    rtDW.outputImage_tmp = 0;
-    for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
+    for (rtDW.i = 0; rtDW.i <= rtDW.j; rtDW.i++) {
       if (rtDW.tmp_data_h[rtDW.i]) {
         rtDW.outputImage_tmp++;
       }
     }
 
-    rtDW.partialTrueCount = 0;
-    for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
+    rtDW.tmp_size_idx_0 = rtDW.outputImage_tmp;
+    rtDW.outputImage_tmp = 0;
+    for (rtDW.i = 0; rtDW.i <= rtDW.j; rtDW.i++) {
       if (rtDW.tmp_data_h[rtDW.i]) {
-        rtDW.tmp_data_g[rtDW.partialTrueCount] = rtDW.i;
-        rtDW.partialTrueCount++;
+        rtDW.tmp_data[rtDW.outputImage_tmp] = rtDW.i;
+        rtDW.outputImage_tmp++;
       }
     }
 
-    rtDW.jj_size_c = rtDW.outputImage_tmp;
-    for (rtDW.i = 0; rtDW.i < rtDW.outputImage_tmp; rtDW.i++) {
-      rtDW.jj_data[rtDW.i] = rtDW.ii_data[rtDW.tmp_data_g[rtDW.i]];
+    rtDW.jj_size_o = rtDW.tmp_size_idx_0;
+    for (rtDW.i = 0; rtDW.i < rtDW.tmp_size_idx_0; rtDW.i++) {
+      rtDW.jj_data[rtDW.i] = rtDW.jj_data_n[rtDW.tmp_data[rtDW.i]];
     }
 
-    rtDW.y_current = maximum(rtDW.jj_data, &rtDW.jj_size_c);
+    rtDW.x_current = mean(rtDW.jj_data, &rtDW.jj_size_o);
+    rtDW.jj_size_o = rtDW.tmp_size_idx_0;
+    for (rtDW.i = 0; rtDW.i < rtDW.tmp_size_idx_0; rtDW.i++) {
+      rtDW.jj_data[rtDW.i] = rtDW.ii_data[rtDW.tmp_data[rtDW.i]];
+    }
+
+    rtDW.bestInlierDis = maximum(rtDW.jj_data, &rtDW.jj_size_o);
   }
 
-  rtDW.bestInlierDis = 0.0;
-  rtDW.count_right = 0.0;
   for (rtDW.svdRsltVar = 0; rtDW.svdRsltVar < 20; rtDW.svdRsltVar++) {
     if (rtDW.inlierNum == 1) {
-      rtDW.win_y_low = rtDW.y_current - ((static_cast<double>(rtDW.svdRsltVar) +
-        1.0) + 1.0) * 24.0;
-      rtDW.win_y_high = rtDW.y_current - (static_cast<double>(rtDW.svdRsltVar) +
-        1.0) * 24.0;
+      rtDW.win_y_low = rtDW.bestInlierDis - ((static_cast<double>
+        (rtDW.svdRsltVar) + 1.0) + 1.0) * 24.0;
+      rtDW.win_y_high = rtDW.bestInlierDis - (static_cast<double>
+        (rtDW.svdRsltVar) + 1.0) * 24.0;
       rtDW.outputImage_tmp = rtDW.ii_size;
-      rtDW.n_tmp_size_idx_0 = rtDW.ii_size;
-      if (rtDW.outputImage_tmp - 1 >= 0) {
-        std::memcpy(&rtDW.n_tmp_data[0], &rtDW.ii_data[0], static_cast<uint32_t>
-                    (rtDW.outputImage_tmp) * sizeof(int32_t));
-      }
-
-      rtDW.b_tmp_tmp_size = rtDW.ii_size;
-      for (rtDW.i = 0; rtDW.i < rtDW.n_tmp_size_idx_0; rtDW.i++) {
-        rtDW.outputImage_tmp = rtDW.n_tmp_data[rtDW.i];
-        rtDW.b_tmp_tmp_data[rtDW.i] = (rtDW.outputImage_tmp >= rtDW.win_y_low);
-        rtDW.b_tmp_data[rtDW.i] = (rtDW.outputImage_tmp < rtDW.win_y_high);
-      }
-
-      rtDW.j = rtDW.jj_size;
-      rtDW.n_tmp_size_idx_0 = rtDW.jj_size;
-      if (rtDW.j - 1 >= 0) {
-        std::memcpy(&rtDW.n_tmp_data[0], &rtDW.jj_data_n[0],
-                    static_cast<uint32_t>(rtDW.j) * sizeof(int32_t));
-      }
-
-      rtDW.t_size = rtDW.jj_size;
-      for (rtDW.i = 0; rtDW.i < rtDW.n_tmp_size_idx_0; rtDW.i++) {
-        rtDW.t_data[rtDW.i] = (rtDW.n_tmp_data[rtDW.i] >= rtDW.x_current - 40.0);
-      }
-
-      if (rtDW.ii_size == rtDW.jj_size) {
-        rtDW.b_size = rtDW.ii_size;
-        rtDW.j = rtDW.ii_size;
-        for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-          rtDW.b_data[rtDW.i] = (rtDW.b_tmp_tmp_data[rtDW.i] &&
-            rtDW.b_tmp_data[rtDW.i] && rtDW.t_data[rtDW.i]);
-        }
-      } else {
-        binary_expand_op_1(rtDW.b_data, &rtDW.b_size, rtDW.b_tmp_tmp_data,
-                           &rtDW.b_tmp_tmp_size, rtDW.b_tmp_data, rtDW.t_data,
-                           &rtDW.t_size);
-      }
-
-      rtDW.r_size = rtDW.jj_size;
-      for (rtDW.i = 0; rtDW.i < rtDW.n_tmp_size_idx_0; rtDW.i++) {
-        rtDW.r_data[rtDW.i] = (rtDW.n_tmp_data[rtDW.i] < rtDW.x_current + 40.0);
-      }
-
-      if (rtDW.ii_size == rtDW.jj_size) {
-        rtDW.j = rtDW.ii_size;
-        for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-          rtDW.b_tmp_tmp_data[rtDW.i] = (rtDW.b_tmp_tmp_data[rtDW.i] &&
-            rtDW.b_tmp_data[rtDW.i] && rtDW.t_data[rtDW.i]);
-        }
-      } else {
-        binary_expand_op(rtDW.b_tmp_tmp_data, &rtDW.b_tmp_tmp_size,
-                         rtDW.b_tmp_data, rtDW.t_data, &rtDW.t_size);
-      }
-
-      if (rtDW.b_size == rtDW.jj_size) {
-        rtDW.tmp_size_jz = rtDW.b_size;
-        rtDW.j = rtDW.b_size;
-        for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-          rtDW.tmp_data_h2[rtDW.i] = (rtDW.b_data[rtDW.i] && rtDW.r_data[rtDW.i]);
-        }
-      } else {
-        and_o(rtDW.tmp_data_h2, &rtDW.tmp_size_jz, rtDW.b_data, &rtDW.b_size,
-              rtDW.r_data, &rtDW.r_size);
-      }
-
-      rtDW.end = rtDW.tmp_size_jz - 1;
-      rtDW.outputImage_tmp = 0;
-      for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-        if (rtDW.tmp_data_h2[rtDW.i]) {
-          rtDW.outputImage_tmp++;
-        }
-      }
-
-      if (rtDW.outputImage_tmp > 30) {
-        if (rtDW.b_size == rtDW.jj_size) {
-          rtDW.tmp_size_n = rtDW.b_size;
-          rtDW.j = rtDW.b_size;
-          for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-            rtDW.tmp_data_mc[rtDW.i] = (rtDW.b_data[rtDW.i] &&
-              rtDW.r_data[rtDW.i]);
-          }
-        } else {
-          and_o(rtDW.tmp_data_mc, &rtDW.tmp_size_n, rtDW.b_data, &rtDW.b_size,
-                rtDW.r_data, &rtDW.r_size);
-        }
-
-        rtDW.end = rtDW.tmp_size_n - 1;
-        rtDW.outputImage_tmp = 0;
-        for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-          if (rtDW.tmp_data_mc[rtDW.i]) {
-            rtDW.outputImage_tmp++;
-          }
-        }
-
-        rtDW.partialTrueCount = 0;
-        for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-          if (rtDW.tmp_data_mc[rtDW.i]) {
-            rtDW.tmp_data_dh[rtDW.partialTrueCount] = rtDW.i;
-            rtDW.partialTrueCount++;
-          }
-        }
-
-        rtDW.jj_size_c = rtDW.outputImage_tmp;
-        for (rtDW.i = 0; rtDW.i < rtDW.outputImage_tmp; rtDW.i++) {
-          rtDW.jj_data[rtDW.i] = rtDW.jj_data_n[rtDW.tmp_data_dh[rtDW.i]];
-        }
-
-        rtDW.x_current = mean(rtDW.jj_data, &rtDW.jj_size_c);
-      }
-
-      rtDW.win_y_high = rtDW.count_right + 1.0;
-      if (rtDW.b_size == rtDW.jj_size) {
-        rtDW.tmp_size_oy = rtDW.b_size;
-        rtDW.j = rtDW.b_size;
-        for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-          rtDW.tmp_data_cs[rtDW.i] = (rtDW.b_data[rtDW.i] && rtDW.r_data[rtDW.i]);
-        }
-      } else {
-        and_o(rtDW.tmp_data_cs, &rtDW.tmp_size_oy, rtDW.b_data, &rtDW.b_size,
-              rtDW.r_data, &rtDW.r_size);
-      }
-
-      rtDW.end = rtDW.tmp_size_oy - 1;
-      rtDW.outputImage_tmp = 0;
-      for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-        if (rtDW.tmp_data_cs[rtDW.i]) {
-          rtDW.outputImage_tmp++;
-        }
-      }
-
-      rtDW.j = static_cast<int32_t>((1.0 - (rtDW.count_right + 1.0)) +
-        static_cast<double>(rtDW.outputImage_tmp));
-      for (rtDW.d_j = 0; rtDW.d_j < rtDW.j; rtDW.d_j++) {
-        rtDW.win_y_low = rtDW.win_y_high + static_cast<double>(rtDW.d_j);
-        rtDW.outputImage_tmp = rtDW.b_size;
-        if (rtDW.b_size == rtDW.n_tmp_size_idx_0) {
-          rtDW.tmp_size_m = rtDW.b_size;
-          for (rtDW.i = 0; rtDW.i < rtDW.outputImage_tmp; rtDW.i++) {
-            rtDW.tmp_data_pc[rtDW.i] = (rtDW.b_data[rtDW.i] &&
-              rtDW.r_data[rtDW.i]);
-          }
-        } else {
-          and_o(rtDW.tmp_data_pc, &rtDW.tmp_size_m, rtDW.b_data, &rtDW.b_size,
-                rtDW.r_data, &rtDW.r_size);
-        }
-
-        rtDW.end = rtDW.b_tmp_tmp_size;
-        if (rtDW.b_tmp_tmp_size == rtDW.n_tmp_size_idx_0) {
-          rtDW.tmp_size_md = rtDW.b_tmp_tmp_size;
-          for (rtDW.i = 0; rtDW.i < rtDW.end; rtDW.i++) {
-            rtDW.tmp_data_p4u[rtDW.i] = (rtDW.b_tmp_tmp_data[rtDW.i] &&
-              rtDW.r_data[rtDW.i]);
-          }
-        } else {
-          and_o(rtDW.tmp_data_p4u, &rtDW.tmp_size_md, rtDW.b_tmp_tmp_data,
-                &rtDW.b_tmp_tmp_size, rtDW.r_data, &rtDW.r_size);
-        }
-
-        rtDW.end = rtDW.tmp_size_md - 1;
-        rtDW.partialTrueCount = 0;
-        for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-          if (rtDW.tmp_data_p4u[rtDW.i]) {
-            rtDW.tmp_data[rtDW.partialTrueCount] = rtDW.i;
-            rtDW.partialTrueCount++;
-          }
-        }
-
-        rtDW.end = rtDW.tmp_size_m - 1;
-        rtDW.partialTrueCount = 0;
-        for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-          if (rtDW.tmp_data_pc[rtDW.i]) {
-            rtDW.tmp_data_o[rtDW.partialTrueCount] = rtDW.i;
-            rtDW.partialTrueCount++;
-          }
-        }
-
-        rtDW.right_lane_index[static_cast<int32_t>(rtDW.win_y_low) - 1] =
-          rtDW.jj_data_n[rtDW.tmp_data_o[static_cast<int32_t>(rtDW.win_y_low) -
-          1]];
-        rtDW.ImageDataTypeConversion_b = rtDW.ii_data[rtDW.tmp_data[static_cast<
-          int32_t>(rtDW.win_y_low) - 1]];
-        rtDW.right_lane_index[static_cast<int32_t>(rtDW.win_y_low) + 99999] =
-          rtDW.ImageDataTypeConversion_b;
-        rtDW.outputImage_tmp = rtDW.b_size;
-        if (rtDW.b_size == rtDW.n_tmp_size_idx_0) {
-          rtDW.tmp_size_ja = rtDW.b_size;
-          for (rtDW.i = 0; rtDW.i < rtDW.outputImage_tmp; rtDW.i++) {
-            rtDW.tmp_data_jd[rtDW.i] = (rtDW.b_data[rtDW.i] &&
-              rtDW.r_data[rtDW.i]);
-          }
-        } else {
-          and_o(rtDW.tmp_data_jd, &rtDW.tmp_size_ja, rtDW.b_data, &rtDW.b_size,
-                rtDW.r_data, &rtDW.r_size);
-        }
-
-        rtDW.end = rtDW.tmp_size_ja - 1;
-        rtDW.partialTrueCount = 0;
-        for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-          if (rtDW.tmp_data_jd[rtDW.i]) {
-            rtDW.tmp_data_bs[rtDW.partialTrueCount] = rtDW.i;
-            rtDW.partialTrueCount++;
-          }
-        }
-
-        rtDW.left_lane_index[static_cast<int32_t>(rtDW.win_y_low) - 1] =
-          static_cast<double>(rtDW.jj_data_n[rtDW.tmp_data_bs
-                              [static_cast<int32_t>(rtDW.win_y_low) - 1]]) -
-          520.0;
-        rtDW.left_lane_index[static_cast<int32_t>(rtDW.win_y_low) + 99999] =
-          rtDW.ImageDataTypeConversion_b;
-        rtDW.count_right++;
-      }
-    }
-
-    if (rtDW.inlierNum == 2) {
-      rtDW.win_y_low = rtDW.y_current - ((static_cast<double>(rtDW.svdRsltVar) +
-        1.0) + 1.0) * 24.0;
-      rtDW.win_y_high = rtDW.y_current - (static_cast<double>(rtDW.svdRsltVar) +
-        1.0) * 24.0;
-      rtDW.outputImage_tmp = rtDW.ii_size;
-      rtDW.b_tmp_tmp_size = rtDW.ii_size;
+      rtDW.jj_size_o = rtDW.ii_size;
       for (rtDW.i = 0; rtDW.i < rtDW.outputImage_tmp; rtDW.i++) {
-        rtDW.j = rtDW.ii_data[rtDW.i];
-        rtDW.b_tmp_tmp_data[rtDW.i] = (rtDW.j >= rtDW.win_y_low);
-        rtDW.b_tmp_data[rtDW.i] = (rtDW.j < rtDW.win_y_high);
+        rtDW.jj_data[rtDW.i] = rtDW.ii_data[rtDW.i];
       }
 
-      rtDW.j = rtDW.jj_size;
-      rtDW.t_size = rtDW.jj_size;
-      for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-        rtDW.t_data[rtDW.i] = (rtDW.jj_data_n[rtDW.i] >= rtDW.x_current - 40.0);
-      }
-
-      if (rtDW.ii_size == rtDW.jj_size) {
-        rtDW.b_size = rtDW.ii_size;
-        rtDW.j = rtDW.ii_size;
-        for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-          rtDW.b_data[rtDW.i] = (rtDW.b_tmp_tmp_data[rtDW.i] &&
-            rtDW.b_tmp_data[rtDW.i] && rtDW.t_data[rtDW.i]);
-        }
-      } else {
-        binary_expand_op_1(rtDW.b_data, &rtDW.b_size, rtDW.b_tmp_tmp_data,
-                           &rtDW.b_tmp_tmp_size, rtDW.b_tmp_data, rtDW.t_data,
-                           &rtDW.t_size);
-      }
-
-      rtDW.j = rtDW.jj_size;
-      rtDW.r_size = rtDW.jj_size;
-      for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-        rtDW.r_data[rtDW.i] = (rtDW.jj_data_n[rtDW.i] < rtDW.x_current + 40.0);
+      rtDW.outputImage_tmp = rtDW.jj_size;
+      rtDW.c_tmp_size = rtDW.jj_size;
+      for (rtDW.i = 0; rtDW.i < rtDW.outputImage_tmp; rtDW.i++) {
+        rtDW.c_tmp_data[rtDW.i] = rtDW.jj_data_n[rtDW.i];
       }
 
       if (rtDW.ii_size == rtDW.jj_size) {
+        rtDW.c_size = rtDW.ii_size;
         rtDW.j = rtDW.ii_size;
         for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-          rtDW.b_tmp_tmp_data[rtDW.i] = (rtDW.b_tmp_tmp_data[rtDW.i] &&
-            rtDW.b_tmp_data[rtDW.i] && rtDW.t_data[rtDW.i]);
+          rtDW.outputImage_tmp = static_cast<int32_t>(rtDW.jj_data[rtDW.i]);
+          rtDW.c_data[rtDW.i] = ((rtDW.outputImage_tmp >= rtDW.win_y_low) &&
+            (rtDW.outputImage_tmp < rtDW.win_y_high) && (rtDW.c_tmp_data[rtDW.i]
+            >= rtDW.x_current - 40.0));
         }
       } else {
-        binary_expand_op(rtDW.b_tmp_tmp_data, &rtDW.b_tmp_tmp_size,
-                         rtDW.b_tmp_data, rtDW.t_data, &rtDW.t_size);
+        binary_expand_op_1(rtDW.c_data, &rtDW.c_size, rtDW.jj_data,
+                           &rtDW.jj_size_o, rtDW.win_y_low, rtDW.win_y_high,
+                           rtDW.c_tmp_data, &rtDW.c_tmp_size, rtDW.x_current);
       }
 
-      if (rtDW.b_size == rtDW.jj_size) {
-        rtDW.tmp_size_ju = rtDW.b_size;
-        rtDW.j = rtDW.b_size;
+      rtDW.d_size = rtDW.jj_size;
+      rtDW.j = rtDW.jj_size;
+      for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
+        rtDW.d_data[rtDW.i] = (rtDW.c_tmp_data[rtDW.i] < rtDW.x_current + 40.0);
+      }
+
+      if (rtDW.c_size == rtDW.jj_size) {
+        rtDW.tmp_size_dh = rtDW.c_size;
+        rtDW.j = rtDW.c_size;
         for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-          rtDW.tmp_data_l5[rtDW.i] = (rtDW.b_data[rtDW.i] && rtDW.r_data[rtDW.i]);
+          rtDW.tmp_data_e[rtDW.i] = (rtDW.c_data[rtDW.i] && rtDW.d_data[rtDW.i]);
         }
       } else {
-        and_o(rtDW.tmp_data_l5, &rtDW.tmp_size_ju, rtDW.b_data, &rtDW.b_size,
-              rtDW.r_data, &rtDW.r_size);
+        and_o(rtDW.tmp_data_e, &rtDW.tmp_size_dh, rtDW.c_data, &rtDW.c_size,
+              rtDW.d_data, &rtDW.d_size);
       }
 
-      rtDW.end = rtDW.tmp_size_ju - 1;
+      rtDW.j = rtDW.tmp_size_dh - 1;
       rtDW.outputImage_tmp = 0;
-      for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-        if (rtDW.tmp_data_l5[rtDW.i]) {
+      for (rtDW.i = 0; rtDW.i <= rtDW.j; rtDW.i++) {
+        if (rtDW.tmp_data_e[rtDW.i]) {
           rtDW.outputImage_tmp++;
         }
       }
 
       if (rtDW.outputImage_tmp > 30) {
-        if (rtDW.b_size == rtDW.jj_size) {
-          rtDW.tmp_size_o = rtDW.b_size;
-          rtDW.j = rtDW.b_size;
+        if (rtDW.c_size == rtDW.jj_size) {
+          rtDW.tmp_size_lx = rtDW.c_size;
+          rtDW.j = rtDW.c_size;
           for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-            rtDW.tmp_data_me[rtDW.i] = (rtDW.b_data[rtDW.i] &&
-              rtDW.r_data[rtDW.i]);
+            rtDW.tmp_data_jz[rtDW.i] = (rtDW.c_data[rtDW.i] &&
+              rtDW.d_data[rtDW.i]);
           }
         } else {
-          and_o(rtDW.tmp_data_me, &rtDW.tmp_size_o, rtDW.b_data, &rtDW.b_size,
-                rtDW.r_data, &rtDW.r_size);
+          and_o(rtDW.tmp_data_jz, &rtDW.tmp_size_lx, rtDW.c_data, &rtDW.c_size,
+                rtDW.d_data, &rtDW.d_size);
         }
 
-        rtDW.end = rtDW.tmp_size_o - 1;
+        rtDW.j = rtDW.tmp_size_lx - 1;
         rtDW.outputImage_tmp = 0;
-        for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-          if (rtDW.tmp_data_me[rtDW.i]) {
+        for (rtDW.i = 0; rtDW.i <= rtDW.j; rtDW.i++) {
+          if (rtDW.tmp_data_jz[rtDW.i]) {
             rtDW.outputImage_tmp++;
           }
         }
 
-        rtDW.partialTrueCount = 0;
-        for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-          if (rtDW.tmp_data_me[rtDW.i]) {
-            rtDW.tmp_data_ld[rtDW.partialTrueCount] = rtDW.i;
-            rtDW.partialTrueCount++;
+        rtDW.tmp_size_idx_0 = rtDW.outputImage_tmp;
+        rtDW.outputImage_tmp = 0;
+        for (rtDW.i = 0; rtDW.i <= rtDW.j; rtDW.i++) {
+          if (rtDW.tmp_data_jz[rtDW.i]) {
+            rtDW.tmp_data_j[rtDW.outputImage_tmp] = rtDW.i;
+            rtDW.outputImage_tmp++;
           }
         }
 
-        rtDW.jj_size_c = rtDW.outputImage_tmp;
-        for (rtDW.i = 0; rtDW.i < rtDW.outputImage_tmp; rtDW.i++) {
-          rtDW.jj_data[rtDW.i] = rtDW.jj_data_n[rtDW.tmp_data_ld[rtDW.i]];
+        rtDW.jj_size_o = rtDW.tmp_size_idx_0;
+        for (rtDW.i = 0; rtDW.i < rtDW.tmp_size_idx_0; rtDW.i++) {
+          rtDW.jj_data[rtDW.i] = rtDW.jj_data_n[rtDW.tmp_data_j[rtDW.i]];
         }
 
-        rtDW.x_current = mean(rtDW.jj_data, &rtDW.jj_size_c);
+        rtDW.x_current = mean(rtDW.jj_data, &rtDW.jj_size_o);
       }
 
-      rtDW.win_y_high = rtDW.bestInlierDis + 1.0;
-      if (rtDW.b_size == rtDW.jj_size) {
-        rtDW.tmp_size_i = rtDW.b_size;
-        rtDW.j = rtDW.b_size;
-        for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
-          rtDW.tmp_data_h3[rtDW.i] = (rtDW.b_data[rtDW.i] && rtDW.r_data[rtDW.i]);
+      if ((rtDW.win_y_low > 300.0) && (rtDW.win_y_low < 340.0)) {
+        rtDW.scale1 = rtDW.x_current - 220.0;
+      }
+    } else {
+      rtDW.win_y_low = rtDW.bestInlierDis - ((static_cast<double>
+        (rtDW.svdRsltVar) + 1.0) + 1.0) * 24.0;
+      rtDW.win_y_high = rtDW.bestInlierDis - (static_cast<double>
+        (rtDW.svdRsltVar) + 1.0) * 24.0;
+      rtDW.outputImage_tmp = rtDW.ii_size;
+      if (rtDW.ii_size == rtDW.jj_size) {
+        rtDW.c_size = rtDW.ii_size;
+        for (rtDW.i = 0; rtDW.i < rtDW.outputImage_tmp; rtDW.i++) {
+          rtDW.j = rtDW.ii_data[rtDW.i];
+          rtDW.c_data[rtDW.i] = ((rtDW.j >= rtDW.win_y_low) && (rtDW.j <
+            rtDW.win_y_high) && (rtDW.jj_data_n[rtDW.i] >= rtDW.x_current - 40.0));
         }
       } else {
-        and_o(rtDW.tmp_data_h3, &rtDW.tmp_size_i, rtDW.b_data, &rtDW.b_size,
-              rtDW.r_data, &rtDW.r_size);
+        binary_expand_op(rtDW.c_data, &rtDW.c_size, rtDW.ii_data, &rtDW.ii_size,
+                         rtDW.win_y_low, rtDW.win_y_high, rtDW.jj_data_n,
+                         &rtDW.jj_size, rtDW.x_current);
       }
 
-      rtDW.end = rtDW.tmp_size_i - 1;
+      rtDW.outputImage_tmp = rtDW.jj_size;
+      rtDW.d_size = rtDW.jj_size;
+      for (rtDW.i = 0; rtDW.i < rtDW.outputImage_tmp; rtDW.i++) {
+        rtDW.d_data[rtDW.i] = (rtDW.jj_data_n[rtDW.i] < rtDW.x_current + 40.0);
+      }
+
+      if (rtDW.c_size == rtDW.jj_size) {
+        rtDW.tmp_size_l = rtDW.c_size;
+        rtDW.j = rtDW.c_size;
+        for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
+          rtDW.tmp_data_d[rtDW.i] = (rtDW.c_data[rtDW.i] && rtDW.d_data[rtDW.i]);
+        }
+      } else {
+        and_o(rtDW.tmp_data_d, &rtDW.tmp_size_l, rtDW.c_data, &rtDW.c_size,
+              rtDW.d_data, &rtDW.d_size);
+      }
+
+      rtDW.j = rtDW.tmp_size_l - 1;
       rtDW.outputImage_tmp = 0;
-      for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-        if (rtDW.tmp_data_h3[rtDW.i]) {
+      for (rtDW.i = 0; rtDW.i <= rtDW.j; rtDW.i++) {
+        if (rtDW.tmp_data_d[rtDW.i]) {
           rtDW.outputImage_tmp++;
         }
       }
 
-      rtDW.j = static_cast<int32_t>((1.0 - (rtDW.bestInlierDis + 1.0)) +
-        static_cast<double>(rtDW.outputImage_tmp));
-      for (rtDW.d_j = 0; rtDW.d_j < rtDW.j; rtDW.d_j++) {
-        rtDW.win_y_low = rtDW.win_y_high + static_cast<double>(rtDW.d_j);
-        rtDW.outputImage_tmp = rtDW.b_size;
-        if (rtDW.b_size == rtDW.r_size) {
-          rtDW.tmp_size_nv = rtDW.b_size;
-          for (rtDW.i = 0; rtDW.i < rtDW.outputImage_tmp; rtDW.i++) {
-            rtDW.tmp_data_k[rtDW.i] = (rtDW.b_data[rtDW.i] && rtDW.r_data[rtDW.i]);
+      if (rtDW.outputImage_tmp > 30) {
+        if (rtDW.c_size == rtDW.jj_size) {
+          rtDW.tmp_size_dy = rtDW.c_size;
+          rtDW.j = rtDW.c_size;
+          for (rtDW.i = 0; rtDW.i < rtDW.j; rtDW.i++) {
+            rtDW.tmp_data_bj[rtDW.i] = (rtDW.c_data[rtDW.i] &&
+              rtDW.d_data[rtDW.i]);
           }
         } else {
-          and_o(rtDW.tmp_data_k, &rtDW.tmp_size_nv, rtDW.b_data, &rtDW.b_size,
-                rtDW.r_data, &rtDW.r_size);
+          and_o(rtDW.tmp_data_bj, &rtDW.tmp_size_dy, rtDW.c_data, &rtDW.c_size,
+                rtDW.d_data, &rtDW.d_size);
         }
 
-        rtDW.end = rtDW.b_tmp_tmp_size;
-        if (rtDW.b_tmp_tmp_size == rtDW.r_size) {
-          rtDW.tmp_size_c = rtDW.b_tmp_tmp_size;
-          for (rtDW.i = 0; rtDW.i < rtDW.end; rtDW.i++) {
-            rtDW.tmp_data_px[rtDW.i] = (rtDW.b_tmp_tmp_data[rtDW.i] &&
-              rtDW.r_data[rtDW.i]);
-          }
-        } else {
-          and_o(rtDW.tmp_data_px, &rtDW.tmp_size_c, rtDW.b_tmp_tmp_data,
-                &rtDW.b_tmp_tmp_size, rtDW.r_data, &rtDW.r_size);
-        }
-
-        rtDW.end = rtDW.tmp_size_nv - 1;
-        rtDW.partialTrueCount = 0;
-        for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-          if (rtDW.tmp_data_k[rtDW.i]) {
-            rtDW.tmp_data_dy[rtDW.partialTrueCount] = rtDW.i;
-            rtDW.partialTrueCount++;
+        rtDW.j = rtDW.tmp_size_dy - 1;
+        rtDW.outputImage_tmp = 0;
+        for (rtDW.i = 0; rtDW.i <= rtDW.j; rtDW.i++) {
+          if (rtDW.tmp_data_bj[rtDW.i]) {
+            rtDW.outputImage_tmp++;
           }
         }
 
-        rtDW.end = rtDW.tmp_size_c - 1;
-        rtDW.partialTrueCount = 0;
-        for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-          if (rtDW.tmp_data_px[rtDW.i]) {
-            rtDW.tmp_data_lx[rtDW.partialTrueCount] = rtDW.i;
-            rtDW.partialTrueCount++;
+        rtDW.tmp_size_idx_0 = rtDW.outputImage_tmp;
+        rtDW.outputImage_tmp = 0;
+        for (rtDW.i = 0; rtDW.i <= rtDW.j; rtDW.i++) {
+          if (rtDW.tmp_data_bj[rtDW.i]) {
+            rtDW.tmp_data_l[rtDW.outputImage_tmp] = rtDW.i;
+            rtDW.outputImage_tmp++;
           }
         }
 
-        rtDW.left_lane_index[static_cast<int32_t>(rtDW.win_y_low) - 1] =
-          rtDW.jj_data_n[rtDW.tmp_data_dy[static_cast<int32_t>(rtDW.win_y_low) -
-          1]];
-        rtDW.left_lane_index[static_cast<int32_t>(rtDW.win_y_low) + 99999] =
-          rtDW.ii_data[rtDW.tmp_data_lx[static_cast<int32_t>(rtDW.win_y_low) - 1]];
-        rtDW.outputImage_tmp = rtDW.b_size;
-        if (rtDW.b_size == rtDW.r_size) {
-          rtDW.tmp_size_m3 = rtDW.b_size;
-          for (rtDW.i = 0; rtDW.i < rtDW.outputImage_tmp; rtDW.i++) {
-            rtDW.tmp_data_a[rtDW.i] = (rtDW.b_data[rtDW.i] && rtDW.r_data[rtDW.i]);
-          }
-        } else {
-          and_o(rtDW.tmp_data_a, &rtDW.tmp_size_m3, rtDW.b_data, &rtDW.b_size,
-                rtDW.r_data, &rtDW.r_size);
+        rtDW.jj_size_o = rtDW.tmp_size_idx_0;
+        for (rtDW.i = 0; rtDW.i < rtDW.tmp_size_idx_0; rtDW.i++) {
+          rtDW.jj_data[rtDW.i] = rtDW.jj_data_n[rtDW.tmp_data_l[rtDW.i]];
         }
 
-        rtDW.end = rtDW.b_tmp_tmp_size;
-        if (rtDW.b_tmp_tmp_size == rtDW.r_size) {
-          rtDW.tmp_size_h5 = rtDW.b_tmp_tmp_size;
-          for (rtDW.i = 0; rtDW.i < rtDW.end; rtDW.i++) {
-            rtDW.tmp_data_ek[rtDW.i] = (rtDW.b_tmp_tmp_data[rtDW.i] &&
-              rtDW.r_data[rtDW.i]);
-          }
-        } else {
-          and_o(rtDW.tmp_data_ek, &rtDW.tmp_size_h5, rtDW.b_tmp_tmp_data,
-                &rtDW.b_tmp_tmp_size, rtDW.r_data, &rtDW.r_size);
-        }
+        rtDW.x_current = mean(rtDW.jj_data, &rtDW.jj_size_o);
+      }
 
-        rtDW.end = rtDW.tmp_size_m3 - 1;
-        rtDW.partialTrueCount = 0;
-        for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-          if (rtDW.tmp_data_a[rtDW.i]) {
-            rtDW.tmp_data_b[rtDW.partialTrueCount] = rtDW.i;
-            rtDW.partialTrueCount++;
-          }
-        }
-
-        rtDW.end = rtDW.tmp_size_h5 - 1;
-        rtDW.partialTrueCount = 0;
-        for (rtDW.i = 0; rtDW.i <= rtDW.end; rtDW.i++) {
-          if (rtDW.tmp_data_ek[rtDW.i]) {
-            rtDW.tmp_data_n[rtDW.partialTrueCount] = rtDW.i;
-            rtDW.partialTrueCount++;
-          }
-        }
-
-        rtDW.right_lane_index[static_cast<int32_t>(rtDW.win_y_low) - 1] =
-          static_cast<double>(rtDW.jj_data_n[rtDW.tmp_data_b[static_cast<int32_t>
-                              (rtDW.win_y_low) - 1]]) + 520.0;
-        rtDW.right_lane_index[static_cast<int32_t>(rtDW.win_y_low) + 99999] =
-          rtDW.ii_data[rtDW.tmp_data_n[static_cast<int32_t>(rtDW.win_y_low) - 1]];
-        rtDW.bestInlierDis++;
+      if ((rtDW.win_y_low > 300.0) && (rtDW.win_y_low < 340.0)) {
+        rtDW.scale1 = rtDW.x_current + 290.0;
       }
     }
+
+    rtDW.win_y_low = 340.0 - rtDW.scale1;
   }
 
-  if (rtDW.bestInlierDis < 1.0) {
-    rtDW.svdRsltVar = -1;
-  } else {
-    rtDW.svdRsltVar = static_cast<int32_t>(rtDW.bestInlierDis) - 1;
-  }
+  // MATLABSystem: '<Root>/TCP//IP Send1' incorporates:
+  //   MATLAB Function: '<S2>/MATLAB Function1'
 
-  if (rtDW.count_right < 1.0) {
-    rtDW.inlierNum = -1;
-  } else {
-    rtDW.inlierNum = static_cast<int32_t>(rtDW.count_right) - 1;
-  }
-
-  rtDW.left_lane_index_size = rtDW.svdRsltVar + 1;
-  rtDW.left_lane_index_size_c = rtDW.svdRsltVar + 1;
-  if (rtDW.svdRsltVar >= 0) {
-    std::memcpy(&rtDW.left_lane_index_data[0], &rtDW.left_lane_index[100000],
-                static_cast<uint32_t>(rtDW.svdRsltVar + 1) * sizeof(double));
-  }
-
-  if (rtDW.svdRsltVar >= 0) {
-    std::memcpy(&rtDW.left_lane_index_data_m[0], &rtDW.left_lane_index[0],
-                static_cast<uint32_t>(rtDW.svdRsltVar + 1) * sizeof(double));
-  }
-
-  polyfit(rtDW.left_lane_index_data, &rtDW.left_lane_index_size,
-          rtDW.left_lane_index_data_m, &rtDW.left_lane_index_size_c, &rtDW.p[0]);
-  rtDW.left_lane_index_size = rtDW.inlierNum + 1;
-  rtDW.left_lane_index_size_c = rtDW.inlierNum + 1;
-  if (rtDW.inlierNum >= 0) {
-    std::memcpy(&rtDW.left_lane_index_data[0], &rtDW.right_lane_index[100000],
-                static_cast<uint32_t>(rtDW.inlierNum + 1) * sizeof(double));
-  }
-
-  if (rtDW.inlierNum >= 0) {
-    std::memcpy(&rtDW.left_lane_index_data_m[0], &rtDW.right_lane_index[0],
-                static_cast<uint32_t>(rtDW.inlierNum + 1) * sizeof(double));
-  }
-
-  polyfit(rtDW.left_lane_index_data, &rtDW.left_lane_index_size,
-          rtDW.left_lane_index_data_m, &rtDW.left_lane_index_size_c, &rtDW.b_p[0]);
-  for (rtDW.i = 0; rtDW.i < 481; rtDW.i++) {
-    rtDW.xleft[rtDW.i] = rtDW.p[0];
-  }
-
-  for (rtDW.svdRsltVar = 0; rtDW.svdRsltVar < 2; rtDW.svdRsltVar++) {
-    rtDW.count_right = rtDW.p[rtDW.svdRsltVar + 1];
-    for (rtDW.i = 0; rtDW.i < 481; rtDW.i++) {
-      rtDW.xleft[rtDW.i] = static_cast<double>(rtDW.i) * rtDW.xleft[rtDW.i] +
-        rtDW.count_right;
-    }
-  }
-
-  for (rtDW.i = 0; rtDW.i < 481; rtDW.i++) {
-    rtDW.xright[rtDW.i] = rtDW.b_p[0];
-  }
-
-  for (rtDW.svdRsltVar = 0; rtDW.svdRsltVar < 2; rtDW.svdRsltVar++) {
-    rtDW.count_right = rtDW.b_p[rtDW.svdRsltVar + 1];
-    for (rtDW.i = 0; rtDW.i < 481; rtDW.i++) {
-      rtDW.xright[rtDW.i] = static_cast<double>(rtDW.i) * rtDW.xright[rtDW.i] +
-        rtDW.count_right;
-    }
-  }
-
-  rtDW.x_current = 320.0 - (rtDW.xleft[480] + rtDW.xright[480]) / 2.0;
-
-  // Send: '<Root>/Event Send'
-  // Send event
-  ProvidedPort->Out1.Send(rtDW.x_current);
-
-  // Copy the image from input to output.
   // Update view port.
   // Draw all rectangles.
   // Calculate FillColor times Opacity.
   // Calculate One minus Opacity.
   // Update view port.
   // Draw all circles.
-  // Copy the image from input to output.
   // Calculate FillColor times Opacity.
   // Calculate One minus Opacity.
   // Update view port.
   // Draw all circles.
+  if (rtDW.obj_d.isLittleEnd_ == 1) {
+    std::memcpy((void *)&rtDW.b_x[0], (void *)&rtDW.win_y_low, (uint32_t)
+                ((size_t)8 * sizeof(uint8_t)));
+    xtmp = rtDW.b_x[0];
+    rtDW.b_x[0] = rtDW.b_x[7];
+    rtDW.b_x[7] = xtmp;
+    xtmp = rtDW.b_x[1];
+    rtDW.b_x[1] = rtDW.b_x[6];
+    rtDW.b_x[6] = xtmp;
+    xtmp = rtDW.b_x[2];
+    rtDW.b_x[2] = rtDW.b_x[5];
+    rtDW.b_x[5] = xtmp;
+    xtmp = rtDW.b_x[3];
+    rtDW.b_x[3] = rtDW.b_x[4];
+    rtDW.b_x[4] = xtmp;
+    std::memcpy((void *)&rtDW.win_y_low, (void *)&rtDW.b_x[0], (uint32_t)
+                ((size_t)1 * sizeof(double)));
+  }
+
+  rtDW.ImageDataTypeConversion_c = std::round(rtDW.obj_d.isServer_);
+  if (rtDW.ImageDataTypeConversion_c < 65536.0) {
+    if (rtDW.ImageDataTypeConversion_c >= 0.0) {
+      tmp = static_cast<uint16_t>(rtDW.ImageDataTypeConversion_c);
+    } else {
+      tmp = 0U;
+    }
+  } else {
+    tmp = UINT16_MAX;
+  }
+
+  TCPStreamStepSend(&rtDW.win_y_low, 8U, rtDW.obj_d.connStream_, tmp, &errorNo);
+
+  // End of MATLABSystem: '<Root>/TCP//IP Send1'
 }
 
 // Model initialize function
 void Rpi_cam::initialize()
 {
-  // Registration code
-
-  // initialize non-finites
-  rt_InitInfAndNaN(sizeof(double));
-
   {
+    static const std::array<char, 12> devName_0{ { '/', 'd', 'e', 'v', '/', 'v',
+        'i', 'd', 'e', 'o', '0', '\x00' } };
+
     static const std::array<int8_t, 9> self_T{ { 1, 0, 0, 0, 1, 0, 0, 0, 1 } };
 
+    std::array<char, 12> devName;
     int32_t i;
 
     // Start for S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' 
@@ -2966,7 +2036,19 @@ void Rpi_cam::initialize()
     rtDW.obj.CameraTilt = 0.0;
     rtDW.obj.CameraZoom = 0.5;
     rtDW.obj.ManualFocus = 0.5;
-    SystemCore_setup(&rtDW.obj);
+    rtDW.obj.isSetupComplete = false;
+    rtDW.obj.isInitialized = 1;
+    getCameraList();
+    for (i = 0; i < 12; i++) {
+      devName[i] = devName_0[i];
+    }
+
+    getCameraAddrIndex(&devName[0], 11U);
+    EXT_webcamInit(0, 0, 0, 0, 0, 0, 640U, 480U, 2U, 2U, 1U, 0.1);
+    v4l2Capture_updateV4L2Settings(&rtDW.obj, true);
+    rtDW.obj.isSetupComplete = true;
+
+    // End of Start for MATLABSystem: '<Root>/V4L2 Video Capture'
 
     // Start for MATLABSystem: '<S4>/Warp'
     rtDW.obj_k.isInitialized = 1;
@@ -2975,27 +2057,10 @@ void Rpi_cam::initialize()
     }
 
     // End of Start for MATLABSystem: '<S4>/Warp'
-    // Initialize service provider instance - ProvidedPort
-    ProvidedPort = std::make_shared< skeleton::ProvidedInterfaceSkeleton >(ara::
-      com::InstanceIdentifier(ara::core::StringView("1")), ara::com::
-      MethodCallProcessingMode::kEventSingleThread);
-    ProvidedPort->OfferService();
-  }
-}
 
-// Model terminate function
-void Rpi_cam::terminate()
-{
-  // Terminate for MATLABSystem: '<Root>/V4L2 Video Capture'
-  if (!rtDW.obj.matlabCodegenIsDeleted) {
-    rtDW.obj.matlabCodegenIsDeleted = true;
-    if ((rtDW.obj.isInitialized == 1) && rtDW.obj.isSetupComplete) {
-      EXT_webcamTerminate(0, 0);
-    }
+    // Start for MATLABSystem: '<Root>/TCP//IP Send1'
+    SystemCore_setup(&rtDW.obj_d);
   }
-
-  // End of Terminate for MATLABSystem: '<Root>/V4L2 Video Capture'
-  ProvidedPort->StopOfferService();
 }
 
 // Constructor

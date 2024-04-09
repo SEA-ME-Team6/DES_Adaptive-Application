@@ -5,7 +5,7 @@
 
    Code generated for Simulink Adaptive model: "Rpi_cam"
    AUTOSAR AP Release: "21-11"
-   On: "12-Mar-2024 16:09:46"  */
+   On: "04-Apr-2024 14:40:51"  */
 
 #ifndef PROVIDEDINTERFACE_COMMON_H_
 #define PROVIDEDINTERFACE_COMMON_H_
@@ -23,8 +23,6 @@
 #include <fastrtps/types/TypeIdentifier.h>
 #include "DDSEndianHelper.h"
 #include "DDSSerializer.h"
-#include "AdaptiveAUTOSARDDSIdl.h"
-#include "AdaptiveAUTOSARDDSIdlPubSubTypes.h"
 #include "ProvidedInterface_araDynamicEventDDS.h"
 #include "ProvidedInterface_araDynamicMethodDDS.h"
 #endif

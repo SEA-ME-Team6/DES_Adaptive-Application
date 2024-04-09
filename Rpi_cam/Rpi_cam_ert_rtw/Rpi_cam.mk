@@ -2,7 +2,7 @@
 ## Makefile generated for component 'Rpi_cam'. 
 ## 
 ## Makefile     : Rpi_cam.mk
-## Generated on : Fri Mar 15 11:10:16 2024
+## Generated on : Tue Apr 09 15:11:26 2024
 ## Final product: $(RELATIVE_PATH_TO_ANCHOR)/Rpi_cam.elf
 ## Product type : executable
 ## 
@@ -28,7 +28,7 @@ CLASSIC_INTERFACE         = 0
 TGT_FCN_LIB               = None
 MODEL_HAS_DYNAMICALLY_LOADED_SFCNS = 0
 RELATIVE_PATH_TO_ANCHOR   = ..
-LINUX_TARGET_CUSTOM_LIBS  = -lSDL2 -lmwraspiperipheral
+LINUX_TARGET_CUSTOM_LIBS  = -lmwraspiperipheral
 CUSTOM_C_FLAGS            = 
 CUSTOM_CPP_FLAGS          = 
 C_STANDARD_OPTS           = 
@@ -162,7 +162,7 @@ BUILD_TYPE = "Top-Level Standalone Executable"
 ## INCLUDE PATHS
 ###########################################################################
 
-INCLUDES_BUILDINFO = -I$(START_DIR) -I$(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/linux/include -I$(MATLAB_ROOT)/toolbox/shared/dsp/vision/matlab/include -I$(MATLAB_ROOT)/toolbox/vision/include -I$(MATLAB_ROOT)/toolbox/vision/visionrt/export/include -I$(MATLAB_ROOT)/toolbox/vision/visionrt/export/include/visionrt -I$(START_DIR)/Rpi_cam_ert_rtw -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/common -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/protocol/src -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/protocol/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/transport/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/transport/src -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/platform/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/platform/default -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src -I$(MATLAB_ROOT)/toolbox/coder/rtiostream/src -I$(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/raspi/include -I$(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils -I$(MATLAB_ROOT)/toolbox/target/codertarget/rtos/inc
+INCLUDES_BUILDINFO = -I$(START_DIR) -I$(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/target/supportpackages/shared_linuxservices/include -I$(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/linux/include -I$(MATLAB_ROOT)/toolbox/shared/dsp/vision/matlab/include -I$(MATLAB_ROOT)/toolbox/vision/include -I$(MATLAB_ROOT)/toolbox/vision/visionrt/export/include -I$(MATLAB_ROOT)/toolbox/vision/visionrt/export/include/visionrt -I$(START_DIR)/Rpi_cam_ert_rtw -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/common -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/protocol/src -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/protocol/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/transport/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/transport/src -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/platform/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/platform/default -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/include -I$(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src -I$(MATLAB_ROOT)/toolbox/coder/rtiostream/src -I$(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/raspi/include -I$(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils -I$(MATLAB_ROOT)/toolbox/target/codertarget/rtos/inc
 
 INCLUDES = $(INCLUDES_BUILDINFO)
 
@@ -173,7 +173,7 @@ INCLUDES = $(INCLUDES_BUILDINFO)
 DEFINES_ = -DXCP_ADDRESS_GRANULARITY=XCP_ADDRESS_GRANULARITY_BYTE -DCODERTARGET_XCP_DAQ_PACKED_MODE -DCODERTARGET_XCP_MAX_CONTIGUOUS_SAMPLES=2 -D__MW_TARGET_USE_HARDWARE_RESOURCES_H__ -DMW_CAN_BITRATE=500000 -DMW_CAN_ALLOWALLMSGS=1
 DEFINES_BUILD_ARGS = -DCLASSIC_INTERFACE=0 -DALLOCATIONFCN=0 -DTERMFCN=1 -DONESTEPFCN=1 -DMAT_FILE=0 -DMULTI_INSTANCE_CODE=0 -DEXT_MODE=1 -DINTEGER_CODE=0 -DMT=0
 DEFINES_CUSTOM = 
-DEFINES_OPTS = -DXCP_DAQ_SUPPORT -DXCP_CALIBRATION_SUPPORT -DXCP_TIMESTAMP_SUPPORT -DXCP_TIMESTAMP_BASED_ON_SIMULATION_TIME -DXCP_SET_MTA_SUPPORT -DEXTMODE_XCP_TRIGGER_SUPPORT -DXCP_MEM_BLOCK_1_SIZE=32 -DXCP_MEM_BLOCK_1_NUMBER=1 -DXCP_MEM_BLOCK_2_SIZE=1624 -DXCP_MEM_BLOCK_2_NUMBER=1 -DXCP_MEM_BLOCK_3_SIZE=2040 -DXCP_MEM_BLOCK_3_NUMBER=29 -DXCP_MEM_RESERVED_POOLS_TOTAL_SIZE=1000130 -DXCP_MEM_RESERVED_POOLS_NUMBER=2 -DXCP_MEM_DAQ_RESERVED_POOL_BLOCKS_NUMBER=3 -DXCP_MEM_DAQ_RESERVED_POOLS_NUMBER=1 -DXCP_MIN_EVENT_NO_RESERVED_POOL=1 -DXCP_MAX_CTO_SIZE=32 -DXCP_MAX_DTO_SIZE=65532 -DXCP_MAX_ODT_ENTRY_SIZE=255 -DEXTMODE_STATIC -DEXTMODE_STATIC_SIZE=1000000 -DON_TARGET_WAIT_FOR_START=1 -DTID01EQ=0 -DXCP_EXTMODE_RUN_BACKGROUND_FLUSH
+DEFINES_OPTS = -DXCP_DAQ_SUPPORT -DXCP_CALIBRATION_SUPPORT -DXCP_TIMESTAMP_SUPPORT -DXCP_TIMESTAMP_BASED_ON_SIMULATION_TIME -DXCP_SET_MTA_SUPPORT -DEXTMODE_XCP_TRIGGER_SUPPORT -DXCP_MEM_BLOCK_1_SIZE=32 -DXCP_MEM_BLOCK_1_NUMBER=1 -DXCP_MEM_BLOCK_2_SIZE=560 -DXCP_MEM_BLOCK_2_NUMBER=1 -DXCP_MEM_BLOCK_3_SIZE=2040 -DXCP_MEM_BLOCK_3_NUMBER=10 -DXCP_MEM_RESERVED_POOLS_TOTAL_SIZE=1000130 -DXCP_MEM_RESERVED_POOLS_NUMBER=2 -DXCP_MEM_DAQ_RESERVED_POOL_BLOCKS_NUMBER=3 -DXCP_MEM_DAQ_RESERVED_POOLS_NUMBER=1 -DXCP_MIN_EVENT_NO_RESERVED_POOL=1 -DXCP_MAX_CTO_SIZE=32 -DXCP_MAX_DTO_SIZE=65532 -DXCP_MAX_ODT_ENTRY_SIZE=255 -DEXTMODE_STATIC -DEXTMODE_STATIC_SIZE=1000000 -DON_TARGET_WAIT_FOR_START=1 -DTID01EQ=0 -DXCP_EXTMODE_RUN_BACKGROUND_FLUSH
 DEFINES_SKIPFORSIL = -D__linux__ -DARM_PROJECT -D_USE_TARGET_UDP_ -D_RUNONTARGETHARDWARE_BUILD_ -DSTACK_SIZE=64 -DRT
 DEFINES_STANDARD = -DMODEL=Rpi_cam -DNUMST=1 -DNCSTATES=0 -DHAVESTDIO -DMODEL_HAS_DYNAMICALLY_LOADED_SFCNS=0
 
@@ -183,7 +183,7 @@ DEFINES = $(DEFINES_) $(DEFINES_BUILD_ARGS) $(DEFINES_CUSTOM) $(DEFINES_OPTS) $(
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/linux/src/MW_SDL2_video_display.c $(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/linux/src/MW_v4l2_cam.c $(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/linux/src/MW_availableWebcam.c $(MATLAB_ROOT)/toolbox/vision/visionrt/vipsvd/svd_d_rt.c $(MATLAB_ROOT)/toolbox/vision/visionrt/vipsvd/svd_helper_rt.c $(MATLAB_ROOT)/toolbox/vision/visionrt/vipendian/is_little_endian_rt.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_mode.c $(START_DIR)/Rpi_cam_ert_rtw/Rpi_cam.cpp $(START_DIR)/Rpi_cam_ert_rtw/Rpi_cam_data.cpp $(START_DIR)/Rpi_cam_ert_rtw/rtGetInf.cpp $(START_DIR)/Rpi_cam_ert_rtw/rtGetNaN.cpp $(START_DIR)/Rpi_cam_ert_rtw/rt_nonfinite.cpp $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_common.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_classic_trigger.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/protocol/src/xcp.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/protocol/src/xcp_standard.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/protocol/src/xcp_daq.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/protocol/src/xcp_calibration.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/transport/src/xcp_fifo.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/transport/src/xcp_transport.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/platform/default/xcp_mem_default.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/platform/default/xcp_drv_rtiostream.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/common/xcp_utils.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/transport/src/xcp_frame_tcp.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_param_default_tcp.c $(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/raspi/src/MW_raspi_init.c $(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/raspi/src/periphs/MW_Pyserver_control.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/rtiostream_interface.c $(MATLAB_ROOT)/toolbox/coder/rtiostream/src/rtiostreamtcpip/rtiostream_tcpip.c $(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils/rtiostream_utils.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/platform/default/xcp_platform_default.c $(MATLAB_ROOT)/toolbox/target/codertarget/rtos/src/linuxinitialize.cpp
+SRCS = $(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/target/supportpackages/shared_linuxservices/src/TCPSendReceive/MW_TCPSendReceive.c $(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/linux/src/MW_v4l2_cam.c $(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/linux/src/MW_availableWebcam.c $(MATLAB_ROOT)/toolbox/vision/visionrt/vipsvd/svd_d_rt.c $(MATLAB_ROOT)/toolbox/vision/visionrt/vipsvd/svd_helper_rt.c $(MATLAB_ROOT)/toolbox/vision/visionrt/vipendian/is_little_endian_rt.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_mode.c $(START_DIR)/Rpi_cam_ert_rtw/Rpi_cam.cpp $(START_DIR)/Rpi_cam_ert_rtw/Rpi_cam_data.cpp $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_common.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_classic_trigger.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/protocol/src/xcp.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/protocol/src/xcp_standard.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/protocol/src/xcp_daq.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/protocol/src/xcp_calibration.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/transport/src/xcp_fifo.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/transport/src/xcp_transport.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/platform/default/xcp_mem_default.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/platform/default/xcp_drv_rtiostream.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/common/xcp_utils.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/transport/src/xcp_frame_tcp.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/ext_mode/src/xcp_ext_param_default_tcp.c $(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/raspi/src/MW_raspi_init.c $(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/raspi/src/periphs/MW_Pyserver_control.c $(MATLAB_ROOT)/rtw/c/src/ext_mode/common/rtiostream_interface.c $(MATLAB_ROOT)/toolbox/coder/rtiostream/src/rtiostreamtcpip/rtiostream_tcpip.c $(MATLAB_ROOT)/toolbox/coder/rtiostream/src/utils/rtiostream_utils.c $(MATLAB_ROOT)/toolbox/coder/xcp/src/target/server/platform/default/xcp_platform_default.c $(MATLAB_ROOT)/toolbox/target/codertarget/rtos/src/linuxinitialize.cpp
 
 MAIN_SRC = $(START_DIR)/Rpi_cam_ert_rtw/ert_main.cpp
 
@@ -193,7 +193,7 @@ ALL_SRCS = $(SRCS) $(MAIN_SRC)
 ## OBJECTS
 ###########################################################################
 
-OBJS = MW_SDL2_video_display.c.o MW_v4l2_cam.c.o MW_availableWebcam.c.o svd_d_rt.c.o svd_helper_rt.c.o is_little_endian_rt.c.o xcp_ext_mode.c.o Rpi_cam.cpp.o Rpi_cam_data.cpp.o rtGetInf.cpp.o rtGetNaN.cpp.o rt_nonfinite.cpp.o xcp_ext_common.c.o xcp_ext_classic_trigger.c.o xcp.c.o xcp_standard.c.o xcp_daq.c.o xcp_calibration.c.o xcp_fifo.c.o xcp_transport.c.o xcp_mem_default.c.o xcp_drv_rtiostream.c.o xcp_utils.c.o xcp_frame_tcp.c.o xcp_ext_param_default_tcp.c.o MW_raspi_init.c.o MW_Pyserver_control.c.o rtiostream_interface.c.o rtiostream_tcpip.c.o rtiostream_utils.c.o xcp_platform_default.c.o linuxinitialize.cpp.o
+OBJS = MW_TCPSendReceive.c.o MW_v4l2_cam.c.o MW_availableWebcam.c.o svd_d_rt.c.o svd_helper_rt.c.o is_little_endian_rt.c.o xcp_ext_mode.c.o Rpi_cam.cpp.o Rpi_cam_data.cpp.o xcp_ext_common.c.o xcp_ext_classic_trigger.c.o xcp.c.o xcp_standard.c.o xcp_daq.c.o xcp_calibration.c.o xcp_fifo.c.o xcp_transport.c.o xcp_mem_default.c.o xcp_drv_rtiostream.c.o xcp_utils.c.o xcp_frame_tcp.c.o xcp_ext_param_default_tcp.c.o MW_raspi_init.c.o MW_Pyserver_control.c.o rtiostream_interface.c.o rtiostream_tcpip.c.o rtiostream_utils.c.o xcp_platform_default.c.o linuxinitialize.cpp.o
 
 MAIN_OBJ = ert_main.cpp.o
 
@@ -234,19 +234,17 @@ CFLAGS += $(CFLAGS_SKIPFORSIL) $(CFLAGS_BASIC)
 # Linker
 #-----------
 
-LDFLAGS_ = `sdl2-config --cflags`
 LDFLAGS_SKIPFORSIL =  
 
-LDFLAGS += $(LDFLAGS_) $(LDFLAGS_SKIPFORSIL)
+LDFLAGS += $(LDFLAGS_SKIPFORSIL)
 
 #--------------------------
 # Shared Library Linker
 #--------------------------
 
-SHAREDLIB_LDFLAGS_ = `sdl2-config --cflags`
 SHAREDLIB_LDFLAGS_SKIPFORSIL =  
 
-SHAREDLIB_LDFLAGS += $(SHAREDLIB_LDFLAGS_) $(SHAREDLIB_LDFLAGS_SKIPFORSIL)
+SHAREDLIB_LDFLAGS += $(SHAREDLIB_LDFLAGS_SKIPFORSIL)
 
 #-----------------
 # C++ Compiler
@@ -261,19 +259,17 @@ CPPFLAGS += $(CPPFLAGS_SKIPFORSIL) $(CPPFLAGS_BASIC)
 # C++ Linker
 #---------------
 
-CPP_LDFLAGS_ = `sdl2-config --cflags`
 CPP_LDFLAGS_SKIPFORSIL =  
 
-CPP_LDFLAGS += $(CPP_LDFLAGS_) $(CPP_LDFLAGS_SKIPFORSIL)
+CPP_LDFLAGS += $(CPP_LDFLAGS_SKIPFORSIL)
 
 #------------------------------
 # C++ Shared Library Linker
 #------------------------------
 
-CPP_SHAREDLIB_LDFLAGS_ = `sdl2-config --cflags`
 CPP_SHAREDLIB_LDFLAGS_SKIPFORSIL =  
 
-CPP_SHAREDLIB_LDFLAGS += $(CPP_SHAREDLIB_LDFLAGS_) $(CPP_SHAREDLIB_LDFLAGS_SKIPFORSIL)
+CPP_SHAREDLIB_LDFLAGS += $(CPP_SHAREDLIB_LDFLAGS_SKIPFORSIL)
 
 ###########################################################################
 ## INLINED COMMANDS
@@ -377,6 +373,18 @@ $(PRODUCT) : $(OBJS) $(PREBUILT_OBJS) $(LIBS) $(MAIN_OBJ)
 
 
 %.cpp.o : $(START_DIR)/%.cpp
+	$(CPP) $(CPPFLAGS) -o "$@" "$<"
+
+
+%.c.o : $(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/target/supportpackages/shared_linuxservices/src/TCPSendReceive/%.c
+	$(CC) $(CFLAGS) -o "$@" "$<"
+
+
+%.s.o : $(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/target/supportpackages/shared_linuxservices/src/TCPSendReceive/%.s
+	$(AS) $(ASFLAGS) -o "$@" "$<"
+
+
+%.cpp.o : $(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/target/supportpackages/shared_linuxservices/src/TCPSendReceive/%.cpp
 	$(CPP) $(CPPFLAGS) -o "$@" "$<"
 
 
@@ -512,7 +520,7 @@ $(PRODUCT) : $(OBJS) $(PREBUILT_OBJS) $(LIBS) $(MAIN_OBJ)
 	$(CPP) $(CPPFLAGS) -o "$@" "$<"
 
 
-MW_SDL2_video_display.c.o : $(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/linux/src/MW_SDL2_video_display.c
+MW_TCPSendReceive.c.o : $(MATLAB_WORKSPACE)/home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/target/supportpackages/shared_linuxservices/src/TCPSendReceive/MW_TCPSendReceive.c
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
 
@@ -549,18 +557,6 @@ Rpi_cam.cpp.o : $(START_DIR)/Rpi_cam_ert_rtw/Rpi_cam.cpp
 
 
 Rpi_cam_data.cpp.o : $(START_DIR)/Rpi_cam_ert_rtw/Rpi_cam_data.cpp
-	$(CPP) $(CPPFLAGS) -o "$@" "$<"
-
-
-rtGetInf.cpp.o : $(START_DIR)/Rpi_cam_ert_rtw/rtGetInf.cpp
-	$(CPP) $(CPPFLAGS) -o "$@" "$<"
-
-
-rtGetNaN.cpp.o : $(START_DIR)/Rpi_cam_ert_rtw/rtGetNaN.cpp
-	$(CPP) $(CPPFLAGS) -o "$@" "$<"
-
-
-rt_nonfinite.cpp.o : $(START_DIR)/Rpi_cam_ert_rtw/rt_nonfinite.cpp
 	$(CPP) $(CPPFLAGS) -o "$@" "$<"
 
 

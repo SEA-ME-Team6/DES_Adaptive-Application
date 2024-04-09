@@ -1,0 +1,7 @@
+module eprosima_dds {
+  struct ProvidedInterface_Error {
+    double m_double;
+  }
+  ;
+}
+;

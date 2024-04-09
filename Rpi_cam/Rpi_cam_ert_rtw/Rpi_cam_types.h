@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'Rpi_cam'.
 //
-// Model version                  : 1.104
+// Model version                  : 1.153
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Fri Mar 15 11:10:11 2024
+// C/C++ source code generated on : Tue Apr  9 15:11:19 2024
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -19,19 +19,18 @@
 #ifndef RTW_HEADER_Rpi_cam_types_h_
 #define RTW_HEADER_Rpi_cam_types_h_
 #include "rtwtypes.h"
-#ifndef struct_codertarget_linux_blocks_SDL2VideoDisplay
-#define struct_codertarget_linux_blocks_SDL2VideoDisplay
+#ifndef struct_codertarget_raspi_internal_RaspiTCPSend
+#define struct_codertarget_raspi_internal_RaspiTCPSend
 
-struct codertarget_linux_blocks_SDL2VideoDisplay
+struct codertarget_raspi_internal_RaspiTCPSend
 {
-  boolean_T matlabCodegenIsDeleted;
   int32_T isInitialized;
-  boolean_T isSetupComplete;
-  int32_T PixelFormatEnum;
-  int32_T displayId;
+  uint16_T connStream_;
+  real_T isServer_;
+  uint8_T isLittleEnd_;
 };
 
-#endif                      // struct_codertarget_linux_blocks_SDL2VideoDisplay
+#endif                        // struct_codertarget_raspi_internal_RaspiTCPSend
 
 #ifndef struct_codertarget_raspi_internal_Raspiv4l2Capture
 #define struct_codertarget_raspi_internal_Raspiv4l2Capture

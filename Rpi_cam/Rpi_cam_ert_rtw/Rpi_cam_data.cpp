@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'Rpi_cam'.
 //
-// Model version                  : 1.104
+// Model version                  : 1.153
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Fri Mar 15 11:10:11 2024
+// C/C++ source code generated on : Tue Apr  9 15:11:19 2024
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -25,10 +25,25 @@ P rtP = {
 
   2.5,
 
+  // Mask Parameter: DrawShapes2_lineWidth
+  //  Referenced by: '<S2>/Draw Shapes2'
+
+  1,
+
   // Mask Parameter: EstimateGeometricTransformation_sampleNum
   //  Referenced by: '<S4>/Estimate Geometric Transformation'
 
   500U,
+
+  // Mask Parameter: DrawShapes3_opacity
+  //  Referenced by: '<S2>/Draw Shapes3'
+
+  13107,
+
+  // Mask Parameter: DrawShapes1_opacity
+  //  Referenced by: '<S2>/Draw Shapes1'
+
+  13107,
 
   // Expression: 0.5
   //  Referenced by: '<Root>/V4L2 Video Capture'

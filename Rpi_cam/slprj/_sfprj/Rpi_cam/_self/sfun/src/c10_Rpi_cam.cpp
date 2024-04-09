@@ -1247,13 +1247,13 @@ static void mdl_setup_runtime_resources_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct 
 
   static const int32_T c10_postfixPredicateTree[3] = { 0, 1, -3 };
 
-  static const int32_T c10_b_condTxtEndIdx[2] = { 4917, 4938 };
+  static const int32_T c10_b_condTxtEndIdx[2] = { 4935, 4956 };
 
-  static const int32_T c10_b_condTxtStartIdx[2] = { 4902, 4923 };
+  static const int32_T c10_b_condTxtStartIdx[2] = { 4920, 4941 };
 
-  static const int32_T c10_condTxtEndIdx[2] = { 3713, 3734 };
+  static const int32_T c10_condTxtEndIdx[2] = { 3731, 3752 };
 
-  static const int32_T c10_condTxtStartIdx[2] = { 3698, 3719 };
+  static const int32_T c10_condTxtStartIdx[2] = { 3716, 3737 };
 
   static const uint32_T c10_decisionTxtEndIdx = 0U;
   static const uint32_T c10_decisionTxtStartIdx = 0U;
@@ -1266,7 +1266,7 @@ static void mdl_setup_runtime_resources_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct 
     &chartInstance->c10_IsSequenceViewerPresent, 0, 0,
     &chartInstance->c10_mlFcnLineNumber, &chartInstance->c10_IsHeatMapPresent, 0);
   covrtCreateStateflowInstanceData(chartInstance->c10_covrtInstance, 1U, 0U, 1U,
-    30U);
+    32U);
   covrtChartInitFcn(chartInstance->c10_covrtInstance, 0U, false, false, false);
   covrtStateInitFcn(chartInstance->c10_covrtInstance, 0U, 0U, false, false,
                     false, 0U, &c10_decisionTxtStartIdx, &c10_decisionTxtEndIdx);
@@ -1275,55 +1275,55 @@ static void mdl_setup_runtime_resources_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct 
   covrtEmlInitFcn(chartInstance->c10_covrtInstance, "", 4U, 0U, 1U, 0U, 7U, 0U,
                   0U, 0U, 5U, 0U, 4U, 2U);
   covrtEmlFcnInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 0U,
-                     "eML_blk_kernel", 50, -1, 6127);
-  covrtEmlIfInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 0U, 2460, 2494,
-                    2597, 2705, false);
-  covrtEmlIfInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 1U, 2890, 2909, -1,
-                    4084, false);
-  covrtEmlIfInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 2U, 3584, 3622, -1,
-                    3684, false);
-  covrtEmlIfInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 3U, 3694, 3736, -1,
-                    3790, false);
-  covrtEmlIfInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 4U, 4090, 4109, -1,
-                    5280, false);
-  covrtEmlIfInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 5U, 4782, 4819, -1,
-                    4880, false);
-  covrtEmlIfInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 6U, 4898, 4940, -1,
-                    4994, false);
-  covrtEmlForInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 0U, 2136, 2181,
-                     2292);
-  covrtEmlForInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 1U, 2294, 2341,
-                     2457);
-  covrtEmlForInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 2U, 2867, 2885,
-                     5317);
-  covrtEmlForInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 3U, 3800, 3847,
-                     4075);
-  covrtEmlForInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 4U, 5004, 5049,
-                     5271);
-  covrtEmlMCDCInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 0U, 3697, 3735,
+                     "eML_blk_kernel", 50, -1, 6182);
+  covrtEmlIfInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 0U, 2478, 2512,
+                    2615, 2723, false);
+  covrtEmlIfInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 1U, 2908, 2927, -1,
+                    4102, false);
+  covrtEmlIfInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 2U, 3602, 3640, -1,
+                    3702, false);
+  covrtEmlIfInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 3U, 3712, 3754, -1,
+                    3808, false);
+  covrtEmlIfInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 4U, 4108, 4127, -1,
+                    5298, false);
+  covrtEmlIfInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 5U, 4800, 4837, -1,
+                    4898, false);
+  covrtEmlIfInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 6U, 4916, 4958, -1,
+                    5012, false);
+  covrtEmlForInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 0U, 2154, 2199,
+                     2310);
+  covrtEmlForInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 1U, 2312, 2359,
+                     2475);
+  covrtEmlForInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 2U, 2885, 2903,
+                     5372);
+  covrtEmlForInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 3U, 3818, 3865,
+                     4093);
+  covrtEmlForInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 4U, 5022, 5067,
+                     5289);
+  covrtEmlMCDCInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 0U, 3715, 3753,
                       2U, 0U, c10_condTxtStartIdx, c10_condTxtEndIdx, 3U,
                       c10_postfixPredicateTree, false);
-  covrtEmlMCDCInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 1U, 4901, 4939,
+  covrtEmlMCDCInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 1U, 4919, 4957,
                       2U, 2U, c10_b_condTxtStartIdx, c10_b_condTxtEndIdx, 3U,
                       c10_b_postfixPredicateTree, false);
-  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 0U, 2463,
-    2493, -1, 4U);
-  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 1U, 2894,
-    2908, -1, 0U);
-  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 2U, 3587,
-    3621, -1, 4U);
-  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 3U, 3698,
-    3713, -1, 4U);
-  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 4U, 3719,
-    3734, -1, 2U);
-  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 5U, 4094,
-    4108, -1, 0U);
-  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 6U, 4785,
-    4818, -1, 4U);
-  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 7U, 4902,
-    4917, -1, 4U);
-  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 8U, 4923,
-    4938, -1, 2U);
+  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 0U, 2481,
+    2511, -1, 4U);
+  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 1U, 2912,
+    2926, -1, 0U);
+  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 2U, 3605,
+    3639, -1, 4U);
+  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 3U, 3716,
+    3731, -1, 4U);
+  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 4U, 3737,
+    3752, -1, 2U);
+  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 5U, 4112,
+    4126, -1, 0U);
+  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 6U, 4803,
+    4836, -1, 4U);
+  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 7U, 4920,
+    4935, -1, 4U);
+  covrtEmlRelationalInitFcn(chartInstance->c10_covrtInstance, 4U, 0U, 8U, 4941,
+    4956, -1, 2U);
 }
 
 static void mdl_cleanup_runtime_resources_c10_Rpi_cam
@@ -1377,6 +1377,7 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
 
   real_T c10_dv[168];
   real_T c10_dv3[3];
+  real_T c10_dv4[3];
   real_T c10_b_j;
   real_T c10_count_left;
   real_T c10_count_right;
@@ -1555,6 +1556,8 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
   int32_T c10_i178;
   int32_T c10_i179;
   int32_T c10_i18;
+  int32_T c10_i180;
+  int32_T c10_i181;
   int32_T c10_i19;
   int32_T c10_i2;
   int32_T c10_i20;
@@ -2304,55 +2307,55 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
         emlrtIntegerCheckR2012b(c10_d9, &c10_p_emlrtDCI, &c10_st);
       }
 
-      c10_i90 = static_cast<int32_T>(c10_d9);
-      if ((c10_i90 < 1) || (c10_i90 > 42)) {
-        emlrtDynamicBoundsCheckR2012b(c10_i90, 1, 42, &c10_w_emlrtBCI, &c10_st);
+      c10_i92 = static_cast<int32_T>(c10_d9);
+      if ((c10_i92 < 1) || (c10_i92 > 42)) {
+        emlrtDynamicBoundsCheckR2012b(c10_i92, 1, 42, &c10_w_emlrtBCI, &c10_st);
       }
 
-      c10_i92 = c10_i90 - 1;
-      c10_dv[c10_i92] = c10_win_x_low - 520.0;
-      c10_dv[42 + c10_i92] = c10_win_y_low;
-      c10_dv[84 + c10_i92] = 80.0;
-      c10_dv[126 + c10_i92] = 24.0;
+      c10_i94 = c10_i92 - 1;
+      c10_dv[c10_i94] = c10_win_x_low - 520.0;
+      c10_dv[42 + c10_i94] = c10_win_y_low;
+      c10_dv[84 + c10_i94] = 80.0;
+      c10_dv[126 + c10_i94] = 24.0;
       c10_r.set_size(&c10_y_emlrtRTEI, &c10_st, c10_nonzeroy.size(0));
       c10_hb_loop_ub = c10_nonzeroy.size(0) - 1;
-      for (c10_i94 = 0; c10_i94 <= c10_hb_loop_ub; c10_i94++) {
-        c10_r[c10_i94] = (c10_nonzeroy[c10_i94] >= c10_win_y_low);
+      for (c10_i96 = 0; c10_i96 <= c10_hb_loop_ub; c10_i96++) {
+        c10_r[c10_i96] = (c10_nonzeroy[c10_i96] >= c10_win_y_low);
       }
 
       c10_r1.set_size(&c10_ab_emlrtRTEI, &c10_st, c10_nonzeroy.size(0));
       c10_jb_loop_ub = c10_nonzeroy.size(0) - 1;
-      for (c10_i96 = 0; c10_i96 <= c10_jb_loop_ub; c10_i96++) {
-        c10_r1[c10_i96] = (c10_nonzeroy[c10_i96] < c10_win_y_high);
+      for (c10_i98 = 0; c10_i98 <= c10_jb_loop_ub; c10_i98++) {
+        c10_r1[c10_i98] = (c10_nonzeroy[c10_i98] < c10_win_y_high);
       }
 
-      c10_i98 = c10_r.size(0);
-      c10_i99 = c10_r1.size(0);
-      if (c10_i98 != c10_i99) {
-        emlrtSizeEqCheck1DR2012b(c10_i98, c10_i99, &c10_i_emlrtECI, &c10_st);
+      c10_i100 = c10_r.size(0);
+      c10_i101 = c10_r1.size(0);
+      if (c10_i100 != c10_i101) {
+        emlrtSizeEqCheck1DR2012b(c10_i100, c10_i101, &c10_i_emlrtECI, &c10_st);
       }
 
       c10_mb_loop_ub = c10_r.size(0) - 1;
-      for (c10_i102 = 0; c10_i102 <= c10_mb_loop_ub; c10_i102++) {
-        c10_r[c10_i102] = (c10_r[c10_i102] && c10_r1[c10_i102]);
+      for (c10_i104 = 0; c10_i104 <= c10_mb_loop_ub; c10_i104++) {
+        c10_r[c10_i104] = (c10_r[c10_i104] && c10_r1[c10_i104]);
       }
 
       c10_r1.set_size(&c10_bb_emlrtRTEI, &c10_st, c10_nonzerox.size(0));
       c10_pb_loop_ub = c10_nonzerox.size(0) - 1;
-      for (c10_i104 = 0; c10_i104 <= c10_pb_loop_ub; c10_i104++) {
-        c10_r1[c10_i104] = (c10_nonzerox[c10_i104] >= c10_win_x_low);
+      for (c10_i106 = 0; c10_i106 <= c10_pb_loop_ub; c10_i106++) {
+        c10_r1[c10_i106] = (c10_nonzerox[c10_i106] >= c10_win_x_low);
       }
 
-      c10_i106 = c10_r.size(0);
-      c10_i107 = c10_r1.size(0);
-      if ((c10_i106 != c10_i107) && ((c10_i106 != 1) && (c10_i107 != 1))) {
-        emlrtDimSizeImpxCheckR2021b(c10_i106, c10_i107, &c10_j_emlrtECI, &c10_st);
+      c10_i108 = c10_r.size(0);
+      c10_i109 = c10_r1.size(0);
+      if ((c10_i108 != c10_i109) && ((c10_i108 != 1) && (c10_i109 != 1))) {
+        emlrtDimSizeImpxCheckR2021b(c10_i108, c10_i109, &c10_j_emlrtECI, &c10_st);
       }
 
       if (c10_r.size(0) == c10_r1.size(0)) {
         c10_rb_loop_ub = c10_r.size(0) - 1;
-        for (c10_i110 = 0; c10_i110 <= c10_rb_loop_ub; c10_i110++) {
-          c10_r[c10_i110] = (c10_r[c10_i110] && c10_r1[c10_i110]);
+        for (c10_i112 = 0; c10_i112 <= c10_rb_loop_ub; c10_i112++) {
+          c10_r[c10_i112] = (c10_r[c10_i112] && c10_r1[c10_i112]);
         }
       } else {
         c10_b_and(chartInstance, &c10_st, c10_r, c10_r1);
@@ -2360,21 +2363,21 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
 
       c10_r1.set_size(&c10_cb_emlrtRTEI, &c10_st, c10_nonzerox.size(0));
       c10_tb_loop_ub = c10_nonzerox.size(0) - 1;
-      for (c10_i112 = 0; c10_i112 <= c10_tb_loop_ub; c10_i112++) {
-        c10_r1[c10_i112] = (c10_nonzerox[c10_i112] < c10_win_x_high);
+      for (c10_i114 = 0; c10_i114 <= c10_tb_loop_ub; c10_i114++) {
+        c10_r1[c10_i114] = (c10_nonzerox[c10_i114] < c10_win_x_high);
       }
 
-      c10_i114 = c10_r.size(0);
-      c10_i115 = c10_r1.size(0);
-      if ((c10_i114 != c10_i115) && ((c10_i114 != 1) && (c10_i115 != 1))) {
-        emlrtDimSizeImpxCheckR2021b(c10_i114, c10_i115, &c10_j_emlrtECI, &c10_st);
+      c10_i116 = c10_r.size(0);
+      c10_i117 = c10_r1.size(0);
+      if ((c10_i116 != c10_i117) && ((c10_i116 != 1) && (c10_i117 != 1))) {
+        emlrtDimSizeImpxCheckR2021b(c10_i116, c10_i117, &c10_j_emlrtECI, &c10_st);
       }
 
       if (c10_r.size(0) == c10_r1.size(0)) {
         c10_r6.set_size(&c10_db_emlrtRTEI, &c10_st, c10_r.size(0));
         c10_vb_loop_ub = c10_r.size(0) - 1;
-        for (c10_i118 = 0; c10_i118 <= c10_vb_loop_ub; c10_i118++) {
-          c10_r6[c10_i118] = (c10_r[c10_i118] && c10_r1[c10_i118]);
+        for (c10_i120 = 0; c10_i120 <= c10_vb_loop_ub; c10_i120++) {
+          c10_r6[c10_i120] = (c10_r[c10_i120] && c10_r1[c10_i120]);
         }
       } else {
         c10_and(chartInstance, &c10_st, c10_r6, c10_r, c10_r1);
@@ -2393,63 +2396,63 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
       c10_e_partialTrueCount = 0;
       for (c10_v_i = 0; c10_v_i < c10_e_end; c10_v_i++) {
         if (c10_r6[c10_v_i]) {
-          c10_i120 = c10_nonzerox.size(0) - 1;
+          c10_i122 = c10_nonzerox.size(0) - 1;
           c10_d11 = static_cast<real_T>(c10_v_i);
           if (c10_d11 != static_cast<real_T>(static_cast<int32_T>
                (muDoubleScalarFloor(c10_d11)))) {
             emlrtIntegerCheckR2012b(c10_d11, &c10_db_emlrtDCI, &c10_st);
           }
 
-          c10_i124 = static_cast<int32_T>(muDoubleScalarFloor(c10_d11));
-          if ((c10_i124 < 0) || (c10_i124 > c10_i120)) {
-            emlrtDynamicBoundsCheckR2012b(c10_i124, 0, c10_i120,
+          c10_i126 = static_cast<int32_T>(muDoubleScalarFloor(c10_d11));
+          if ((c10_i126 < 0) || (c10_i126 > c10_i122)) {
+            emlrtDynamicBoundsCheckR2012b(c10_i126, 0, c10_i122,
               &c10_kb_emlrtBCI, &c10_st);
           }
 
-          c10_good_rightx_indexs[c10_e_partialTrueCount] = c10_nonzerox[c10_i124];
+          c10_good_rightx_indexs[c10_e_partialTrueCount] = c10_nonzerox[c10_i126];
           c10_e_partialTrueCount++;
         }
       }
 
       c10_r.set_size(&c10_eb_emlrtRTEI, &c10_st, c10_nonzeroy.size(0));
       c10_xb_loop_ub = c10_nonzeroy.size(0) - 1;
-      for (c10_i121 = 0; c10_i121 <= c10_xb_loop_ub; c10_i121++) {
-        c10_r[c10_i121] = (c10_nonzeroy[c10_i121] >= c10_win_y_low);
+      for (c10_i123 = 0; c10_i123 <= c10_xb_loop_ub; c10_i123++) {
+        c10_r[c10_i123] = (c10_nonzeroy[c10_i123] >= c10_win_y_low);
       }
 
       c10_r1.set_size(&c10_fb_emlrtRTEI, &c10_st, c10_nonzeroy.size(0));
       c10_ac_loop_ub = c10_nonzeroy.size(0) - 1;
-      for (c10_i125 = 0; c10_i125 <= c10_ac_loop_ub; c10_i125++) {
-        c10_r1[c10_i125] = (c10_nonzeroy[c10_i125] < c10_win_y_high);
+      for (c10_i127 = 0; c10_i127 <= c10_ac_loop_ub; c10_i127++) {
+        c10_r1[c10_i127] = (c10_nonzeroy[c10_i127] < c10_win_y_high);
       }
 
-      c10_i128 = c10_r.size(0);
-      c10_i129 = c10_r1.size(0);
-      if (c10_i128 != c10_i129) {
-        emlrtSizeEqCheck1DR2012b(c10_i128, c10_i129, &c10_k_emlrtECI, &c10_st);
+      c10_i130 = c10_r.size(0);
+      c10_i131 = c10_r1.size(0);
+      if (c10_i130 != c10_i131) {
+        emlrtSizeEqCheck1DR2012b(c10_i130, c10_i131, &c10_k_emlrtECI, &c10_st);
       }
 
       c10_cc_loop_ub = c10_r.size(0) - 1;
-      for (c10_i132 = 0; c10_i132 <= c10_cc_loop_ub; c10_i132++) {
-        c10_r[c10_i132] = (c10_r[c10_i132] && c10_r1[c10_i132]);
+      for (c10_i134 = 0; c10_i134 <= c10_cc_loop_ub; c10_i134++) {
+        c10_r[c10_i134] = (c10_r[c10_i134] && c10_r1[c10_i134]);
       }
 
       c10_r1.set_size(&c10_gb_emlrtRTEI, &c10_st, c10_nonzerox.size(0));
       c10_ec_loop_ub = c10_nonzerox.size(0) - 1;
-      for (c10_i134 = 0; c10_i134 <= c10_ec_loop_ub; c10_i134++) {
-        c10_r1[c10_i134] = (c10_nonzerox[c10_i134] >= c10_win_x_low);
+      for (c10_i136 = 0; c10_i136 <= c10_ec_loop_ub; c10_i136++) {
+        c10_r1[c10_i136] = (c10_nonzerox[c10_i136] >= c10_win_x_low);
       }
 
-      c10_i136 = c10_r.size(0);
-      c10_i137 = c10_r1.size(0);
-      if ((c10_i136 != c10_i137) && ((c10_i136 != 1) && (c10_i137 != 1))) {
-        emlrtDimSizeImpxCheckR2021b(c10_i136, c10_i137, &c10_m_emlrtECI, &c10_st);
+      c10_i138 = c10_r.size(0);
+      c10_i139 = c10_r1.size(0);
+      if ((c10_i138 != c10_i139) && ((c10_i138 != 1) && (c10_i139 != 1))) {
+        emlrtDimSizeImpxCheckR2021b(c10_i138, c10_i139, &c10_m_emlrtECI, &c10_st);
       }
 
       if (c10_r.size(0) == c10_r1.size(0)) {
         c10_gc_loop_ub = c10_r.size(0) - 1;
-        for (c10_i140 = 0; c10_i140 <= c10_gc_loop_ub; c10_i140++) {
-          c10_r[c10_i140] = (c10_r[c10_i140] && c10_r1[c10_i140]);
+        for (c10_i142 = 0; c10_i142 <= c10_gc_loop_ub; c10_i142++) {
+          c10_r[c10_i142] = (c10_r[c10_i142] && c10_r1[c10_i142]);
         }
       } else {
         c10_b_and(chartInstance, &c10_st, c10_r, c10_r1);
@@ -2457,21 +2460,21 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
 
       c10_r1.set_size(&c10_hb_emlrtRTEI, &c10_st, c10_nonzerox.size(0));
       c10_ic_loop_ub = c10_nonzerox.size(0) - 1;
-      for (c10_i142 = 0; c10_i142 <= c10_ic_loop_ub; c10_i142++) {
-        c10_r1[c10_i142] = (c10_nonzerox[c10_i142] < c10_win_x_high);
+      for (c10_i144 = 0; c10_i144 <= c10_ic_loop_ub; c10_i144++) {
+        c10_r1[c10_i144] = (c10_nonzerox[c10_i144] < c10_win_x_high);
       }
 
-      c10_i144 = c10_r.size(0);
-      c10_i145 = c10_r1.size(0);
-      if ((c10_i144 != c10_i145) && ((c10_i144 != 1) && (c10_i145 != 1))) {
-        emlrtDimSizeImpxCheckR2021b(c10_i144, c10_i145, &c10_m_emlrtECI, &c10_st);
+      c10_i146 = c10_r.size(0);
+      c10_i147 = c10_r1.size(0);
+      if ((c10_i146 != c10_i147) && ((c10_i146 != 1) && (c10_i147 != 1))) {
+        emlrtDimSizeImpxCheckR2021b(c10_i146, c10_i147, &c10_m_emlrtECI, &c10_st);
       }
 
       if (c10_r.size(0) == c10_r1.size(0)) {
         c10_r8.set_size(&c10_ib_emlrtRTEI, &c10_st, c10_r.size(0));
         c10_kc_loop_ub = c10_r.size(0) - 1;
-        for (c10_i148 = 0; c10_i148 <= c10_kc_loop_ub; c10_i148++) {
-          c10_r8[c10_i148] = (c10_r[c10_i148] && c10_r1[c10_i148]);
+        for (c10_i150 = 0; c10_i150 <= c10_kc_loop_ub; c10_i150++) {
+          c10_r8[c10_i150] = (c10_r[c10_i150] && c10_r1[c10_i150]);
         }
       } else {
         c10_and(chartInstance, &c10_st, c10_r8, c10_r, c10_r1);
@@ -2490,31 +2493,31 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
       c10_g_partialTrueCount = 0;
       for (c10_ab_i = 0; c10_ab_i < c10_g_end; c10_ab_i++) {
         if (c10_r8[c10_ab_i]) {
-          c10_i151 = c10_nonzeroy.size(0) - 1;
+          c10_i153 = c10_nonzeroy.size(0) - 1;
           c10_d13 = static_cast<real_T>(c10_ab_i);
           if (c10_d13 != static_cast<real_T>(static_cast<int32_T>
                (muDoubleScalarFloor(c10_d13)))) {
             emlrtIntegerCheckR2012b(c10_d13, &c10_fb_emlrtDCI, &c10_st);
           }
 
-          c10_i154 = static_cast<int32_T>(muDoubleScalarFloor(c10_d13));
-          if ((c10_i154 < 0) || (c10_i154 > c10_i151)) {
-            emlrtDynamicBoundsCheckR2012b(c10_i154, 0, c10_i151,
+          c10_i156 = static_cast<int32_T>(muDoubleScalarFloor(c10_d13));
+          if ((c10_i156 < 0) || (c10_i156 > c10_i153)) {
+            emlrtDynamicBoundsCheckR2012b(c10_i156, 0, c10_i153,
               &c10_ob_emlrtBCI, &c10_st);
           }
 
-          c10_good_righty_indexs[c10_g_partialTrueCount] = c10_nonzeroy[c10_i154];
+          c10_good_righty_indexs[c10_g_partialTrueCount] = c10_nonzeroy[c10_i156];
           c10_g_partialTrueCount++;
         }
       }
 
-      c10_i150 = c10_good_rightx_indexs.size(0);
-      if (c10_i150 < 0) {
-        emlrtDynamicBoundsCheckR2012b(c10_i150, 0, MAX_int32_T, &c10_h_emlrtBCI,
+      c10_i152 = c10_good_rightx_indexs.size(0);
+      if (c10_i152 < 0) {
+        emlrtDynamicBoundsCheckR2012b(c10_i152, 0, MAX_int32_T, &c10_h_emlrtBCI,
           &c10_st);
       }
 
-      c10_d14 = static_cast<real_T>(c10_i150);
+      c10_d14 = static_cast<real_T>(c10_i152);
       if (covrtEmlIfEval(chartInstance->c10_covrtInstance, 4U, 0, 2,
                          covrtRelationalopUpdateFcn
                          (chartInstance->c10_covrtInstance, 4U, 0U, 2U, c10_d14,
@@ -2536,24 +2539,24 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
              < 340.0)))) {
         covrtEmlMcdcEval(chartInstance->c10_covrtInstance, 4U, 0, 0, true);
         covrtEmlIfEval(chartInstance->c10_covrtInstance, 4U, 0, 3, true);
-        c10_d = c10_x_current - 260.0;
+        c10_d = c10_x_current - 220.0;
       } else {
         covrtEmlMcdcEval(chartInstance->c10_covrtInstance, 4U, 0, 0, false);
         covrtEmlIfEval(chartInstance->c10_covrtInstance, 4U, 0, 3, false);
       }
 
       c10_d17 = c10_count_right + 1.0;
-      c10_i156 = c10_good_rightx_indexs.size(0);
-      if (c10_i156 < 0) {
-        emlrtDynamicBoundsCheckR2012b(c10_i156, 0, MAX_int32_T, &c10_i_emlrtBCI,
+      c10_i158 = c10_good_rightx_indexs.size(0);
+      if (c10_i158 < 0) {
+        emlrtDynamicBoundsCheckR2012b(c10_i158, 0, MAX_int32_T, &c10_i_emlrtBCI,
           &c10_st);
       }
 
-      c10_d19 = static_cast<real_T>(c10_i156);
-      c10_i158 = static_cast<int32_T>(c10_d19 + (1.0 - c10_d17));
+      c10_d19 = static_cast<real_T>(c10_i158);
+      c10_i160 = static_cast<int32_T>(c10_d19 + (1.0 - c10_d17));
       emlrtForLoopVectorCheckR2021a(c10_d17, 1.0, c10_d19, mxDOUBLE_CLASS,
-        c10_i158, &c10_cc_emlrtRTEI, &c10_st);
-      for (c10_d_j = 0; c10_d_j < c10_i158; c10_d_j++) {
+        c10_i160, &c10_cc_emlrtRTEI, &c10_st);
+      for (c10_d_j = 0; c10_d_j < c10_i160; c10_d_j++) {
         c10_b_j = c10_d17 + static_cast<real_T>(c10_d_j);
         covrtEmlForEval(chartInstance->c10_covrtInstance, 4U, 0, 3, 1);
         if (c10_b_j != static_cast<real_T>(static_cast<int32_T>
@@ -2561,9 +2564,9 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
           emlrtIntegerCheckR2012b(c10_b_j, &c10_w_emlrtDCI, &c10_st);
         }
 
-        c10_i160 = static_cast<int32_T>(c10_b_j);
-        if ((c10_i160 < 1) || (c10_i160 > 100000)) {
-          emlrtDynamicBoundsCheckR2012b(c10_i160, 1, 100000, &c10_eb_emlrtBCI,
+        c10_i162 = static_cast<int32_T>(c10_b_j);
+        if ((c10_i162 < 1) || (c10_i162 > 100000)) {
+          emlrtDynamicBoundsCheckR2012b(c10_i162, 1, 100000, &c10_eb_emlrtBCI,
             &c10_st);
         }
 
@@ -2572,10 +2575,10 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
           emlrtIntegerCheckR2012b(c10_b_j, &c10_e_emlrtDCI, &c10_st);
         }
 
-        c10_i162 = c10_good_rightx_indexs.size(0);
-        c10_i163 = static_cast<int32_T>(c10_b_j);
-        if ((c10_i163 < 1) || (c10_i163 > c10_i162)) {
-          emlrtDynamicBoundsCheckR2012b(c10_i163, 1, c10_i162, &c10_j_emlrtBCI,
+        c10_i164 = c10_good_rightx_indexs.size(0);
+        c10_i165 = static_cast<int32_T>(c10_b_j);
+        if ((c10_i165 < 1) || (c10_i165 > c10_i164)) {
+          emlrtDynamicBoundsCheckR2012b(c10_i165, 1, c10_i164, &c10_j_emlrtBCI,
             &c10_st);
         }
 
@@ -2584,10 +2587,10 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
           emlrtIntegerCheckR2012b(c10_b_j, &c10_f_emlrtDCI, &c10_st);
         }
 
-        c10_i166 = c10_good_righty_indexs.size(0);
-        c10_i167 = static_cast<int32_T>(c10_b_j);
-        if ((c10_i167 < 1) || (c10_i167 > c10_i166)) {
-          emlrtDynamicBoundsCheckR2012b(c10_i167, 1, c10_i166, &c10_k_emlrtBCI,
+        c10_i168 = c10_good_righty_indexs.size(0);
+        c10_i169 = static_cast<int32_T>(c10_b_j);
+        if ((c10_i169 < 1) || (c10_i169 > c10_i168)) {
+          emlrtDynamicBoundsCheckR2012b(c10_i169, 1, c10_i168, &c10_k_emlrtBCI,
             &c10_st);
         }
 
@@ -2596,9 +2599,9 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
           emlrtIntegerCheckR2012b(c10_b_j, &c10_t_emlrtDCI, &c10_st);
         }
 
-        c10_i170 = static_cast<int32_T>(c10_b_j);
-        if ((c10_i170 < 1) || (c10_i170 > 100000)) {
-          emlrtDynamicBoundsCheckR2012b(c10_i170, 1, 100000, &c10_bb_emlrtBCI,
+        c10_i172 = static_cast<int32_T>(c10_b_j);
+        if ((c10_i172 < 1) || (c10_i172 > 100000)) {
+          emlrtDynamicBoundsCheckR2012b(c10_i172, 1, 100000, &c10_bb_emlrtBCI,
             &c10_st);
         }
 
@@ -2607,10 +2610,10 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
           emlrtIntegerCheckR2012b(c10_b_j, &c10_g_emlrtDCI, &c10_st);
         }
 
-        c10_i172 = c10_good_rightx_indexs.size(0);
-        c10_i173 = static_cast<int32_T>(c10_b_j);
-        if ((c10_i173 < 1) || (c10_i173 > c10_i172)) {
-          emlrtDynamicBoundsCheckR2012b(c10_i173, 1, c10_i172, &c10_m_emlrtBCI,
+        c10_i174 = c10_good_rightx_indexs.size(0);
+        c10_i175 = static_cast<int32_T>(c10_b_j);
+        if ((c10_i175 < 1) || (c10_i175 > c10_i174)) {
+          emlrtDynamicBoundsCheckR2012b(c10_i175, 1, c10_i174, &c10_m_emlrtBCI,
             &c10_st);
         }
 
@@ -2619,10 +2622,10 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
           emlrtIntegerCheckR2012b(c10_b_j, &c10_h_emlrtDCI, &c10_st);
         }
 
-        c10_i176 = c10_good_righty_indexs.size(0);
-        c10_i177 = static_cast<int32_T>(c10_b_j);
-        if ((c10_i177 < 1) || (c10_i177 > c10_i176)) {
-          emlrtDynamicBoundsCheckR2012b(c10_i177, 1, c10_i176, &c10_o_emlrtBCI,
+        c10_i178 = c10_good_righty_indexs.size(0);
+        c10_i179 = static_cast<int32_T>(c10_b_j);
+        if ((c10_i179 < 1) || (c10_i179 > c10_i178)) {
+          emlrtDynamicBoundsCheckR2012b(c10_i179, 1, c10_i178, &c10_o_emlrtBCI,
             &c10_st);
         }
 
@@ -2663,55 +2666,55 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
         emlrtIntegerCheckR2012b(c10_d10, &c10_r_emlrtDCI, &c10_st);
       }
 
-      c10_i91 = static_cast<int32_T>(c10_d10);
-      if ((c10_i91 < 1) || (c10_i91 > 42)) {
-        emlrtDynamicBoundsCheckR2012b(c10_i91, 1, 42, &c10_y_emlrtBCI, &c10_st);
+      c10_i93 = static_cast<int32_T>(c10_d10);
+      if ((c10_i93 < 1) || (c10_i93 > 42)) {
+        emlrtDynamicBoundsCheckR2012b(c10_i93, 1, 42, &c10_y_emlrtBCI, &c10_st);
       }
 
-      c10_i93 = c10_i91 - 1;
-      c10_dv[c10_i93] = c10_win_x_low + 520.0;
-      c10_dv[42 + c10_i93] = c10_win_y_low;
-      c10_dv[84 + c10_i93] = 80.0;
-      c10_dv[126 + c10_i93] = 24.0;
+      c10_i95 = c10_i93 - 1;
+      c10_dv[c10_i95] = c10_win_x_low + 520.0;
+      c10_dv[42 + c10_i95] = c10_win_y_low;
+      c10_dv[84 + c10_i95] = 80.0;
+      c10_dv[126 + c10_i95] = 24.0;
       c10_r.set_size(&c10_jb_emlrtRTEI, &c10_st, c10_nonzeroy.size(0));
       c10_ib_loop_ub = c10_nonzeroy.size(0) - 1;
-      for (c10_i95 = 0; c10_i95 <= c10_ib_loop_ub; c10_i95++) {
-        c10_r[c10_i95] = (c10_nonzeroy[c10_i95] >= c10_win_y_low);
+      for (c10_i97 = 0; c10_i97 <= c10_ib_loop_ub; c10_i97++) {
+        c10_r[c10_i97] = (c10_nonzeroy[c10_i97] >= c10_win_y_low);
       }
 
       c10_r1.set_size(&c10_kb_emlrtRTEI, &c10_st, c10_nonzeroy.size(0));
       c10_kb_loop_ub = c10_nonzeroy.size(0) - 1;
-      for (c10_i97 = 0; c10_i97 <= c10_kb_loop_ub; c10_i97++) {
-        c10_r1[c10_i97] = (c10_nonzeroy[c10_i97] < c10_win_y_high);
+      for (c10_i99 = 0; c10_i99 <= c10_kb_loop_ub; c10_i99++) {
+        c10_r1[c10_i99] = (c10_nonzeroy[c10_i99] < c10_win_y_high);
       }
 
-      c10_i100 = c10_r.size(0);
-      c10_i101 = c10_r1.size(0);
-      if (c10_i100 != c10_i101) {
-        emlrtSizeEqCheck1DR2012b(c10_i100, c10_i101, &c10_o_emlrtECI, &c10_st);
+      c10_i102 = c10_r.size(0);
+      c10_i103 = c10_r1.size(0);
+      if (c10_i102 != c10_i103) {
+        emlrtSizeEqCheck1DR2012b(c10_i102, c10_i103, &c10_o_emlrtECI, &c10_st);
       }
 
       c10_ob_loop_ub = c10_r.size(0) - 1;
-      for (c10_i103 = 0; c10_i103 <= c10_ob_loop_ub; c10_i103++) {
-        c10_r[c10_i103] = (c10_r[c10_i103] && c10_r1[c10_i103]);
+      for (c10_i105 = 0; c10_i105 <= c10_ob_loop_ub; c10_i105++) {
+        c10_r[c10_i105] = (c10_r[c10_i105] && c10_r1[c10_i105]);
       }
 
       c10_r1.set_size(&c10_mb_emlrtRTEI, &c10_st, c10_nonzerox.size(0));
       c10_qb_loop_ub = c10_nonzerox.size(0) - 1;
-      for (c10_i105 = 0; c10_i105 <= c10_qb_loop_ub; c10_i105++) {
-        c10_r1[c10_i105] = (c10_nonzerox[c10_i105] >= c10_win_x_low);
+      for (c10_i107 = 0; c10_i107 <= c10_qb_loop_ub; c10_i107++) {
+        c10_r1[c10_i107] = (c10_nonzerox[c10_i107] >= c10_win_x_low);
       }
 
-      c10_i108 = c10_r.size(0);
-      c10_i109 = c10_r1.size(0);
-      if ((c10_i108 != c10_i109) && ((c10_i108 != 1) && (c10_i109 != 1))) {
-        emlrtDimSizeImpxCheckR2021b(c10_i108, c10_i109, &c10_p_emlrtECI, &c10_st);
+      c10_i110 = c10_r.size(0);
+      c10_i111 = c10_r1.size(0);
+      if ((c10_i110 != c10_i111) && ((c10_i110 != 1) && (c10_i111 != 1))) {
+        emlrtDimSizeImpxCheckR2021b(c10_i110, c10_i111, &c10_p_emlrtECI, &c10_st);
       }
 
       if (c10_r.size(0) == c10_r1.size(0)) {
         c10_sb_loop_ub = c10_r.size(0) - 1;
-        for (c10_i111 = 0; c10_i111 <= c10_sb_loop_ub; c10_i111++) {
-          c10_r[c10_i111] = (c10_r[c10_i111] && c10_r1[c10_i111]);
+        for (c10_i113 = 0; c10_i113 <= c10_sb_loop_ub; c10_i113++) {
+          c10_r[c10_i113] = (c10_r[c10_i113] && c10_r1[c10_i113]);
         }
       } else {
         c10_b_and(chartInstance, &c10_st, c10_r, c10_r1);
@@ -2719,21 +2722,21 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
 
       c10_r1.set_size(&c10_ob_emlrtRTEI, &c10_st, c10_nonzerox.size(0));
       c10_ub_loop_ub = c10_nonzerox.size(0) - 1;
-      for (c10_i113 = 0; c10_i113 <= c10_ub_loop_ub; c10_i113++) {
-        c10_r1[c10_i113] = (c10_nonzerox[c10_i113] < c10_win_x_high);
+      for (c10_i115 = 0; c10_i115 <= c10_ub_loop_ub; c10_i115++) {
+        c10_r1[c10_i115] = (c10_nonzerox[c10_i115] < c10_win_x_high);
       }
 
-      c10_i116 = c10_r.size(0);
-      c10_i117 = c10_r1.size(0);
-      if ((c10_i116 != c10_i117) && ((c10_i116 != 1) && (c10_i117 != 1))) {
-        emlrtDimSizeImpxCheckR2021b(c10_i116, c10_i117, &c10_p_emlrtECI, &c10_st);
+      c10_i118 = c10_r.size(0);
+      c10_i119 = c10_r1.size(0);
+      if ((c10_i118 != c10_i119) && ((c10_i118 != 1) && (c10_i119 != 1))) {
+        emlrtDimSizeImpxCheckR2021b(c10_i118, c10_i119, &c10_p_emlrtECI, &c10_st);
       }
 
       if (c10_r.size(0) == c10_r1.size(0)) {
         c10_r7.set_size(&c10_pb_emlrtRTEI, &c10_st, c10_r.size(0));
         c10_wb_loop_ub = c10_r.size(0) - 1;
-        for (c10_i119 = 0; c10_i119 <= c10_wb_loop_ub; c10_i119++) {
-          c10_r7[c10_i119] = (c10_r[c10_i119] && c10_r1[c10_i119]);
+        for (c10_i121 = 0; c10_i121 <= c10_wb_loop_ub; c10_i121++) {
+          c10_r7[c10_i121] = (c10_r[c10_i121] && c10_r1[c10_i121]);
         }
       } else {
         c10_and(chartInstance, &c10_st, c10_r7, c10_r, c10_r1);
@@ -2752,63 +2755,63 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
       c10_f_partialTrueCount = 0;
       for (c10_w_i = 0; c10_w_i < c10_f_end; c10_w_i++) {
         if (c10_r7[c10_w_i]) {
-          c10_i122 = c10_nonzerox.size(0) - 1;
+          c10_i124 = c10_nonzerox.size(0) - 1;
           c10_d12 = static_cast<real_T>(c10_w_i);
           if (c10_d12 != static_cast<real_T>(static_cast<int32_T>
                (muDoubleScalarFloor(c10_d12)))) {
             emlrtIntegerCheckR2012b(c10_d12, &c10_eb_emlrtDCI, &c10_st);
           }
 
-          c10_i126 = static_cast<int32_T>(muDoubleScalarFloor(c10_d12));
-          if ((c10_i126 < 0) || (c10_i126 > c10_i122)) {
-            emlrtDynamicBoundsCheckR2012b(c10_i126, 0, c10_i122,
+          c10_i128 = static_cast<int32_T>(muDoubleScalarFloor(c10_d12));
+          if ((c10_i128 < 0) || (c10_i128 > c10_i124)) {
+            emlrtDynamicBoundsCheckR2012b(c10_i128, 0, c10_i124,
               &c10_mb_emlrtBCI, &c10_st);
           }
 
-          c10_good_leftx_indexs[c10_f_partialTrueCount] = c10_nonzerox[c10_i126];
+          c10_good_leftx_indexs[c10_f_partialTrueCount] = c10_nonzerox[c10_i128];
           c10_f_partialTrueCount++;
         }
       }
 
       c10_r.set_size(&c10_qb_emlrtRTEI, &c10_st, c10_nonzeroy.size(0));
       c10_yb_loop_ub = c10_nonzeroy.size(0) - 1;
-      for (c10_i123 = 0; c10_i123 <= c10_yb_loop_ub; c10_i123++) {
-        c10_r[c10_i123] = (c10_nonzeroy[c10_i123] >= c10_win_y_low);
+      for (c10_i125 = 0; c10_i125 <= c10_yb_loop_ub; c10_i125++) {
+        c10_r[c10_i125] = (c10_nonzeroy[c10_i125] >= c10_win_y_low);
       }
 
       c10_r1.set_size(&c10_rb_emlrtRTEI, &c10_st, c10_nonzeroy.size(0));
       c10_bc_loop_ub = c10_nonzeroy.size(0) - 1;
-      for (c10_i127 = 0; c10_i127 <= c10_bc_loop_ub; c10_i127++) {
-        c10_r1[c10_i127] = (c10_nonzeroy[c10_i127] < c10_win_y_high);
+      for (c10_i129 = 0; c10_i129 <= c10_bc_loop_ub; c10_i129++) {
+        c10_r1[c10_i129] = (c10_nonzeroy[c10_i129] < c10_win_y_high);
       }
 
-      c10_i130 = c10_r.size(0);
-      c10_i131 = c10_r1.size(0);
-      if (c10_i130 != c10_i131) {
-        emlrtSizeEqCheck1DR2012b(c10_i130, c10_i131, &c10_q_emlrtECI, &c10_st);
+      c10_i132 = c10_r.size(0);
+      c10_i133 = c10_r1.size(0);
+      if (c10_i132 != c10_i133) {
+        emlrtSizeEqCheck1DR2012b(c10_i132, c10_i133, &c10_q_emlrtECI, &c10_st);
       }
 
       c10_dc_loop_ub = c10_r.size(0) - 1;
-      for (c10_i133 = 0; c10_i133 <= c10_dc_loop_ub; c10_i133++) {
-        c10_r[c10_i133] = (c10_r[c10_i133] && c10_r1[c10_i133]);
+      for (c10_i135 = 0; c10_i135 <= c10_dc_loop_ub; c10_i135++) {
+        c10_r[c10_i135] = (c10_r[c10_i135] && c10_r1[c10_i135]);
       }
 
       c10_r1.set_size(&c10_sb_emlrtRTEI, &c10_st, c10_nonzerox.size(0));
       c10_fc_loop_ub = c10_nonzerox.size(0) - 1;
-      for (c10_i135 = 0; c10_i135 <= c10_fc_loop_ub; c10_i135++) {
-        c10_r1[c10_i135] = (c10_nonzerox[c10_i135] >= c10_win_x_low);
+      for (c10_i137 = 0; c10_i137 <= c10_fc_loop_ub; c10_i137++) {
+        c10_r1[c10_i137] = (c10_nonzerox[c10_i137] >= c10_win_x_low);
       }
 
-      c10_i138 = c10_r.size(0);
-      c10_i139 = c10_r1.size(0);
-      if ((c10_i138 != c10_i139) && ((c10_i138 != 1) && (c10_i139 != 1))) {
-        emlrtDimSizeImpxCheckR2021b(c10_i138, c10_i139, &c10_r_emlrtECI, &c10_st);
+      c10_i140 = c10_r.size(0);
+      c10_i141 = c10_r1.size(0);
+      if ((c10_i140 != c10_i141) && ((c10_i140 != 1) && (c10_i141 != 1))) {
+        emlrtDimSizeImpxCheckR2021b(c10_i140, c10_i141, &c10_r_emlrtECI, &c10_st);
       }
 
       if (c10_r.size(0) == c10_r1.size(0)) {
         c10_hc_loop_ub = c10_r.size(0) - 1;
-        for (c10_i141 = 0; c10_i141 <= c10_hc_loop_ub; c10_i141++) {
-          c10_r[c10_i141] = (c10_r[c10_i141] && c10_r1[c10_i141]);
+        for (c10_i143 = 0; c10_i143 <= c10_hc_loop_ub; c10_i143++) {
+          c10_r[c10_i143] = (c10_r[c10_i143] && c10_r1[c10_i143]);
         }
       } else {
         c10_b_and(chartInstance, &c10_st, c10_r, c10_r1);
@@ -2816,21 +2819,21 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
 
       c10_r1.set_size(&c10_tb_emlrtRTEI, &c10_st, c10_nonzerox.size(0));
       c10_jc_loop_ub = c10_nonzerox.size(0) - 1;
-      for (c10_i143 = 0; c10_i143 <= c10_jc_loop_ub; c10_i143++) {
-        c10_r1[c10_i143] = (c10_nonzerox[c10_i143] < c10_win_x_high);
+      for (c10_i145 = 0; c10_i145 <= c10_jc_loop_ub; c10_i145++) {
+        c10_r1[c10_i145] = (c10_nonzerox[c10_i145] < c10_win_x_high);
       }
 
-      c10_i146 = c10_r.size(0);
-      c10_i147 = c10_r1.size(0);
-      if ((c10_i146 != c10_i147) && ((c10_i146 != 1) && (c10_i147 != 1))) {
-        emlrtDimSizeImpxCheckR2021b(c10_i146, c10_i147, &c10_r_emlrtECI, &c10_st);
+      c10_i148 = c10_r.size(0);
+      c10_i149 = c10_r1.size(0);
+      if ((c10_i148 != c10_i149) && ((c10_i148 != 1) && (c10_i149 != 1))) {
+        emlrtDimSizeImpxCheckR2021b(c10_i148, c10_i149, &c10_r_emlrtECI, &c10_st);
       }
 
       if (c10_r.size(0) == c10_r1.size(0)) {
         c10_r9.set_size(&c10_ub_emlrtRTEI, &c10_st, c10_r.size(0));
         c10_mc_loop_ub = c10_r.size(0) - 1;
-        for (c10_i149 = 0; c10_i149 <= c10_mc_loop_ub; c10_i149++) {
-          c10_r9[c10_i149] = (c10_r[c10_i149] && c10_r1[c10_i149]);
+        for (c10_i151 = 0; c10_i151 <= c10_mc_loop_ub; c10_i151++) {
+          c10_r9[c10_i151] = (c10_r[c10_i151] && c10_r1[c10_i151]);
         }
       } else {
         c10_and(chartInstance, &c10_st, c10_r9, c10_r, c10_r1);
@@ -2849,31 +2852,31 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
       c10_h_partialTrueCount = 0;
       for (c10_bb_i = 0; c10_bb_i < c10_h_end; c10_bb_i++) {
         if (c10_r9[c10_bb_i]) {
-          c10_i153 = c10_nonzeroy.size(0) - 1;
+          c10_i155 = c10_nonzeroy.size(0) - 1;
           c10_d15 = static_cast<real_T>(c10_bb_i);
           if (c10_d15 != static_cast<real_T>(static_cast<int32_T>
                (muDoubleScalarFloor(c10_d15)))) {
             emlrtIntegerCheckR2012b(c10_d15, &c10_gb_emlrtDCI, &c10_st);
           }
 
-          c10_i155 = static_cast<int32_T>(muDoubleScalarFloor(c10_d15));
-          if ((c10_i155 < 0) || (c10_i155 > c10_i153)) {
-            emlrtDynamicBoundsCheckR2012b(c10_i155, 0, c10_i153,
+          c10_i157 = static_cast<int32_T>(muDoubleScalarFloor(c10_d15));
+          if ((c10_i157 < 0) || (c10_i157 > c10_i155)) {
+            emlrtDynamicBoundsCheckR2012b(c10_i157, 0, c10_i155,
               &c10_pb_emlrtBCI, &c10_st);
           }
 
-          c10_good_lefty_indexs[c10_h_partialTrueCount] = c10_nonzeroy[c10_i155];
+          c10_good_lefty_indexs[c10_h_partialTrueCount] = c10_nonzeroy[c10_i157];
           c10_h_partialTrueCount++;
         }
       }
 
-      c10_i152 = c10_good_leftx_indexs.size(0);
-      if (c10_i152 < 0) {
-        emlrtDynamicBoundsCheckR2012b(c10_i152, 0, MAX_int32_T, &c10_p_emlrtBCI,
+      c10_i154 = c10_good_leftx_indexs.size(0);
+      if (c10_i154 < 0) {
+        emlrtDynamicBoundsCheckR2012b(c10_i154, 0, MAX_int32_T, &c10_p_emlrtBCI,
           &c10_st);
       }
 
-      c10_d16 = static_cast<real_T>(c10_i152);
+      c10_d16 = static_cast<real_T>(c10_i154);
       if (covrtEmlIfEval(chartInstance->c10_covrtInstance, 4U, 0, 5,
                          covrtRelationalopUpdateFcn
                          (chartInstance->c10_covrtInstance, 4U, 0U, 6U, c10_d16,
@@ -2894,24 +2897,24 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
              < 340.0)))) {
         covrtEmlMcdcEval(chartInstance->c10_covrtInstance, 4U, 0, 1, true);
         covrtEmlIfEval(chartInstance->c10_covrtInstance, 4U, 0, 6, true);
-        c10_d = c10_x_current + 260.0;
+        c10_d = c10_x_current + 290.0;
       } else {
         covrtEmlMcdcEval(chartInstance->c10_covrtInstance, 4U, 0, 1, false);
         covrtEmlIfEval(chartInstance->c10_covrtInstance, 4U, 0, 6, false);
       }
 
       c10_d18 = c10_count_left + 1.0;
-      c10_i157 = c10_good_leftx_indexs.size(0);
-      if (c10_i157 < 0) {
-        emlrtDynamicBoundsCheckR2012b(c10_i157, 0, MAX_int32_T, &c10_q_emlrtBCI,
+      c10_i159 = c10_good_leftx_indexs.size(0);
+      if (c10_i159 < 0) {
+        emlrtDynamicBoundsCheckR2012b(c10_i159, 0, MAX_int32_T, &c10_q_emlrtBCI,
           &c10_st);
       }
 
-      c10_d20 = static_cast<real_T>(c10_i157);
-      c10_i159 = static_cast<int32_T>(c10_d20 + (1.0 - c10_d18));
+      c10_d20 = static_cast<real_T>(c10_i159);
+      c10_i161 = static_cast<int32_T>(c10_d20 + (1.0 - c10_d18));
       emlrtForLoopVectorCheckR2021a(c10_d18, 1.0, c10_d20, mxDOUBLE_CLASS,
-        c10_i159, &c10_dc_emlrtRTEI, &c10_st);
-      for (c10_e_j = 0; c10_e_j < c10_i159; c10_e_j++) {
+        c10_i161, &c10_dc_emlrtRTEI, &c10_st);
+      for (c10_e_j = 0; c10_e_j < c10_i161; c10_e_j++) {
         c10_b_j = c10_d18 + static_cast<real_T>(c10_e_j);
         covrtEmlForEval(chartInstance->c10_covrtInstance, 4U, 0, 4, 1);
         if (c10_b_j != static_cast<real_T>(static_cast<int32_T>
@@ -2919,9 +2922,9 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
           emlrtIntegerCheckR2012b(c10_b_j, &c10_u_emlrtDCI, &c10_st);
         }
 
-        c10_i161 = static_cast<int32_T>(c10_b_j);
-        if ((c10_i161 < 1) || (c10_i161 > 100000)) {
-          emlrtDynamicBoundsCheckR2012b(c10_i161, 1, 100000, &c10_cb_emlrtBCI,
+        c10_i163 = static_cast<int32_T>(c10_b_j);
+        if ((c10_i163 < 1) || (c10_i163 > 100000)) {
+          emlrtDynamicBoundsCheckR2012b(c10_i163, 1, 100000, &c10_cb_emlrtBCI,
             &c10_st);
         }
 
@@ -2930,10 +2933,10 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
           emlrtIntegerCheckR2012b(c10_b_j, &c10_i_emlrtDCI, &c10_st);
         }
 
-        c10_i164 = c10_good_leftx_indexs.size(0);
-        c10_i165 = static_cast<int32_T>(c10_b_j);
-        if ((c10_i165 < 1) || (c10_i165 > c10_i164)) {
-          emlrtDynamicBoundsCheckR2012b(c10_i165, 1, c10_i164, &c10_r_emlrtBCI,
+        c10_i166 = c10_good_leftx_indexs.size(0);
+        c10_i167 = static_cast<int32_T>(c10_b_j);
+        if ((c10_i167 < 1) || (c10_i167 > c10_i166)) {
+          emlrtDynamicBoundsCheckR2012b(c10_i167, 1, c10_i166, &c10_r_emlrtBCI,
             &c10_st);
         }
 
@@ -2942,10 +2945,10 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
           emlrtIntegerCheckR2012b(c10_b_j, &c10_j_emlrtDCI, &c10_st);
         }
 
-        c10_i168 = c10_good_lefty_indexs.size(0);
-        c10_i169 = static_cast<int32_T>(c10_b_j);
-        if ((c10_i169 < 1) || (c10_i169 > c10_i168)) {
-          emlrtDynamicBoundsCheckR2012b(c10_i169, 1, c10_i168, &c10_s_emlrtBCI,
+        c10_i170 = c10_good_lefty_indexs.size(0);
+        c10_i171 = static_cast<int32_T>(c10_b_j);
+        if ((c10_i171 < 1) || (c10_i171 > c10_i170)) {
+          emlrtDynamicBoundsCheckR2012b(c10_i171, 1, c10_i170, &c10_s_emlrtBCI,
             &c10_st);
         }
 
@@ -2954,9 +2957,9 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
           emlrtIntegerCheckR2012b(c10_b_j, &c10_x_emlrtDCI, &c10_st);
         }
 
-        c10_i171 = static_cast<int32_T>(c10_b_j);
-        if ((c10_i171 < 1) || (c10_i171 > 100000)) {
-          emlrtDynamicBoundsCheckR2012b(c10_i171, 1, 100000, &c10_fb_emlrtBCI,
+        c10_i173 = static_cast<int32_T>(c10_b_j);
+        if ((c10_i173 < 1) || (c10_i173 > 100000)) {
+          emlrtDynamicBoundsCheckR2012b(c10_i173, 1, 100000, &c10_fb_emlrtBCI,
             &c10_st);
         }
 
@@ -2965,10 +2968,10 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
           emlrtIntegerCheckR2012b(c10_b_j, &c10_k_emlrtDCI, &c10_st);
         }
 
-        c10_i174 = c10_good_leftx_indexs.size(0);
-        c10_i175 = static_cast<int32_T>(c10_b_j);
-        if ((c10_i175 < 1) || (c10_i175 > c10_i174)) {
-          emlrtDynamicBoundsCheckR2012b(c10_i175, 1, c10_i174, &c10_t_emlrtBCI,
+        c10_i176 = c10_good_leftx_indexs.size(0);
+        c10_i177 = static_cast<int32_T>(c10_b_j);
+        if ((c10_i177 < 1) || (c10_i177 > c10_i176)) {
+          emlrtDynamicBoundsCheckR2012b(c10_i177, 1, c10_i176, &c10_t_emlrtBCI,
             &c10_st);
         }
 
@@ -2977,10 +2980,10 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
           emlrtIntegerCheckR2012b(c10_b_j, &c10_m_emlrtDCI, &c10_st);
         }
 
-        c10_i178 = c10_good_lefty_indexs.size(0);
-        c10_i179 = static_cast<int32_T>(c10_b_j);
-        if ((c10_i179 < 1) || (c10_i179 > c10_i178)) {
-          emlrtDynamicBoundsCheckR2012b(c10_i179, 1, c10_i178, &c10_u_emlrtBCI,
+        c10_i180 = c10_good_lefty_indexs.size(0);
+        c10_i181 = static_cast<int32_T>(c10_b_j);
+        if ((c10_i181 < 1) || (c10_i181 > c10_i180)) {
+          emlrtDynamicBoundsCheckR2012b(c10_i181, 1, c10_i180, &c10_u_emlrtBCI,
             &c10_st);
         }
 
@@ -2991,36 +2994,47 @@ static void sf_gateway_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
       covrtEmlForEval(chartInstance->c10_covrtInstance, 4U, 0, 4, 0);
     }
 
-    c10_d8 = 320.0 - c10_d;
+    c10_dv4[0] = c10_d;
+    c10_dv4[1] = 320.0;
+    c10_dv4[2] = 2.0;
+    c10_d8 = 340.0 - c10_d;
     _SF_MEX_LISTEN_FOR_CTRL_C(chartInstance->S);
   }
 
   covrtEmlForEval(chartInstance->c10_covrtInstance, 4U, 0, 2, 0);
-  *chartInstance->c10_x_location = c10_d;
-  *chartInstance->c10_error = c10_d8;
-  for (c10_i84 = 0; c10_i84 < 168; c10_i84++) {
-    (*chartInstance->c10_rectangle_points)[c10_i84] = c10_dv[c10_i84];
+  for (c10_i84 = 0; c10_i84 < 3; c10_i84++) {
+    (*chartInstance->c10_error_point)[c10_i84] = c10_dv4[c10_i84];
   }
 
-  for (c10_i85 = 0; c10_i85 < 3; c10_i85++) {
-    (*chartInstance->c10_mean_points)[c10_i85] = c10_dv3[c10_i85];
+  *chartInstance->c10_x_location = c10_d;
+  *chartInstance->c10_error = c10_d8;
+  for (c10_i85 = 0; c10_i85 < 168; c10_i85++) {
+    (*chartInstance->c10_rectangle_points)[c10_i85] = c10_dv[c10_i85];
+  }
+
+  for (c10_i86 = 0; c10_i86 < 3; c10_i86++) {
+    (*chartInstance->c10_mean_points)[c10_i86] = c10_dv3[c10_i86];
   }
 
   c10_do_animation_call_c10_Rpi_cam(chartInstance);
-  for (c10_i86 = 0; c10_i86 < 3; c10_i86++) {
+  for (c10_i88 = 0; c10_i88 < 3; c10_i88++) {
     covrtSigUpdateFcn(chartInstance->c10_covrtInstance, 1U,
-                      (*chartInstance->c10_mean_points)[c10_i86]);
+                      (*chartInstance->c10_mean_points)[c10_i88]);
   }
 
-  for (c10_i88 = 0; c10_i88 < 168; c10_i88++) {
+  for (c10_i90 = 0; c10_i90 < 168; c10_i90++) {
     covrtSigUpdateFcn(chartInstance->c10_covrtInstance, 2U,
-                      (*chartInstance->c10_rectangle_points)[c10_i88]);
+                      (*chartInstance->c10_rectangle_points)[c10_i90]);
   }
 
   covrtSigUpdateFcn(chartInstance->c10_covrtInstance, 3U,
                     *chartInstance->c10_error);
   covrtSigUpdateFcn(chartInstance->c10_covrtInstance, 4U,
                     *chartInstance->c10_x_location);
+  for (c10_i91 = 0; c10_i91 < 3; c10_i91++) {
+    covrtSigUpdateFcn(chartInstance->c10_covrtInstance, 5U,
+                      (*chartInstance->c10_error_point)[c10_i91]);
+  }
 }
 
 static void ext_mode_exec_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance)
@@ -3047,32 +3061,37 @@ static const mxArray *get_sim_state_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct
   const mxArray *c10_d_y = NULL;
   const mxArray *c10_e_y = NULL;
   const mxArray *c10_f_y = NULL;
+  const mxArray *c10_g_y = NULL;
   const mxArray *c10_st;
   const mxArray *c10_y = NULL;
   c10_st = NULL;
   c10_st = NULL;
   c10_y = NULL;
-  sf_mex_assign(&c10_y, sf_mex_createcellmatrix(5, 1), false);
+  sf_mex_assign(&c10_y, sf_mex_createcellmatrix(6, 1), false);
   c10_b_y = NULL;
   sf_mex_assign(&c10_b_y, sf_mex_create("y", chartInstance->c10_error, 0, 0U, 0U,
     0U, 0), false);
   sf_mex_setcell(c10_y, 0, c10_b_y);
   c10_c_y = NULL;
-  sf_mex_assign(&c10_c_y, sf_mex_create("y", *chartInstance->c10_mean_points, 0,
+  sf_mex_assign(&c10_c_y, sf_mex_create("y", *chartInstance->c10_error_point, 0,
     0U, 1U, 0U, 2, 1, 3), false);
   sf_mex_setcell(c10_y, 1, c10_c_y);
   c10_d_y = NULL;
-  sf_mex_assign(&c10_d_y, sf_mex_create("y",
-    *chartInstance->c10_rectangle_points, 0, 0U, 1U, 0U, 2, 42, 4), false);
+  sf_mex_assign(&c10_d_y, sf_mex_create("y", *chartInstance->c10_mean_points, 0,
+    0U, 1U, 0U, 2, 1, 3), false);
   sf_mex_setcell(c10_y, 2, c10_d_y);
   c10_e_y = NULL;
-  sf_mex_assign(&c10_e_y, sf_mex_create("y", chartInstance->c10_x_location, 0,
-    0U, 0U, 0U, 0), false);
+  sf_mex_assign(&c10_e_y, sf_mex_create("y",
+    *chartInstance->c10_rectangle_points, 0, 0U, 1U, 0U, 2, 42, 4), false);
   sf_mex_setcell(c10_y, 3, c10_e_y);
   c10_f_y = NULL;
-  sf_mex_assign(&c10_f_y, sf_mex_create("y",
-    &chartInstance->c10_is_active_c10_Rpi_cam, 3, 0U, 0U, 0U, 0), false);
+  sf_mex_assign(&c10_f_y, sf_mex_create("y", chartInstance->c10_x_location, 0,
+    0U, 0U, 0U, 0), false);
   sf_mex_setcell(c10_y, 4, c10_f_y);
+  c10_g_y = NULL;
+  sf_mex_assign(&c10_g_y, sf_mex_create("y",
+    &chartInstance->c10_is_active_c10_Rpi_cam, 3, 0U, 0U, 0U, 0), false);
+  sf_mex_setcell(c10_y, 5, c10_g_y);
   sf_mex_assign(&c10_st, c10_y, false);
   return c10_st;
 }
@@ -3081,30 +3100,38 @@ static void set_sim_state_c10_Rpi_cam(SFc10_Rpi_camInstanceStruct *chartInstance
   const mxArray *c10_st)
 {
   const mxArray *c10_u;
-  real_T c10_dv1[168];
+  real_T c10_dv2[168];
   real_T c10_dv[3];
+  real_T c10_dv1[3];
   int32_T c10_i;
   int32_T c10_i1;
+  int32_T c10_i2;
   chartInstance->c10_doneDoubleBufferReInit = true;
   c10_u = sf_mex_dup(c10_st);
   *chartInstance->c10_error = c10_emlrt_marshallIn(chartInstance, sf_mex_dup
     (sf_mex_getcell(c10_u, 0)), "error");
   c10_c_emlrt_marshallIn(chartInstance, sf_mex_dup(sf_mex_getcell(c10_u, 1)),
-    "mean_points", c10_dv);
+    "error_point", c10_dv);
   for (c10_i = 0; c10_i < 3; c10_i++) {
-    (*chartInstance->c10_mean_points)[c10_i] = c10_dv[c10_i];
+    (*chartInstance->c10_error_point)[c10_i] = c10_dv[c10_i];
   }
 
-  c10_e_emlrt_marshallIn(chartInstance, sf_mex_dup(sf_mex_getcell(c10_u, 2)),
-    "rectangle_points", c10_dv1);
-  for (c10_i1 = 0; c10_i1 < 168; c10_i1++) {
-    (*chartInstance->c10_rectangle_points)[c10_i1] = c10_dv1[c10_i1];
+  c10_c_emlrt_marshallIn(chartInstance, sf_mex_dup(sf_mex_getcell(c10_u, 2)),
+    "mean_points", c10_dv1);
+  for (c10_i1 = 0; c10_i1 < 3; c10_i1++) {
+    (*chartInstance->c10_mean_points)[c10_i1] = c10_dv1[c10_i1];
+  }
+
+  c10_e_emlrt_marshallIn(chartInstance, sf_mex_dup(sf_mex_getcell(c10_u, 3)),
+    "rectangle_points", c10_dv2);
+  for (c10_i2 = 0; c10_i2 < 168; c10_i2++) {
+    (*chartInstance->c10_rectangle_points)[c10_i2] = c10_dv2[c10_i2];
   }
 
   *chartInstance->c10_x_location = c10_emlrt_marshallIn(chartInstance,
-    sf_mex_dup(sf_mex_getcell(c10_u, 3)), "x_location");
+    sf_mex_dup(sf_mex_getcell(c10_u, 4)), "x_location");
   chartInstance->c10_is_active_c10_Rpi_cam = c10_g_emlrt_marshallIn
-    (chartInstance, sf_mex_dup(sf_mex_getcell(c10_u, 4)),
+    (chartInstance, sf_mex_dup(sf_mex_getcell(c10_u, 5)),
      "is_active_c10_Rpi_cam");
   sf_mex_destroy(&c10_u);
   sf_mex_destroy(&c10_st);
@@ -3674,6 +3701,11 @@ static void c10_chart_data_browse_helper(SFc10_Rpi_camInstanceStruct
     sf_mex_assign(c10_mxData, sf_mex_create("mxData", &c10_d1, 0, 0U, 0U, 0U, 0),
                   false);
     break;
+
+   case 23U:
+    sf_mex_assign(c10_mxData, sf_mex_create("mxData",
+      *chartInstance->c10_error_point, 0, 0U, 1U, 0U, 2, 1, 3), false);
+    break;
   }
 }
 
@@ -3789,6 +3821,8 @@ static void init_simulink_io_address(SFc10_Rpi_camInstanceStruct *chartInstance)
     (chartInstance->S, 3);
   chartInstance->c10_x_location = (real_T *)ssGetOutputPortSignal_wrapper
     (chartInstance->S, 4);
+  chartInstance->c10_error_point = (real_T (*)[3])ssGetOutputPortSignal_wrapper
+    (chartInstance->S, 5);
 }
 
 #include <stdio.h>
@@ -3798,10 +3832,10 @@ static void init_simulink_io_address(SFc10_Rpi_camInstanceStruct *chartInstance)
 /* SFunction Glue Code */
 void sf_c10_Rpi_cam_get_check_sum(mxArray *plhs[])
 {
-  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(918925755U);
-  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(2185801639U);
-  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(241818857U);
-  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(111467514U);
+  ((real_T *)mxGetPr((plhs[0])))[0] = (real_T)(2824661450U);
+  ((real_T *)mxGetPr((plhs[0])))[1] = (real_T)(774134850U);
+  ((real_T *)mxGetPr((plhs[0])))[2] = (real_T)(222443168U);
+  ((real_T *)mxGetPr((plhs[0])))[3] = (real_T)(877212242U);
 }
 
 mxArray *sf_c10_Rpi_cam_third_party_uses_info(void)
@@ -3845,10 +3879,11 @@ static const mxArray *sf_get_sim_state_info_c10_Rpi_cam(void)
 
   mxArray *mxInfo = mxCreateStructMatrix(1, 1, 2, infoFields);
   mxArray *mxVarInfo = sf_mex_decode(
-    "eNpjYPT0ZQACPiDOYGFgYAPSHEDMxAABrFA+I5TNCBdngYsrAHFJZUEqSLy4KNkzBUjnJeaC+Ym"
-    "lFZ55aflg8y0YEOazYTGfEcl8Tqg4BHywp0y/ngO6fhYC/hOA8lOLivKLoOEDC6eB84cx2B8OBP"
-    "zBjeYPED83NTEvviA/M6+kGO6PgfePKVH+EUDzDwgXpSaXJOal56RCPTU4/GNGlH+40PwD4lfE5"
-    "+QnJ5Zk5ucxUDF+FBwo0w+x34OAf0TR/APiZxbHJyaXZJalxicbGsQHFWTGJyfmIvkLAKi7Mis="
+    "eNrN0UsKwjAQANBUbPED0o17TyCK+NnZpV248QIhxCgBm5Q0it7aI5g2MZZQUKxQB4YwU2bCS4E"
+    "Xb4GKgcqVD0Cgzo7KFtDhm9oD+ptn+23bH6mUt5Tk/UzgeK9OhpKiRudrzA5c7wev/UHFfq+0v2"
+    "v6Ou7revPjyJ1vV8z7pfnQ1EQILsz72HdqzLEsHNEbR99x9J8OmHLKpHU075l97UkIYpqT/ZFn/"
+    "pEndDx5CoIlYscTMaj/8Cw+8vQcT15f4YljJCln4If/ZxTVm9f3b954ho4nr2kGEZb0QiCeTuAu"
+    "pRCjpOR6ANLDOe8="
     );
   mxArray *mxChecksum = mxCreateDoubleMatrix(1, 4, mxREAL);
   sf_c10_Rpi_cam_get_check_sum(&mxChecksum);
@@ -3859,7 +3894,7 @@ static const mxArray *sf_get_sim_state_info_c10_Rpi_cam(void)
 
 static const char* sf_get_instance_specialization(void)
 {
-  return "s9V7krvKrryGIgtoJ8AclfE";
+  return "scYurZfAxY6Xil38H3SEUUD";
 }
 
 static void sf_opaque_initialize_c10_Rpi_cam(void *chartInstanceVar)
@@ -3948,31 +3983,31 @@ const char* sf_c10_Rpi_cam_get_post_codegen_info(void)
 {
   int i;
   const char* encStrCodegen [22] = {
-    "eNrdWN1uG0UU3kRORANEuamoEBK95AYUVFFSqYKk/imGhES1EyRurMnssXfk2Znt/Dg2T8HrcN0",
-    "bHoELHoBLJG6QkBBn1mvXbIw9Ywc17UqbzXj3m3O+s+d3o43mSYTHLp4/vh9F23h9C8/NaHxsFe",
-    "uNmXP8eyV6XKx/3okiKmPogWjZbpcNo7BD2PSMKJLqKPwQJIVnoCW3hknRFF3pj2WiCwoExQ0yq",
-    "UyQXM1Sy5noN6ygTrL+LmE0aSXS8vgJbkjiU8FH/yU3s+YMJdaYAmoaALFJlLS9pMFJb7EVlLmq",
-    "JkD72qbBttJgWjZzVPWJ5YZlHOpDoE2hDUEr6CV8W4YYqJphmJEdX92aoGWacUaEv60ToluQoXc",
-    "YOM9i/HtqDVrPUy7Ku2SCGKkY4fWUVxOifLFnHPU8QbfmwXY2qanBpe31mOg56yqbgkD+6Ccetu",
-    "pW5QAU6cGpCJNLHbv6MH/BU7/0xBqWwgVRRxT9QEMcFoPowLpF8NVCG7cJwoIglxyauq3YAN9Ra",
-    "N5oulBaKW/YdOxJeiVsLrc+wLeqV5TboKJKONdh2LbMjmEAPJdfI4asgB3LDwBrzeK2RO9wkRsY",
-    "/Vaw5xYKbFWKmPl75aCEyovEt5jwPeAsdWEAMZp5qvp0o2VxZLWRaRVDv3Z87CnvOrYpDKguoeC",
-    "drxVhGlDh3K8C5cZMu0BCNFrJ5Cy9dxjH4ErQSHetqF1J1UcbhxaGl7ZykRCGhrgHNTCQJ7k6ev",
-    "cF4dZT51RjVnbuca4xy4bJRayLn5XAlNAEYlcDGYcTzLO4ge8r1q58HiHbATOjGmiqWOYbSRYTO",
-    "hY/Z6X2KINz0RfySjSUTFtFF7PArwAwaxAlsJQ9wVKqRg1U3k9rBc/beXYPbRicnYnh5NL5xlMQ",
-    "WA0dV1e9CcWoqgtsN1GhdbAt9gO2I0IzbbAFHNXzGIjzPvgwetkHV+b0wW/P9MF7xZp+ut95lrE",
-    "OJeM4d/vsz+zzjkc/7YOLruGiKW5y/WgGvzFHbjRzLcu7s7lYz038b6PAzdrp3ZKcSgm3Xdjqp7",
-    "+ie3/8/Rt9+OJXsrP16MU68u9thc0ru8X6g0mvNM3Mg2vJyz371RI/eK/kB26tH1183leDb5QaP",
-    "W32jPz64Ijybj3fL6ks1nerpO/k9/uuP8PAzfOAos24mHvcmthxP+72P5jRd3uJPe7M+FMU/f7l",
-    "evhPDsv4yhJ+e8UalJKq5L+vjseDw1XjPwUiOplkk4bwdvD5zIvPXonPXp67KQ6FPQ4FqdvB56E",
-    "Xn50SH7cedrikMxPYzfC5f7ge3i/P3C3xuZvPiR3iugHo/Lvy7N5AXg/FvS7y3nQ9b5KfT7+yKq",
-    "7yP/ZHN4lbl19oH/a6P7+/II9Fpef3bjGPaEEeDenHbxuvX6KwfvnDYv3F9BtQNWE8njOFFrdxU",
-    "OzOu/uG+PefgfabzAd1Z7/iw/v3D44E4SMcO8djffHzmXLffKe3FBA9f7Z/FfVkXp/k29+ftxsf",
-    "H6xRl/4BF60a4w==",
+    "eNrdWc1vG0UU30RJRAuNcqkQolJ75AIERYQcquLUH9RSQqyuXWgvZjL77B1ldnY7H47NAfHfcOW",
+    "fQOLAjQt/AkeOHHmzXrtmY+wZO6hpV9rYs+vfvPd7+z43wUbzNMBjF8/vPgyCHfx8B8/NYHxsF+",
+    "uNmXN8fSt4WKx/vR0ENI2gDyI0vR4bBn6HMEmLSJKowP8QJIGnoFJuNEtFU/RSdywTPZAgKG6Qp",
+    "VJ7yVUsMZyJi4YR1EpW38SMxmGcGh49xg1JdCb46L/kZka3UGKNSaC6ARDpWKamHzc46S+2gtSX",
+    "1RjohTKJt60U6NBklqo6NVyzjEN9CLQplCZoBbWEb6iJhqoe+hnZ8lXhBJ0mGWdEuNs6JiqEDL1",
+    "DQyeL8O+Z0Wg9R7ko75wJolPJCK8nvBoT6YptcdTzFN2ae9tZJ7oG56bfZ6JvrStNAgL5o5842K",
+    "pXTQcgSR/OhJ9catnVh/kDnvqlI1azBJ4ReUzRDxREfjGIDqxCgo8W2riNFxYEOefQVG3JBviMf",
+    "PNG04bSSnnDJGNPUithc7n1AT5VtaLcBhVVwrnyw7bT7AQGwHP5NaLJCtixfA+wUixqp+gdNnI9",
+    "o98I9tJAga2mImLuXjkoofIi8TUmfAc4S2wYQIRmnqo+3WhZHBml06SKoV87OXGUdxXbFBpkj1B",
+    "wzteSMAWocO5XnnIjpmwgIRqtpHOWzjuMY3AlaKB6RtQuU3mBNvYtDK9sZSPBDw1RH2qgIU9ydf",
+    "TuZ4QbR50ThVnZukdHYZb1k4tYGz8rgSmhMUS2BjIOp5hncQPXR6xs+TxGtgOmRzVQVLLMNZIMJ",
+    "nQsftZK7VEGHXEh0kvRkGkSFl3MAr8CwKxBpMBS9hhLqRw1UHk3rSW8bOfZ3bdhsHYmmpNz6xtf",
+    "gcBqaLna6k0oRlVdYLuJCq2DDdn32I4IxZTGFnBUz2MgyvvgSvCqD96a0we/O9MH7xVr+tl+92n",
+    "GupSM49zusz+zz3sO/bQLLriCC6a4yedHM/iNOXKDmc+yvFubi/XcxG8bBW7WTndKcrZKuJ3CVh",
+    "98+sujn3/84afff6sc3mm2dteR/+e237yyW6zvTXqlaWYeXEle9rdPlvjB+yU/sGtFnxv5onc8f",
+    "H74LeMHR08OwnqnU8v3O1qi705J38n1B7Y/w8DN84CkzaiYe+yamHE/nu8/o+/OEnvcmvGnIPjr",
+    "y/Xwn1TK+Hn22i7Zy65BylSW/Pf18fiismr85zy6WcqK2eZm8DlYmU8CRIzpqBvE53MnPnslPnt",
+    "5LaI45PY5FKRuBp9DJz63S3zsetjlKZ2ZKK+Hz4PKeni3vHm3xOduPvd2ie1uoPvvSrp7DXXKF/",
+    "emyHvb9bxOfi7916q47f+x37tO3Lr8fPvKN/33+wvyWFD6/d4N5hEsyKM+88VN4/VH4Nf/3y/Wj",
+    "6bvtKox49Gcqbq4jYNvb97dt8S///a032TeqVv7Ff9IeHFwLAgf4Rg9fk1RXG5J+w57eksCUfPf",
+    "VbyOejKvT3KdVzrtxsdHa9SlfwCRniDW",
     ""
   };
 
-  static char newstr [1517] = "";
+  static char newstr [1533] = "";
   newstr[0] = '\0';
   for (i = 0; i < 22; i++) {
     strcat(newstr, encStrCodegen[i]);
@@ -3985,10 +4020,10 @@ static void mdlSetWorkWidths_c10_Rpi_cam(SimStruct *S)
 {
   const char* newstr = sf_c10_Rpi_cam_get_post_codegen_info();
   sf_set_work_widths(S, newstr);
-  ssSetChecksum0(S,(402717625U));
-  ssSetChecksum1(S,(1676214003U));
-  ssSetChecksum2(S,(1641857846U));
-  ssSetChecksum3(S,(3275293962U));
+  ssSetChecksum0(S,(1053110041U));
+  ssSetChecksum1(S,(2810085552U));
+  ssSetChecksum2(S,(910216403U));
+  ssSetChecksum3(S,(240142605U));
 }
 
 static void mdlRTW_c10_Rpi_cam(SimStruct *S)

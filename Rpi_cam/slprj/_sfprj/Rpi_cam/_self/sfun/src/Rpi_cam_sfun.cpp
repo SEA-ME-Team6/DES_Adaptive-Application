@@ -126,7 +126,7 @@ unsigned int sf_Rpi_cam_get_eml_resolved_functions_info( int nlhs, mxArray *
     switch (chartFileNumber) {
      case 10:
       {
-        if (strcmp(instanceChksum, "s9V7krvKrryGIgtoJ8AclfE") == 0) {
+        if (strcmp(instanceChksum, "scYurZfAxY6Xil38H3SEUUD") == 0) {
           extern const mxArray *sf_c10_Rpi_cam_get_eml_resolved_functions_info
             (void);
           mxArray *persistentMxArray = (mxArray *)
@@ -174,7 +174,7 @@ unsigned int sf_Rpi_cam_third_party_uses_info( int nlhs, mxArray * plhs[], int
     switch (chartFileNumber) {
      case 10:
       {
-        if (strcmp(tpChksum, "s9V7krvKrryGIgtoJ8AclfE") == 0) {
+        if (strcmp(tpChksum, "scYurZfAxY6Xil38H3SEUUD") == 0) {
           extern mxArray *sf_c10_Rpi_cam_third_party_uses_info(void);
           plhs[0] = sf_c10_Rpi_cam_third_party_uses_info();
           break;
@@ -211,7 +211,7 @@ unsigned int sf_Rpi_cam_jit_fallback_info( int nlhs, mxArray * plhs[], int nrhs,
     switch (chartFileNumber) {
      case 10:
       {
-        if (strcmp(tpChksum, "s9V7krvKrryGIgtoJ8AclfE") == 0) {
+        if (strcmp(tpChksum, "scYurZfAxY6Xil38H3SEUUD") == 0) {
           extern mxArray *sf_c10_Rpi_cam_jit_fallback_info(void);
           plhs[0] = sf_c10_Rpi_cam_jit_fallback_info();
           break;
@@ -248,7 +248,7 @@ unsigned int sf_Rpi_cam_get_post_codegen_info( int nlhs, mxArray * plhs[], int
     switch (chartFileNumber) {
      case 10:
       {
-        if (strcmp(tpChksum, "s9V7krvKrryGIgtoJ8AclfE") == 0) {
+        if (strcmp(tpChksum, "scYurZfAxY6Xil38H3SEUUD") == 0) {
           const char *sf_c10_Rpi_cam_get_post_codegen_info(void);
           const char* encoded_post_codegen_info =
             sf_c10_Rpi_cam_get_post_codegen_info();
@@ -287,7 +287,7 @@ unsigned int sf_Rpi_cam_updateBuildInfo_args_info( int nlhs, mxArray * plhs[],
     switch (chartFileNumber) {
      case 10:
       {
-        if (strcmp(tpChksum, "s9V7krvKrryGIgtoJ8AclfE") == 0) {
+        if (strcmp(tpChksum, "scYurZfAxY6Xil38H3SEUUD") == 0) {
           extern mxArray *sf_c10_Rpi_cam_updateBuildInfo_args_info(void);
           plhs[0] = sf_c10_Rpi_cam_updateBuildInfo_args_info();
           break;

@@ -77,14 +77,9 @@ find_library(FOUND_LIBM m NO_SYSTEM_ENVIRONMENT_PATH PATHS ${CMAKE_C_IMPLICIT_LI
 ## Target definition and commands
 ###########################################################################
 
-# Include upstream components that need to be built as part of the current 
-# project using the add_subdirectory command.
-if(NOT TARGET rtwshared)
-    add_subdirectory(../slprj/autosar_adaptive/_sharedutils ${BINARY_START_DIR}/slprj/autosar_adaptive/_sharedutils)
-endif()
-
 # Definition of target "Rpi_cam".
-add_executable(Rpi_cam  /home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/linux/src/MW_v4l2_cam.c
+add_executable(Rpi_cam  /home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/target/supportpackages/shared_linuxservices/src/TCPSendReceive/MW_TCPSendReceive.c
+    /home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/linux/src/MW_v4l2_cam.c
     /home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/linux/src/MW_availableWebcam.c
     ${MATLAB_ROOT}/toolbox/vision/visionrt/vipsvd/svd_d_rt.c
     ${MATLAB_ROOT}/toolbox/vision/visionrt/vipsvd/svd_helper_rt.c
@@ -111,7 +106,7 @@ target_compile_definitions(Rpi_cam PRIVATE -DMODEL=Rpi_cam
     -DCLASSIC_INTERFACE=0
     -DALLOCATIONFCN=0
     -DTID01EQ=0
-    -DTERMFCN=1
+    -DTERMFCN=0
     -DONESTEPFCN=1
     -DMAT_FILE=0
     -DMULTI_INSTANCE_CODE=1
@@ -124,7 +119,7 @@ target_compile_options(Rpi_cam PRIVATE -std=c++11
 
 # Specify include directories for target "Rpi_cam".
 target_include_directories(Rpi_cam PRIVATE ${START_DIR}
-    ${MATLAB_ROOT}/extern/include
+    /home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/target/supportpackages/shared_linuxservices/include
     /home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/linux/include
     ${MATLAB_ROOT}/toolbox/shared/dsp/vision/matlab/include
     ${MATLAB_ROOT}/toolbox/vision/include
@@ -134,35 +129,16 @@ target_include_directories(Rpi_cam PRIVATE ${START_DIR}
     ${MATLAB_ROOT}/toolbox/coder/simulinkcoder/src/executor
     ${START_DIR}/Rpi_cam_autosar_adaptive/stub/aragen
     ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include
+    ${MATLAB_ROOT}/extern/include
     ${MATLAB_ROOT}/simulink/include
     ${MATLAB_ROOT}/rtw/c/src
     ${MATLAB_ROOT}/rtw/c/src/ext_mode/common
-    ${MATLAB_ROOT}/rtw/c/ert
-    ${START_DIR}/slprj/autosar_adaptive/_sharedutils
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/dds/core/policy
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/dds/log
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/dds/topic
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/attributes
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/builtin/data
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/common
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/flowcontrol
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/history
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/messages
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/network
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/resources
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/security/common
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/transport
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastrtps
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastrtps/types
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastrtps/utils
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastrtps/utils/collections)
+    ${MATLAB_ROOT}/rtw/c/ert)
 
 # Specify library link dependencies for target "Rpi_cam".  CMake generator 
 # expressions are used to create a CMakeLists.txt file that supports 
 # multiple platforms with differently named system library dependencies.
-target_link_libraries(Rpi_cam PRIVATE rtwshared
-    ${SYSLIB_PREFIX}mwimterp2d
-    Threads::Threads
+target_link_libraries(Rpi_cam PRIVATE Threads::Threads  
     $<$<BOOL:${FOUND_LIBM}>:m>
     $<$<BOOL:${WIN32}>:kernel32>
     $<$<BOOL:${WIN32}>:ws2_32>

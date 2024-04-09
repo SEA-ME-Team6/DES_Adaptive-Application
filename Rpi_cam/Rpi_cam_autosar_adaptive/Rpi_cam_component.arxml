@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Auto generated XML Component Description for model Rpi_cam
-Model version                : 1.94
+Model version                : 1.149
 Simulink Coder version       : Simulink Coder 23.2 (R2023b) 01-Aug-2023
-XML source code generated on : Tue Mar 12 16:09:48 2024
-Model Checksum               : 991987052 1908069234 1235067789 3410807342
+XML source code generated on : Thu Apr 04 14:40:53 2024
+Model Checksum               : 3179115580 1635069185 353632829 4070456463
 -->
 <AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00050.xsd">
     <AR-PACKAGES>
@@ -16,13 +16,6 @@ Model Checksum               : 991987052 1908069234 1235067789 3410807342
                     <PORTS>
                         <P-PORT-PROTOTYPE UUID="3e86bf36-b3ef-57d9-2334-bfde7e203423">
                             <SHORT-NAME>ProvidedPort</SHORT-NAME>
-                            <PROVIDED-COM-SPECS>
-                                <QUEUED-SENDER-COM-SPEC>
-                                    <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/Interfaces/ProvidedInterface/Out1</DATA-ELEMENT-REF>
-                                    <HANDLE-OUT-OF-RANGE>NONE</HANDLE-OUT-OF-RANGE>
-                                    <USES-END-TO-END-PROTECTION>false</USES-END-TO-END-PROTECTION>
-                                </QUEUED-SENDER-COM-SPEC>
-                            </PROVIDED-COM-SPECS>
                             <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/Interfaces/ProvidedInterface</PROVIDED-INTERFACE-TREF>
                         </P-PORT-PROTOTYPE>
                     </PORTS>

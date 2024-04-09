@@ -16,7 +16,7 @@ MATLAB_ROOT  = /usr/local/MATLAB/R2023b/toolbox/stateflow/stateflow/../../..
 BUILDARGS   = 
 #------------------------------ Include/Lib Path ------------------------------
  
-USER_INCLUDES = -I"/home/seame-workstation09/DES_Adaptive-Application/Rpi" 
+USER_INCLUDES = -I"/home/seame-workstation09/DES_Adaptive-Application/Rpi" -I"/home/seame-workstation09/DES_Adaptive-Application/Total" 
 AUX_INCLUDES = 
 MLSLSF_INCLUDES  = \
     -I"/usr/local/MATLAB/R2023b/extern/include" \

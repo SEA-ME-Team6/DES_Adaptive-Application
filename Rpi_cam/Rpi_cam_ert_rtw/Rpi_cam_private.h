@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'Rpi_cam'.
 //
-// Model version                  : 1.104
+// Model version                  : 1.153
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Fri Mar 15 11:10:11 2024
+// C/C++ source code generated on : Tue Apr  9 15:11:19 2024
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -21,16 +21,64 @@
 #include "rtwtypes.h"
 #include "multiword_types.h"
 #include "Rpi_cam_types.h"
+#include "Rpi_cam.h"
 
 // Private macros used by the generated code to access rtModel
 #ifndef rtmSetTFinal
 #define rtmSetTFinal(rtm, val)         ((rtm)->Timing.tFinal = (val))
 #endif
 
-extern void makeConstraintMatrix_Projective_D_D(const real_T pts1[], const
-  real_T pts2[], uint32_T sampleNum, uint32_T maxSampleNum, real_T constraint[]);
-extern void normPts_D_D(const real_T pts[], const uint32_T samples[], uint32_T
-  ptsNum, uint32_T sampleNum, real_T ptsNorm[], real_T scale[], real_T cents[]);
+#ifndef UCHAR_MAX
+#include <limits.h>
+#endif
+
+#if ( UCHAR_MAX != (0xFFU) ) || ( SCHAR_MAX != (0x7F) )
+#error Code was generated for compiler with different sized uchar/char. \
+Consider adjusting Test hardware word size settings on the \
+Hardware Implementation pane to match your compiler word sizes as \
+defined in limits.h of the compiler. Alternatively, you can \
+select the Test hardware is the same as production hardware option and \
+select the Enable portable word sizes option on the Code Generation > \
+Verification pane for ERT based targets, which will disable the \
+preprocessor word size checks.
+#endif
+
+#if ( USHRT_MAX != (0xFFFFU) ) || ( SHRT_MAX != (0x7FFF) )
+#error Code was generated for compiler with different sized ushort/short. \
+Consider adjusting Test hardware word size settings on the \
+Hardware Implementation pane to match your compiler word sizes as \
+defined in limits.h of the compiler. Alternatively, you can \
+select the Test hardware is the same as production hardware option and \
+select the Enable portable word sizes option on the Code Generation > \
+Verification pane for ERT based targets, which will disable the \
+preprocessor word size checks.
+#endif
+
+#if ( UINT_MAX != (0xFFFFFFFFU) ) || ( INT_MAX != (0x7FFFFFFF) )
+#error Code was generated for compiler with different sized uint/int. \
+Consider adjusting Test hardware word size settings on the \
+Hardware Implementation pane to match your compiler word sizes as \
+defined in limits.h of the compiler. Alternatively, you can \
+select the Test hardware is the same as production hardware option and \
+select the Enable portable word sizes option on the Code Generation > \
+Verification pane for ERT based targets, which will disable the \
+preprocessor word size checks.
+#endif
+
+#if ( ULONG_MAX != (0xFFFFFFFFU) ) || ( LONG_MAX != (0x7FFFFFFF) )
+#error Code was generated for compiler with different sized ulong/long. \
+Consider adjusting Test hardware word size settings on the \
+Hardware Implementation pane to match your compiler word sizes as \
+defined in limits.h of the compiler. Alternatively, you can \
+select the Test hardware is the same as production hardware option and \
+select the Enable portable word sizes option on the Code Generation > \
+Verification pane for ERT based targets, which will disable the \
+preprocessor word size checks.
+#endif
+
+// Skipping ulong_long/long_long check: insufficient preprocessor integer range. 
+extern real_T rt_roundd_snf(real_T u);
+extern int32_T div_nde_s32_floor(int32_T numerator, int32_T denominator);
 
 #endif                                 // RTW_HEADER_Rpi_cam_private_h_
 

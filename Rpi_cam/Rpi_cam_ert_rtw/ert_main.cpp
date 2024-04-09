@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'Rpi_cam'.
 //
-// Model version                  : 1.104
+// Model version                  : 1.153
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Fri Mar 15 11:10:11 2024
+// C/C++ source code generated on : Tue Apr  9 15:11:19 2024
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -22,7 +22,6 @@
 #include "Rpi_cam_private.h"
 #include "rtwtypes.h"
 #include "limits.h"
-#include "rt_nonfinite.h"
 #include "ext_mode.h"
 #include "MW_raspi_init.h"
 #include "MW_Pyserver_control.h"

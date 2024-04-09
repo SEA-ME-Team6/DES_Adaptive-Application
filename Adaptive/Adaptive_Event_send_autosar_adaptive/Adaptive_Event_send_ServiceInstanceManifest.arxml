@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Auto generated XML Component Description for model Adaptive_Event_send
+Model version                : 1.109
+Simulink Coder version       : Simulink Coder 23.2 (R2023b) 01-Aug-2023
+XML source code generated on : Tue Mar 19 14:13:27 2024
+Model Checksum               : 867901435 4067961593 305838593 2605278432
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00050.xsd">
+    <AR-PACKAGES>
+        <AR-PACKAGE>
+            <SHORT-NAME>Rpi_cam_CommunicationCluster</SHORT-NAME>
+            <ELEMENTS>
+                <ETHERNET-CLUSTER UUID="4bac6308-d61d-51c1-52c5-0e075afac3b8">
+                    <SHORT-NAME>ComCluster</SHORT-NAME>
+                    <ETHERNET-CLUSTER-VARIANTS>
+                        <ETHERNET-CLUSTER-CONDITIONAL>
+                            <PHYSICAL-CHANNELS>
+                                <ETHERNET-PHYSICAL-CHANNEL UUID="a99d63f2-59aa-54c7-13c8-2598643909db">
+                                    <SHORT-NAME>PhysicalChannel</SHORT-NAME>
+                                    <NETWORK-ENDPOINTS>
+                                        <NETWORK-ENDPOINT UUID="2d73c32b-d42e-51a0-d981-65dedbdf9c7a">
+                                            <SHORT-NAME>NetworkEndpoint</SHORT-NAME>
+                                            <NETWORK-ENDPOINT-ADDRESSES>
+                                                <IPV-4-CONFIGURATION>
+                                                    <IPV-4-ADDRESS>127.0.0.1</IPV-4-ADDRESS>
+                                                </IPV-4-CONFIGURATION>
+                                            </NETWORK-ENDPOINT-ADDRESSES>
+                                        </NETWORK-ENDPOINT>
+                                    </NETWORK-ENDPOINTS>
+                                </ETHERNET-PHYSICAL-CHANNEL>
+                            </PHYSICAL-CHANNELS>
+                        </ETHERNET-CLUSTER-CONDITIONAL>
+                    </ETHERNET-CLUSTER-VARIANTS>
+                </ETHERNET-CLUSTER>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Rpi_cam_Deployments</SHORT-NAME>
+            <ELEMENTS>
+                <DDS-SERVICE-INTERFACE-DEPLOYMENT UUID="b6ddda43-e90f-52e3-f8ea-1ff5c4f391dd">
+                    <SHORT-NAME>DdsDeployment_ProvidedPort</SHORT-NAME>
+                    <EVENT-DEPLOYMENTS>
+                        <DDS-EVENT-DEPLOYMENT UUID="a08bb68b-847c-5dcd-b570-6e1478d2c2fa">
+                            <SHORT-NAME>Deployment_Error</SHORT-NAME>
+                            <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/Interfaces/ProvidedInterface/Error</EVENT-REF>
+                            <TOPIC-NAME>Error</TOPIC-NAME>
+                            <TRANSPORT-PROTOCOLS>
+                                <TRANSPORT-PROTOCOL>TCP</TRANSPORT-PROTOCOL>
+                            </TRANSPORT-PROTOCOLS>
+                        </DDS-EVENT-DEPLOYMENT>
+                    </EVENT-DEPLOYMENTS>
+                    <TRANSPORT-PROTOCOLS>
+                        <TRANSPORT-PROTOCOL>TCP</TRANSPORT-PROTOCOL>
+                    </TRANSPORT-PROTOCOLS>
+                </DDS-SERVICE-INTERFACE-DEPLOYMENT>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Rpi_cam_MachineDesign</SHORT-NAME>
+            <ELEMENTS>
+                <MACHINE-DESIGN UUID="3e8dc3ed-9982-5579-806e-52d406c01112">
+                    <SHORT-NAME>MachineDesign</SHORT-NAME>
+                    <COMMUNICATION-CONNECTORS>
+                        <ETHERNET-COMMUNICATION-CONNECTOR UUID="401e77d8-6eb8-5229-7382-8a2d6371fb71">
+                            <SHORT-NAME>CommunicationConnector</SHORT-NAME>
+                            <UNICAST-NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/Rpi_cam_CommunicationCluster/ComCluster/PhysicalChannel/NetworkEndpoint</UNICAST-NETWORK-ENDPOINT-REF>
+                        </ETHERNET-COMMUNICATION-CONNECTOR>
+                    </COMMUNICATION-CONNECTORS>
+                </MACHINE-DESIGN>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Rpi_cam_ServiceInstToMachineMap</SHORT-NAME>
+            <ELEMENTS>
+                <DDS-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="1a83b699-8f4f-5362-7e53-9bd24478c87e">
+                    <SHORT-NAME>DdsServiceInstToMachineMap_DdsSI_ProvidedPort</SHORT-NAME>
+                    <COMMUNICATION-CONNECTOR-REF DEST="COMMUNICATION-CONNECTOR">/Rpi_cam_MachineDesign/MachineDesign/CommunicationConnector</COMMUNICATION-CONNECTOR-REF>
+                    <SERVICE-INSTANCE-REFS>
+                        <SERVICE-INSTANCE-REF DEST="DDS-PROVIDED-SERVICE-INSTANCE">/Rpi_cam_ServiceInstances/DdsSI_ProvidedPort</SERVICE-INSTANCE-REF>
+                    </SERVICE-INSTANCE-REFS>
+                </DDS-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+                <DDS-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="f5c5ad72-ca2a-560a-9978-95836589ddf6">
+                    <SHORT-NAME>DdsServiceInstToMachineMap_DdsSI_ProvidedPort_DdsSI_Error</SHORT-NAME>
+                    <COMMUNICATION-CONNECTOR-REF DEST="COMMUNICATION-CONNECTOR">/Rpi_cam_MachineDesign/MachineDesign/CommunicationConnector</COMMUNICATION-CONNECTOR-REF>
+                </DDS-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Rpi_cam_ServiceInstanceToPortMappings</SHORT-NAME>
+            <ELEMENTS>
+                <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="8ac48a8c-a8a3-524c-f041-f05b9d7e3533">
+                    <SHORT-NAME>Mapping_ProvidedPort</SHORT-NAME>
+                    <PORT-PROTOTYPE-IREF>
+                        <CONTEXT-COMPONENT-PROTOTYPE-REF DEST="SW-COMPONENT-PROTOTYPE">/Components/Rpi_cam</CONTEXT-COMPONENT-PROTOTYPE-REF>
+                        <TARGET-PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/Components/Rpi_cam/ProvidedPort</TARGET-PORT-PROTOTYPE-REF>
+                    </PORT-PROTOTYPE-IREF>
+                    <PROCESS-DESIGN-REF DEST="PROCESS-DESIGN">/Rpi_cam_ProcessDesigns/DefaultProcessDesign</PROCESS-DESIGN-REF>
+                    <SERVICE-INSTANCE-REF DEST="DDS-PROVIDED-SERVICE-INSTANCE">/Rpi_cam_ServiceInstances/DdsSI_ProvidedPort</SERVICE-INSTANCE-REF>
+                </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Rpi_cam_ServiceInstances</SHORT-NAME>
+            <ELEMENTS>
+                <DDS-PROVIDED-SERVICE-INSTANCE UUID="a78328ab-1ca5-5cf2-9e3f-d1548600e2d9">
+                    <SHORT-NAME>DdsSI_ProvidedPort</SHORT-NAME>
+                    <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="DDS-SERVICE-INTERFACE-DEPLOYMENT">/Rpi_cam_Deployments/DdsDeployment_ProvidedPort</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                    <DOMAIN-ID>0</DOMAIN-ID>
+                    <EVENT-QOS-PROPSS>
+                        <DDS-EVENT-QOS-PROPS>
+                            <QOS-PROFILE>RELIABLE</QOS-PROFILE>
+                            <EVENT-REF DEST="DDS-EVENT-DEPLOYMENT">/Rpi_cam_Deployments/DdsDeployment_ProvidedPort/Deployment_Error</EVENT-REF>
+                        </DDS-EVENT-QOS-PROPS>
+                    </EVENT-QOS-PROPSS>
+                    <SERVICE-INSTANCE-ID>1</SERVICE-INSTANCE-ID>
+                </DDS-PROVIDED-SERVICE-INSTANCE>
+            </ELEMENTS>
+        </AR-PACKAGE>
+    </AR-PACKAGES>
+</AUTOSAR>

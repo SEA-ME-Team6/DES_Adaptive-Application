@@ -1,5 +1,5 @@
 /* Code generated for Simulink model Rpi_cam */
-/* Generated on 12-Mar-2024 */
+/* Generated on 04-Apr-2024 */
 
 #include <cstdint>
 #include <exception>
@@ -103,7 +103,6 @@ int32_t main() {
     if (bProceed) {
       try {
         /* Terminate Functions */
-        rtObj.terminate();
       } catch (std::exception const &e) {
         araLog.LogError() << "Unable to terminate: " << e.what() << ".\n";
         bProceed = false;

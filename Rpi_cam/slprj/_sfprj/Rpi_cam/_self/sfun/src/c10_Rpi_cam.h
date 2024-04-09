@@ -31,13 +31,13 @@ struct SFc10_Rpi_camInstanceStruct
   int32_T c10_IsHeatMapPresent;
   void *c10_RuntimeVar;
   uint32_T c10_mlFcnLineNumber;
-  void *c10_fcnDataPtrs[36];
-  const char_T *c10_dataNames[36];
+  void *c10_fcnDataPtrs[37];
+  const char_T *c10_dataNames[37];
   uint32_T c10_numFcnVars;
-  uint32_T c10_ssIds[36];
-  uint32_T c10_statuses[36];
-  void *c10_outMexFcns[36];
-  void *c10_inMexFcns[36];
+  uint32_T c10_ssIds[37];
+  uint32_T c10_statuses[37];
+  void *c10_outMexFcns[37];
+  void *c10_inMexFcns[37];
   boolean_T c10_bv[307200];
   CovrtStateflowInstance *c10_covrtInstance;
   void *c10_fEmlrtCtx;
@@ -46,6 +46,7 @@ struct SFc10_Rpi_camInstanceStruct
   boolean_T (*c10_binary_image)[307200];
   real_T *c10_error;
   real_T *c10_x_location;
+  real_T (*c10_error_point)[3];
 };
 
 #endif                                 /* struct_SFc10_Rpi_camInstanceStruct */

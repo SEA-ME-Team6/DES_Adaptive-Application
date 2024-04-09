@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Auto generated XML Component Description for model Adaptive_Event_send
+Model version                : 1.109
+Simulink Coder version       : Simulink Coder 23.2 (R2023b) 01-Aug-2023
+XML source code generated on : Tue Mar 19 14:13:27 2024
+Model Checksum               : 867901435 4067961593 305838593 2605278432
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00050.xsd">
+    <AR-PACKAGES>
+        <AR-PACKAGE>
+            <SHORT-NAME>ModeDeclarationGroups</SHORT-NAME>
+            <ELEMENTS>
+                <MODE-DECLARATION-GROUP>
+                    <SHORT-NAME>ProcessStateMachine</SHORT-NAME>
+                    <INITIAL-MODE-REF DEST="MODE-DECLARATION">/ModeDeclarationGroups/ProcessStateMachine/Idle</INITIAL-MODE-REF>
+                    <MODE-DECLARATIONS>
+                        <MODE-DECLARATION UUID="ae794b9e-cfbb-5796-21ae-2c44dbce727c">
+                            <SHORT-NAME>Idle</SHORT-NAME>
+                            <VALUE>1</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="36580643-1f28-544e-eca5-e87b2cf2f417">
+                            <SHORT-NAME>Starting</SHORT-NAME>
+                            <VALUE>2</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="50e75263-8ca1-5203-d596-307972434822">
+                            <SHORT-NAME>Running</SHORT-NAME>
+                            <VALUE>3</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="6a06ae7d-e68e-5d1f-b555-9c9036ebeb88">
+                            <SHORT-NAME>Terminating</SHORT-NAME>
+                            <VALUE>4</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="ac22e2d2-701b-5d71-e9c8-b264f012e5f7">
+                            <SHORT-NAME>Terminated</SHORT-NAME>
+                            <VALUE>5</VALUE>
+                        </MODE-DECLARATION>
+                    </MODE-DECLARATIONS>
+                </MODE-DECLARATION-GROUP>
+            </ELEMENTS>
+        </AR-PACKAGE>
+    </AR-PACKAGES>
+</AUTOSAR>

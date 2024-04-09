@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Auto generated XML Component Description for model Adaptive_Event_send
+Model version                : 1.109
+Simulink Coder version       : Simulink Coder 23.2 (R2023b) 01-Aug-2023
+XML source code generated on : Tue Mar 19 14:13:27 2024
+Model Checksum               : 867901435 4067961593 305838593 2605278432
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00050.xsd">
+    <AR-PACKAGES>
+        <AR-PACKAGE>
+            <SHORT-NAME>Components</SHORT-NAME>
+            <ELEMENTS>
+                <ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE UUID="d76fb4ec-e0b9-540e-27d8-6c15c97851a4">
+                    <SHORT-NAME>Rpi_cam</SHORT-NAME>
+                    <PORTS>
+                        <P-PORT-PROTOTYPE UUID="3e86bf36-b3ef-57d9-2334-bfde7e203423">
+                            <SHORT-NAME>ProvidedPort</SHORT-NAME>
+                            <PROVIDED-COM-SPECS>
+                                <QUEUED-SENDER-COM-SPEC>
+                                    <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/Interfaces/ProvidedInterface/Error</DATA-ELEMENT-REF>
+                                    <HANDLE-OUT-OF-RANGE>NONE</HANDLE-OUT-OF-RANGE>
+                                    <USES-END-TO-END-PROTECTION>false</USES-END-TO-END-PROTECTION>
+                                </QUEUED-SENDER-COM-SPEC>
+                            </PROVIDED-COM-SPECS>
+                            <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/Interfaces/ProvidedInterface</PROVIDED-INTERFACE-TREF>
+                        </P-PORT-PROTOTYPE>
+                    </PORTS>
+                </ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE>
+            </ELEMENTS>
+            <AR-PACKAGES/>
+        </AR-PACKAGE>
+    </AR-PACKAGES>
+</AUTOSAR>

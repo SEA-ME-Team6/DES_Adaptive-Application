@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/seame-workstation09/DES_Adaptive-Application/CrossCompile/test_ert_rtw/ert_main.cpp
+stdio.h
+-
+test.h
+/home/seame-workstation09/DES_Adaptive-Application/CrossCompile/test_ert_rtw/test.h
+
+/home/seame-workstation09/DES_Adaptive-Application/CrossCompile/test_ert_rtw/rtwtypes.h
+
+/home/seame-workstation09/DES_Adaptive-Application/CrossCompile/test_ert_rtw/test.cpp
+test.h
+/home/seame-workstation09/DES_Adaptive-Application/CrossCompile/test_ert_rtw/test.h
+
+/home/seame-workstation09/DES_Adaptive-Application/CrossCompile/test_ert_rtw/test.h
+rtwtypes.h
+/home/seame-workstation09/DES_Adaptive-Application/CrossCompile/test_ert_rtw/rtwtypes.h
+
