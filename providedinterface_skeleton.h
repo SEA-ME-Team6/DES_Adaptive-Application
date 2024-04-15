@@ -10,6 +10,12 @@
 #ifndef PROVIDEDINTERFACE_SKELETON_H_
 #define PROVIDEDINTERFACE_SKELETON_H_
 #include <memory>
+#include "ara/com/skeleton_event.h"
+#include "ara/com/method_call_proccessing_mode.h"
+#include "ara/com/instance_identifier.h"
+#include "ara/com/instance_identifier_container.h"
+#include "ara/com/resolve_instance.h"
+#include "ara/com/handle_type.h"
 // #include "providedinterface_common.h"
 
 namespace skeleton
@@ -60,27 +66,27 @@ namespace skeleton
       default;
     inline ara::core::Result<void> OfferService()
     {
-      ara::com::ServiceFactory::CreateService(mHndl);
+    //   ara::com::ServiceFactory::CreateService(mHndl);
       uint16_t mEventId, mEventGroupId;
       uint16_t mMethodId;
       mEventId = 46921;
       mEventGroupId = 46921;
-      Out1.Init(ara::com::EventFactory::CreateSkeletonEvent<double, skeleton_io::
-                ProvidedInterface_Out1_t>(mHndl, mEventId, mEventGroupId));
+    //   Out1.Init(ara::com::EventFactory::CreateSkeletonEvent<double, skeleton_io::
+    //             ProvidedInterface_Out1_t>(mHndl, mEventId, mEventGroupId));
       return ara::core::Result<void>::FromValue();
     }
 
     inline void StopOfferService()
     {
       Out1.Deinit();
-      ara::com::ServiceFactory::DestroyService(mHndl);
+    //   ara::com::ServiceFactory::DestroyService(mHndl);
     }
 
     skeleton::events::Out1 Out1;
    private:
     ara::com::ServiceHandleType mHndl;
     ara::com::MethodCallProcessingMode mMethodProcMode;
-    std::shared_ptr<ara::com::SkeletonMethodMiddlewareBase> mMethodMiddleware;
+    // std::shared_ptr<ara::com::SkeletonMethodMiddlewareBase> mMethodMiddleware;
   };
 }                                      /* namespace skeleton */
 
