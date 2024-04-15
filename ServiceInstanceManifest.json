@@ -1,0 +1,39 @@
+{
+	"RequiredPorts" : {
+		"1" : {
+			"Binding" : [
+				"SOMEIP"
+			],
+			"EventGroupId" : "47336"
+		}
+	},
+	"ProvidedPorts" : {
+		"2" : {
+			"Binding" : [
+				"SOMEIP"
+			],
+			"EventGroupId" : "46921"
+		}
+	},
+	"InstanceSpecifierToInstanceIdentifiers" : {
+		"last/last_RootSwComponentPrototype/ProvidedPort" : {
+			"InstanceIdentifiers" : [
+				"2"
+			]
+		},
+		"last/last_RootSwComponentPrototype/RequiredPort" : {
+			"InstanceIdentifiers" : [
+				"1"
+			]
+		}
+	},
+	"PortToInstanceSpecifier" : {
+		"ProvidedPort" : "last/last_RootSwComponentPrototype/ProvidedPort",
+		"RequiredPort" : "last/last_RootSwComponentPrototype/RequiredPort"
+	},
+	"InstanceToClassTypeMapping" : {
+		"last_RootSwComponentPrototype" : "last"
+	},
+	"ClassTypeToMembersMapping" : {
+		}
+	}

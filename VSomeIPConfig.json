@@ -1,0 +1,16 @@
+{
+	"unicast" : "127.000.000.001",
+	"applications" : [
+		{
+			"name" : "last",
+			"id" : "0xBF7"
+		}
+	],
+	"services" : [
+		{
+			"service" : "0x2",
+			"instance" : "0x2",
+			"unreliable" : "30001"
+		}
+	]
+}

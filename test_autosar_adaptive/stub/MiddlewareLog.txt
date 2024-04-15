@@ -1,2 +1,0 @@
-Simulink block test/Out1 using DDS topic name 'Out1' for ara::com event communication.
-Simulink block test/In1 using DDS topic name 'In1' for ara::com event communication.
