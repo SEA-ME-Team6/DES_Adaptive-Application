@@ -30,6 +30,8 @@ namespace ara
                 client.init(handle, EventId, EventGroupId);
             }
 
+            void Deinit() {};
+
             ara::core::Result<void> Subscribe(size_t maxSampleCount) {
                 mSampleCount = maxSampleCount;
                 // Have to modify
