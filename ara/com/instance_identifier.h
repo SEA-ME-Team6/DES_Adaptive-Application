@@ -17,6 +17,7 @@ namespace ara
             uint16_t instanceId;
 
         public:
+            static const InstanceIdentifier Any;
             /// @brief Constructor
             /// @param serializedFormat Shortname-path
             InstanceIdentifier() {}

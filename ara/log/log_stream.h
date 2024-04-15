@@ -3,9 +3,9 @@
 
 #include <vector>
 #include <utility>
+#include "./common.h"
 #include "../core/error_code.h"
 #include "../core/instance_specifier.h"
-#include "./common.h"
 #include "./argument.h"
 
 namespace ara

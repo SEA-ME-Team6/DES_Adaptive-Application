@@ -66,15 +66,19 @@ namespace ara
             /// @returns Log stream with the determined level in the current context
             LogStream WithLevel(LogLevel logLevel) const;
 
-            /// @brief Logger factory
-            /// @param ctxId Context ID
-            /// @param ctxDescription Context description
-            /// @param ctxDefLogLevel Context default log level
-            /// @returns A new logger for that specifc context
-            /// @note Log with less severity than the default log level are ignored.
-        
-            static Logger CreateLogger(std::string ctxId, std::string ctxDescription, LogLevel ctxDefLogLevel);
+
         };
+        /// @brief Logger factory
+        /// @param ctxId Context ID
+        /// @param ctxDescription Context description
+        /// @param ctxDefLogLevel Context default log level
+        /// @returns A new logger for that specifc context
+        /// @note Log with less severity than the default log level are ignored.
+        static Logger CreateLogger(std::string ctxId, std::string ctxDescription, LogLevel ctxDefLogLevel)
+        {
+            Logger _result(ctxId, ctxDescription, ctxDefLogLevel);
+            return _result;
+        }
     }
 }
 

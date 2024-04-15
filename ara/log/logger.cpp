@@ -75,8 +75,8 @@ namespace ara
 
             return _result;
         }
-
-        static Logger Logger::CreateLogger(std::string ctxId, std::string ctxDescription, LogLevel ctxDefLogLevel)
+        
+        static Logger CreateLogger(std::string ctxId, std::string ctxDescription, LogLevel ctxDefLogLevel)
         {
             Logger _result(ctxId, ctxDescription, ctxDefLogLevel);
             return _result;
