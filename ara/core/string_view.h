@@ -10,14 +10,16 @@ namespace ara
         class StringView final
         {
         public:
-            StringView() noexcept {}
-            
-            static std::string CreateString(const char* str) 
-            {
-                return std::string(str);
+            StringView(const std::string& str) : m_str(str) {}
+
+            operator std::string() const {
+                return m_str;
             }
 
+        private:
+            std::string m_str;
         };
+        
     }
 }
 #endif
