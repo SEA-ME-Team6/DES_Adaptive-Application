@@ -8,7 +8,7 @@ namespace ara
         }
 
         bool vsomeip_client::init(const ara::com::ServiceHandleType& handle, const uint16_t EventId, const uint16_t EventGroupId) {
-            mHandle = handle.GetinstanceIdentifier().;
+            mInstanceId = handle.GetInstanceId();
             mEventId = EventId;
             mEventGroupId = EventGroupId;
             
@@ -26,18 +26,18 @@ namespace ara
                             std::placeholders::_1));
 
             app_->register_message_handler(
-                    mServiceId, mHandle.GetinstanceIdentifier().instanceId, mEventId,
+                    mServiceId, mInstanceId, mEventId,
                     std::bind(&vsomeip_client::on_message, this,
                             std::placeholders::_1));
 
-            app_->register_availability_handler(mServiceId, mHandle.GetinstanceIdentifier().instanceId,
+            app_->register_availability_handler(mServiceId, mInstanceId,
                     std::bind(&vsomeip_client::on_availability,
                                 this,
                                 std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
             std::set<::vsomeip::eventgroup_t> its_groups;
             its_groups.insert(mEventGroupId);
-            app_->request_event(mServiceId, mHandle.GetinstanceIdentifier().instanceId, mEventId, its_groups, ::vsomeip::event_type_e::ET_FIELD);
+            app_->request_event(mServiceId, mInstanceId, mEventId, its_groups, ::vsomeip::event_type_e::ET_FIELD);
         }
 
         void vsomeip_client::start() {
@@ -45,20 +45,20 @@ namespace ara
         }
 
         void vsomeip_client::subscribe() {
-            app_->subscribe(mServiceId, mHandle.GetinstanceIdentifier().instanceId, mEventGroupId);
+            app_->subscribe(mServiceId, mInstanceId, mEventGroupId);
         }
 
         void vsomeip_client::stop() {
             app_->clear_all_handler();
-            app_->unsubscribe(mServiceId, mHandle.GetinstanceIdentifier().instanceId, mEventGroupId);
-            app_->release_event(mServiceId, mHandle.GetinstanceIdentifier().instanceId, mEventId);
-            app_->release_service(mServiceId, mHandle.GetinstanceIdentifier().instanceId);
+            app_->unsubscribe(mServiceId, mInstanceId, mEventGroupId);
+            app_->release_event(mServiceId, mInstanceId, mEventId);
+            app_->release_service(mServiceId, mInstanceId);
             app_->stop();
         }
 
         void vsomeip_client::on_state(::vsomeip::state_type_e _state) {
             if (_state == ::vsomeip::state_type_e::ST_REGISTERED) {
-                app_->request_service(mServiceId, mHandle.GetinstanceIdentifier().instanceId);
+                app_->request_service(mServiceId, mInstanceId);
             }
         }
 

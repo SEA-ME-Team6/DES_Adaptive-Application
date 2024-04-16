@@ -9,7 +9,6 @@ namespace ara
     {
         class ServiceHandleType {
         public:
-
             ServiceHandleType() {}       
             explicit ServiceHandleType(const ara::com::InstanceIdentifier& id) : mInstanceID(id) {}
             
@@ -22,7 +21,7 @@ namespace ara
                 return mInstanceID == other.mInstanceID;
             }
 
-            const ara::com::InstanceIdentifier& GetinstanceIdentifier() const {
+            const ara::com::InstanceIdentifier& GetInstanceId() const {
                 return mInstanceID;
             }
             ara::com::InstanceIdentifier mInstanceID;

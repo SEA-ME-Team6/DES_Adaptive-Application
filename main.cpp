@@ -37,10 +37,10 @@ int32_t main() {
   } /* if */
 
   if (bAraInitialized) {
-    ara::log::Logger &araLog{ara::log::CreateLogger(
+    ara::log::Logger araLog = ara::log::CreateLogger(
         ara::core::StringView{"last"},
         ara::core::StringView{"Logger for last's main function."},
-        ara::log::LogLevel::kWarn)};
+        ara::log::LogLevel::kWarn);
 
     /* Report Execution state */
     // const ara::exec::ExecutionClient exec_client;

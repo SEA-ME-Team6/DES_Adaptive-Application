@@ -14,6 +14,7 @@
 #include "ara/com/proxy_event.h"
 #include "ara/com/handle_type.h"
 #include "ara/com/service_handle_container.h"
+#include "ara/com/event_factory.h"
 // #include "requiredinterface_common.h"
 
 namespace proxy
@@ -43,8 +44,9 @@ namespace proxy
 
       mEventId = 47336;
       mEventGroupId = 47336;
-      // In1.Init(ara::com::EventFactory::CreateProxyEvent<double, proxy_io::
-      //          RequiredInterface_In1_t>(handle, mEventId, mEventGroupId));
+
+      In1 = ara::com::EventFactory::CreateProxyEvent(handle, mEventId, mEventGroupId);
+
     }
 
     virtual ~RequiredInterfaceProxy()
@@ -56,6 +58,7 @@ namespace proxy
     RequiredInterfaceProxy& operator = (const RequiredInterfaceProxy&) = delete;
     RequiredInterfaceProxy(RequiredInterfaceProxy&&) = default;
     RequiredInterfaceProxy& operator = (RequiredInterfaceProxy&&) = default;
+
     static inline ara::core::Result<ara::com::ServiceHandleContainer<
       RequiredInterfaceProxy::HandleType>> FindService(ara::com::
       InstanceIdentifier instance = ara::com::InstanceIdentifier::Any)

@@ -27,6 +27,7 @@
 #include <stddef.h>
 #include "last_types.h"
 #include <memory>
+#include "ara/core/string_view.h"
 
 // Class declaration for model last
 class last final

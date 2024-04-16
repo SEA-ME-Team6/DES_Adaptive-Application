@@ -14,13 +14,12 @@ namespace ara
         {
         private:
             std::string serializedFormat_;
-            uint16_t instanceId;
 
         public:
             static const InstanceIdentifier Any;
             /// @brief Constructor
             /// @param serializedFormat Shortname-path
-            InstanceIdentifier() {}
+            InstanceIdentifier();
             explicit InstanceIdentifier(std::string serializedFormat);
 
             /// @brief InstanceIdentifier factory
@@ -35,7 +34,6 @@ namespace ara
             inline bool operator==(const InstanceIdentifier &other) const noexcept;
 
             inline bool operator<(const InstanceIdentifier &other) const noexcept;
-
         };
 
     }

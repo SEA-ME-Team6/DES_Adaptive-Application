@@ -6,19 +6,20 @@ namespace ara
     {
         // InstanceIdentifier::InstanceIdentifier() {}
         
-        InstanceIdentifier::InstanceIdentifier(std::string serializedFormat) : serializedFormat_{serializedFormat}
+        InstanceIdentifier::InstanceIdentifier()
         {
+        }
+
+        explicit InstanceIdentifier(std::string serializedFormat) 
+        {
+            serializedFormat_ = serializedFormat;
         }
 
         static ara::core::Result<InstanceIdentifier> InstanceIdentifier::Create(std::string serializedFormat) noexcept
         {
-            instanceId = stoi(serializedFormat);
-            if (instanceId >= std::numeric_limits<uint16_t>::min() && instanceId <= std::numeric_limits<uint16_t>::max()) {
-                return ara::core::Result<InstanceIdentifier>::Ok();
-            }
-            else
-                return ara::core::Result<InstanceIdentifier>::Error("Invalid serializedFormat value: out of range");
-
+            InstanceIdentifier _instanceIdentifier{serializedFormat};
+            ara::core::Result<InstanceIdentifier> _result{std::move(_instanceIdentifier)};
+            return _result;
         }
 
         std::string InstanceIdentifier::ToString() const
@@ -35,6 +36,5 @@ namespace ara
         {
             return serializedFormat_ < other.serializedFormat_;
         }
-
     }
 }

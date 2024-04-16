@@ -34,13 +34,12 @@ namespace ara
 
                 std::shared_ptr< ::vsomeip::application > app_;
                 bool use_tcp_;
-
-                uint16_t mServiceId;
-                uint16_t mInstanceId;
+                uint16_t mSampleCount;
 
                 ara::com::ServiceHandleType mHandle;
 
-                uint16_t mSampleCount;
+                uint16_t mServiceId;
+                uint16_t mInstanceId;
                 uint16_t mEventId;
                 uint16_t mEventGroupId;
         };
