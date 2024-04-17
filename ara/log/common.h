@@ -9,7 +9,7 @@ namespace ara
     namespace log
     {
         /// @brief Log severity level
-        enum class LogLevel : std::uint8_t
+        enum class LogLevel : uint8_t
         {
             kOff = 0x00,        ///< No logging
             kFatal = 0x01,      ///< Fatal log
@@ -21,7 +21,7 @@ namespace ara
         };
 
         /// @brief Log sink mode
-        enum class LogMode : std::uint8_t
+        enum class LogMode : uint8_t
         {
             kRemote = 0x01,     ///< Remote network logging sink
             kFile = 0x02,       ///< File logging sink for debugging
@@ -29,7 +29,7 @@ namespace ara
         };
 
         /// @brief Logging client connection state
-        enum class ClientState : std::int8_t
+        enum class ClientState : int8_t
         {
             kUnknown = -1,      ///< Connection state unknown
             kNotConnected = 0,  ///< Client is disconnected

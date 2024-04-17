@@ -74,11 +74,7 @@ namespace ara
         /// @param ctxDefLogLevel Context default log level
         /// @returns A new logger for that specifc context
         /// @note Log with less severity than the default log level are ignored.
-        static Logger CreateLogger(std::string ctxId, std::string ctxDescription, LogLevel ctxDefLogLevel)
-        {
-            Logger _result(ctxId, ctxDescription, ctxDefLogLevel);
-            return _result;
-        }
+        static Logger CreateLogger(std::string ctxId, std::string ctxDescription, LogLevel ctxDefLogLevel);
     }
 }
 
