@@ -27,7 +27,7 @@ namespace ara
 
             // Init() is Non Standard
             void Init_SOMEIP(const ara::com::ServiceHandleType& handle, const uint16_t EventId, const uint16_t EventGroupId) {
-                client.init(handle.GetInstanceId(), EventId, EventGroupId);
+                client.init(handle, EventId, EventGroupId);
             }
 
             void Init_DDS(const ara::com::ServiceHandleType& handle, const std::string sTopicName, const uint32_t queueLength) {

@@ -36,7 +36,7 @@ namespace ara
                 bool use_tcp_;
                 uint16_t mSampleCount;
 
-                ara::com::ServiceHandleType mHandle;
+                ara::com::InstanceIdentifier mInstanceIdentifier;
 
                 uint16_t mServiceId;
                 uint16_t mInstanceId;
