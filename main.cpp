@@ -37,7 +37,7 @@ int32_t main() {
   } /* if */
 
   if (bAraInitialized) {
-    ara::log::Logger araLog = ara::log::CreateLogger(
+    ara::log::Logger araLog = ara::log::Logger::CreateLogger(
         ara::core::StringView{"last"},
         ara::core::StringView{"Logger for last's main function."},
         ara::log::LogLevel::kWarn);
