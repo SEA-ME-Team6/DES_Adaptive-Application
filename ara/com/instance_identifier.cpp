@@ -9,6 +9,7 @@ namespace ara
         InstanceIdentifier::InstanceIdentifier(
             const std::string &serializedFormat) : serializedFormat_{serializedFormat}
         {
+            mInstanceId = std::stoi(serializedFormat_);
         }
 
         ara::core::Result<InstanceIdentifier> InstanceIdentifier::Create(const std::string &serializedFormat) noexcept
@@ -21,6 +22,10 @@ namespace ara
         std::string InstanceIdentifier::ToString() const
         {
             return serializedFormat_;
+        }
+
+        const uint16_t InstanceIdentifier::GetInstanceId() const {
+            return mInstanceId;
         }
 
         inline bool InstanceIdentifier::operator==(const InstanceIdentifier &other) const noexcept 

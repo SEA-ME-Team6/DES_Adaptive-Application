@@ -7,8 +7,9 @@ namespace ara
         vsomeip_client::vsomeip_client() : app_(::vsomeip::runtime::get()->create_application()) {
         }
 
-        bool vsomeip_client::init(const ara::com::ServiceHandleType& handle, const uint16_t EventId, const uint16_t EventGroupId) {
-            mInstanceIdentifier = handle.GetInstanceId();
+        bool vsomeip_client::init(const uint16_t ServiceId, const uint16_t InstanceId, const uint16_t EventId, const uint16_t EventGroupId) {
+            mServiceId = ServiceId;
+            mInstanceId = InstanceId;
             mEventId = EventId;
             mEventGroupId = EventGroupId;
             

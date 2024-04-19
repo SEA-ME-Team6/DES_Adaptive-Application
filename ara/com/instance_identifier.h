@@ -16,6 +16,10 @@ namespace ara
         private:
             std::string serializedFormat_;
 
+            /// @brief InstanceID for SOMEIP Binding 
+            /// @param mInstanceId Non Standard
+            uint16_t mInstanceId;
+
         public:
             static const InstanceIdentifier Any;
             /// @brief Constructor
@@ -31,6 +35,9 @@ namespace ara
             /// @brief Convert the instance to a string
             /// @returns Meta-model ID (Shortname-path)
             std::string ToString() const;
+
+            /// Non Standard
+            const uint16_t GetInstanceId() const;
 
             inline bool operator==(const InstanceIdentifier &other) const noexcept;
 

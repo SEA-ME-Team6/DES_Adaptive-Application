@@ -22,7 +22,7 @@ namespace ara
         class vsomeip_client {
             public:
                 explicit vsomeip_client();
-                bool init(const ara::com::ServiceHandleType& handle, const uint16_t EventId, const uint16_t EventGroupId);
+                bool init(const uint16_t mServiceId, const uint16_t mInstanceId, const uint16_t EventId, const uint16_t EventGroupId);
                 void start();
                 void subscribe();
                 void stop();
