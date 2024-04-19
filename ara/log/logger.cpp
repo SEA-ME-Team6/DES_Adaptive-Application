@@ -1,4 +1,5 @@
 #include "./logger.h"
+#include "../core/string_view.h"
 
 namespace ara
 {

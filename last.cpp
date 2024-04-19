@@ -59,16 +59,13 @@ void last::initialize()
       RequiredInterfaceProxy::HandleType >>> resultPtr;
 
     // Initialize service provider instance - ProvidedPort
-    ProvidedPort = std::make_shared< skeleton::ProvidedInterfaceSkeleton >(ara::
-      com::InstanceIdentifier(ara::core::StringView("2")), ara::com::
-      MethodCallProcessingMode::kEventSingleThread);
+    ProvidedPort = std::make_shared< skeleton::ProvidedInterfaceSkeleton >(ara::com::InstanceIdentifier(std::string("2")), ara::com::MethodCallProcessingMode::kEventSingleThread);
     ProvidedPort->OfferService();
 
     // Initialize service requester instance - RequiredPort
     resultPtr = std::make_shared< ara::core::Result<ara::com::
       ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >> >
-      (proxy::RequiredInterfaceProxy::FindService(ara::com::InstanceIdentifier
-        (ara::core::StringView("1"))));
+      (proxy::RequiredInterfaceProxy::FindService(ara::com::InstanceIdentifier(std::string("2"))));
     if (resultPtr->HasValue()) {
       handles = resultPtr->Value();
       if (handles.size() > 0U) {

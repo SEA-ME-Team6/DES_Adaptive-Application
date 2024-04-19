@@ -1,21 +1,17 @@
-#include "./instance_identifier.h"
+#include "instance_identifier.h"
 
 namespace ara
 {
     namespace com
     {
-        // InstanceIdentifier::InstanceIdentifier() {}
+        InstanceIdentifier::InstanceIdentifier() {}
         
-        InstanceIdentifier::InstanceIdentifier()
+        InstanceIdentifier::InstanceIdentifier(
+            const std::string &serializedFormat) : serializedFormat_{serializedFormat}
         {
         }
 
-        explicit InstanceIdentifier(std::string serializedFormat) 
-        {
-            serializedFormat_ = serializedFormat;
-        }
-
-        static ara::core::Result<InstanceIdentifier> InstanceIdentifier::Create(std::string serializedFormat) noexcept
+        ara::core::Result<InstanceIdentifier> InstanceIdentifier::Create(const std::string &serializedFormat) noexcept
         {
             InstanceIdentifier _instanceIdentifier{serializedFormat};
             ara::core::Result<InstanceIdentifier> _result{std::move(_instanceIdentifier)};
@@ -27,12 +23,12 @@ namespace ara
             return serializedFormat_;
         }
 
-        inline bool operator==(const InstanceIdentifier &other) const noexcept 
+        inline bool InstanceIdentifier::operator==(const InstanceIdentifier &other) const noexcept 
         {
             return serializedFormat_ == other.serializedFormat_;
         }
 
-        inline bool operator<(const InstanceIdentifier &other) const noexcept
+        inline bool InstanceIdentifier::operator<(const InstanceIdentifier &other) const noexcept
         {
             return serializedFormat_ < other.serializedFormat_;
         }

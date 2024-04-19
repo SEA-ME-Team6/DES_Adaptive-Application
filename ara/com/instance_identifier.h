@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include "./result.h"
+#include "../core/string_view.h"
 
 namespace ara
 {
@@ -20,12 +21,12 @@ namespace ara
             /// @brief Constructor
             /// @param serializedFormat Shortname-path
             InstanceIdentifier();
-            explicit InstanceIdentifier(std::string serializedFormat);
+            InstanceIdentifier(const std::string &serializedFormat);
 
             /// @brief InstanceIdentifier factory
             /// @param serializedFormat Shortname-path
             /// @returns Result containing the created InstanceIdentifier
-            static ara::core::Result<InstanceIdentifier> Create(std::string serializedFormat) noexcept;
+            static ara::core::Result<InstanceIdentifier> Create(const std::string &serializedFormat) noexcept;
 
             /// @brief Convert the instance to a string
             /// @returns Meta-model ID (Shortname-path)
