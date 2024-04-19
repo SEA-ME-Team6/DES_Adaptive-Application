@@ -19,7 +19,7 @@ namespace ara
 
         private:
             uint16_t mSampleCount;
-            ara::com::vsomeip_client client;
+            ara::com::vsomeip_client client; // SOMEIP Library
         
         public:
             using SampleType = T;
@@ -38,7 +38,7 @@ namespace ara
 
             ara::core::Result<void> Subscribe(size_t maxSampleCount) {
                 mSampleCount = maxSampleCount;
-                // Have to modify
+                client.subscribe();
                 return ara::core::Result<void>();
             }
 

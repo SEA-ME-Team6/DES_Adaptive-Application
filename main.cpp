@@ -5,6 +5,7 @@
 #include <exception>
 #include <chrono>
 #include <functional>
+#include <iostream>
 #include "PosixExecutor.hpp"
 #include "ara/core/initialization.h"
 #include "ara/core/result.h"
@@ -24,23 +25,24 @@
 /*       - The step functions are added to the executor and run */
 /*         based on their sample periods */
 int32_t main() {
-  /* Used to control the flow in case of error in any api's used. */
-  bool bProceed{true};
-  /* Used to decide whether ara function clusters has been initialized. */
-  bool bAraInitialized{true};
-  /* ara function cluster init. */
-  const ara::core::Result<void> initStatus{ara::core::Initialize()};
+	/* Used to control the flow in case of error in any api's used. */
+	bool bProceed{true};
+	/* Used to decide whether ara function clusters has been initialized. */
+	bool bAraInitialized{true};
+	/* ara function cluster init. */
+	const ara::core::Result<void> initStatus{ara::core::Initialize()};
 
-  if (!initStatus.HasValue()) {
-    bProceed = false;
-    bAraInitialized = false;
-  } /* if */
+	if (!initStatus.HasValue()) {
+	bProceed = false;
+	bAraInitialized = false;
+	} /* if */
 
-  if (bAraInitialized) {
-    ara::log::Logger araLog = ara::log::Logger::CreateLogger(
-        std::string("last"),
-        std::string("Logger for last's main function."),
-        ara::log::LogLevel::kWarn);
+	if (bAraInitialized) {
+	ara::log::Logger araLog = ara::log::Logger::CreateLogger(
+		std::string("last"),
+		std::string("Logger for last's main function."),
+		ara::log::LogLevel::kWarn);
+
 
     /* Report Execution state */
     // const ara::exec::ExecutionClient exec_client;
@@ -91,6 +93,7 @@ int32_t main() {
           },
           1);
 
+	std::cout << "Ok" << std::endl;
       araLog.LogVerbose() << "Starting periodic execution of step functions.";
 #if defined(rtmSetStopRequested) && defined(rtmGetStopRequested)
       fcnExecutor.run(
