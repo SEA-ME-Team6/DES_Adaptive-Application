@@ -74,8 +74,8 @@ class last final
   std::shared_ptr<skeleton::ProvidedInterfaceSkeleton> ProvidedPort;
 
   // private member function(s) for subsystem '<Root>'
-  void RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::
-    SampleType const > elementPtr);
+  void RequiredPortSvcHandler(ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType > svcHandles, const ara::com::FindServiceHandle fsHandle);
+  void RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::SampleType const > elementPtr);
 };
 
 //-

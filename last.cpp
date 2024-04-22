@@ -20,6 +20,16 @@
 #include "last.h"
 #include <stdint.h>
 
+void last::RequiredPortSvcHandler(ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType > svcHandles, const ara::com::FindServiceHandle fsHandle)
+{
+	if ((!RequiredPort) && (svcHandles.size() > 0U)) {
+		RequiredPort = std::make_shared< proxy::RequiredInterfaceProxy >
+			(*svcHandles.begin());
+		RequiredPort->In1.Subscribe(1U);
+		proxy::RequiredInterfaceProxy::StopFindService(fsHandle);
+	}
+}
+
 void last::RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::
   SampleType const > elementPtr)
 {
@@ -52,7 +62,6 @@ void last::step()
 // Model initialize function
 void last::initialize()
 {
-  {
     ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >
       handles;
     std::shared_ptr<ara::core::Result<ara::com::ServiceHandleContainer< proxy::
@@ -62,21 +71,9 @@ void last::initialize()
     ProvidedPort = std::make_shared< skeleton::ProvidedInterfaceSkeleton >(ara::com::InstanceIdentifier(std::string("2")), ara::com::MethodCallProcessingMode::kEventSingleThread);
     ProvidedPort->OfferService();
 
-    // Initialize service requester instance - RequiredPort
-    resultPtr = std::make_shared< ara::core::Result<ara::com::
-      ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType >> >
-      (proxy::RequiredInterfaceProxy::FindService(ara::com::InstanceIdentifier(std::string("2"))));
-    if (resultPtr->HasValue()) {
-      handles = resultPtr->Value();
-      if (handles.size() > 0U) {
-        RequiredPort = std::make_shared< proxy::RequiredInterfaceProxy >
-          (*handles.begin());
+	// Initialize service requester instance - RequiredPort
+	proxy::RequiredInterfaceProxy::StartFindService(std::move(std::bind(&last::RequiredPortSvcHandler, this, std::placeholders::_1, std::placeholders::_2)), ara::com::InstanceIdentifier(ara::core::StringView("1")));
 
-        // Subscribe events
-        RequiredPort->In1.Subscribe(1U);
-      }
-    }
-  }
 }
 
 // Model terminate function
