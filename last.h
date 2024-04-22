@@ -28,6 +28,7 @@
 #include "last_types.h"
 #include <memory>
 #include "ara/core/string_view.h"
+#include "ara/com/find_service_handle.h"
 
 // Class declaration for model last
 class last final
