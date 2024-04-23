@@ -16,6 +16,7 @@
 #include "ara/com/service_handle_container.h"
 #include "ara/com/event_factory.h"
 #include "ara/com/find_service_handle.h"
+#include "ara/com/service_factory.h"
 // #include "requiredinterface_common.h"
 
 namespace proxy
@@ -34,101 +35,101 @@ namespace proxy
   }                                    /* namespace methods */
 
   class RequiredInterfaceProxy {
-   private:
-    ara::com::ServiceHandleType mHandle;
-   public:
-    using HandleType = ara::com::ServiceHandleType;
-    explicit RequiredInterfaceProxy(const HandleType& handle): mHandle(handle)
-    {
-      uint16_t mEventId, mEventGroupId;
-      uint32_t queueLength{ 1 };
+	private:
+		ara::com::ServiceHandleType mHandle;
+	public:
+		using HandleType = ara::com::ServiceHandleType;
+		explicit RequiredInterfaceProxy(const HandleType& handle): mHandle(handle)
+		{
+			uint16_t mEventId, mEventGroupId;
+			uint32_t queueLength{ 1 };
 
-      mEventId = 47336;
-      mEventGroupId = 47336;
+			mEventId = 47336;
+			mEventGroupId = 47336;
 
-      In1 = ara::com::EventFactory::CreateProxyEvent(handle, mEventId, mEventGroupId);
+			In1 = ara::com::EventFactory::CreateProxyEvent(handle, mEventId, mEventGroupId);
 
-    }
+		}
 
-    virtual ~RequiredInterfaceProxy()
-    {
-      In1.Deinit();
-    }
+		virtual ~RequiredInterfaceProxy()
+		{
+			In1.Deinit();
+		}
 
-    RequiredInterfaceProxy(const RequiredInterfaceProxy&) = delete;
-    RequiredInterfaceProxy& operator = (const RequiredInterfaceProxy&) = delete;
-    RequiredInterfaceProxy(RequiredInterfaceProxy&&) = default;
-    RequiredInterfaceProxy& operator = (RequiredInterfaceProxy&&) = default;
+		RequiredInterfaceProxy(const RequiredInterfaceProxy&) = delete;
+		RequiredInterfaceProxy& operator = (const RequiredInterfaceProxy&) = delete;
+		RequiredInterfaceProxy(RequiredInterfaceProxy&&) = default;
+		RequiredInterfaceProxy& operator = (RequiredInterfaceProxy&&) = default;
 
-    static inline ara::core::Result<ara::com::ServiceHandleContainer<
-      RequiredInterfaceProxy::HandleType>> FindService(ara::com::
-      InstanceIdentifier instance = ara::com::InstanceIdentifier::Any)
-    {
-      ara::com::ServiceHandleContainer<RequiredInterfaceProxy::HandleType>
-        retResult;
-      // retResult.push_back(ara::com::ServiceFactory::FindService(instance));
-      return ara::core::Result<ara::com::ServiceHandleContainer<
-        RequiredInterfaceProxy::HandleType>>{ retResult };
-    }
+		static inline ara::core::Result<ara::com::ServiceHandleContainer<
+			RequiredInterfaceProxy::HandleType>> FindService(ara::com::
+			InstanceIdentifier instance = ara::com::InstanceIdentifier::Any)
+		{
+			ara::com::ServiceHandleContainer<RequiredInterfaceProxy::HandleType>
+			retResult;
+			// retResult.push_back(ara::com::ServiceFactory::FindService(instance));
+			return ara::core::Result<ara::com::ServiceHandleContainer<
+			RequiredInterfaceProxy::HandleType>>{ retResult };
+		}
 
-    static inline ara::core::Result<ara::com::ServiceHandleContainer<
-      RequiredInterfaceProxy::HandleType>> FindService(ara::core::
-      InstanceSpecifier instanceSpec)
-    {
-      ara::com::ServiceHandleContainer<RequiredInterfaceProxy::HandleType>
-        retResult;
-      const ara::core::Result<ara::com::InstanceIdentifierContainer> vecInstance
-      { ara::com::runtime::ResolveInstanceIDs(instanceSpec) };
+		static inline ara::core::Result<ara::com::ServiceHandleContainer<
+			RequiredInterfaceProxy::HandleType>> FindService(ara::core::
+			InstanceSpecifier instanceSpec)
+		{
+			ara::com::ServiceHandleContainer<RequiredInterfaceProxy::HandleType>
+			retResult;
+			const ara::core::Result<ara::com::InstanceIdentifierContainer> vecInstance
+			{ ara::com::runtime::ResolveInstanceIDs(instanceSpec) };
 
-      if (!vecInstance->empty()) {
-        retResult = FindService(vecInstance->front()).Value();
-      } else {
-        retResult = FindService(ara::com::InstanceIdentifier::Any).Value();
-      }                                /* if */
+			if (!vecInstance->empty()) {
+			retResult = FindService(vecInstance->front()).Value();
+			} else {
+			retResult = FindService(ara::com::InstanceIdentifier::Any).Value();
+			}                                /* if */
 
-      return ara::core::Result<ara::com::ServiceHandleContainer<
-        RequiredInterfaceProxy::HandleType>>{ retResult };
-    }
+			return ara::core::Result<ara::com::ServiceHandleContainer<
+			RequiredInterfaceProxy::HandleType>>{ retResult };
+		}
 
-    static inline ara::core::Result<ara::com::FindServiceHandle>
-      StartFindService(ara::com::FindServiceHandler<RequiredInterfaceProxy::
-                       HandleType> handler, ara::com::InstanceIdentifier
-                       instance = ara::com::InstanceIdentifier::Any)
-    {
-      return ara::core::Result<ara::com::FindServiceHandle>{ ara::com::
-        ServiceFactory::StartFindService(handler, instance) };
-    }
+		static inline ara::core::Result<ara::com::FindServiceHandle>
+			StartFindService(ara::com::FindServiceHandler<RequiredInterfaceProxy::
+							HandleType> handler, ara::com::InstanceIdentifier
+							instance = ara::com::InstanceIdentifier::Any)
+		{
+			return ara::core::Result<ara::com::FindServiceHandle>{ ara::com::
+			ServiceFactory::StartFindService(handler, instance) };
+		}
 
-    static inline ara::core::Result<ara::com::FindServiceHandle>
-      StartFindService(ara::com::FindServiceHandler<RequiredInterfaceProxy::
-                       HandleType> handler, ara::core::InstanceSpecifier
-                       instanceSpec)
-    {
-      ara::com::FindServiceHandle retHandle;
-      const ara::core::Result<ara::com::InstanceIdentifierContainer> vecInstance
-      { ara::com::runtime::ResolveInstanceIDs(instanceSpec) };
+		static inline ara::core::Result<ara::com::FindServiceHandle>
+			StartFindService(ara::com::FindServiceHandler<RequiredInterfaceProxy::
+							HandleType> handler, ara::core::InstanceSpecifier
+							instanceSpec)
+		{
+			ara::com::FindServiceHandle retHandle;
+			const ara::core::Result<ara::com::InstanceIdentifierContainer> vecInstance
+			{ ara::com::runtime::ResolveInstanceIDs(instanceSpec) };
 
-      if (!vecInstance->empty()) {
-        retHandle = StartFindService(handler, vecInstance->front()).Value();
-      } else {
-        retHandle = StartFindService(handler, ara::com::InstanceIdentifier::Any)
-          .Value();
-      }                                /* if */
+			if (!vecInstance->empty()) {
+			retHandle = StartFindService(handler, vecInstance->front()).Value();
+			} else {
+			retHandle = StartFindService(handler, ara::com::InstanceIdentifier::Any)
+				.Value();
+			}                                /* if */
 
-      return ara::core::Result<ara::com::FindServiceHandle>{ retHandle };
-    }
+			return ara::core::Result<ara::com::FindServiceHandle>{ retHandle };
+		}
 
-    // static inline void StopFindService(ara::com::FindServiceHandle handle)
-    // {
-    //   ara::com::ServiceFactory::StopFindService(handle);
-    // }
+		// static inline void StopFindService(ara::com::FindServiceHandle handle)
+		// {
+		//   ara::com::ServiceFactory::StopFindService(handle);
+		// }
 
-    RequiredInterfaceProxy::HandleType GetHandle() const
-    {
-      return mHandle;
-    }
+		RequiredInterfaceProxy::HandleType GetHandle() const
+		{
+			return mHandle;
+		}
 
-    proxy::events::In1 In1;
+		proxy::events::In1 In1;
   };
 }                                      /* namespace proxy */
 

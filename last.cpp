@@ -72,7 +72,7 @@ void last::initialize()
     ProvidedPort->OfferService();
 
 	// Initialize service requester instance - RequiredPort
-	proxy::RequiredInterfaceProxy::StartFindService(std::move(std::bind(&last::RequiredPortSvcHandler, this, std::placeholders::_1, std::placeholders::_2)), ara::com::InstanceIdentifier(ara::core::StringView("1")));
+	proxy::RequiredInterfaceProxy::StartFindService(std::move(std::bind(&last::RequiredPortSvcHandler, this, std::placeholders::_1, std::placeholders::_2)), ara::com::InstanceIdentifier(std::string("1")));
 
 }
 
