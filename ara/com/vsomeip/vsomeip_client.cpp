@@ -25,8 +25,8 @@ namespace ara
             mEventGroupId = EventGroupId;
         }
 
-        void vsomeip_client::register_availability_handler(std::function<void(ServiceHandleContainer<HandleType>, FindServiceHandle)> handler) {
-            auto vsomeip_handler = wrapper_availability_handler(handler);
+        void vsomeip_client::register_availability_handler(std::function<void(ServiceHandleContainer<HandleType>, FindServiceHandle)> handler, const ara::com::InstanceIdentifier instanceIdentifier) {
+            auto vsomeip_handler = wrapper_availability_handler(handler, instanceIdentifier);
             app_->register_availability_handler(mServiceId, mInstanceId, vsomeip_handler);
         }
 
@@ -79,21 +79,20 @@ namespace ara
         //     std::cout << its_message.str() << std::endl;
         // }
 
-        std::function<void(::vsomeip::service_t, ::vsomeip::instance_t, bool)> vsomeip_client::wrapper_availability_handler(ara::com::FindServiceHandler<HandleType> original_handler) {
-            return [this, original_handler](::vsomeip::service_t service, ::vsomeip::instance_t instance, bool is_available) {
+        std::function<void(::vsomeip::service_t, ::vsomeip::instance_t, bool)> vsomeip_client::wrapper_availability_handler(ara::com::FindServiceHandler<HandleType> original_handler, const ara::com::InstanceIdentifier instanceIdentifier) {
+            return [original_handler, instanceIdentifier](::vsomeip::service_t service, ::vsomeip::instance_t instance, bool is_available) {
                 if (is_available) {
                     ServiceHandleContainer<HandleType> container;
 
-                    ara::com::ServiceHandleType service_handle(this->mInstanceIdentifier);
+                    ara::com::ServiceHandleType service_handle(instanceIdentifier);
                     container.push_back(service_handle);
 
-                    ara::com::FindServiceHandle handle(this->mServiceId, this->mInstanceId);
+                    ara::com::FindServiceHandle handle(instanceIdentifier.GetInstanceId(), instanceIdentifier.GetInstanceId());
 
                     original_handler(container, handle);
                 }
             };
         }
-
     }
 }
 

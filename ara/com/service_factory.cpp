@@ -14,7 +14,7 @@ namespace ara
             std::shared_ptr<ara::com::vsomeip_client> vsomeip_client;
 
             vsomeip_client->set_service_id(instance);
-            vsomeip_client->register_availability_handler(handler);
+            vsomeip_client->register_availability_handler(handler, instance);
         }
 
      
