@@ -1,6 +1,7 @@
 #ifndef SERVICE_FACTORY_H
 #define SERVICE_FACTORY_H
 
+#include <iostream>
 #include "instance_identifier.h"
 #include "vsomeip/vsomeip_client.h"
 #include "handle_type.h"

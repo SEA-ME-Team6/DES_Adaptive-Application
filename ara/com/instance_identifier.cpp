@@ -1,15 +1,21 @@
 #include "instance_identifier.h"
 
+#include <string>
+#include <iostream>
+
 namespace ara
 {
     namespace com
     {
-        InstanceIdentifier::InstanceIdentifier() {}
+        InstanceIdentifier::InstanceIdentifier() : mInstanceId(0) {}
         
         InstanceIdentifier::InstanceIdentifier(
             const std::string &serializedFormat) : serializedFormat_{serializedFormat}
         {
-            mInstanceId = std::stoi(serializedFormat_);
+            unsigned long temp = std::stoi(serializedFormat_);
+            mInstanceId = static_cast<uint16_t>(temp);
+            // std::cout << "typeid : " << typeid(temp).name() << std::endl;
+
         }
 
         ara::core::Result<InstanceIdentifier> InstanceIdentifier::Create(const std::string &serializedFormat) noexcept
