@@ -26,7 +26,7 @@ namespace ara
         }
 
         void vsomeip_client::register_availability_handler(std::function<void(ServiceHandleContainer<HandleType>, FindServiceHandle)> handler, const ara::com::InstanceIdentifier instanceIdentifier) {
-            auto vsomeip_handler = wrapper_availability_handler(handler, instanceIdentifier);
+            std::function<void(::vsomeip::service_t, ::vsomeip::instance_t, bool)> vsomeip_handler = wrapper_availability_handler(handler, instanceIdentifier);
             app_->register_availability_handler(mServiceId, mInstanceId, vsomeip_handler);
         }
 

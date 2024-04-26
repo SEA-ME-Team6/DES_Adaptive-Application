@@ -13,6 +13,7 @@ namespace ara {
                 uint16_t service_id_;
                 uint16_t instance_id_;
             public:
+                FindServiceHandle();
                 FindServiceHandle(const uint16_t service_id, const uint16_t instance_id) : service_id_(service_id), instance_id_(instance_id) {}
 
             // bool operator==(const FindServiceHandle& other) const;
