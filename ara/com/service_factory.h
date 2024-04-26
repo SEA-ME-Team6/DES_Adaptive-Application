@@ -14,8 +14,10 @@ namespace ara
         class ServiceFactory {
 
         private:
+            // std::shared_ptr<ara::com::vsomeip_client> vsomeip_client;
         
         public:
+
             static ara::core::Result<ara::com::ServiceHandleContainer<HandleType>> FindService(ara::com::InstanceIdentifier& instance);
             static ara::core::Result<ara::com::FindServiceHandle> StartFindService(ara::com::FindServiceHandler<HandleType> handler, ara::com::InstanceIdentifier instance);
 

@@ -10,8 +10,10 @@ namespace ara {
     namespace com {
         struct FindServiceHandle {
             private:
-                uint16_t service_id;
-                uint16_t instance_id;
+                uint16_t service_id_;
+                uint16_t instance_id_;
+            public:
+                FindServiceHandle(const uint16_t service_id, const uint16_t instance_id) : service_id_(service_id), instance_id_(instance_id) {}
 
             // bool operator==(const FindServiceHandle& other) const;
             // bool operator<(const FindServiceHandle& other) const;
