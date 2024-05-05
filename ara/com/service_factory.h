@@ -15,7 +15,8 @@ namespace ara
         class ServiceFactory {
 
         private:
-            // std::shared_ptr<ara::com::vsomeip_client> vsomeip_client;
+            // ara::com::vsomeip_client vsomeip_client;
+
         
         public:
 

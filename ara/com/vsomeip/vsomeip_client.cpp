@@ -15,10 +15,20 @@ namespace ara
             app_->start();
         }
 
+        void vsomeip_client::set_service_id(const ara::com::InstanceIdentifier instanceIdentifier) {
+            mServiceId = instanceIdentifier.GetInstanceId();
+            mInstanceId = instanceIdentifier.GetInstanceId();
+        }
+
+        void vsomeip_client::set_event_id(const ::vsomeip::service_t EventId, const ::vsomeip::service_t EventGroupId) {
+            mEventId = EventId;
+            mEventGroupId = EventGroupId;
+        }
+
         void vsomeip_client::register_availability_handler(std::function<void(ServiceHandleContainer<HandleType>, FindServiceHandle)> handler, ara::com::InstanceIdentifier instanceIdentifier) {
             std::function<void(::vsomeip::service_t, ::vsomeip::instance_t, bool)> vsomeip_handler = wrapper_availability_handler(handler, instanceIdentifier);
 
-            app_->register_availability_handler(instanceIdentifier.GetInstanceId(), instanceIdentifier.GetInstanceId(), vsomeip_handler);
+            app_->register_availability_handler(mServiceId, mInstanceId, vsomeip_handler);
         }
 
         void vsomeip_client::subscribe() {
@@ -84,7 +94,7 @@ namespace ara
                 }
             };
         }
-    }
+    }    
 }
 
 
