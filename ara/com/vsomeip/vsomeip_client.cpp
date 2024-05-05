@@ -25,12 +25,17 @@ namespace ara
             mEventGroupId = EventGroupId;
         }
 
-        void vsomeip_client::register_availability_handler(std::function<void(ServiceHandleContainer<HandleType>, FindServiceHandle)> handler, ara::com::InstanceIdentifier instanceIdentifier) {
-            std::function<void(::vsomeip::service_t, ::vsomeip::instance_t, bool)> vsomeip_handler = wrapper_availability_handler(handler, instanceIdentifier);
-
-            app_->register_availability_handler(mServiceId, mInstanceId, vsomeip_handler);
+        void vsomeip_client::register_availability_handler() {
+            app_->register_availability_handler(mServiceId, mInstanceId,
+                std::bind(&vsomeip_client::on_availability,
+                          this,
+                          std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
         }
 
+        void vsomeip_client::register_availability_observer(std::function<void(bool)> observer) {
+            availability_observer_ = observer;
+        }
+    
         void vsomeip_client::subscribe() {
             app_->subscribe(mServiceId, mInstanceId, mEventGroupId);
         }
@@ -49,13 +54,16 @@ namespace ara
         //     }
         // }
 
-        // void vsomeip_client::on_availability(::vsomeip::service_t _service, ::vsomeip::instance_t _instance, bool _is_available) {
-        //     std::cout << "Service ["
-        //             << std::setw(4) << std::setfill('0') << std::hex << _service << "." << _instance
-        //             << "] is "
-        //             << (_is_available ? "available." : "NOT available.")
-        //             << std::endl;
-        // }
+        // Triggered when availability changes.
+        void vsomeip_client::on_availability(::vsomeip::service_t _service, ::vsomeip::instance_t _instance, bool _is_available) {
+            std::cout << "Service [" << std::hex << _service << "." << _instance << "] is "
+                        << (_is_available ? "available." : "NOT available.") << std::endl;
+
+            // Call the registered observer, if available.
+            if (_is_available) {
+                availability_observer_(_is_available);
+            }
+        }
 
         // void vsomeip_client::on_message(const std::shared_ptr<::vsomeip::message> &_response) {
         //     std::stringstream its_message;
@@ -80,20 +88,6 @@ namespace ara
         //     std::cout << its_message.str() << std::endl;
         // }
 
-        std::function<void(::vsomeip::service_t, ::vsomeip::instance_t, bool)> vsomeip_client::wrapper_availability_handler(ara::com::FindServiceHandler<HandleType> original_handler, const ara::com::InstanceIdentifier instanceIdentifier) {
-            return [original_handler, instanceIdentifier](::vsomeip::service_t service, ::vsomeip::instance_t instance, bool is_available) {
-                if (is_available) {
-                    ServiceHandleContainer<HandleType> container;
-
-                    ara::com::ServiceHandleType service_handle(instanceIdentifier);
-                    container.push_back(service_handle);
-
-                    ara::com::FindServiceHandle handle(instanceIdentifier.GetInstanceId(), instanceIdentifier.GetInstanceId());
-
-                    original_handler(container, handle);
-                }
-            };
-        }
     }    
 }
 

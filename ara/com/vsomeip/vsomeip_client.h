@@ -11,6 +11,7 @@
 #include <sstream>
 #include <thread>
 #include <string>
+#include <functional>
 #include <vsomeip/vsomeip.hpp>
 
 #include "../handle_type.h"
@@ -28,18 +29,21 @@ namespace ara
             public:
                 explicit vsomeip_client();
                 void start();
+
                 void set_service_id(const ara::com::InstanceIdentifier instanceIdentifier);
                 void set_event_id(const ::vsomeip::service_t EventId, const ::vsomeip::service_t EventGroupId); 
-                void register_availability_handler(std::function<void(ServiceHandleContainer<HandleType>, FindServiceHandle)> handler, const ara::com::InstanceIdentifier instanceIdentifier);
+
+                void register_availability_handler();
+                void register_availability_observer(std::function<void(bool)> observer);
+
                 void subscribe();
                 void stop();
 
+                std::function<void(bool)> availability_observer_;
             private:
+                void on_availability(::vsomeip::service_t _service, ::vsomeip::instance_t _instance, bool _is_available);
                 // void on_state(::vsomeip::state_type_e _state);
-                // void on_availability(::vsomeip::service_t _service, ::vsomeip::instance_t _instance, bool _is_available);
                 // void on_message(const std::shared_ptr<::vsomeip::message> &_response);
-
-                std::function<void(::vsomeip::service_t, ::vsomeip::instance_t, bool)> wrapper_availability_handler(ara::com::FindServiceHandler<HandleType> original_handler, const ara::com::InstanceIdentifier instanceIdentifier);
 
                 std::shared_ptr< ::vsomeip::application > app_;
                 bool use_tcp_;
@@ -49,6 +53,7 @@ namespace ara
                 uint16_t mInstanceId;
                 uint16_t mEventId;
                 uint16_t mEventGroupId;
+
         };
     }
 }
