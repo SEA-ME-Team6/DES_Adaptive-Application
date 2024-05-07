@@ -19,19 +19,16 @@ namespace ara
 
         private:
             uint16_t mSampleCount;
-            ara::com::vsomeip_client client; // SOMEIP Library
+            ara::com::vsomeip_client client;
         
         public:
             using SampleType = T;
             ProxyEvent() : mSampleCount(0) {}
 
             // Init() is Non Standard
-            void Init_SOMEIP(const ara::com::ServiceHandleType& handle, const uint16_t EventId, const uint16_t EventGroupId) {
-                // client.init(handle.GetInstanceId().GetInstanceId(), handle.GetInstanceId().GetInstanceId(), EventId, EventGroupId);
-            }
-
-            void Init_DDS(const ara::com::ServiceHandleType& handle, const std::string sTopicName, const uint32_t queueLength) {
-                
+            void Init(const ara::com::ServiceHandleType& handle, const uint16_t EventId, const uint16_t EventGroupId) {
+                client.set_service_id(handle.GetInstanceId());
+                client.set_event_id(EventId, EventGroupId);
             }
 
             void Deinit() {};

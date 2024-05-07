@@ -6,6 +6,7 @@
 #include "vsomeip/vsomeip_client.h"
 #include "handle_type.h"
 #include "find_service_handle.h"
+#include "service_handle_container.h"
 
 namespace ara 
 {

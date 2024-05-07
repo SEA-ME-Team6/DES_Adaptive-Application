@@ -23,15 +23,13 @@
 void last::RequiredPortSvcHandler(ara::com::ServiceHandleContainer< proxy::RequiredInterfaceProxy::HandleType > svcHandles, const ara::com::FindServiceHandle fsHandle)
 {
 	if ((!RequiredPort) && (svcHandles.size() > 0U)) {
-		RequiredPort = std::make_shared< proxy::RequiredInterfaceProxy >
-			(*svcHandles.begin());
+		RequiredPort = std::make_shared< proxy::RequiredInterfaceProxy > (*svcHandles.begin());
 		RequiredPort->In1.Subscribe(1U);
 		// proxy::RequiredInterfaceProxy::StopFindService(fsHandle);
 	}
 }
 
-void last::RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::
-  SampleType const > elementPtr)
+void last::RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::SampleType const > elementPtr)
 {
   // Receive: '<Root>/Event Receive'
   last_B.EventReceive = *elementPtr;
@@ -44,8 +42,7 @@ void last::step()
   double rtb_Gain;
   if (RequiredPort) {
     resultPtr = std::make_shared< ara::core::Result<size_t> >
-      (RequiredPort->In1.GetNewSamples(std::move(std::bind(&last::
-          RequiredPortIn1Receive, this, std::placeholders::_1)), 1U));
+      (RequiredPort->In1.GetNewSamples(std::move(std::bind(&last::RequiredPortIn1Receive, this, std::placeholders::_1)), 1U));
     if (resultPtr->HasValue()) {
       resultPtr->Value();
     }

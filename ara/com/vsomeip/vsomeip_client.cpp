@@ -32,6 +32,13 @@ namespace ara
                           std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
         }
 
+        void vsomeip_client::register_message_handler() {
+            app_->register_message_handler(
+                    mServiceId, mInstanceId, mEventId,
+                    std::bind(&vsomeip_client::on_message, this,
+                            std::placeholders::_1));
+        }
+
         void vsomeip_client::register_availability_observer(std::function<void(bool)> observer) {
             availability_observer_ = observer;
         }
@@ -65,28 +72,28 @@ namespace ara
             }
         }
 
-        // void vsomeip_client::on_message(const std::shared_ptr<::vsomeip::message> &_response) {
-        //     std::stringstream its_message;
-        //     its_message << "Received a notification for Event ["
-        //             << std::setw(4)    << std::setfill('0') << std::hex
-        //             << _response->get_service() << "."
-        //             << std::setw(4) << std::setfill('0') << std::hex
-        //             << _response->get_instance() << "."
-        //             << std::setw(4) << std::setfill('0') << std::hex
-        //             << _response->get_method() << "] to Client/Session ["
-        //             << std::setw(4) << std::setfill('0') << std::hex
-        //             << _response->get_client() << "/"
-        //             << std::setw(4) << std::setfill('0') << std::hex
-        //             << _response->get_session()
-        //             << "] = ";
-        //     std::shared_ptr<::vsomeip::payload> its_payload =
-        //             _response->get_payload();
-        //     its_message << "(" << std::dec << its_payload->get_length() << ") ";
-        //     for (uint32_t i = 0; i < its_payload->get_length(); ++i)
-        //         its_message << std::hex << std::setw(2) << std::setfill('0')
-        //             << (int) its_payload->get_data()[i] << " ";
-        //     std::cout << its_message.str() << std::endl;
-        // }
+        void vsomeip_client::on_message(const std::shared_ptr<::vsomeip::message> &_response) {
+            std::stringstream its_message;
+            its_message << "Received a notification for Event ["
+                    << std::setw(4)    << std::setfill('0') << std::hex
+                    << _response->get_service() << "."
+                    << std::setw(4) << std::setfill('0') << std::hex
+                    << _response->get_instance() << "."
+                    << std::setw(4) << std::setfill('0') << std::hex
+                    << _response->get_method() << "] to Client/Session ["
+                    << std::setw(4) << std::setfill('0') << std::hex
+                    << _response->get_client() << "/"
+                    << std::setw(4) << std::setfill('0') << std::hex
+                    << _response->get_session()
+                    << "] = ";
+            std::shared_ptr<::vsomeip::payload> its_payload =
+                    _response->get_payload();
+            its_message << "(" << std::dec << its_payload->get_length() << ") ";
+            for (uint32_t i = 0; i < its_payload->get_length(); ++i)
+                its_message << std::hex << std::setw(2) << std::setfill('0')
+                    << (int) its_payload->get_data()[i] << " ";
+            std::cout << its_message.str() << std::endl;
+        }
 
     }    
 }
