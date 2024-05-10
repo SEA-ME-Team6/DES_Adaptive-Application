@@ -5,11 +5,23 @@ namespace ara
 {
     namespace com
     {
-        vsomeip_client::vsomeip_client() : app_(::vsomeip::runtime::get()->create_application()) {
+        vsomeip_client::vsomeip_client() {}
+
+        vsomeip_client& vsomeip_client::get_client() {
+            static vsomeip_client instance;
+            return instance;
+        }
+
+        void vsomeip_client::Init(const ara::com::InstanceIdentifier instanceIdentifier) {
+            app_ = ::vsomeip::runtime::get()->create_application(instanceIdentifier.ToString());
             if (!app_->init()) {
                 std::cerr << "Couldn't initialize application" << std::endl;
             }
         }
+
+        // std::shared_ptr< ::vsomeip::application > vsomeip_client::get_application(const ara::com::InstanceIdentifier instanceIdentifier) {
+            
+        // }
 
         void vsomeip_client::start() {
             app_->start();
@@ -43,6 +55,10 @@ namespace ara
             availability_observer_ = observer;
         }
     
+        // void vsomeip_client::register_on_message_observer(std::function<void(const std::shared_ptr<::vsomeip::message>&)> observer) {
+        //     on_message_observer_ = observer;
+        // }
+
         void vsomeip_client::subscribe() {
             app_->subscribe(mServiceId, mInstanceId, mEventGroupId);
         }
@@ -88,11 +104,15 @@ namespace ara
                     << "] = ";
             std::shared_ptr<::vsomeip::payload> its_payload =
                     _response->get_payload();
-            its_message << "(" << std::dec << its_payload->get_length() << ") ";
-            for (uint32_t i = 0; i < its_payload->get_length(); ++i)
-                its_message << std::hex << std::setw(2) << std::setfill('0')
-                    << (int) its_payload->get_data()[i] << " ";
-            std::cout << its_message.str() << std::endl;
+            // its_message << "(" << std::dec << its_payload->get_length() << ") ";
+            // for (uint32_t i = 0; i < its_payload->get_length(); ++i)
+            //     its_message << std::hex << std::setw(2) << std::setfill('0')
+            //         << (int) its_payload->get_data()[i] << " ";
+
+            // std::cout << its_message.str() << std::endl;
+
+            message_buffer.push(its_payload->get_data()[its_payload->get_length() - 1]);
+
         }
 
     }    

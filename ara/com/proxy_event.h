@@ -19,30 +19,31 @@ namespace ara
 
         private:
             uint16_t mSampleCount;
-            ara::com::vsomeip_client client;
+            vsomeip_client event_client = ara::com::vsomeip_client::get_client();
         
         public:
             using SampleType = T;
             ProxyEvent() : mSampleCount(0) {}
 
             // Init() is Non Standard
-            void Init(const ara::com::ServiceHandleType& handle, const uint16_t EventId, const uint16_t EventGroupId) {
-                client.set_service_id(handle.GetInstanceId());
-                client.set_event_id(EventId, EventGroupId);
+            void Init(const uint16_t EventId, const uint16_t EventGroupId) {
+                event_client.set_event_id(EventId, EventGroupId);
+                event_client.register_message_handler();
             }
 
             void Deinit() {};
 
             ara::core::Result<void> Subscribe(size_t maxSampleCount) {
                 mSampleCount = maxSampleCount;
-                client.subscribe();
+                event_client.subscribe();
                 return ara::core::Result<void>();
             }
 
             template <typename F>
             ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max()) {
                 size_t processedSamples = 0;
-                // Sample fetching logic goes here
+                
+
                 return ara::core::Result<size_t>(processedSamples);
             }
         };

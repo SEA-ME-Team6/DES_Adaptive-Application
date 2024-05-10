@@ -12,8 +12,8 @@ namespace ara
         InstanceIdentifier::InstanceIdentifier(
             const std::string &serializedFormat) : serializedFormat_{serializedFormat}
         {
-            unsigned long temp = std::stoi(serializedFormat_);
-            mInstanceId = static_cast<uint16_t>(temp);
+            unsigned long InstanceId = std::stoi(serializedFormat_);
+            mInstanceId = static_cast<uint16_t>(InstanceId);
             // std::cout << "typeid : " << typeid(temp).name() << std::endl;
 
         }

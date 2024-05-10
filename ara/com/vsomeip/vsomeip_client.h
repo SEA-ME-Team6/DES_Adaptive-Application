@@ -12,6 +12,7 @@
 #include <thread>
 #include <string>
 #include <functional>
+#include <queue>
 #include <vsomeip/vsomeip.hpp>
 
 #include "../handle_type.h"
@@ -24,10 +25,15 @@ namespace ara
 {
     namespace com
     {
+        template<typename T>
+        using SampleType = T;
+        
         using HandleType = ara::com::ServiceHandleType;
         class vsomeip_client {
             public:
-                explicit vsomeip_client();
+                static vsomeip_client& get_client();
+                void Init(const ara::com::InstanceIdentifier instanceIdentifier);
+                std::shared_ptr< ::vsomeip::application > get_application(const ara::com::InstanceIdentifier instanceIdentifier);
                 void start();
 
                 void set_service_id(const ara::com::InstanceIdentifier instanceIdentifier);
@@ -41,10 +47,15 @@ namespace ara
                 void stop();
 
                 std::function<void(bool)> availability_observer_;
+                std::function<void(const std::shared_ptr<::vsomeip::message>&)> on_message_observer_;
+            
             private:
+                vsomeip_client();
                 void on_availability(::vsomeip::service_t _service, ::vsomeip::instance_t _instance, bool _is_available);
                 // void on_state(::vsomeip::state_type_e _state);
                 void on_message(const std::shared_ptr<::vsomeip::message> &_response);
+
+                std::queue<::vsomeip::byte_t> message_buffer;
 
                 std::shared_ptr< ::vsomeip::application > app_;
                 bool use_tcp_;
@@ -54,7 +65,6 @@ namespace ara
                 uint16_t mInstanceId;
                 uint16_t mEventId;
                 uint16_t mEventGroupId;
-
         };
     }
 }
