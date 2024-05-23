@@ -1,0 +1,10 @@
+{
+	"Process" : {
+		"Name" : "DefaultInstance",
+		"LogTraceDefaultLogLevel" : "Warn",
+		"LogTraceLogMode" : "Console",
+		"LogTraceFilePath" : "",
+		"LogTraceProcessDesc" : "",
+		"LogTraceProcessId" : "1475"
+	}
+}

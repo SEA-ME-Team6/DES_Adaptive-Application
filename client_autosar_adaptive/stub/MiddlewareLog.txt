@@ -1,0 +1,1 @@
+Simulink block client/In1 using SOME/IP EventId '47336' and EventGroupId '47336' for ara::com event communication.

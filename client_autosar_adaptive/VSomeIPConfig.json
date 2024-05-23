@@ -1,0 +1,16 @@
+{
+	"unicast" : "127.000.000.001",
+	"applications" : [
+		{
+			"name" : "client",
+			"id" : "0x5C3"
+		}
+	],
+	"services" : [
+		{
+			"service" : "0x2",
+			"instance" : "0x2",
+			"unreliable" : "30001"
+		}
+	]
+}

@@ -1,2 +1,4 @@
 .vscode
 build
+total/build
+client_autosar_adaptive/build
