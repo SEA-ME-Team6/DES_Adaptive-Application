@@ -36,7 +36,7 @@ namespace ara
                 return *this;
             }
 
-            SamplePtr& operator=(SamplePtr&& other) noexcept {
+            SamplePtr& operator=(SamplePtr& other) noexcept {
                 if (this != &other) {
                     delete ptr_;
                     ptr_ = other.ptr_;
@@ -58,6 +58,11 @@ namespace ara
             void Reset(std::nullptr_t = nullptr) noexcept {
                 delete ptr_;
                 ptr_ = nullptr;
+            }
+
+            // Non Standard
+            void Set(const T* ptr) noexcept {
+                ptr_ = ptr;
             }
 
             const T* Get() const noexcept { return ptr_; }

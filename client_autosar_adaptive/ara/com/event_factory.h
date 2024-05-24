@@ -8,10 +8,11 @@ namespace ara
 {
     namespace com 
     {
+        template<typename T>
         class EventFactory {
         public:
-            static ara::com::ProxyEvent<double> CreateProxyEvent(const ara::com::ServiceHandleType& handle, const uint16_t mEventId, const uint16_t mEventGroupId) {
-                ara::com::ProxyEvent<double> proxy_event;
+            static ara::com::ProxyEvent<T> CreateProxyEvent(const ara::com::ServiceHandleType& handle, const uint16_t mEventId, const uint16_t mEventGroupId) {
+                ara::com::ProxyEvent<T> proxy_event;
                 proxy_event.Init(mEventId, mEventGroupId);
                 return proxy_event;
             }

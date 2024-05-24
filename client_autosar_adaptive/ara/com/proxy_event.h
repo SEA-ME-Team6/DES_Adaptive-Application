@@ -40,11 +40,10 @@ namespace ara
             ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max()) {
                 if (mSampleCount <= maxNumberOfSamples) {
                 }
-
-                SampleType sampleValue = static_cast<SampleType>(event_client.get_samples());
-                SamplePtr<const SampleType> samplePtr(&sampleValue);
-                f(samplePtr);
-                
+                SampleType sampleValue = event_client.get_samples();
+                SamplePtr<SampleType const> ptr;
+                ptr.Set(&sampleValue);
+                f(std::move(ptr));
                 return ara::core::Result<size_t>(maxNumberOfSamples);
             }
         };

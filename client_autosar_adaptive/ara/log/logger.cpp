@@ -1,4 +1,4 @@
-#include "./logger.h"
+#include "logger.h"
 #include "../core/string_view.h"
 
 namespace ara
@@ -77,7 +77,7 @@ namespace ara
             return _result;
         }
         
-        Logger Logger::CreateLogger(std::string ctxId, std::string ctxDescription, LogLevel ctxDefLogLevel)
+        Logger CreateLogger(std::string ctxId, std::string ctxDescription, LogLevel ctxDefLogLevel)
         {
             Logger _result(ctxId, ctxDescription, ctxDefLogLevel);
             return _result;

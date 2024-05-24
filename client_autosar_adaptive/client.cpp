@@ -29,7 +29,7 @@ void client::RequiredPortSvcHandler(ara::com::ServiceHandleContainer< proxy::
     RequiredPort = std::make_shared< proxy::RequiredInterfaceProxy >
       (*svcHandles.begin());
     RequiredPort->In1.Subscribe(1U);
-    // proxy::RequiredInterfaceProxy::StopFindService(fsHandle);
+    // proxy::RequiredInterfaceProxy::StopFindService(fsHandle); // Have to deal with
   }
 }
 

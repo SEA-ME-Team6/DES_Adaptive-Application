@@ -27,7 +27,7 @@ namespace proxy
 {
   namespace events
   {
-    using In1 = ara::com::ProxyEvent<double>;
+    using In1 = ara::com::ProxyEvent<uint8_t>;
   }                                    /* namespace events */
 
   namespace fields
@@ -50,7 +50,7 @@ namespace proxy
 
       mEventId = 47336;
       mEventGroupId = 47336;
-      In1 = ara::com::EventFactory::CreateProxyEvent(handle, mEventId, mEventGroupId);
+      In1 = ara::com::EventFactory<uint8_t>::CreateProxyEvent(handle, mEventId, mEventGroupId);
     }
 
     virtual ~RequiredInterfaceProxy()

@@ -1,2 +1,0 @@
-Simulink block last/Out1 using SOME/IP EventId '46921' and EventGroupId '46921' for ara::com event communication.
-Simulink block last/In1 using SOME/IP EventId '47336' and EventGroupId '47336' for ara::com event communication.

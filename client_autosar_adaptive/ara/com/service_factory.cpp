@@ -9,7 +9,7 @@ namespace ara
             vsomeip_client sd_client = ara::com::vsomeip_client::get_client();
             sd_client.Init(instance);
             sd_client.set_service_id(instance);
-            
+
             ServiceHandleContainer<HandleType> container;
 
             sd_client.register_availability_observer([&](bool is_available) {
@@ -34,9 +34,10 @@ namespace ara
                 if (result.HasValue()) {
                     handler(result.Value(), ara::com::FindServiceHandle(instance.GetInstanceId(), instance.GetInstanceId()));
                 }
+                
+                std::this_thread::sleep_for(std::chrono::seconds(1));
             }
 
-            std::this_thread::sleep_for(std::chrono::seconds(1));
         }
 
     } // namespace com
