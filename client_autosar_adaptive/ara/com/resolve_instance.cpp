@@ -10,6 +10,7 @@ namespace ara
         namespace runtime
         {
             ara::core::Result<ara::com::InstanceIdentifierContainer> ResolveInstanceIDs(ara::core::InstanceSpecifier instanceSpec) {
+                ara::com::InstanceIdentifierContainer container;
                 container.push_back(ara::com::InstanceIdentifier(instanceSpec.ToString()));
                 return ara::core::Result<InstanceIdentifierContainer>(container);
             }
