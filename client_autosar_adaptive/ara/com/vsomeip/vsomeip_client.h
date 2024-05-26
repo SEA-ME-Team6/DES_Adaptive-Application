@@ -32,8 +32,8 @@ namespace ara
         class vsomeip_client {
             public:
                 static vsomeip_client& get_client();
-                void Init(const ara::com::InstanceIdentifier instanceIdentifier);
-                std::shared_ptr< ::vsomeip::application > get_application(const ara::com::InstanceIdentifier instanceIdentifier);
+
+                void init(const ara::com::InstanceIdentifier instanceIdentifier);
                 void start();
 
                 void set_service_id(const ara::com::InstanceIdentifier instanceIdentifier);
@@ -43,6 +43,7 @@ namespace ara
                 void register_message_handler();
                 void register_availability_observer(std::function<void(bool)> observer);
 
+                void request_event();
                 void subscribe();
                 void stop();
 
@@ -52,8 +53,8 @@ namespace ara
             
             private:
                 vsomeip_client();
+
                 void on_availability(::vsomeip::service_t _service, ::vsomeip::instance_t _instance, bool _is_available);
-                // void on_state(::vsomeip::state_type_e _state);
                 void on_message(const std::shared_ptr<::vsomeip::message> &_response);
 
                 std::queue<::vsomeip::byte_t> message_buffer;

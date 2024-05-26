@@ -16,7 +16,7 @@ namespace ara
 
         private:
             uint16_t mSampleCount;
-            vsomeip_client event_client = ara::com::vsomeip_client::get_client();
+            vsomeip_client& event_client = ara::com::vsomeip_client::get_client();
         
         public:
             using SampleType = T;
@@ -24,8 +24,10 @@ namespace ara
 
             // Init() is Non Standard
             void Init(const uint16_t EventId, const uint16_t EventGroupId) {
+                // std::cout << "event client: " << event_client << std::endl;
                 event_client.set_event_id(EventId, EventGroupId);
                 event_client.register_message_handler();
+                event_client.request_event();
             }
 
             void Deinit() {};
@@ -33,6 +35,7 @@ namespace ara
             ara::core::Result<void> Subscribe(size_t maxSampleCount) {
                 mSampleCount = maxSampleCount;
                 event_client.subscribe();
+                event_client.start();
                 return ara::core::Result<void>();
             }
 

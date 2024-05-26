@@ -12,7 +12,7 @@ namespace ara
             return instance;
         }
 
-        void vsomeip_client::Init(const ara::com::InstanceIdentifier instanceIdentifier) {
+        void vsomeip_client::init(const ara::com::InstanceIdentifier instanceIdentifier) {
             app_ = ::vsomeip::runtime::get()->create_application(instanceIdentifier.ToString());
             if (!app_->init()) {
                 std::cerr << "Couldn't initialize application" << std::endl;
@@ -45,10 +45,22 @@ namespace ara
         }
 
         void vsomeip_client::register_message_handler() {
+            std::cout << mServiceId << " " << mInstanceId << " " << mEventId << std::endl;
             app_->register_message_handler(
                     mServiceId, mInstanceId, mEventId,
                     std::bind(&vsomeip_client::on_message, this,
                             std::placeholders::_1));
+        }
+
+        void vsomeip_client::request_event() {
+            std::set<vsomeip::eventgroup_t> its_groups;
+            its_groups.insert(mEventGroupId);
+            app_->request_event(
+                    mServiceId,
+                    mServiceId,
+                    mEventId,
+                    its_groups,
+                    vsomeip::event_type_e::ET_FIELD);
         }
 
         void vsomeip_client::register_availability_observer(std::function<void(bool)> observer) {

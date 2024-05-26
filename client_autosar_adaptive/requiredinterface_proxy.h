@@ -50,7 +50,7 @@ namespace proxy
 
       mEventId = 47336;
       mEventGroupId = 47336;
-      In1 = ara::com::EventFactory<uint8_t>::CreateProxyEvent(handle, mEventId, mEventGroupId);
+      In1.Init(mEventId, mEventGroupId);
     }
 
     virtual ~RequiredInterfaceProxy()
