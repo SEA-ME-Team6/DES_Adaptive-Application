@@ -14,7 +14,6 @@
 #include "ara/com/proxy_event.h"
 #include "ara/com/handle_type.h"
 #include "ara/com/service_handle_container.h"
-#include "ara/com/event_factory.h"
 #include "ara/com/find_service_handle.h"
 #include "ara/com/service_factory.h"
 #include "ara/com/instance_identifier.h"

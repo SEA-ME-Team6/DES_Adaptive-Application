@@ -19,11 +19,8 @@ namespace ara
             }
         }
 
-        // std::shared_ptr< ::vsomeip::application > vsomeip_client::get_application(const ara::com::InstanceIdentifier instanceIdentifier) {
-            
-        // }
-
         void vsomeip_client::start() {
+            std::cout << "Start called from thread: " << std::this_thread::get_id() << std::endl;
             app_->start();
         }
 
@@ -72,14 +69,18 @@ namespace ara
         // }
 
         void vsomeip_client::subscribe() {
+
+            std::cout<<1<<std::endl;
+            std::cout << mServiceId << " " << mInstanceId << " " << mEventId << " " << mEventGroupId << std::endl;
             app_->subscribe(mServiceId, mInstanceId, mEventGroupId);
+            std::cout<<2<<std::endl;
         }
 
         void vsomeip_client::stop() {
-            app_->clear_all_handler();
-            app_->unsubscribe(mServiceId, mInstanceId, mEventGroupId);
-            app_->release_event(mServiceId, mInstanceId, mEventId);
-            app_->release_service(mServiceId, mInstanceId);
+            // app_->clear_all_handler();
+            // app_->unsubscribe(mServiceId, mInstanceId, mEventGroupId);
+            // app_->release_event(mServiceId, mInstanceId, mEventId);
+            // app_->release_service(mServiceId, mInstanceId);
             app_->stop();
         }
 
@@ -116,20 +117,20 @@ namespace ara
                     << "] = ";
             std::shared_ptr<::vsomeip::payload> its_payload =
                     _response->get_payload();
-            // its_message << "(" << std::dec << its_payload->get_length() << ") ";
-            // for (uint32_t i = 0; i < its_payload->get_length(); ++i)
-            //     its_message << std::hex << std::setw(2) << std::setfill('0')
-            //         << (int) its_payload->get_data()[i] << " ";
+            its_message << "(" << std::dec << its_payload->get_length() << ") ";
+            for (uint32_t i = 0; i < its_payload->get_length(); ++i)
+                its_message << std::hex << std::setw(2) << std::setfill('0')
+                    << (int) its_payload->get_data()[i] << " ";
 
-            // std::cout << its_message.str() << std::endl;
+            std::cout << its_message.str() << std::endl;
 
-            message_buffer.push(its_payload->get_data()[its_payload->get_length() - 1]);
+            // message_buffer.push(its_payload->get_data()[its_payload->get_length() - 1]);
 
         }
 
         ::vsomeip::byte_t vsomeip_client::get_samples() {
             ::vsomeip::byte_t samples = message_buffer.front();
-            message_buffer.pop();
+            // message_buffer.pop();
             return samples;        
         }
 
