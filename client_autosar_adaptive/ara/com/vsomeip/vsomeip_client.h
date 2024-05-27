@@ -15,6 +15,8 @@
 #include <queue>
 #include <vsomeip/vsomeip.hpp>
 
+#include <mutex>
+
 #include "../handle_type.h"
 #include "../service_handle_container.h"
 #include "../find_service_handle.h"
@@ -69,6 +71,8 @@ namespace ara
                 uint16_t mInstanceId;
                 uint16_t mEventId;
                 uint16_t mEventGroupId;
+
+                std::mutex mtx;
         };
     }
 }

@@ -48,7 +48,6 @@ namespace ara
         }
 
         void vsomeip_client::register_message_handler() {
-            std::cout << mServiceId << " " << mInstanceId << " " << mEventId << std::endl;
             app_->register_message_handler(
                     mServiceId, mInstanceId, mEventId,
                     std::bind(&vsomeip_client::on_message, this,
@@ -71,11 +70,7 @@ namespace ara
         }
 
         void vsomeip_client::subscribe() {
-
-            std::cout<<1<<std::endl;
-            std::cout << mServiceId << " " << mInstanceId << " " << mEventId << " " << mEventGroupId << std::endl;
             app_->subscribe(mServiceId, mInstanceId, mEventGroupId);
-            std::cout<<2<<std::endl;
         }
 
         void vsomeip_client::stop() {
@@ -83,6 +78,7 @@ namespace ara
             // app_->unsubscribe(mServiceId, mInstanceId, mEventGroupId);
             // app_->release_event(mServiceId, mInstanceId, mEventId);
             // app_->release_service(mServiceId, mInstanceId);
+            app_->unregister_availability_handler(mServiceId, mInstanceId);
             app_->stop();
         }
 
@@ -104,35 +100,37 @@ namespace ara
         }
 
         void vsomeip_client::on_message(const std::shared_ptr<::vsomeip::message> &_response) {
-            std::stringstream its_message;
-            its_message << "Received a notification for Event ["
-                    << std::setw(4)    << std::setfill('0') << std::hex
-                    << _response->get_service() << "."
-                    << std::setw(4) << std::setfill('0') << std::hex
-                    << _response->get_instance() << "."
-                    << std::setw(4) << std::setfill('0') << std::hex
-                    << _response->get_method() << "] to Client/Session ["
-                    << std::setw(4) << std::setfill('0') << std::hex
-                    << _response->get_client() << "/"
-                    << std::setw(4) << std::setfill('0') << std::hex
-                    << _response->get_session()
-                    << "] = ";
+            // std::stringstream its_message;
+            // its_message << "Received a notification for Event ["
+            //         << std::setw(4)    << std::setfill('0') << std::hex
+            //         << _response->get_service() << "."
+            //         << std::setw(4) << std::setfill('0') << std::hex
+            //         << _response->get_instance() << "."
+            //         << std::setw(4) << std::setfill('0') << std::hex
+            //         << _response->get_method() << "] to Client/Session ["
+            //         << std::setw(4) << std::setfill('0') << std::hex
+            //         << _response->get_client() << "/"
+            //         << std::setw(4) << std::setfill('0') << std::hex
+            //         << _response->get_session()
+            //         << "] = ";
             std::shared_ptr<::vsomeip::payload> its_payload =
                     _response->get_payload();
-            its_message << "(" << std::dec << its_payload->get_length() << ") ";
-            for (uint32_t i = 0; i < its_payload->get_length(); ++i)
-                its_message << std::hex << std::setw(2) << std::setfill('0')
-                    << (int) its_payload->get_data()[i] << " ";
+            // its_message << "(" << std::dec << its_payload->get_length() << ") ";
+            // for (uint32_t i = 0; i < its_payload->get_length(); ++i)
+            //     its_message << std::hex << std::setw(2) << std::setfill('0')
+            //         << (int) its_payload->get_data()[i] << " ";
 
-            std::cout << its_message.str() << std::endl;
-
-            // message_buffer.push(its_payload->get_data()[its_payload->get_length() - 1]);
-
+            // std::cout << its_message.str() << std::endl;
+            std::unique_lock<std::mutex> lock(mtx);
+            message_buffer.push(its_payload->get_data()[its_payload->get_length() - 1]);
         }
 
         ::vsomeip::byte_t vsomeip_client::get_samples() {
+            std::unique_lock<std::mutex> lock(mtx);
             ::vsomeip::byte_t samples = message_buffer.front();
-            // message_buffer.pop();
+            // ::vsomeip::byte_t samples = 1;
+            std::cout << "get sample" << samples << std::endl;
+            message_buffer.pop();
             return samples;        
         }
 
