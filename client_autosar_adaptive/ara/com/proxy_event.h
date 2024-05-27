@@ -35,9 +35,7 @@ namespace ara
             ara::core::Result<void> Subscribe(size_t maxSampleCount) {
                 mSampleCount = maxSampleCount;
                 event_client.subscribe();
-                std::cout << "Subscribe" << std::endl;
                 event_client.start();
-                std::cout << "Restart" << std::endl;
                 return ara::core::Result<void>();
             }
 
@@ -46,7 +44,6 @@ namespace ara
                 if (mSampleCount <= maxNumberOfSamples) {
                 }
                 SampleType sampleValue = event_client.get_samples();
-                std::cout << "GetNewSamples" << std::endl;
                 SamplePtr<SampleType const> ptr;
                 ptr.Set(&sampleValue);
                 f(std::move(ptr));

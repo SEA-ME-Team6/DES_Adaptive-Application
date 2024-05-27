@@ -38,7 +38,8 @@ namespace ara
 
                 void set_service_id(const ara::com::InstanceIdentifier instanceIdentifier);
                 void set_event_id(const ::vsomeip::service_t EventId, const ::vsomeip::service_t EventGroupId); 
-
+                
+                void register_state_handler();
                 void register_availability_handler();
                 void register_message_handler();
                 void register_availability_observer(std::function<void(bool)> observer);
@@ -54,6 +55,7 @@ namespace ara
             private:
                 vsomeip_client();
 
+                void on_state(::vsomeip::state_type_e _state);
                 void on_availability(::vsomeip::service_t _service, ::vsomeip::instance_t _instance, bool _is_available);
                 void on_message(const std::shared_ptr<::vsomeip::message> &_response);
 

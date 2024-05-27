@@ -10,7 +10,6 @@ namespace ara
 
         ara::core::Result<ara::com::ServiceHandleContainer<HandleType>> ServiceFactory::FindService(ara::com::InstanceIdentifier& instance) {
             vsomeip_client& sd_client = ara::com::vsomeip_client::get_client();
-            // std::cout << "sd client: " << sd_client << std::endl;
             sd_client.init(instance);
             sd_client.set_service_id(instance);
             
@@ -30,6 +29,8 @@ namespace ara
                     cv.notify_one();
                 }
             });
+
+            sd_client.register_state_handler();
             sd_client.register_availability_handler();
 
             std::thread start_thread([&]() {

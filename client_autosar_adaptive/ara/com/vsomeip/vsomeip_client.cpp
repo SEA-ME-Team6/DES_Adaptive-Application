@@ -34,6 +34,12 @@ namespace ara
             mEventGroupId = EventGroupId;
         }
 
+        void vsomeip_client::register_state_handler() {
+            app_->register_state_handler(
+                    std::bind(&vsomeip_client::on_state, this,
+                            std::placeholders::_1));
+        }
+
         void vsomeip_client::register_availability_handler() {
             app_->register_availability_handler(mServiceId, mInstanceId,
                 std::bind(&vsomeip_client::on_availability,
@@ -63,10 +69,6 @@ namespace ara
         void vsomeip_client::register_availability_observer(std::function<void(bool)> observer) {
             availability_observer_ = observer;
         }
-    
-        // void vsomeip_client::register_on_message_observer(std::function<void(const std::shared_ptr<::vsomeip::message>&)> observer) {
-        //     on_message_observer_ = observer;
-        // }
 
         void vsomeip_client::subscribe() {
 
@@ -84,11 +86,11 @@ namespace ara
             app_->stop();
         }
 
-        // void vsomeip_client::on_state(::vsomeip::state_type_e _state) {
-        //     if (_state == ::vsomeip::state_type_e::ST_REGISTERED) {
-        //         app_->request_service(mServiceId, mInstanceId);
-        //     }
-        // }
+        void vsomeip_client::on_state(::vsomeip::state_type_e _state) {
+            if (_state == ::vsomeip::state_type_e::ST_REGISTERED) {
+                app_->request_service(mServiceId, mInstanceId);
+            }
+        }
 
         // Triggered when availability changes.
         void vsomeip_client::on_availability(::vsomeip::service_t _service, ::vsomeip::instance_t _instance, bool _is_available) {
