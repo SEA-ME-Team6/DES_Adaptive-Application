@@ -13,13 +13,12 @@ namespace ara
     {
         template<typename T>
         class ProxyEvent {
-
         private:
             uint16_t mSampleCount;
             vsomeip_client& event_client = ara::com::vsomeip_client::get_client();
         
         public:
-            using SampleType = T;
+            using SampleType = float;
             ProxyEvent() : mSampleCount(0) {}
 
             // Init() is Non Standard
@@ -35,7 +34,13 @@ namespace ara
             ara::core::Result<void> Subscribe(size_t maxSampleCount) {
                 mSampleCount = maxSampleCount;
                 event_client.subscribe();
-                event_client.start();
+                
+                // event_client.start();
+
+                std::thread([this]() {
+                    event_client.start();
+                }).detach();
+                
                 return ara::core::Result<void>();
             }
 

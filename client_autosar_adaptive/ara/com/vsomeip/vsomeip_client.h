@@ -27,10 +27,6 @@ namespace ara
 {
     namespace com
     {
-        template<typename T>
-        using SampleType = T;
-        
-        using HandleType = ara::com::ServiceHandleType;
         class vsomeip_client {
             public:
                 static vsomeip_client& get_client();
@@ -52,7 +48,8 @@ namespace ara
 
                 std::function<void(bool)> availability_observer_;
                 std::function<void(const std::shared_ptr<::vsomeip::message>&)> on_message_observer_;
-                ::vsomeip::byte_t get_samples();
+
+                float get_samples();
             
             private:
                 vsomeip_client();
@@ -61,7 +58,7 @@ namespace ara
                 void on_availability(::vsomeip::service_t _service, ::vsomeip::instance_t _instance, bool _is_available);
                 void on_message(const std::shared_ptr<::vsomeip::message> &_response);
 
-                std::queue<::vsomeip::byte_t> message_buffer;
+                std::queue<float> message_buffer;
 
                 std::shared_ptr< ::vsomeip::application > app_;
                 bool use_tcp_;

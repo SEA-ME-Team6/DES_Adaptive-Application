@@ -45,9 +45,7 @@ void client::step()
 {
   std::shared_ptr<ara::core::Result<size_t>> resultPtr;
   if (RequiredPort) {
-    resultPtr = std::make_shared< ara::core::Result<size_t> >
-      (RequiredPort->In1.GetNewSamples(std::move(std::bind(&client::
-          RequiredPortIn1Receive, this, std::placeholders::_1)), 1U));
+    resultPtr = std::make_shared< ara::core::Result<size_t> > (RequiredPort->In1.GetNewSamples(std::move(std::bind(&client::RequiredPortIn1Receive, this, std::placeholders::_1)), 1U));
     if (resultPtr->HasValue()) {
       resultPtr->Value();
     }

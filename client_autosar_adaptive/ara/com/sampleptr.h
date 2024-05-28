@@ -25,7 +25,7 @@ namespace ara
             }
 
             ~SamplePtr() {
-                delete ptr_;
+                // delete ptr_;
             }
 
             SamplePtr& operator=(const SamplePtr&) = delete;

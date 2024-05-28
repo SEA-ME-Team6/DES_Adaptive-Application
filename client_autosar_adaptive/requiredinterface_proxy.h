@@ -26,7 +26,7 @@ namespace proxy
 {
   namespace events
   {
-    using In1 = ara::com::ProxyEvent<uint8_t>;
+    using In1 = ara::com::ProxyEvent<float>;
   }                                    /* namespace events */
 
   namespace fields
