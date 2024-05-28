@@ -129,7 +129,6 @@ namespace ara
             std::unique_lock<std::mutex> lock(mtx);
             float samples = message_buffer.front();
             message_buffer.pop();
-            std::cout << "get sample" << samples << std::endl;
             return samples;        
         }
 
