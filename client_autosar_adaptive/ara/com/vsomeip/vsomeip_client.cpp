@@ -121,12 +121,12 @@ namespace ara
             //         << (int) its_payload->get_data()[i] << " ";
 
             // std::cout << its_message.str() << std::endl;
-            std::unique_lock<std::mutex> lock(mtx);
+            std::unique_lock<std::mutex> lock(mutex_);
             message_buffer.push(static_cast<float>(its_payload->get_data()[its_payload->get_length() - 1]));
         }
 
         float vsomeip_client::get_samples() {
-            std::unique_lock<std::mutex> lock(mtx);
+            std::unique_lock<std::mutex> lock(mutex_);
             float samples = message_buffer.front();
             message_buffer.pop();
             return samples;        

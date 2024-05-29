@@ -34,7 +34,7 @@ void server::initialize()
 {
   // Initialize service provider instance - ProvidedPort
   ProvidedPort = std::make_shared< skeleton::ProvidedInterfaceSkeleton >(ara::
-    com::InstanceIdentifier(ara::core::StringView("1")), ara::com::
+    com::InstanceIdentifier(std::string("1")), ara::com::
     MethodCallProcessingMode::kEventSingleThread);
   ProvidedPort->OfferService();
 }
