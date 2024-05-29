@@ -61,6 +61,7 @@ namespace proxy
     RequiredInterfaceProxy& operator = (const RequiredInterfaceProxy&) = delete;
     RequiredInterfaceProxy(RequiredInterfaceProxy&&) = default;
     RequiredInterfaceProxy& operator = (RequiredInterfaceProxy&&) = default;
+    
     static inline ara::core::Result<ara::com::ServiceHandleContainer<
       RequiredInterfaceProxy::HandleType>> FindService(ara::com::
       InstanceIdentifier instance = ara::com::InstanceIdentifier::Any)
