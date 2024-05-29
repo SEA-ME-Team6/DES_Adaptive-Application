@@ -13,9 +13,9 @@
 #include <string>
 #include <functional>
 #include <queue>
-#include <vsomeip/vsomeip.hpp>
-
 #include <mutex>
+
+#include <vsomeip/vsomeip.hpp>
 
 #include "../handle_type.h"
 #include "../service_handle_container.h"
@@ -60,6 +60,8 @@ namespace ara
 
                 std::queue<float> message_buffer;
 
+                std::mutex mutex_;
+                
                 std::shared_ptr< ::vsomeip::application > app_;
                 bool use_tcp_;
                 uint16_t mSampleCount;
@@ -69,7 +71,6 @@ namespace ara
                 uint16_t mEventId;
                 uint16_t mEventGroupId;
 
-                std::mutex mtx;
         };
     }
 }
