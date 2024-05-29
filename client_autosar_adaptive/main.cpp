@@ -77,7 +77,7 @@ int32_t main() {
       platform::runtime::Executor fcnExecutor;
 
       /* Base rate is the time unit of a tick. */
-      constexpr double baseRate{0.200000};
+      constexpr double baseRate{0.500000};
       fcnExecutor.setBaseRateInSeconds(std::chrono::duration<double>(baseRate));
 
       /* Register periodic step functions in the executor. */

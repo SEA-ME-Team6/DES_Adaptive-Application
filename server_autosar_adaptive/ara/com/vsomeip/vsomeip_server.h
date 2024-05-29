@@ -28,7 +28,7 @@ namespace ara
             public:
                 static vsomeip_server& get_server();
 
-                void init(const ara::com::InstanceIdentifier instanceIdentifier);
+                void init(const ara::com::ServiceHandleType& handle, uint16_t mEventId, uint16_t mEventGroupId);
                 void start();
                 void stop();
 

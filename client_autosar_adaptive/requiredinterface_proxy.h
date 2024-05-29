@@ -47,8 +47,8 @@ namespace proxy
       uint16_t mEventId, mEventGroupId;
       uint32_t queueLength{ 1 };
 
-      mEventId = 47336;
-      mEventGroupId = 47336;
+      mEventId = 46921;
+      mEventGroupId = 46921;
       In1.Init(mEventId, mEventGroupId);
     }
 
