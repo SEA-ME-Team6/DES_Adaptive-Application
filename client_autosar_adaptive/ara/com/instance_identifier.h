@@ -38,9 +38,9 @@ namespace ara
             /// Non Standard
             const uint16_t GetInstanceId() const;
 
-            inline bool operator==(const InstanceIdentifier &other) const noexcept;
+            bool operator==(const InstanceIdentifier &other) const noexcept;
 
-            inline bool operator<(const InstanceIdentifier &other) const noexcept;
+            bool operator<(const InstanceIdentifier &other) const noexcept;
         };
 
     }

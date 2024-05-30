@@ -32,12 +32,12 @@ namespace ara
             return instanceId_;
         }
 
-        inline bool InstanceIdentifier::operator==(const InstanceIdentifier &other) const noexcept 
+        bool InstanceIdentifier::operator==(const InstanceIdentifier &other) const noexcept 
         {
             return serializedFormat_ == other.serializedFormat_;
         }
 
-        inline bool InstanceIdentifier::operator<(const InstanceIdentifier &other) const noexcept
+        bool InstanceIdentifier::operator<(const InstanceIdentifier &other) const noexcept
         {
             return serializedFormat_ < other.serializedFormat_;
         }

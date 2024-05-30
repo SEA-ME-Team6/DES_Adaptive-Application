@@ -66,7 +66,9 @@ namespace ara
                     return find_service;
                 }
             }
-        }
+
+            return ara::core::Result<ara::com::FindServiceHandle>::FromError(result.Error());        
+            }
 
     } // namespace com
 } // namespace ara
