@@ -31,11 +31,11 @@ namespace ara
             public:
                 static vsomeip_client& get_client();
 
-                void init(const ara::com::InstanceIdentifier instanceIdentifier);
+                void init(const ara::com::InstanceIdentifier& instanceIdentifier);
                 void start();
 
-                void set_service_id(const ara::com::InstanceIdentifier instanceIdentifier);
-                void set_event_id(const ::vsomeip::service_t eventId, const ::vsomeip::service_t eventGroupId); 
+                void set_service_id(const ara::com::InstanceIdentifier& instanceIdentifier);
+                void set_event_id(const ::vsomeip::service_t& eventId, const ::vsomeip::service_t& eventGroupId); 
                 
                 void register_state_handler();
                 void register_availability_handler();
@@ -60,8 +60,8 @@ namespace ara
 
                 std::shared_ptr< ::vsomeip::application > app_;
                 
-                std::queue<float> message_buffer;
-                float last_sample;
+                std::queue<float> message_buffer_;
+                float last_sample_;
 
                 std::mutex mutex_;
 

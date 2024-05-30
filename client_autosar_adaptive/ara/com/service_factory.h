@@ -12,13 +12,11 @@ namespace ara
         class ServiceFactory {
 
         private:
-            // ara::com::vsomeip_client vsomeip_client;
 
-        
         public:
 
-            static ara::core::Result<ara::com::ServiceHandleContainer<HandleType>> FindService(ara::com::InstanceIdentifier& instance);
-            static ara::core::Result<ara::com::FindServiceHandle> StartFindService(ara::com::FindServiceHandler<HandleType> handler, ara::com::InstanceIdentifier instance);
+            static ara::core::Result<ara::com::ServiceHandleContainer<HandleType>> FindService(const ara::com::InstanceIdentifier& instance);
+            static ara::core::Result<ara::com::FindServiceHandle> StartFindService(const ara::com::FindServiceHandler<HandleType>& handler, const ara::com::InstanceIdentifier& instance);
         };
     } // namespace com
 } // namespace ara

@@ -12,7 +12,7 @@ namespace ara
             return instance;
         }
 
-        void vsomeip_client::init(const ara::com::InstanceIdentifier instanceIdentifier) {
+        void vsomeip_client::init(const ara::com::InstanceIdentifier& instanceIdentifier) {
             app_ = ::vsomeip::runtime::get()->create_application(instanceIdentifier.ToString());
             if (!app_->init()) {
                 std::cerr << "Couldn't initialize application" << std::endl;
@@ -24,12 +24,12 @@ namespace ara
             app_->start();
         }
 
-        void vsomeip_client::set_service_id(const ara::com::InstanceIdentifier instanceIdentifier) {
+        void vsomeip_client::set_service_id(const ara::com::InstanceIdentifier& instanceIdentifier) {
             serviceId_ = instanceIdentifier.GetInstanceId();
             instanceId_ = instanceIdentifier.GetInstanceId();
         }
 
-        void vsomeip_client::set_event_id(const ::vsomeip::service_t eventId, const ::vsomeip::service_t eventGroupId) {
+        void vsomeip_client::set_event_id(const ::vsomeip::service_t& eventId, const ::vsomeip::service_t& eventGroupId) {
             eventId_ = eventId;
             eventGroupId_ = eventGroupId;
         }
@@ -99,16 +99,16 @@ namespace ara
             std::shared_ptr<::vsomeip::payload> its_payload =
                     _response->get_payload();
             std::unique_lock<std::mutex> lock(mutex_);
-            message_buffer.push(static_cast<float>(its_payload->get_data()[0]));
+            message_buffer_.push(static_cast<float>(its_payload->get_data()[0]));
         }
 
         float vsomeip_client::get_samples() {
             std::unique_lock<std::mutex> lock(mutex_);
-            if (!message_buffer.empty()) {
-                last_sample = message_buffer.front();
-                message_buffer.pop();
+            if (!message_buffer_.empty()) {
+                last_sample_ = message_buffer_.front();
+                message_buffer_.pop();
             }
-            return last_sample;     
+            return last_sample_;     
         }
     }    
 }

@@ -8,7 +8,7 @@ namespace ara
     namespace com 
     {
 
-        ara::core::Result<ara::com::ServiceHandleContainer<HandleType>> ServiceFactory::FindService(ara::com::InstanceIdentifier& instance) {
+        ara::core::Result<ara::com::ServiceHandleContainer<HandleType>> ServiceFactory::FindService(const ara::com::InstanceIdentifier& instance) {
             vsomeip_client& sd_client = ara::com::vsomeip_client::get_client();
             sd_client.init(instance);
             sd_client.set_service_id(instance);
@@ -49,7 +49,7 @@ namespace ara
             return container;
         }
 
-        ara::core::Result<ara::com::FindServiceHandle> ServiceFactory::StartFindService(ara::com::FindServiceHandler<HandleType> handler, ara::com::InstanceIdentifier instance) {
+        ara::core::Result<ara::com::FindServiceHandle> ServiceFactory::StartFindService(const ara::com::FindServiceHandler<HandleType>& handler, const ara::com::InstanceIdentifier& instance) {
             // In Standard AUTOSAR StartFindService calls FindService continuously,
             // But we use routing manager in vsomeip
             // It waits until finding service

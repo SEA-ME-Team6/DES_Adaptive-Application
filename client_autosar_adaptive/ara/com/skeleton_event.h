@@ -20,7 +20,7 @@ namespace ara
             explicit SkeletonEvent() = default;  
 
             // Init() is Non Standard
-            void Init(const ara::com::ServiceHandleType& handle, uint16_t eventId, uint16_t eventGroupId) {
+            void Init(const ara::com::ServiceHandleType& handle, const uint16_t& eventId, const uint16_t& eventGroupId) {
                 service_server.init(handle, eventId, eventGroupId);
                 service_server.register_state_handler();
                 service_server.offer_event();

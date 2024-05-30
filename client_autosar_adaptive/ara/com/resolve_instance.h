@@ -14,7 +14,7 @@ namespace ara
     {
         namespace runtime
         {
-            ara::core::Result<ara::com::InstanceIdentifierContainer> ResolveInstanceIDs(ara::core::InstanceSpecifier instanceSpec);
+            ara::core::Result<ara::com::InstanceIdentifierContainer> ResolveInstanceIDs(const ara::core::InstanceSpecifier& instanceSpec);
         }
     }
 }

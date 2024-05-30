@@ -18,7 +18,7 @@ namespace ara
             return instance;          
         }
 
-        void vsomeip_server::init(const ara::com::ServiceHandleType& handle, uint16_t eventId, uint16_t eventGroupId) {
+        void vsomeip_server::init(const ara::com::ServiceHandleType& handle, const uint16_t& eventId, const uint16_t& eventGroupId) {
             if (!app_->init()) {
                 std::cerr << "Couldn't initialize application" << std::endl;
             }
@@ -30,12 +30,12 @@ namespace ara
             app_->start();
         }
 
-        void vsomeip_server::set_service_id(const ara::com::InstanceIdentifier instanceIdentifier) {
+        void vsomeip_server::set_service_id(const ara::com::InstanceIdentifier& instanceIdentifier) {
             serviceId_ = instanceIdentifier.GetInstanceId();
             instanceId_ = instanceIdentifier.GetInstanceId();
         }
 
-        void vsomeip_server::set_event_id(const ::vsomeip::service_t eventId, const ::vsomeip::service_t eventGroupId) {
+        void vsomeip_server::set_event_id(const ::vsomeip::service_t& eventId, const ::vsomeip::service_t& eventGroupId) {
             eventId_ = eventId;
             eventGroupId_ = eventGroupId;
         }

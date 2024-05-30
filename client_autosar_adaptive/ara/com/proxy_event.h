@@ -22,7 +22,7 @@ namespace ara
             ProxyEvent() : maxSampleCount_(0) {}
 
             // Init() is Non Standard
-            void Init(const uint16_t eventId, const uint16_t eventGroupId) {
+            void Init(const uint16_t& eventId, const uint16_t& eventGroupId) {
                 event_client.set_event_id(eventId, eventGroupId);
                 event_client.register_message_handler();
                 event_client.request_event();
