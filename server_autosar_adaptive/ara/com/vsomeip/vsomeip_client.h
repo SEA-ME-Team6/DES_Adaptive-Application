@@ -31,11 +31,11 @@ namespace ara
             public:
                 static vsomeip_client& get_client();
 
-                void init(const ara::com::InstanceIdentifier instanceIdentifier);
+                void init(const ara::com::InstanceIdentifier& instanceIdentifier);
                 void start();
 
-                void set_service_id(const ara::com::InstanceIdentifier instanceIdentifier);
-                void set_event_id(const ::vsomeip::service_t EventId, const ::vsomeip::service_t EventGroupId); 
+                void set_service_id(const ara::com::InstanceIdentifier& instanceIdentifier);
+                void set_event_id(const ::vsomeip::service_t& eventId, const ::vsomeip::service_t& eventGroupId); 
                 
                 void register_state_handler();
                 void register_availability_handler();
@@ -58,19 +58,17 @@ namespace ara
                 void on_availability(::vsomeip::service_t _service, ::vsomeip::instance_t _instance, bool _is_available);
                 void on_message(const std::shared_ptr<::vsomeip::message> &_response);
 
-                std::queue<float> message_buffer;
-                float last_sample;
+                std::shared_ptr< ::vsomeip::application > app_;
+                
+                std::queue<float> message_buffer_;
+                float last_sample_;
 
                 std::mutex mutex_;
-                
-                std::shared_ptr< ::vsomeip::application > app_;
-                bool use_tcp_;
-                uint16_t mSampleCount;
 
-                uint16_t mServiceId;
-                uint16_t mInstanceId;
-                uint16_t mEventId;
-                uint16_t mEventGroupId;
+                uint16_t serviceId_;
+                uint16_t instanceId_;
+                uint16_t eventId_;
+                uint16_t eventGroupId_;
 
         };
     }

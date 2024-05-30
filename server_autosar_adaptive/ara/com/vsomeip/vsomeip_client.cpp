@@ -12,7 +12,7 @@ namespace ara
             return instance;
         }
 
-        void vsomeip_client::init(const ara::com::InstanceIdentifier instanceIdentifier) {
+        void vsomeip_client::init(const ara::com::InstanceIdentifier& instanceIdentifier) {
             app_ = ::vsomeip::runtime::get()->create_application(instanceIdentifier.ToString());
             if (!app_->init()) {
                 std::cerr << "Couldn't initialize application" << std::endl;
@@ -24,14 +24,14 @@ namespace ara
             app_->start();
         }
 
-        void vsomeip_client::set_service_id(const ara::com::InstanceIdentifier instanceIdentifier) {
-            mServiceId = instanceIdentifier.GetInstanceId();
-            mInstanceId = instanceIdentifier.GetInstanceId();
+        void vsomeip_client::set_service_id(const ara::com::InstanceIdentifier& instanceIdentifier) {
+            serviceId_ = instanceIdentifier.GetInstanceId();
+            instanceId_ = instanceIdentifier.GetInstanceId();
         }
 
-        void vsomeip_client::set_event_id(const ::vsomeip::service_t EventId, const ::vsomeip::service_t EventGroupId) {
-            mEventId = EventId;
-            mEventGroupId = EventGroupId;
+        void vsomeip_client::set_event_id(const ::vsomeip::service_t& eventId, const ::vsomeip::service_t& eventGroupId) {
+            eventId_ = eventId;
+            eventGroupId_ = eventGroupId;
         }
 
         void vsomeip_client::register_state_handler() {
@@ -41,7 +41,7 @@ namespace ara
         }
 
         void vsomeip_client::register_availability_handler() {
-            app_->register_availability_handler(mServiceId, mInstanceId,
+            app_->register_availability_handler(serviceId_, instanceId_,
                 std::bind(&vsomeip_client::on_availability,
                           this,
                           std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
@@ -49,18 +49,18 @@ namespace ara
 
         void vsomeip_client::register_message_handler() {
             app_->register_message_handler(
-                    mServiceId, mInstanceId, mEventId,
+                    serviceId_, instanceId_, eventId_,
                     std::bind(&vsomeip_client::on_message, this,
                             std::placeholders::_1));
         }
 
         void vsomeip_client::request_event() {
             std::set<vsomeip::eventgroup_t> its_groups;
-            its_groups.insert(mEventGroupId);
+            its_groups.insert(eventGroupId_);
             app_->request_event(
-                    mServiceId,
-                    mServiceId,
-                    mEventId,
+                    serviceId_,
+                    serviceId_,
+                    eventId_,
                     its_groups,
                     vsomeip::event_type_e::ET_FIELD);
         }
@@ -70,21 +70,17 @@ namespace ara
         }
 
         void vsomeip_client::subscribe() {
-            app_->subscribe(mServiceId, mInstanceId, mEventGroupId);
+            app_->subscribe(serviceId_, instanceId_, eventGroupId_);
         }
 
         void vsomeip_client::stop() {
-            // app_->clear_all_handler();
-            // app_->unsubscribe(mServiceId, mInstanceId, mEventGroupId);
-            // app_->release_event(mServiceId, mInstanceId, mEventId);
-            // app_->release_service(mServiceId, mInstanceId);
-            app_->unregister_availability_handler(mServiceId, mInstanceId);
+            app_->unregister_availability_handler(serviceId_, instanceId_);
             app_->stop();
         }
 
         void vsomeip_client::on_state(::vsomeip::state_type_e _state) {
             if (_state == ::vsomeip::state_type_e::ST_REGISTERED) {
-                app_->request_service(mServiceId, mInstanceId);
+                app_->request_service(serviceId_, instanceId_);
             }
         }
 
@@ -103,16 +99,16 @@ namespace ara
             std::shared_ptr<::vsomeip::payload> its_payload =
                     _response->get_payload();
             std::unique_lock<std::mutex> lock(mutex_);
-            message_buffer.push(static_cast<float>(its_payload->get_data()[0]));
+            message_buffer_.push(static_cast<float>(its_payload->get_data()[0]));
         }
 
         float vsomeip_client::get_samples() {
             std::unique_lock<std::mutex> lock(mutex_);
-            if (!message_buffer.empty()) {
-                last_sample = message_buffer.front();
-                message_buffer.pop();
+            if (!message_buffer_.empty()) {
+                last_sample_ = message_buffer_.front();
+                message_buffer_.pop();
             }
-            return last_sample;     
+            return last_sample_;     
         }
     }    
 }

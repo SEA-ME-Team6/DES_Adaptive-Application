@@ -38,7 +38,10 @@ namespace ara
                 service_server.notify(data);
             };
 
-            ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate() {};
+            ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate() {
+                ara::com::SampleAllocateePtr<SampleType> allocatedMemory(nullptr);
+                return allocatedMemory;    
+            };
 
             /**
             * After sending data you loose ownership and can’t access
@@ -46,7 +49,10 @@ namespace ara
             * Implementation of SampleAllocateePtr will be with the
             * semantics of std::unique_ptr (see types.h)
             */
-            ara::core::Result<void> Send(ara::com::SampleAllocateePtr<SampleType> data) {};
+            ara::core::Result<void> Send(ara::com::SampleAllocateePtr<SampleType> data) {
+                service_server.notify(*data);
+                return ara::core::Result<void>();
+            };
         };
     }
 }

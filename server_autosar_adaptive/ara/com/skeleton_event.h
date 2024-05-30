@@ -1,8 +1,8 @@
 #ifndef SKELETION_EVENT_H
 #define SKELETION_EVENT_H
 
-#include "handle_type.h"
-#include "sample_allocate_ptr.h"
+#include "./handle_type.h"
+#include "./sample_allocate_ptr.h"
 #include "./vsomeip/vsomeip_server.h"
 
 namespace ara 
@@ -12,7 +12,7 @@ namespace ara
         template<typename T>
         class SkeletonEvent {
         private:
-            vsomeip_server& service_server = ara::com::vsomeip_server::get_server();
+            ara::com::vsomeip_server& service_server = ara::com::vsomeip_server::get_server();
        
         public:
             using SampleType = float;
@@ -20,8 +20,8 @@ namespace ara
             explicit SkeletonEvent() = default;  
 
             // Init() is Non Standard
-            void Init(const ara::com::ServiceHandleType& handle, uint16_t mEventId, uint16_t mEventGroupId) {
-                service_server.init(handle, mEventId, mEventGroupId);
+            void Init(const ara::com::ServiceHandleType& handle, const uint16_t& eventId, const uint16_t& eventGroupId) {
+                service_server.init(handle, eventId, eventGroupId);
                 service_server.register_state_handler();
                 service_server.offer_event();
 
@@ -36,9 +36,13 @@ namespace ara
 
             ara::core::Result<void> Send(const SampleType &data) {
                 service_server.notify(data);
+                return ara::core::Result<void>();
             };
 
-            ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate() {};
+            ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate() {
+                ara::com::SampleAllocateePtr<SampleType> allocatedMemory(nullptr);
+                return allocatedMemory;            
+            };
 
             /**
             * After sending data you loose ownership and can’t access
@@ -46,7 +50,10 @@ namespace ara
             * Implementation of SampleAllocateePtr will be with the
             * semantics of std::unique_ptr (see types.h)
             */
-            ara::core::Result<void> Send(ara::com::SampleAllocateePtr<SampleType> data) {};
+            ara::core::Result<void> Send(ara::com::SampleAllocateePtr<SampleType> data) {
+                service_server.notify(*data);
+                return ara::core::Result<void>();
+            };
         };
     }
 }

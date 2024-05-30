@@ -5,8 +5,8 @@
 #include <optional>
 #include "../core/result.h"
 #include "../core/instance_specifier.h"
-#include "instance_identifier.h"
-#include "instance_identifier_container.h"
+#include "./instance_identifier.h"
+#include "./instance_identifier_container.h"
 
 namespace ara
 {
@@ -14,7 +14,7 @@ namespace ara
     {
         namespace runtime
         {
-            ara::core::Result<ara::com::InstanceIdentifierContainer> ResolveInstanceIDs(ara::core::InstanceSpecifier instanceSpec);
+            ara::core::Result<ara::com::InstanceIdentifierContainer> ResolveInstanceIDs(const ara::core::InstanceSpecifier& instanceSpec);
         }
     }
 }

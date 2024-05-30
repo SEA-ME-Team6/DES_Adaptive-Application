@@ -1,4 +1,4 @@
-#include "instance_identifier.h"
+#include "./instance_identifier.h"
 
 #include <string>
 #include <iostream>
@@ -7,13 +7,13 @@ namespace ara
 {
     namespace com
     {
-        InstanceIdentifier::InstanceIdentifier() : mInstanceId(0) {}
+        InstanceIdentifier::InstanceIdentifier() : instanceId_(0) {}
         
         InstanceIdentifier::InstanceIdentifier(
-            const std::string &serializedFormat) : mSerializedFormat{serializedFormat}
+            const std::string &serializedFormat) : serializedFormat_{serializedFormat}
         {
-            unsigned long InstanceId = std::stoi(mSerializedFormat);
-            mInstanceId = static_cast<uint16_t>(InstanceId);
+            unsigned long InstanceId = std::stoi(serializedFormat_);
+            instanceId_ = static_cast<uint16_t>(InstanceId);
         }
 
         ara::core::Result<InstanceIdentifier> InstanceIdentifier::Create(const std::string &serializedFormat) noexcept
@@ -25,21 +25,21 @@ namespace ara
 
         std::string InstanceIdentifier::ToString() const
         {
-            return mSerializedFormat;
+            return serializedFormat_;
         }
 
         const uint16_t InstanceIdentifier::GetInstanceId() const {
-            return mInstanceId;
+            return instanceId_;
         }
 
-        inline bool InstanceIdentifier::operator==(const InstanceIdentifier &other) const noexcept 
+        bool InstanceIdentifier::operator==(const InstanceIdentifier &other) const noexcept 
         {
-            return mSerializedFormat == other.mSerializedFormat;
+            return serializedFormat_ == other.serializedFormat_;
         }
 
-        inline bool InstanceIdentifier::operator<(const InstanceIdentifier &other) const noexcept
+        bool InstanceIdentifier::operator<(const InstanceIdentifier &other) const noexcept
         {
-            return mSerializedFormat < other.mSerializedFormat;
+            return serializedFormat_ < other.serializedFormat_;
         }
     }
 }

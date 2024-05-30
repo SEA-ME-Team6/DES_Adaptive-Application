@@ -18,26 +18,26 @@ namespace ara
             return instance;          
         }
 
-        void vsomeip_server::init(const ara::com::ServiceHandleType& handle, uint16_t mEventId, uint16_t mEventGroupId) {
+        void vsomeip_server::init(const ara::com::ServiceHandleType& handle, const uint16_t& eventId, const uint16_t& eventGroupId) {
             if (!app_->init()) {
                 std::cerr << "Couldn't initialize application" << std::endl;
             }
             set_service_id(handle.GetInstanceId());
-            set_event_id(mEventId, mEventGroupId);
+            set_event_id(eventId, eventGroupId);
         }
 
         void vsomeip_server::start() {
             app_->start();
         }
 
-        void vsomeip_server::set_service_id(const ara::com::InstanceIdentifier instanceIdentifier) {
-            mServiceId = instanceIdentifier.GetInstanceId();
-            mInstanceId = instanceIdentifier.GetInstanceId();
+        void vsomeip_server::set_service_id(const ara::com::InstanceIdentifier& instanceIdentifier) {
+            serviceId_ = instanceIdentifier.GetInstanceId();
+            instanceId_ = instanceIdentifier.GetInstanceId();
         }
 
-        void vsomeip_server::set_event_id(const ::vsomeip::service_t EventId, const ::vsomeip::service_t EventGroupId) {
-            mEventId = EventId;
-            mEventGroupId = EventGroupId;
+        void vsomeip_server::set_event_id(const ::vsomeip::service_t& eventId, const ::vsomeip::service_t& eventGroupId) {
+            eventId_ = eventId;
+            eventGroupId_ = eventGroupId;
         }
 
         void vsomeip_server::register_state_handler() {
@@ -48,11 +48,11 @@ namespace ara
 
         void vsomeip_server::offer_event() {
             std::set<vsomeip::eventgroup_t> its_groups;
-            its_groups.insert(mEventGroupId);
+            its_groups.insert(eventGroupId_);
             app_->offer_event(
-                    mServiceId,
-                    mInstanceId,
-                    mEventId,
+                    serviceId_,
+                    instanceId_,
+                    eventId_,
                     its_groups,
                     vsomeip::event_type_e::ET_FIELD, std::chrono::milliseconds::zero(),
                     false, true, nullptr, vsomeip::reliability_type_e::RT_UNKNOWN);
@@ -86,7 +86,7 @@ namespace ara
 
         void vsomeip_server::offer() {
             std::lock_guard<std::mutex> its_lock(notify_mutex_);
-            app_->offer_service(mServiceId, mInstanceId);
+            app_->offer_service(serviceId_, instanceId_);
             is_offered_ = true;
         }
 
@@ -103,7 +103,7 @@ namespace ara
                 payload_->set_data(its_data, its_size);
 
                 std::cout << "Setting event (Length=" << std::dec << its_size << ")." << std::endl;
-                app_->notify(mServiceId, mInstanceId, mEventId, payload_);
+                app_->notify(serviceId_, instanceId_, eventId_, payload_);
             }
         }
 
@@ -124,7 +124,7 @@ namespace ara
         }
         
         void vsomeip_server::stop_offer() {
-            app_->stop_offer_service(mServiceId, mInstanceId);
+            app_->stop_offer_service(serviceId_, instanceId_);
             is_offered_ = false;
         }
 

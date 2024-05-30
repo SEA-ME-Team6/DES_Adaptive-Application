@@ -1,7 +1,7 @@
 #ifndef HANDLE_TYPE_H
 #define HANDLE_TYPE_H
 
-#include "instance_identifier.h"
+#include "./instance_identifier.h"
 
 namespace ara
 {
