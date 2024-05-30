@@ -10,7 +10,7 @@ namespace ara
         class ServiceHandleType {
         public:
             ServiceHandleType() {}       
-            explicit ServiceHandleType(const ara::com::InstanceIdentifier& id) : instanceId_(id) {}
+            explicit ServiceHandleType(const ara::com::InstanceIdentifier& id) : mInstanceID(id) {}
             
             ServiceHandleType(const ServiceHandleType& other) = default;
             ServiceHandleType(ServiceHandleType&& other) noexcept = default;
@@ -18,13 +18,13 @@ namespace ara
             ServiceHandleType& operator=(ServiceHandleType&& other) noexcept = default;
             
             inline bool operator==(const ServiceHandleType& other) const {
-                return instanceId_ == other.instanceId_;
+                return mInstanceID == other.mInstanceID;
             }
 
             const ara::com::InstanceIdentifier& GetInstanceId() const {
-                return instanceId_;
+                return mInstanceID;
             }
-            ara::com::InstanceIdentifier instanceId_;
+            ara::com::InstanceIdentifier mInstanceID;
         private:
         };
 

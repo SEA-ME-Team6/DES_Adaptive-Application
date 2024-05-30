@@ -36,11 +36,12 @@ namespace ara
 
             ara::core::Result<void> Send(const SampleType &data) {
                 service_server.notify(data);
+                return ara::core::Result<void>();
             };
 
             ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate() {
                 ara::com::SampleAllocateePtr<SampleType> allocatedMemory(nullptr);
-                return allocatedMemory;    
+                return allocatedMemory;            
             };
 
             /**
