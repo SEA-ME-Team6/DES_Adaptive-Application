@@ -3,6 +3,7 @@
 
 #include <functional>
 #include <vector>
+#include "./service_handle_container.h"
 
 namespace ara {
     namespace com {
@@ -13,6 +14,9 @@ namespace ara {
             public:
                 FindServiceHandle();
                 FindServiceHandle(const uint16_t& serviceId, const uint16_t& instanceId) : serviceId_(serviceId), instanceId_(instanceId) {}
+
+                uint16_t GetServiceId() {return serviceId_;}
+                uint16_t GetInstanceId() {return instanceId_;}
 
             // bool operator==(const FindServiceHandle& other) const;
             // bool operator<(const FindServiceHandle& other) const;

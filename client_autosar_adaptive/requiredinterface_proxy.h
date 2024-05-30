@@ -120,10 +120,10 @@ namespace proxy
       return ara::core::Result<ara::com::FindServiceHandle>{ retHandle };
     }
 
-    // static inline void StopFindService(ara::com::FindServiceHandle handle)
-    // {
-    //   ara::com::ServiceFactory::StopFindService(handle);
-    // }
+    static inline void StopFindService(ara::com::FindServiceHandle handle)
+    {
+      ara::com::ServiceFactory::StopFindService(handle);
+    }
 
     RequiredInterfaceProxy::HandleType GetHandle() const
     {

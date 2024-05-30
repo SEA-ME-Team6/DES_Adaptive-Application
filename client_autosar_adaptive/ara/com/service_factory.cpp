@@ -69,7 +69,13 @@ namespace ara
             }
 
             return ara::core::Result<ara::com::FindServiceHandle>::FromError(result.Error());        
-            }
+        }
+
+        void ServiceFactory::StopFindService(ara::com::FindServiceHandle handle) {
+            ara::com::vsomeip_client& stop_find_client = ara::com::vsomeip_client::get_client();
+            stop_find_client.unregister_availability_handler(handle.GetServiceId(), handle.GetInstanceId());
+        }
+        
 
     } // namespace com
 } // namespace ara

@@ -54,6 +54,10 @@ namespace ara
                             std::placeholders::_1));
         }
 
+        void vsomeip_client::unregister_availability_handler(const uint16_t& serviceId, const uint16_t& instanceId) {
+            app_->unregister_availability_handler(serviceId, instanceId);
+        }
+
         void vsomeip_client::request_event() {
             std::set<vsomeip::eventgroup_t> its_groups;
             its_groups.insert(eventGroupId_);
@@ -74,7 +78,7 @@ namespace ara
         }
 
         void vsomeip_client::stop() {
-            app_->unregister_availability_handler(serviceId_, instanceId_);
+            // app_->unregister_availability_handler(serviceId_, instanceId_);
             app_->stop();
         }
 

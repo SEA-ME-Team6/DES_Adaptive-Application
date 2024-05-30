@@ -29,7 +29,7 @@ void client::RequiredPortSvcHandler(ara::com::ServiceHandleContainer< proxy::
     RequiredPort = std::make_shared< proxy::RequiredInterfaceProxy >
       (*svcHandles.begin());
     RequiredPort->In1.Subscribe(1U);
-    // proxy::RequiredInterfaceProxy::StopFindService(fsHandle); // Have to deal with
+    proxy::RequiredInterfaceProxy::StopFindService(fsHandle);
   }
 }
 
@@ -42,7 +42,7 @@ void client::RequiredPortIn1Receive(ara::com::SamplePtr< proxy::events::In1::
 
 // Model step function
 void client::step()
-{
+{ 
   std::shared_ptr<ara::core::Result<size_t>> resultPtr;
   if (RequiredPort) {
     resultPtr = std::make_shared< ara::core::Result<size_t> > (RequiredPort->In1.GetNewSamples(std::move(std::bind(&client::RequiredPortIn1Receive, this, std::placeholders::_1)), 1U));

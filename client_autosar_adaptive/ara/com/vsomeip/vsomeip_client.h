@@ -41,6 +41,7 @@ namespace ara
                 void register_availability_handler();
                 void register_message_handler();
                 void register_availability_observer(std::function<void(bool)> observer);
+                void unregister_availability_handler(const uint16_t& serviceId, const uint16_t& instanceId);
 
                 void request_event();
                 void subscribe();

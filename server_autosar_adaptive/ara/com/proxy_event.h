@@ -38,23 +38,30 @@ namespace ara
                     event_client.start();
                 }).detach();
                 
-                // If the user wants to get notified,
-                // when subscription has succeeded, he needs to register a handler
-                // via \see SetSubscriptionStateChangeHandler(). This handler gets
-                // then called after subscription was successful.
-                // But In our case, We don't use Handler
+                /* If the user wants to get notified,
+                * when subscription has succeeded, he needs to register a handler
+                * via \see SetSubscriptionStateChangeHandler(). This handler gets
+                * then called after subscription was successful.
+                * But In our case, We don't use Handler
+                */
                 return ara::core::Result<void>();
             }
 
             template <typename F>
             ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max()) {
+                ara::core::Result<size_t> result = maxNumberOfSamples;
+
                 if (maxSampleCount_ <= maxNumberOfSamples) {
+                    return ara::core::Result<size_t>::FromError(result.Error());
                 }
+
                 SampleType sampleValue = event_client.get_samples();
                 SamplePtr<SampleType const> ptr;
                 ptr.Set(&sampleValue);
+
                 f(std::move(ptr));
-                return ara::core::Result<size_t>(maxNumberOfSamples);
+
+                return result;
             }
         };
     } // namespace com

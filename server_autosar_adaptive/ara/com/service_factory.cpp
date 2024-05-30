@@ -50,10 +50,11 @@ namespace ara
         }
 
         ara::core::Result<ara::com::FindServiceHandle> ServiceFactory::StartFindService(const ara::com::FindServiceHandler<HandleType>& handler, const ara::com::InstanceIdentifier& instance) {
-            // In Standard AUTOSAR StartFindService calls FindService continuously,
-            // But we use routing manager in vsomeip
-            // It waits until finding service
-            // So, we dont need to use while loop 
+            /* In Standard AUTOSAR StartFindService calls FindService continuously,
+            * But we use routing manager in vsomeip
+            * It waits until finding service
+            * So, we dont need to use while loop 
+            */
             ara::core::Result<ara::com::ServiceHandleContainer<HandleType>> result = FindService(instance);
 
             if (result.HasValue()) {
@@ -68,7 +69,13 @@ namespace ara
             }
 
             return ara::core::Result<ara::com::FindServiceHandle>::FromError(result.Error());        
-            }
+        }
+
+        void ServiceFactory::StopFindService(ara::com::FindServiceHandle handle) {
+            ara::com::vsomeip_client& stop_find_client = ara::com::vsomeip_client::get_client();
+            stop_find_client.unregister_availability_handler(handle.GetServiceId(), handle.GetInstanceId());
+        }
+        
 
     } // namespace com
 } // namespace ara
