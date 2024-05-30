@@ -35,7 +35,7 @@ namespace ara
                 void start();
 
                 void set_service_id(const ara::com::InstanceIdentifier instanceIdentifier);
-                void set_event_id(const ::vsomeip::service_t EventId, const ::vsomeip::service_t EventGroupId); 
+                void set_event_id(const ::vsomeip::service_t eventId, const ::vsomeip::service_t eventGroupId); 
                 
                 void register_state_handler();
                 void register_availability_handler();

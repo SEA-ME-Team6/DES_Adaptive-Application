@@ -29,9 +29,9 @@ namespace ara
             instanceId_ = instanceIdentifier.GetInstanceId();
         }
 
-        void vsomeip_client::set_event_id(const ::vsomeip::service_t EventId, const ::vsomeip::service_t EventGroupId) {
-            eventId_ = EventId;
-            eventGroupId_ = EventGroupId;
+        void vsomeip_client::set_event_id(const ::vsomeip::service_t eventId, const ::vsomeip::service_t eventGroupId) {
+            eventId_ = eventId;
+            eventGroupId_ = eventGroupId;
         }
 
         void vsomeip_client::register_state_handler() {
