@@ -28,7 +28,7 @@ namespace ara
             public:
                 static vsomeip_server& get_server();
 
-                void init(const ara::com::ServiceHandleType& handle, uint16_t mEventId, uint16_t mEventGroupId);
+                void init(const ara::com::ServiceHandleType& handle, uint16_t eventId_, uint16_t eventGroupId_);
                 void start();
                 void stop();
 
@@ -65,10 +65,10 @@ namespace ara
                 // blocked_ / is_offered_ must be initialized before starting the threads!
                 std::thread offer_thread_;
 
-                uint16_t mServiceId;
-                uint16_t mInstanceId;
-                uint16_t mEventId;
-                uint16_t mEventGroupId;
+                uint16_t serviceId_;
+                uint16_t instanceId_;
+                uint16_t eventId_;
+                uint16_t eventGroupId_;
         };
     }
 }

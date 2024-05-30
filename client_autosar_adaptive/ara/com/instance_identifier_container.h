@@ -2,7 +2,7 @@
 #define INSTANCE_IDENTIFIER_CONTAINER_H
 
 #include <vector>
-#include "instance_identifier.h"
+#include "./instance_identifier.h"
 
 namespace ara 
 {

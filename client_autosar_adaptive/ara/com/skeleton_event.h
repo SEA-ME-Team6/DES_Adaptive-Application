@@ -1,8 +1,8 @@
 #ifndef SKELETION_EVENT_H
 #define SKELETION_EVENT_H
 
-#include "handle_type.h"
-#include "sample_allocate_ptr.h"
+#include "./handle_type.h"
+#include "./sample_allocate_ptr.h"
 #include "./vsomeip/vsomeip_server.h"
 
 namespace ara 
@@ -20,8 +20,8 @@ namespace ara
             explicit SkeletonEvent() = default;  
 
             // Init() is Non Standard
-            void Init(const ara::com::ServiceHandleType& handle, uint16_t mEventId, uint16_t mEventGroupId) {
-                service_server.init(handle, mEventId, mEventGroupId);
+            void Init(const ara::com::ServiceHandleType& handle, uint16_t eventId, uint16_t eventGroupId) {
+                service_server.init(handle, eventId, eventGroupId);
                 service_server.register_state_handler();
                 service_server.offer_event();
 

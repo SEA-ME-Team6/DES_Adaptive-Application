@@ -13,11 +13,11 @@ namespace ara
         class InstanceIdentifier final
         {
         private:
-            std::string mSerializedFormat;
+            std::string serializedFormat_;
 
             /// @brief InstanceID for SOMEIP Binding 
-            /// @param mInstanceId Non Standard
-            uint16_t mInstanceId;
+            /// @param instanceId_ Non Standard
+            uint16_t instanceId_;
 
         public:
             static const InstanceIdentifier Any;

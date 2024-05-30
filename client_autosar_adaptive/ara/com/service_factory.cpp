@@ -1,7 +1,7 @@
-#include "service_factory.h"
 #include <thread>
 #include <mutex>
 #include <condition_variable>
+#include "./service_factory.h"
 
 namespace ara 
 {
@@ -51,7 +51,8 @@ namespace ara
 
         ara::core::Result<ara::com::FindServiceHandle> ServiceFactory::StartFindService(ara::com::FindServiceHandler<HandleType> handler, ara::com::InstanceIdentifier instance) {
             // In Standard AUTOSAR StartFindService calls FindService continuously,
-            // But we use vsomeip, and It waits until finding service
+            // But we use routing manager in vsomeip
+            // It waits until finding service
             // So, we dont need to use while loop 
             ara::core::Result<ara::com::ServiceHandleContainer<HandleType>> result = FindService(instance);
 

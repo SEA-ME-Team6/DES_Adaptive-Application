@@ -1,7 +1,7 @@
 #ifndef HANDLE_TYPE_H
 #define HANDLE_TYPE_H
 
-#include "instance_identifier.h"
+#include "./instance_identifier.h"
 
 namespace ara
 {
@@ -10,7 +10,7 @@ namespace ara
         class ServiceHandleType {
         public:
             ServiceHandleType() {}       
-            explicit ServiceHandleType(const ara::com::InstanceIdentifier& id) : mInstanceID(id) {}
+            explicit ServiceHandleType(const ara::com::InstanceIdentifier& id) : instanceId_(id) {}
             
             ServiceHandleType(const ServiceHandleType& other) = default;
             ServiceHandleType(ServiceHandleType&& other) noexcept = default;
@@ -18,13 +18,13 @@ namespace ara
             ServiceHandleType& operator=(ServiceHandleType&& other) noexcept = default;
             
             inline bool operator==(const ServiceHandleType& other) const {
-                return mInstanceID == other.mInstanceID;
+                return instanceId_ == other.instanceId_;
             }
 
             const ara::com::InstanceIdentifier& GetInstanceId() const {
-                return mInstanceID;
+                return instanceId_;
             }
-            ara::com::InstanceIdentifier mInstanceID;
+            ara::com::InstanceIdentifier instanceId_;
         private:
         };
 

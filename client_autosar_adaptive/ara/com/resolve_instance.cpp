@@ -1,7 +1,7 @@
 #include <vector>
 #include <optional>
 
-#include "resolve_instance.h"
+#include "./resolve_instance.h"
 
 namespace ara
 {

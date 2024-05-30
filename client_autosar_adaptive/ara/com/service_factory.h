@@ -2,7 +2,7 @@
 #define SERVICE_FACTORY_H
 
 #include <iostream>
-#include "vsomeip/vsomeip_client.h"
+#include "./vsomeip/vsomeip_client.h"
 
 namespace ara 
 {
