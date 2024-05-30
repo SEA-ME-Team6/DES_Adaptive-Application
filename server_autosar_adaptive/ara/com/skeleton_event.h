@@ -24,12 +24,19 @@ namespace ara
                 service_server.init(handle, mEventId, mEventGroupId);
                 service_server.register_state_handler();
                 service_server.offer_event();
-                service_server.start();
+
+                std::thread([this]() {
+                    service_server.start();
+                }).detach();
             }
 
-            void Deinit() {};
+            void Deinit() {
+                service_server.stop();
+            };
 
-            ara::core::Result<void> Send(const SampleType &data) {};
+            ara::core::Result<void> Send(const SampleType &data) {
+                service_server.notify();
+            };
 
             ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate() {};
 

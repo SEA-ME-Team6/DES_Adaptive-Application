@@ -37,6 +37,7 @@ namespace ara
 
                 void register_state_handler();
                 void offer_event();
+                void notify();
             
             private:
                 vsomeip_server();
@@ -44,7 +45,6 @@ namespace ara
                 void run();
                 void offer();
                 void stop_offer();
-                void notify();
 
                 void on_state(vsomeip::state_type_e _state);
                 

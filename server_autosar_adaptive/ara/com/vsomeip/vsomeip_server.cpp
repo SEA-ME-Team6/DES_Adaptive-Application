@@ -11,8 +11,7 @@ namespace ara
                 blocked_(false),
                 running_(true),
                 is_offered_(false),
-                offer_thread_(std::bind(&vsomeip_server::run, this)),
-                notify_thread_(std::bind(&vsomeip_server::notify, this)) {}
+                offer_thread_(std::bind(&vsomeip_server::run, this)) {}
 
         vsomeip_server& vsomeip_server::get_server() {
             static vsomeip_server instance;
@@ -89,36 +88,26 @@ namespace ara
             std::lock_guard<std::mutex> its_lock(notify_mutex_);
             app_->offer_service(mServiceId, mInstanceId);
             is_offered_ = true;
-            notify_condition_.notify_one();
+            // notify_condition_.notify_one();
         }
 
         void vsomeip_server::notify() {
             vsomeip::byte_t its_data[10];
-            uint32_t its_size = 1;
+            uint32_t its_size = 10;
 
-            while (running_) {
-                std::unique_lock<std::mutex> its_lock(notify_mutex_);
-                while (!is_offered_ && running_)
-                    notify_condition_.wait(its_lock);
-                while (is_offered_ && running_) {
-                    if (its_size == sizeof(its_data))
-                        its_size = 1;
+            {
+                std::lock_guard<std::mutex> its_lock(payload_mutex_);
 
-                    for (uint32_t i = 0; i < its_size; ++i)
-                        its_data[i] = static_cast<uint8_t>(i);
+                if (its_size > sizeof(its_data))
+                    its_size = sizeof(its_data);
 
-                    {
-                        std::lock_guard<std::mutex> its_lock(payload_mutex_);
-                        payload_->set_data(its_data, its_size);
+                for (uint32_t i = 0; i < its_size; ++i)
+                    its_data[i] = static_cast<uint8_t>(i);
 
-                        std::cout << "Setting event (Length=" << std::dec << its_size << ")." << std::endl;
-                        app_->notify(mServiceId, mInstanceId, mEventId, payload_);
-                    }
+                payload_->set_data(its_data, its_size);
 
-                    its_size++;
-
-                    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-                }
+                std::cout << "Setting event (Length=" << std::dec << its_size << ")." << std::endl;
+                app_->notify(mServiceId, mInstanceId, mEventId, payload_);
             }
         }
 
@@ -126,7 +115,7 @@ namespace ara
             running_ = false;
             blocked_ = true;
             condition_.notify_one();
-            notify_condition_.notify_one();
+            // notify_condition_.notify_one();
             app_->clear_all_handler();
             stop_offer();
             if (std::this_thread::get_id() != offer_thread_.get_id()) {

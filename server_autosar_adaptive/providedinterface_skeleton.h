@@ -77,7 +77,7 @@ namespace skeleton
 
     inline void StopOfferService()
     {
-      // Out1.Deinit();
+      Out1.Deinit();
       // ara::com::ServiceFactory::DestroyService(mHndl);
     }
 
