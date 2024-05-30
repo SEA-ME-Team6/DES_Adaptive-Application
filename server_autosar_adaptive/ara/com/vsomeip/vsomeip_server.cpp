@@ -88,7 +88,6 @@ namespace ara
             std::lock_guard<std::mutex> its_lock(notify_mutex_);
             app_->offer_service(mServiceId, mInstanceId);
             is_offered_ = true;
-            // notify_condition_.notify_one();
         }
 
         void vsomeip_server::notify() {
@@ -96,8 +95,6 @@ namespace ara
             uint32_t its_size = 10;
 
             {
-                std::lock_guard<std::mutex> its_lock(payload_mutex_);
-
                 if (its_size > sizeof(its_data))
                     its_size = sizeof(its_data);
 
@@ -115,7 +112,6 @@ namespace ara
             running_ = false;
             blocked_ = true;
             condition_.notify_one();
-            // notify_condition_.notify_one();
             app_->clear_all_handler();
             stop_offer();
             if (std::this_thread::get_id() != offer_thread_.get_id()) {

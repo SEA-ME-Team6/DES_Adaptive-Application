@@ -57,7 +57,6 @@ namespace ara
                 bool running_;
 
                 std::mutex notify_mutex_;
-                std::condition_variable notify_condition_;
                 bool is_offered_;
 
                 std::mutex payload_mutex_;
@@ -65,7 +64,6 @@ namespace ara
 
                 // blocked_ / is_offered_ must be initialized before starting the threads!
                 std::thread offer_thread_;
-                std::thread notify_thread_;
 
                 uint16_t mServiceId;
                 uint16_t mInstanceId;
