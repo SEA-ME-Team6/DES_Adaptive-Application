@@ -35,7 +35,7 @@ namespace ara
             };
 
             ara::core::Result<void> Send(const SampleType &data) {
-                service_server.notify();
+                service_server.notify(data);
             };
 
             ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate() {};

@@ -90,16 +90,15 @@ namespace ara
             is_offered_ = true;
         }
 
-        void vsomeip_server::notify() {
+        void vsomeip_server::notify(const float &data) {
             vsomeip::byte_t its_data[10];
-            uint32_t its_size = 10;
+            uint32_t its_size = 1;
 
-            {
+            if (is_offered_ && running_) {
                 if (its_size > sizeof(its_data))
                     its_size = sizeof(its_data);
 
-                for (uint32_t i = 0; i < its_size; ++i)
-                    its_data[i] = static_cast<uint8_t>(i);
+                its_data[0] = data;
 
                 payload_->set_data(its_data, its_size);
 
@@ -120,13 +119,6 @@ namespace ara
                 }
             } else {
                 offer_thread_.detach();
-            }
-            if (std::this_thread::get_id() != notify_thread_.get_id()) {
-                if (notify_thread_.joinable()) {
-                    notify_thread_.join();
-                }
-            } else {
-                notify_thread_.detach();
             }
             app_->stop();
         }

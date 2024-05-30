@@ -3,6 +3,7 @@
 
 #include "handle_type.h"
 #include "sample_allocate_ptr.h"
+#include "./vsomeip/vsomeip_server.h"
 
 namespace ara 
 {
@@ -11,24 +12,31 @@ namespace ara
         template<typename T>
         class SkeletonEvent {
         private:
-            std::string mInstanceId;
-            uint16_t mEventId, mEventGroupId;
-
+            vsomeip_server& service_server = ara::com::vsomeip_server::get_server();
+       
         public:
-            using SampleType = double;
+            using SampleType = float;
 
             explicit SkeletonEvent() = default;  
 
             // Init() is Non Standard
             void Init(const ara::com::ServiceHandleType& handle, uint16_t mEventId, uint16_t mEventGroupId) {
-                // this->mInstanceId = handle.GetInstanceId().ToString();
-                this->mEventId = mEventId;
-                this->mEventGroupId = mEventGroupId;
+                service_server.init(handle, mEventId, mEventGroupId);
+                service_server.register_state_handler();
+                service_server.offer_event();
+
+                std::thread([this]() {
+                    service_server.start();
+                }).detach();
             }
 
-            void Deinit() {};
+            void Deinit() {
+                service_server.stop();
+            };
 
-            ara::core::Result<void> Send(const SampleType &data) {};
+            ara::core::Result<void> Send(const SampleType &data) {
+                service_server.notify(data);
+            };
 
             ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate() {};
 

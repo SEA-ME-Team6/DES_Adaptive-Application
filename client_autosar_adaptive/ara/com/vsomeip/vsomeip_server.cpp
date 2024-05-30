@@ -11,18 +11,19 @@ namespace ara
                 blocked_(false),
                 running_(true),
                 is_offered_(false),
-                offer_thread_(std::bind(&vsomeip_server::run, this)),
-                notify_thread_(std::bind(&vsomeip_server::notify, this)) {}
+                offer_thread_(std::bind(&vsomeip_server::run, this)) {}
 
         vsomeip_server& vsomeip_server::get_server() {
             static vsomeip_server instance;
             return instance;          
         }
 
-        void vsomeip_server::init(const ara::com::InstanceIdentifier instanceIdentifier) {
+        void vsomeip_server::init(const ara::com::ServiceHandleType& handle, uint16_t mEventId, uint16_t mEventGroupId) {
             if (!app_->init()) {
                 std::cerr << "Couldn't initialize application" << std::endl;
             }
+            set_service_id(handle.GetInstanceId());
+            set_event_id(mEventId, mEventGroupId);
         }
 
         void vsomeip_server::start() {
@@ -87,36 +88,22 @@ namespace ara
             std::lock_guard<std::mutex> its_lock(notify_mutex_);
             app_->offer_service(mServiceId, mInstanceId);
             is_offered_ = true;
-            notify_condition_.notify_one();
         }
 
-        void vsomeip_server::notify() {
+        void vsomeip_server::notify(const float &data) {
             vsomeip::byte_t its_data[10];
             uint32_t its_size = 1;
 
-            while (running_) {
-                std::unique_lock<std::mutex> its_lock(notify_mutex_);
-                while (!is_offered_ && running_)
-                    notify_condition_.wait(its_lock);
-                while (is_offered_ && running_) {
-                    if (its_size == sizeof(its_data))
-                        its_size = 1;
+            if (is_offered_ && running_) {
+                if (its_size > sizeof(its_data))
+                    its_size = sizeof(its_data);
 
-                    for (uint32_t i = 0; i < its_size; ++i)
-                        its_data[i] = static_cast<uint8_t>(i);
+                its_data[0] = data;
 
-                    {
-                        std::lock_guard<std::mutex> its_lock(payload_mutex_);
-                        payload_->set_data(its_data, its_size);
+                payload_->set_data(its_data, its_size);
 
-                        std::cout << "Setting event (Length=" << std::dec << its_size << ")." << std::endl;
-                        app_->notify(mServiceId, mInstanceId, mEventId, payload_);
-                    }
-
-                    its_size++;
-
-                    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-                }
+                std::cout << "Setting event (Length=" << std::dec << its_size << ")." << std::endl;
+                app_->notify(mServiceId, mInstanceId, mEventId, payload_);
             }
         }
 
@@ -124,7 +111,6 @@ namespace ara
             running_ = false;
             blocked_ = true;
             condition_.notify_one();
-            notify_condition_.notify_one();
             app_->clear_all_handler();
             stop_offer();
             if (std::this_thread::get_id() != offer_thread_.get_id()) {
@@ -133,13 +119,6 @@ namespace ara
                 }
             } else {
                 offer_thread_.detach();
-            }
-            if (std::this_thread::get_id() != notify_thread_.get_id()) {
-                if (notify_thread_.joinable()) {
-                    notify_thread_.join();
-                }
-            } else {
-                notify_thread_.detach();
             }
             app_->stop();
         }

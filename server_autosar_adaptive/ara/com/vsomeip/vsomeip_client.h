@@ -59,6 +59,7 @@ namespace ara
                 void on_message(const std::shared_ptr<::vsomeip::message> &_response);
 
                 std::queue<float> message_buffer;
+                float last_sample;
 
                 std::mutex mutex_;
                 

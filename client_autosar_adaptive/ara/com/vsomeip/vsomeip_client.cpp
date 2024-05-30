@@ -100,38 +100,20 @@ namespace ara
         }
 
         void vsomeip_client::on_message(const std::shared_ptr<::vsomeip::message> &_response) {
-            // std::stringstream its_message;
-            // its_message << "Received a notification for Event ["
-            //         << std::setw(4)    << std::setfill('0') << std::hex
-            //         << _response->get_service() << "."
-            //         << std::setw(4) << std::setfill('0') << std::hex
-            //         << _response->get_instance() << "."
-            //         << std::setw(4) << std::setfill('0') << std::hex
-            //         << _response->get_method() << "] to Client/Session ["
-            //         << std::setw(4) << std::setfill('0') << std::hex
-            //         << _response->get_client() << "/"
-            //         << std::setw(4) << std::setfill('0') << std::hex
-            //         << _response->get_session()
-            //         << "] = ";
             std::shared_ptr<::vsomeip::payload> its_payload =
                     _response->get_payload();
-            // its_message << "(" << std::dec << its_payload->get_length() << ") ";
-            // for (uint32_t i = 0; i < its_payload->get_length(); ++i)
-            //     its_message << std::hex << std::setw(2) << std::setfill('0')
-            //         << (int) its_payload->get_data()[i] << " ";
-
-            // std::cout << its_message.str() << std::endl;
             std::unique_lock<std::mutex> lock(mutex_);
-            message_buffer.push(static_cast<float>(its_payload->get_data()[its_payload->get_length() - 1]));
+            message_buffer.push(static_cast<float>(its_payload->get_data()[0]));
         }
 
         float vsomeip_client::get_samples() {
             std::unique_lock<std::mutex> lock(mutex_);
-            float samples = message_buffer.front();
-            message_buffer.pop();
-            return samples;        
+            if (!message_buffer.empty()) {
+                last_sample = message_buffer.front();
+                message_buffer.pop();
+            }
+            return last_sample;     
         }
-
     }    
 }
 

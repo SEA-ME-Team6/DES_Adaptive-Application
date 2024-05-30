@@ -37,7 +37,7 @@ namespace ara
 
                 void register_state_handler();
                 void offer_event();
-                void notify();
+                void notify(const float &data);
             
             private:
                 vsomeip_server();

@@ -28,7 +28,7 @@ namespace ara
             public:
                 static vsomeip_server& get_server();
 
-                void init(const ara::com::InstanceIdentifier instanceIdentifier);
+                void init(const ara::com::ServiceHandleType& handle, uint16_t mEventId, uint16_t mEventGroupId);
                 void start();
                 void stop();
 
@@ -37,6 +37,7 @@ namespace ara
 
                 void register_state_handler();
                 void offer_event();
+                void notify(const float &data);
             
             private:
                 vsomeip_server();
@@ -44,7 +45,6 @@ namespace ara
                 void run();
                 void offer();
                 void stop_offer();
-                void notify();
 
                 void on_state(vsomeip::state_type_e _state);
                 
@@ -57,7 +57,6 @@ namespace ara
                 bool running_;
 
                 std::mutex notify_mutex_;
-                std::condition_variable notify_condition_;
                 bool is_offered_;
 
                 std::mutex payload_mutex_;
@@ -65,7 +64,6 @@ namespace ara
 
                 // blocked_ / is_offered_ must be initialized before starting the threads!
                 std::thread offer_thread_;
-                std::thread notify_thread_;
 
                 uint16_t mServiceId;
                 uint16_t mInstanceId;
