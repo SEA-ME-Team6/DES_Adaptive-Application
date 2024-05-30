@@ -20,7 +20,7 @@ namespace ara {
         };
 
         template <typename HandleType>
-        using FindServiceHandler = std::function<void(ServiceHandleContainer<HandleType>, FindServiceHandle)>;
+        using FindServiceHandler = std::function<void(ara::com::ServiceHandleContainer<HandleType>, ara::com::FindServiceHandle)>;
     }
 }
 #endif

@@ -15,7 +15,7 @@ namespace ara
         class ProxyEvent {
         private:
             uint16_t maxSampleCount_;
-            vsomeip_client& event_client = ara::com::vsomeip_client::get_client();
+            ara::com::vsomeip_client& event_client = ara::com::vsomeip_client::get_client();
         
         public:
             using SampleType = float;

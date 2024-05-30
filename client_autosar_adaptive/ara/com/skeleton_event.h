@@ -12,7 +12,7 @@ namespace ara
         template<typename T>
         class SkeletonEvent {
         private:
-            vsomeip_server& service_server = ara::com::vsomeip_server::get_server();
+            ara::com::vsomeip_server& service_server = ara::com::vsomeip_server::get_server();
        
         public:
             using SampleType = float;

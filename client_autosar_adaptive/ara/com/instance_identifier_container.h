@@ -8,7 +8,7 @@ namespace ara
 {
     namespace com 
     {
-        using InstanceIdentifierContainer = std::vector<InstanceIdentifier>;
+        using InstanceIdentifierContainer = std::vector<ara::com::InstanceIdentifier>;
 
     } // namespace com
 } // namespace ara
