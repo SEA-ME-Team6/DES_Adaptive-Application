@@ -43,3 +43,37 @@ target_link_libraries(${PROJECT_NAME}
     ${Boost_LIBRARIES}
     vsomeip3
 )
+
+##
+add_executable(lkas  /root/Documents/MATLAB/SupportPackages/R2024a/toolbox/realtime/targets/linux/src/MW_v4l2_cam.c
+    /root/Documents/MATLAB/SupportPackages/R2024a/toolbox/realtime/targets/linux/src/MW_availableWebcam.c
+    ${MATLAB_ROOT}/toolbox/vision/visionrt/vipsvd/svd_d_rt.c
+    ${MATLAB_ROOT}/toolbox/vision/visionrt/vipsvd/svd_helper_rt.c
+    ${MATLAB_ROOT}/toolbox/vision/visionrt/vipendian/is_little_endian_rt.c
+    ${START_DIR}/lkas_autosar_adaptive/lkas.cpp
+    ${START_DIR}/lkas_autosar_adaptive/main.cpp)
+
+target_link_libraries(lkas PRIVATE ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64/libmwara_com_22_11.so
+${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64/libmwara_exec_22_11.so
+${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64/libmwara_log_22_11.so
+${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64/libmwara_per_22_11.so
+${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64/libmwara_manifest_utils.so
+${MATLAB_ROOT}/bin/glnxa64/libmwboost_thread.so.1.78.0
+${MATLAB_ROOT}/bin/glnxa64/libmwboost_chrono.so.1.78.0
+${MATLAB_ROOT}/bin/glnxa64/libmwboost_timer.so.1.78.0
+${MATLAB_ROOT}/bin/glnxa64/libmwboost_filesystem.so.1.78.0
+${MATLAB_ROOT}/bin/glnxa64/libsqlite3.so.3
+${SPKG_ROOT}/bin/glnxa64/dlt-daemon/lib/libdlt.so
+${SPKG_ROOT}/bin/glnxa64/dlt-daemon/lib/libdlt.so.2
+${SPKG_ROOT}/bin/glnxa64/vsomeip/lib/libvsomeip3.so.3
+${SPKG_ROOT}/bin/glnxa64/vsomeip/lib/libvsomeip3-sd.so.3
+${SPKG_ROOT}/bin/glnxa64/vsomeip/lib/libvsomeip3-cfg.so.3
+rtwshared
+${LIB_DL}
+${LIB_RT}
+Threads::Threads
+$<$<BOOL:${FOUND_LIBM}>:m>
+$<$<BOOL:${WIN32}>:kernel32>
+$<$<BOOL:${WIN32}>:ws2_32>
+$<$<BOOL:${WIN32}>:mswsock>
+$<$<BOOL:${WIN32}>:advapi32>)

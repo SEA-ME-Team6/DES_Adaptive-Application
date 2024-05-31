@@ -10,13 +10,19 @@
 #ifndef PROVIDEDINTERFACE_SKELETON_H_
 #define PROVIDEDINTERFACE_SKELETON_H_
 #include <memory>
-#include "providedinterface_common.h"
+#include "ara/com/skeleton_event.h"
+#include "ara/com/method_call_proccessing_mode.h"
+#include "ara/com/instance_identifier.h"
+#include "ara/com/instance_identifier_container.h"
+#include "ara/com/resolve_instance.h"
+#include "ara/com/handle_type.h"
+// #include "providedinterface_common.h"
 
 namespace skeleton
 {
   namespace events
   {
-    using Error = ara::com::SkeletonEvent<double>;
+    using Error = ara::com::SkeletonEvent<float>;
   }                                    /* namespace events */
 
   namespace methods
@@ -65,22 +71,21 @@ namespace skeleton
       uint16_t mMethodId;
       mEventId = 59050;
       mEventGroupId = 59050;
-      Error.Init(ara::com::EventFactory::CreateSkeletonEvent<double, skeleton_io::
-                 ProvidedInterface_Error_t>(mHndl, mEventId, mEventGroupId));
+      Error.Init(mHndl, mEventId, mEventGroupId);
       return ara::core::Result<void>::FromValue();
     }
 
     inline void StopOfferService()
     {
       Error.Deinit();
-      ara::com::ServiceFactory::DestroyService(mHndl);
+      // ara::com::ServiceFactory::DestroyService(mHndl);
     }
 
     skeleton::events::Error Error;
    private:
     ara::com::ServiceHandleType mHndl;
     ara::com::MethodCallProcessingMode mMethodProcMode;
-    std::shared_ptr<ara::com::SkeletonMethodMiddlewareBase> mMethodMiddleware;
+    // std::shared_ptr<ara::com::SkeletonMethodMiddlewareBase> mMethodMiddleware;
   };
 }                                      /* namespace skeleton */
 
