@@ -51,7 +51,7 @@ namespace ara
             ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max()) {
                 ara::core::Result<size_t> result = maxNumberOfSamples;
 
-                if (maxSampleCount_ <= maxNumberOfSamples) {
+                if (maxSampleCount_ < maxNumberOfSamples) {
                     return ara::core::Result<size_t>::FromError(result.Error());
                 }
 

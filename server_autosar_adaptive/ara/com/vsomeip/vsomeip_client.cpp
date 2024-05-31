@@ -78,6 +78,7 @@ namespace ara
         }
 
         void vsomeip_client::stop() {
+            // app_->unregister_availability_handler(serviceId_, instanceId_);
             app_->stop();
         }
 
