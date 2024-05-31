@@ -1,0 +1,14 @@
+%implements s8_b0_ew32h_BlockInstanceSetup "C"
+
+%function BlockInstanceSetup(block, system) Output
+%% Subsystems with iterators in IR:
+%% TLC Block Registration buffer:
+%<LibAddToCommonIncludes("<cstdio>")>
+%<LibAddToCommonIncludes("MW_availableWebcam.h")>
+%<LibAddToCommonIncludes("MW_v4l2_cam.h")>
+%<LibAddToCommonIncludes("<stdlib.h>")>
+%<LibAddToCommonIncludes("<time.h>")>
+%<LibAddToCommonIncludes("vipsvd_rt.h")>
+%<LibAddToCommonIncludes("providedinterface_skeleton.h")>
+%% END  Block Registration buffer
+%endfunction

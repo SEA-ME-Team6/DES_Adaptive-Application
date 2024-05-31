@@ -1,9 +1,9 @@
 ###########################################################################
-# CMakeLists.txt generated for component Rpi_cam
+# CMakeLists.txt generated for component lkas
 # Product type: executable
 ###########################################################################
 cmake_minimum_required(VERSION 3.12)
-project(Rpi_cam)
+project(lkas)
 
 # Propagate the CMAKE_EXPORT_COMPILE_COMMANDS variable from the 
 # environment if it is defined as an environment variable, but not as a 
@@ -13,8 +13,9 @@ if(DEFINED ENV{CMAKE_EXPORT_COMPILE_COMMANDS} AND NOT DEFINED CMAKE_EXPORT_COMPI
     set(CMAKE_EXPORT_COMPILE_COMMANDS $ENV{CMAKE_EXPORT_COMPILE_COMMANDS})
 endif()
 
-# Define common variables that are used within the whole project.
-set(SYSLIB_PREFIX $<IF:$<AND:$<BOOL:${WIN32}>,$<NOT:$<BOOL:${MINGW}>>>,lib,>)
+
+# Set directory properties.
+set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT lkas)
 
 ###########################################################################
 ## Path variables
@@ -26,7 +27,7 @@ get_filename_component(START_DIR .. ABSOLUTE)
 # by setting the variable from the command line, e.g.,
 # 
 # 	cmake . -DMATLAB_ROOT=/path/to/another/matlab/root
-set(MATLAB_ROOT /usr/local/MATLAB/R2023b CACHE PATH "")
+set(MATLAB_ROOT /usr/local/MATLAB/R2024a CACHE PATH "")
 
 # Additional variables that are defined conditionally.
 if("${CMAKE_CURRENT_BINARY_DIR}" STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}")
@@ -53,6 +54,14 @@ elseif(WIN32 AND ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL AMD64))
 endif()
 
 
+
+# Add common link_directories, including any platform-specific paths under 
+# MATLAB_ROOT.
+set(EXTRA_SYSLIB_PATHS ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64
+    ${SPKG_ROOT}/bin/glnxa64/dlt-daemon/lib
+    ${SPKG_ROOT}/bin/glnxa64/vsomeip/lib)
+list(APPEND CMAKE_LIBRARY_PATH ${EXTRA_SYSLIB_PATHS})
+link_directories(${EXTRA_SYSLIB_PATHS})
 if(DEFINED MATLAB_ROOT_SYSLIB_PATHS)
     list(APPEND CMAKE_LIBRARY_PATH ${MATLAB_ROOT_SYSLIB_PATHS})
     link_directories(${MATLAB_ROOT_SYSLIB_PATHS})
@@ -72,6 +81,8 @@ find_package(Threads REQUIRED)
 ## System Libraries
 ###########################################################################
 find_library(FOUND_LIBM m NO_SYSTEM_ENVIRONMENT_PATH PATHS ${CMAKE_C_IMPLICIT_LINK_DIRECTORIES} ${CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES})
+find_library(LIB_DL NAMES dl libdl REQUIRED)
+find_library(LIB_RT NAMES rt librt REQUIRED)
 
 ###########################################################################
 ## Target definition and commands
@@ -83,27 +94,27 @@ if(NOT TARGET rtwshared)
     add_subdirectory(../slprj/autosar_adaptive/_sharedutils ${BINARY_START_DIR}/slprj/autosar_adaptive/_sharedutils)
 endif()
 
-# Definition of target "Rpi_cam".
-add_executable(Rpi_cam  /home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/linux/src/MW_v4l2_cam.c
-    /home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/linux/src/MW_availableWebcam.c
+# Definition of target "lkas".
+add_executable(lkas  /root/Documents/MATLAB/SupportPackages/R2024a/toolbox/realtime/targets/linux/src/MW_v4l2_cam.c
+    /root/Documents/MATLAB/SupportPackages/R2024a/toolbox/realtime/targets/linux/src/MW_availableWebcam.c
     ${MATLAB_ROOT}/toolbox/vision/visionrt/vipsvd/svd_d_rt.c
     ${MATLAB_ROOT}/toolbox/vision/visionrt/vipsvd/svd_helper_rt.c
     ${MATLAB_ROOT}/toolbox/vision/visionrt/vipendian/is_little_endian_rt.c
-    ${START_DIR}/Rpi_cam_autosar_adaptive/Rpi_cam.cpp
-    ${START_DIR}/Rpi_cam_autosar_adaptive/main.cpp)
+    ${START_DIR}/lkas_autosar_adaptive/lkas.cpp
+    ${START_DIR}/lkas_autosar_adaptive/main.cpp)
 
-# Set properties for target "Rpi_cam".
-set_target_properties(Rpi_cam PROPERTIES PREFIX ""
+# Set properties for target "lkas".
+set_target_properties(lkas PROPERTIES PREFIX ""
     POSITION_INDEPENDENT_CODE ON
     RUNTIME_OUTPUT_DIRECTORY "${BINARY_START_DIR}/./$<0:>"
     LIBRARY_OUTPUT_DIRECTORY "${BINARY_START_DIR}/./$<0:>"
     ARCHIVE_OUTPUT_DIRECTORY "${BINARY_START_DIR}/./$<0:>")
 
-# Specify language features required for target "Rpi_cam".
-target_compile_features(Rpi_cam PUBLIC cxx_std_11)
+# Specify language features required for target "lkas".
+target_compile_features(lkas PUBLIC cxx_std_11)
 
-# Specify compiler preprocessor definitions for target "Rpi_cam".
-target_compile_definitions(Rpi_cam PRIVATE -DMODEL=Rpi_cam
+# Specify compiler preprocessor definitions for target "lkas".
+target_compile_definitions(lkas PRIVATE -DMODEL=lkas
     -DNUMST=1
     -DNCSTATES=0
     -DHAVESTDIO
@@ -116,51 +127,60 @@ target_compile_definitions(Rpi_cam PRIVATE -DMODEL=Rpi_cam
     -DMAT_FILE=0
     -DMULTI_INSTANCE_CODE=1
     -DINTEGER_CODE=0
-    -DMT=0)
+    -DMT=0
+    -DARA_VER_22_11
+    -DENABLE_VSOMEIP)
 
-# Specify compiler flags for target "Rpi_cam".
-target_compile_options(Rpi_cam PRIVATE -std=c++11
+# Specify compiler flags for target "lkas".
+target_compile_options(lkas PRIVATE -std=c++11
     $<$<NOT:$<BOOL:${CMAKE_BUILD_TYPE}>>:-O3 -DNDEBUG>)
 
-# Specify include directories for target "Rpi_cam".
-target_include_directories(Rpi_cam PRIVATE ${START_DIR}
-    /home/seame-workstation09/Documents/MATLAB/SupportPackages/R2023b/toolbox/realtime/targets/linux/include
+# Specify include directories for target "lkas".
+target_include_directories(lkas PRIVATE ${START_DIR}
+    /root/Documents/MATLAB/SupportPackages/R2024a/toolbox/realtime/targets/linux/include
     ${MATLAB_ROOT}/toolbox/shared/dsp/vision/matlab/include
     ${MATLAB_ROOT}/toolbox/vision/include
     ${MATLAB_ROOT}/toolbox/vision/visionrt/export/include
     ${MATLAB_ROOT}/toolbox/vision/visionrt/export/include/visionrt
-    ${START_DIR}/Rpi_cam_autosar_adaptive
+    ${START_DIR}/lkas_autosar_adaptive
     ${MATLAB_ROOT}/toolbox/coder/simulinkcoder/src/executor
-    ${START_DIR}/Rpi_cam_autosar_adaptive/stub/aragen
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include
+    ${START_DIR}/lkas_autosar_adaptive/stub/aragen
     ${MATLAB_ROOT}/extern/include
     ${MATLAB_ROOT}/simulink/include
     ${MATLAB_ROOT}/rtw/c/src
     ${MATLAB_ROOT}/rtw/c/src/ext_mode/common
     ${MATLAB_ROOT}/rtw/c/ert
     ${START_DIR}/slprj/autosar_adaptive/_sharedutils
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/dds/core/policy
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/dds/log
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/dds/topic
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/attributes
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/builtin/data
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/common
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/flowcontrol
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/history
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/messages
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/network
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/resources
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/security/common
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/transport
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastrtps
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastrtps/types
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastrtps/utils
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastrtps/utils/collections)
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/headers/glnxa64/22_11
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/headers/glnxa64/ud_ipc
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/headers/glnxa64/dds_util
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/headers/glnxa64/com_factory
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/headers/glnxa64/log_utils
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/headers/glnxa64/manifest_utils
+    ${SPKG_ROOT}/bin/glnxa64/dlt-daemon/include
+    ${SPKG_ROOT}/bin/glnxa64/vsomeip/include)
 
-# Specify library link dependencies for target "Rpi_cam".  CMake generator 
+# Specify library link dependencies for target "lkas". CMake generator 
 # expressions are used to create a CMakeLists.txt file that supports 
 # multiple platforms with differently named system library dependencies.
-target_link_libraries(Rpi_cam PRIVATE rtwshared
+target_link_libraries(lkas PRIVATE ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64/libmwara_com_22_11.so
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64/libmwara_exec_22_11.so
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64/libmwara_log_22_11.so
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64/libmwara_per_22_11.so
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64/libmwara_manifest_utils.so
+    ${MATLAB_ROOT}/bin/glnxa64/libmwboost_thread.so.1.78.0
+    ${MATLAB_ROOT}/bin/glnxa64/libmwboost_chrono.so.1.78.0
+    ${MATLAB_ROOT}/bin/glnxa64/libmwboost_timer.so.1.78.0
+    ${MATLAB_ROOT}/bin/glnxa64/libmwboost_filesystem.so.1.78.0
+    ${MATLAB_ROOT}/bin/glnxa64/libsqlite3.so.3
+    ${SPKG_ROOT}/bin/glnxa64/dlt-daemon/lib/libdlt.so
+    ${SPKG_ROOT}/bin/glnxa64/dlt-daemon/lib/libdlt.so.2
+    ${SPKG_ROOT}/bin/glnxa64/vsomeip/lib/libvsomeip3.so.3
+    ${SPKG_ROOT}/bin/glnxa64/vsomeip/lib/libvsomeip3-sd.so.3
+    ${SPKG_ROOT}/bin/glnxa64/vsomeip/lib/libvsomeip3-cfg.so.3
+    rtwshared
+    ${LIB_DL}
+    ${LIB_RT}
     Threads::Threads
     $<$<BOOL:${FOUND_LIBM}>:m>
     $<$<BOOL:${WIN32}>:kernel32>
@@ -172,26 +192,26 @@ target_link_libraries(Rpi_cam PRIVATE rtwshared
 # executable programs for Apple platforms.
 if(APPLE AND (CMAKE_C_COMPILER_ID STREQUAL "AppleClang"))
     string(APPEND _dsymutilcmd "$<IF:$<CONFIG:DEBUG,RELWITHDEBINFO>,"
-                "xcrun;dsymutil;$<TARGET_FILE:Rpi_cam>;--flat,"
+                "xcrun;dsymutil;$<TARGET_FILE:lkas>;--flat,"
                 "true"
         >)
-    add_custom_command(TARGET Rpi_cam
+    add_custom_command(TARGET lkas
             POST_BUILD
             COMMAND "${_dsymutilcmd}"
             COMMAND_EXPAND_LISTS
-            BYPRODUCTS Rpi_cam.dwarf)
+            BYPRODUCTS lkas.dwarf)
 endif()
 
 
 ###########################################################################
 ## Build success message
 ###########################################################################
-add_custom_command(TARGET Rpi_cam POST_BUILD
-     COMMAND ${CMAKE_COMMAND} -E cmake_echo_color --cyan "\\#\\#\\# Created executable: $<TARGET_FILE:Rpi_cam>")
+add_custom_command(TARGET lkas POST_BUILD
+     COMMAND ${CMAKE_COMMAND} -E cmake_echo_color --cyan "\\#\\#\\# Created executable: $<TARGET_FILE:lkas>")
 
 ###########################################################################
 ## Call toolchain hook function if defined
 ###########################################################################
 if(COMMAND toolchain_target_hook)
-    toolchain_target_hook(Rpi_cam)
+    toolchain_target_hook(lkas)
 endif()

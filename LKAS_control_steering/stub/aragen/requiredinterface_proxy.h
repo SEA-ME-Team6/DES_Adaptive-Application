@@ -5,7 +5,7 @@
 
    Code generated for Simulink Adaptive model: "control"
    AUTOSAR AP Release: "21-11"
-   On: "31-May-2024 11:38:45"  */
+   On: "Fri May 31 15:33:12 2024"  */
 
 #ifndef REQUIREDINTERFACE_PROXY_H_
 #define REQUIREDINTERFACE_PROXY_H_
@@ -20,13 +20,13 @@ namespace proxy
     using LKAS = ara::com::ProxyEvent<double>;
   }                                    /* namespace events */
 
-  namespace methods
-  {
-  }                                    /* namespace methods */
-
   namespace fields
   {
   }                                    /* namespace fields */
+
+  namespace methods
+  {
+  }                                    /* namespace methods */
 
   class RequiredInterfaceProxy {
    private:
@@ -35,10 +35,13 @@ namespace proxy
     using HandleType = ara::com::ServiceHandleType;
     explicit RequiredInterfaceProxy(const HandleType& handle): mHandle(handle)
     {
-      std::string sTopicName;
-      sTopicName = "LKAS";
+      uint16_t mEventId, mEventGroupId;
+      uint32_t queueLength{ 1 };
+
+      mEventId = 14859;
+      mEventGroupId = 14859;
       LKAS.Init(ara::com::EventFactory::CreateProxyEvent<double, proxy_io::
-                RequiredInterface_LKAS_t>(handle, sTopicName));
+                RequiredInterface_LKAS_t>(handle, mEventId, mEventGroupId));
     }
 
     virtual ~RequiredInterfaceProxy()
@@ -67,8 +70,9 @@ namespace proxy
     {
       ara::com::ServiceHandleContainer<RequiredInterfaceProxy::HandleType>
         retResult;
-      ara::core::Result<ara::com::InstanceIdentifierContainer> vecInstance (ara::
-        com::runtime::ResolveInstanceIDs(instanceSpec));
+      const ara::core::Result<ara::com::InstanceIdentifierContainer> vecInstance
+      { ara::com::runtime::ResolveInstanceIDs(instanceSpec) };
+
       if (!vecInstance->empty()) {
         retResult = FindService(vecInstance->front()).Value();
       } else {
@@ -94,8 +98,9 @@ namespace proxy
                        instanceSpec)
     {
       ara::com::FindServiceHandle retHandle;
-      ara::core::Result<ara::com::InstanceIdentifierContainer> vecInstance (ara::
-        com::runtime::ResolveInstanceIDs(instanceSpec));
+      const ara::core::Result<ara::com::InstanceIdentifierContainer> vecInstance
+      { ara::com::runtime::ResolveInstanceIDs(instanceSpec) };
+
       if (!vecInstance->empty()) {
         retHandle = StartFindService(handler, vecInstance->front()).Value();
       } else {

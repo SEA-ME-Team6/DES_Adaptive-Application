@@ -1,0 +1,10 @@
+{
+	"Process" : {
+		"Name" : "DefaultInstance",
+		"LogTraceProcessDesc" : "Log messages for adaptive application control",
+		"LogTraceProcessId" : "8690",
+		"LogTraceDefaultLogLevel" : "Warn",
+		"LogTraceLogMode" : "Console",
+		"LogTraceFilePath" : ""
+	}
+}

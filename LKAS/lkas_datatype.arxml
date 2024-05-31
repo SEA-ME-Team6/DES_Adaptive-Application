@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Auto generated XML Component Description for model lkas
+Model version                : 1.1
+Simulink Coder version       : Simulink Coder 24.1 (R2024a) 19-Nov-2023
+XML source code generated on : Fri May 31 15:32:00 2024
+Model Checksum               : 1022670798 455503621 2279108179 675694738
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00051.xsd">
+    <AR-PACKAGES>
+        <AR-PACKAGE>
+            <SHORT-NAME>AUTOSAR</SHORT-NAME>
+            <AR-PACKAGES>
+                <AR-PACKAGE>
+                    <SHORT-NAME>StdTypes</SHORT-NAME>
+                    <ELEMENTS>
+                        <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="0bd467e9-3aff-5248-3295-13939d48ad6f">
+                            <SHORT-NAME>double</SHORT-NAME>
+                            <CATEGORY>VALUE</CATEGORY>
+                        </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                    </ELEMENTS>
+                </AR-PACKAGE>
+            </AR-PACKAGES>
+        </AR-PACKAGE>
+    </AR-PACKAGES>
+</AUTOSAR>

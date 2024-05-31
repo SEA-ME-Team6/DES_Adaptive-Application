@@ -1,0 +1,1499 @@
+%implements s8_b0_ew32h_Functions "C"
+
+%function v4l2Capture_updateV4L2Settings_Fcn0(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+std::array<char, 11> b;
+std::array<char, 9> c;
+std::array<char, 10> e;
+std::array<char, 12> j;
+uint8_t status;
+static const std::array<char, 11> b_0%<(TLC_STR_CTX(0))>;
+static const std::array<char, 9> c_0%<(TLC_STR_CTX(1))>;
+static const std::array<char, 11> d%<(TLC_STR_CTX(2))>;
+static const std::array<char, 10> e_0%<(TLC_STR_CTX(3))>;
+static const std::array<char, 10> f%<(TLC_STR_CTX(4))>;
+static const std::array<char, 11> g%<(TLC_STR_CTX(5))>;
+static const std::array<char, 11> h%<(TLC_STR_CTX(6))>;
+static const std::array<char, 18> i_0%<(TLC_STR_CTX(7))>;
+static const std::array<char, 12> j_0%<(TLC_STR_CTX(8))>;
+/* {S!d546}Start for MATLABSystem: '<Root>/V4L2 Video Capture' */
+/*@>10b961*/if ((/*@>195f7f*/obj->Brightness/*@>16903e*/ != /*@>195f82*/obj->BrightnessInternal)/*@>15c7d6*/ || /*@>195ed8*/forceUpdate) {
+    /*@>195eda*/obj->/*@>1e5ffd*/BrightnessInternal/*@>10b976*/ = /*@>195edc*/obj->Brightness;
+/*@>180544*/    for ( int32_t /*@>1e5dbf*/i{/*@>1e5dbe*/0}; /*@>1e5dc9*/i < /*@>1e5dc7*/11; /*@>1e5dc5*/i/*@>1e5dcd*/++) {
+        /*@>195fba*/b/*@>18f2a7*/[/*@>195fb8*/i]/*@>180537*/ = /*@>1da848*/b_0/*@>1da84a*/[/*@>1da847*/i];
+    }
+    /*@>1d35b8*/EXT_updateV4L2Control(&/*@>195f35*/b/*@>18f2b7*/[/*@>196039*/0], static_cast<float>(/*@>195ede*/obj->Brightness), /*@>1b0db8*/0, &/*@>195ee0*/status);
+}
+/*@>10b9c1*/if ((/*@>195f85*/obj->Contrast/*@>16904a*/ != /*@>195f88*/obj->ContrastInternal)/*@>15c7d7*/ || /*@>195ee2*/forceUpdate) {
+    /*@>195ee4*/obj->/*@>1e6000*/ContrastInternal/*@>10b9d6*/ = /*@>195ee6*/obj->Contrast;
+/*@>180594*/    for ( int32_t /*@>1e5dae*/i{/*@>1e5dad*/0}; /*@>1e5db8*/i < /*@>1e5db6*/9; /*@>1e5db4*/i/*@>1e5dcf*/++) {
+        /*@>195fc9*/c/*@>18f2c9*/[/*@>195fc7*/i]/*@>180587*/ = /*@>1da84e*/c_0/*@>1da850*/[/*@>1da84d*/i];
+    }
+    /*@>1d35ba*/EXT_updateV4L2Control(&/*@>195f3e*/c/*@>18f2da*/[/*@>19603a*/0], static_cast<float>(/*@>195ee8*/obj->Contrast), /*@>1b0dd1*/0, &/*@>195eea*/status);
+}
+/*@>10ba21*/if ((/*@>195f8b*/obj->Saturation/*@>169056*/ != /*@>195f8e*/obj->SaturationInternal)/*@>15c7d8*/ || /*@>195eec*/forceUpdate) {
+    /*@>195eee*/obj->/*@>1e6003*/SaturationInternal/*@>10ba36*/ = /*@>195ef0*/obj->Saturation;
+/*@>1805e5*/    for ( int32_t /*@>1e5d9d*/i{/*@>1e5d9c*/0}; /*@>1e5da7*/i < /*@>1e5da5*/11; /*@>1e5da3*/i/*@>1e5dd1*/++) {
+        /*@>195fd8*/b/*@>18f2ea*/[/*@>195fd6*/i]/*@>1805d8*/ = /*@>1da854*/d/*@>1da856*/[/*@>1da853*/i];
+    }
+    /*@>1d35bc*/EXT_updateV4L2Control(&/*@>195f47*/b/*@>18f2fa*/[/*@>19603b*/0], static_cast<float>(/*@>195ef2*/obj->Saturation), /*@>1b0dea*/0, &/*@>195ef4*/status);
+}
+/*@>10ba81*/if ((/*@>195f91*/obj->Sharpness/*@>169062*/ != /*@>195f94*/obj->SharpnessInternal)/*@>15c7d9*/ || /*@>195ef6*/forceUpdate) {
+    /*@>195ef8*/obj->/*@>1e6006*/SharpnessInternal/*@>10ba96*/ = /*@>195efa*/obj->Sharpness;
+/*@>180636*/    for ( int32_t /*@>1e5d8c*/i{/*@>1e5d8b*/0}; /*@>1e5d96*/i < /*@>1e5d94*/10; /*@>1e5d92*/i/*@>1e5dd3*/++) {
+        /*@>195fe7*/e/*@>18f30c*/[/*@>195fe5*/i]/*@>180629*/ = /*@>1da85a*/e_0/*@>1da85c*/[/*@>1da859*/i];
+    }
+    /*@>1d35be*/EXT_updateV4L2Control(&/*@>195f50*/e/*@>18f31c*/[/*@>19603c*/0], static_cast<float>(/*@>195efc*/obj->Sharpness), /*@>1b0e03*/0, &/*@>195efe*/status);
+}
+/*@>10bae1*/if ((/*@>195f97*/obj->CameraPan/*@>16906e*/ != /*@>195f9a*/obj->CameraPanInternal)/*@>15c7da*/ || /*@>195f00*/forceUpdate) {
+    /*@>195f02*/obj->/*@>1e6009*/CameraPanInternal/*@>10baf6*/ = /*@>195f04*/obj->CameraPan;
+/*@>180687*/    for ( int32_t /*@>1e5d7b*/i{/*@>1e5d7a*/0}; /*@>1e5d85*/i < /*@>1e5d83*/10; /*@>1e5d81*/i/*@>1e5dd5*/++) {
+        /*@>195ff6*/e/*@>18f32c*/[/*@>195ff4*/i]/*@>18067a*/ = /*@>1da860*/f/*@>1da862*/[/*@>1da85f*/i];
+    }
+    /*@>1d35c0*/EXT_updateV4L2Control(&/*@>195f59*/e/*@>18f33c*/[/*@>19603d*/0], static_cast<float>(/*@>195f06*/obj->CameraPan), /*@>1b0e1c*/0, &/*@>195f08*/status);
+}
+/*@>10bb41*/if ((/*@>195f9d*/obj->CameraTilt/*@>16907a*/ != /*@>195fa0*/obj->CameraTiltInternal)/*@>15c7db*/ || /*@>195f0a*/forceUpdate) {
+    /*@>195f0c*/obj->/*@>1e600c*/CameraTiltInternal/*@>10bb56*/ = /*@>195f0e*/obj->CameraTilt;
+/*@>1806d8*/    for ( int32_t /*@>1e5d6a*/i{/*@>1e5d69*/0}; /*@>1e5d74*/i < /*@>1e5d72*/11; /*@>1e5d70*/i/*@>1e5dd7*/++) {
+        /*@>196005*/b/*@>18f34c*/[/*@>196003*/i]/*@>1806cb*/ = /*@>1da866*/g/*@>1da868*/[/*@>1da865*/i];
+    }
+    /*@>1d35c2*/EXT_updateV4L2Control(&/*@>195f62*/b/*@>18f35c*/[/*@>19603e*/0], static_cast<float>(/*@>195f10*/obj->CameraTilt), /*@>1b0e34*/0, &/*@>195f12*/status);
+}
+/*@>10bba1*/if ((/*@>195fa3*/obj->CameraZoom/*@>169086*/ != /*@>195fa6*/obj->CameraZoomInternal)/*@>15c7dc*/ || /*@>195f14*/forceUpdate) {
+    /*@>195f16*/obj->/*@>1e600f*/CameraZoomInternal/*@>10bbb6*/ = /*@>195f18*/obj->CameraZoom;
+/*@>180729*/    for ( int32_t /*@>1e5d59*/i{/*@>1e5d58*/0}; /*@>1e5d63*/i < /*@>1e5d61*/11; /*@>1e5d5f*/i/*@>1e5dd9*/++) {
+        /*@>196014*/b/*@>18f36c*/[/*@>196012*/i]/*@>18071c*/ = /*@>1da86c*/h/*@>1da86e*/[/*@>1da86b*/i];
+    }
+    /*@>1d35c4*/EXT_updateV4L2Control(&/*@>195f6b*/b/*@>18f37c*/[/*@>19603f*/0], static_cast<float>(/*@>195f1a*/obj->CameraZoom), /*@>1b0e4b*/0, &/*@>195f1c*/status);
+}
+/*@>10bc01*/if ((!/*@<169092*//*@>195fa9*/obj->EnableManualFocusInternal)/*@>15c7dd*/ || /*@>195f1e*/forceUpdate) {
+    /*@>195f20*/obj->/*@>1e6012*/EnableManualFocusInternal/*@>10bc16*/ = /*@>195f6d*/true;
+/*@>18077a*/    for ( int32_t /*@>1e5d48*/i{/*@>1e5d47*/0}; /*@>1e5d52*/i < /*@>1e5d50*/18; /*@>1e5d4e*/i/*@>1e5ddb*/++) {
+        /*@>1decce*/rtDW./*@>1e6018*/i_l/*@>18f38c*/[/*@>196021*/i]/*@>18076d*/ = /*@>1da872*/i_0/*@>1da874*/[/*@>1da871*/i];
+    }
+    /*@>1d35c6*/EXT_updateV4L2Control(&/*@>1decd4*/rtDW./*@>1e601b*/i_l/*@>18f39d*/[/*@>196040*/0], /*@>195f7e*/1.0F, /*@>1b0e5f*/0, &/*@>195f22*/status);
+}
+/*@>10bc61*/if ((/*@>195fac*/obj->ManualFocus/*@>169099*/ != /*@>195faf*/obj->ManualFocusInternal)/*@>15c7de*/ || /*@>195f24*/forceUpdate) {
+    /*@>195f26*/obj->/*@>1e6015*/ManualFocusInternal/*@>10bc76*/ = /*@>195f28*/obj->ManualFocus;
+/*@>1807ca*/    for ( int32_t /*@>1e5d37*/i{/*@>1e5d36*/0}; /*@>1e5d41*/i < /*@>1e5d3f*/12; /*@>1e5d3d*/i/*@>1e5ddc*/++) {
+        /*@>196032*/j/*@>18f3ac*/[/*@>196030*/i]/*@>1807bd*/ = /*@>1da878*/j_0/*@>1da87a*/[/*@>1da877*/i];
+    }
+    /*@>1d35c8*/EXT_updateV4L2Control(&/*@>195f7c*/j/*@>18f3bc*/[/*@>196041*/0], static_cast<float>(/*@>195f2a*/obj->ManualFocus), /*@>1b0e6e*/0, &/*@>195f2c*/status);
+}
+/* {E!d546}End of Start for MATLABSystem: '<Root>/V4L2 Video Capture' */
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void v4l2Capture_updateV4L2Settings(\
+%assign comma = ""
+%<comma>codertarget_raspi_internal_Raspiv4l2Capture *obj\
+%assign comma = ", "
+%<comma>bool forceUpdate\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 0, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function SystemCore_step_Fcn1(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+double ts;
+%assign _modelSS = ""
+
+%if SLibCG_FcnCallArgAccessed(0,1,0,0)
+%<SLibCG_AccessArg(0 ,1, 0)>
+%endif
+
+/* Start for MATLABSystem: '<Root>/V4L2 Video Capture' */
+/*@[1e58cf*/%<(SLibCGCallSubFcn("v4l2Capture_updateV4L2Settings", ["/*@>1e6152*/obj", "/*@>1e6160*/false"], 0, 1, 0))>/*@]*/;
+/*@>1d35cc*/EXT_webcamReadFrame(/*@>1b0eda*/0, &/*@>1960ad*/ts, &/*@>1d3503*/varargout_1/*@>18f3ce*/[/*@>1960b5*/0], &/*@>1d3506*/varargout_2/*@>18f3d5*/[/*@>1960b6*/0], &/*@>1d3509*/varargout_3/*@>18f3dc*/[/*@>1960b7*/0]);
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void SystemCore_step(\
+%assign comma = ""
+%<comma>codertarget_raspi_internal_Raspiv4l2Capture *obj\
+%assign comma = ", "
+%<comma>uint8_t varargout_1[307200]\
+%assign comma = ", "
+%<comma>uint8_t varargout_2[307200]\
+%assign comma = ", "
+%<comma>uint8_t varargout_3[307200]\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 1, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function makeConstraintMatrix_Projective_D_D_Fcn2(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+uint32_t j;
+uint32_t k;
+/* {S!d550}S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' */
+/* Generate the constraint matrix. */
+/*@>1960de*/j/*@>15da2c*/ = /*@>1960e2*/0U;
+/*@>1960e0*/k/*@>15da30*/ = /*@>1960e3*/6U;
+/*@>1e61a0*/for ( uint32_t /*@>1e619c*/i{/*@>1e619d*/0U}; /*@>1e6192*/i/*@>1e6190*/ < /*@>1e6194*/sampleNum; /*@>1e6196*/i/*@>1e61b4*/++) {
+    double tmp;
+    double tmp_1;
+    uint32_t tmp_0;
+    /*@>1960da*/constraint/*@>15da46*/[/*@>1960ec*/k/*@>184ddd*/ - /*@>1961cc*/6U]/*@>15da4a*/ = /*@>1960ee*/0.0;
+    /*@>1960f4*/constraint/*@>15da58*/[/*@>196118*/k/*@>16de40*/ + /*@>19611a*/4294967291U]/*@>15da5c*/ = /*@>1960f6*/0.0;
+    /*@>1960f9*/constraint/*@>15da6a*/[/*@>196127*/k/*@>175c14*/ + /*@>19611d*/4294967292U]/*@>15da6e*/ = /*@>1960fb*/0.0;
+    /*@>1bfff9*/tmp_0/*@>1bfffb*/ = /*@>196137*/j/*@>180816*/ + /*@>196139*/maxSampleNum;
+    /*@>1bffed*/tmp/*@>1bffef*/ = /*@>1da87f*/pts1/*@>1da881*/[/*@>1da87d*/tmp_0];
+    /*@>19613b*/constraint/*@>180826*/[/*@>19613d*/k/*@>18082c*/ + /*@>19613f*/4294967293U]/*@>15da89*/ = -/*@<196e2e*//*@>1bfff1*/tmp;
+    /*@>196144*/constraint/*@>180851*/[/*@>196146*/k/*@>180857*/ + /*@>196148*/4294967294U]/*@>15daa6*/ = -/*@<196e2d*//*@>1da886*/pts1/*@>1da888*/[/*@>1da884*/j];
+    /*@>1960fe*/constraint/*@>15dab4*/[/*@>19612f*/k/*@>175c1e*/ + /*@>19611e*/UINT32_MAX]/*@>15dab8*/ = /*@>196100*/-1.0;
+    /*@>19614d*/constraint/*@>18087c*/[/*@>19614f*/k]/*@>15dad1*/ = /*@>1da88d*/pts2/*@>1da88f*/[/*@>1da88b*/j];
+    /*@>19615b*/constraint/*@>1808bf*/[/*@>19615d*/k]/*@>1e61b5*/ *= tmp;
+    /*@>196163*/constraint/*@>1808e9*/[/*@>196165*/k/*@>1808ef*/ + /*@>196167*/1U]/*@>15db08*/ = /*@>1da89b*/pts2/*@>1da89d*/[/*@>1da899*/j];
+    /*@>196171*/constraint/*@>180929*/[/*@>196173*/k/*@>18092f*/ + /*@>196175*/1U]/*@>1e61b6*/ *= /*@>1da8ab*/pts1/*@>1da8ad*/[/*@>1da8a9*/j];
+    /*@>19617a*/constraint/*@>180954*/[/*@>1a5bf6*/k/*@>1b0fca*/ + /*@>19617e*/2U]/*@>15db3f*/ = /*@>1da8b2*/pts2/*@>1da8b4*/[/*@>1da8b0*/j];
+    /*@>196185*/constraint/*@>180981*/[/*@>1a5be6*/k/*@>180987*/ + /*@>196189*/3U]/*@>15db5a*/ = tmp;
+    /*@>19618e*/constraint/*@>1809ab*/[/*@>1a5bfc*/k/*@>1b0fcc*/ + /*@>196192*/4U]/*@>15db75*/ = /*@>1da8b9*/pts1/*@>1da8bb*/[/*@>1da8b7*/j];
+    /*@>196104*/constraint/*@>15db83*/[/*@>1a5be8*/k/*@>175c48*/ + /*@>19611f*/5U]/*@>15db87*/ = /*@>196106*/1.0;
+    /*@>196107*/constraint/*@>15db95*/[/*@>1a5c02*/k/*@>1b0fce*/ + /*@>196120*/6U]/*@>15db99*/ = /*@>196109*/0.0;
+    /*@>19610a*/constraint/*@>15dba7*/[/*@>1a5bea*/k/*@>175c52*/ + /*@>196121*/7U]/*@>15dbab*/ = /*@>19610c*/0.0;
+    /*@>19610d*/constraint/*@>15dbb9*/[/*@>1a5c08*/k/*@>1b0fd0*/ + /*@>196122*/8U]/*@>15dbbd*/ = /*@>19610f*/0.0;
+    /*@>1c0005*/tmp_1/*@>1c0007*/ = -/*@<196e24*//*@>1da8c0*/pts2/*@>1da8c2*/[tmp_0];
+    /*@>196199*/constraint/*@>1809dc*/[/*@>1a5c0e*/k/*@>1a5c0c*/ + /*@>1a5c0f*/9U]/*@>15dbda*/ = /*@>1c0009*/tmp_1;
+    /*@>1961a7*/constraint/*@>180a1f*/[/*@>1a5c14*/k/*@>1a5c12*/ + /*@>1a5c15*/9U]/*@>1e61b7*/ *= tmp;
+    /*@>1961b1*/constraint/*@>180a4c*/[/*@>1a5c1f*/k/*@>1a5c1d*/ + /*@>1a5c20*/10U]/*@>15dc13*/ = tmp_1;
+    /*@>1961bd*/constraint/*@>180a8c*/[/*@>1a5c25*/k/*@>1a5c23*/ + /*@>1a5c26*/10U]/*@>1e61b8*/ *= /*@>1da8d9*/pts1/*@>1da8db*/[/*@>1da8d7*/j];
+    /*@>1961c7*/constraint/*@>180ab9*/[/*@>1a5bec*/k/*@>180abf*/ + /*@>1961cb*/11U]/*@>15dc4c*/ = tmp_1;
+    /*@>196111*/k/*@>1e61b9*/ += /*@>196110*/18U;
+    /*@>196115*/j/*@>1e61ba*/++;
+}
+/* {E!d550}End of S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' */
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+extern void makeConstraintMatrix_Projective_D_D(\
+%assign comma = ""
+%<comma>const double pts1[]\
+%assign comma = ", "
+%<comma>const double pts2[]\
+%assign comma = ", "
+%<comma>uint32_t sampleNum\
+%assign comma = ", "
+%<comma>uint32_t maxSampleNum\
+%assign comma = ", "
+%<comma>double constraint[]\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 2, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function normPts_D_D_Fcn3(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+double sumDis;
+/* {S!d552}S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' */
+/* Normalize the points. */
+/*@>196201*/cents/*@>15ddc2*/[/*@>196203*/0U]/*@>15ddc6*/ = /*@>196204*/0.0;
+/*@>196205*/cents/*@>15ddcc*/[/*@>196207*/1U]/*@>15ddd0*/ = /*@>196208*/0.0;
+/*@>1e6332*/for ( uint32_t /*@>1e632e*/i{/*@>1e632f*/0U}; /*@>1e6324*/i/*@>1e6322*/ < /*@>1e6326*/sampleNum; /*@>1e6328*/i/*@>1e6346*/++) {
+    /*@>1961fb*/sumDis/*@>15de01*/ = /*@>1da8f4*/pts/*@>1da8f6*/[/*@>1da8ee*/samples/*@>1da8ec*/[/*@>1da8f0*/i]/*@>1da8ea*/ + /*@>1da8f2*/ptsNum];
+    /*@>1961fd*/ptsNorm/*@>15de08*/[/*@>19624b*/i/*@>15de07*/ + /*@>196247*/sampleNum]/*@>15de0c*/ = /*@>196213*/sumDis;
+    /*@>196265*/cents/*@>180b85*/[/*@>196267*/0U]/*@>1e6347*/ += /*@>196215*/sumDis;
+    /*@>1c08f4*/sumDis/*@>1c08f6*/ = /*@>1da912*/pts/*@>1da914*/[/*@>1da90e*/samples/*@>1da90c*/[/*@>1da910*/i]];
+    /*@>19626e*/ptsNorm/*@>180bc5*/[/*@>196270*/i]/*@>15de38*/ = /*@>1c08f8*/sumDis;
+    /*@>19627b*/cents/*@>180c18*/[/*@>19627d*/1U]/*@>1e6348*/ += sumDis;
+}
+/*@>196251*/cents/*@>180b07*/[/*@>196253*/0U]/*@>1e634a*/ /= static_cast<double>(/*@>196217*/sampleNum);
+/*@>19625f*/cents/*@>180b5d*/[/*@>196261*/1U]/*@>1e634c*/ /= static_cast<double>(/*@>196219*/sampleNum);
+/*@>1961f9*/sumDis/*@>15de72*/ = /*@>19621b*/0.0;
+/*@>1e630e*/for ( uint32_t /*@>1e630a*/i{/*@>1e630b*/0U}; /*@>1e6300*/i/*@>1e62fe*/ < /*@>1e6302*/sampleNum; /*@>1e6304*/i/*@>1e634d*/++) {
+    uint32_t j;
+    /*@>1c08fe*/j/*@>1c0900*/ = /*@>196280*/i/*@>180c35*/ + /*@>196282*/sampleNum;
+    /*@>196287*/ptsNorm/*@>180c58*/[j]/*@>1e634e*/ -= /*@>1da925*/cents/*@>1da927*/[/*@>1da923*/0U];
+    /*@>196294*/ptsNorm/*@>180c97*/[/*@>196296*/i]/*@>1e634f*/ -= /*@>1da938*/cents/*@>1da93a*/[/*@>1da936*/1U];
+    /*@>19622c*/sumDis/*@>1e6350*/ += /*@>1d35ce*/std::sqrt(/*@>1da945*/ptsNorm/*@>1da947*/[j]/*@>196e39*/ * /*@>1da94c*/ptsNorm/*@>1da94e*/[j]/*@>16e16d*/ + /*@>1da953*/ptsNorm/*@>1da955*/[/*@>1da951*/i]/*@>196e3d*/ * /*@>1da95a*/ptsNorm/*@>1da95c*/[/*@>1da958*/i]);
+}
+/*@>15df10*/if (/*@>19622e*/sumDis/*@>15df0f*/ > /*@>196230*/0.0) {
+    /*@>1961ff*/scale/*@>15df14*/[/*@>196231*/0U]/*@>15df18*/ = /*@>196232*/1.4142135623730951;
+    /*@>19629b*/scale/*@>180cbe*/[/*@>19629d*/0U]/*@>1e6352*/ *= static_cast<double>(/*@>196233*/sampleNum);
+    /*@>1962a1*/scale/*@>180ce5*/[/*@>1962a3*/0U]/*@>1e6353*/ /= /*@>196235*/sumDis;
+/*@>1e62e7*/    for ( uint32_t /*@>1e62e3*/i{/*@>1e62e4*/0U}; /*@>1e62d6*/i/*@>1e62d4*/ < /*@>1e62d9*/sampleNum/*@>1e62d7*/ + /*@>1e62db*/sampleNum; /*@>1e62dd*/i/*@>1e6354*/++) {
+        /*@>1962bb*/ptsNorm/*@>180d73*/[/*@>1962bd*/i]/*@>1e6355*/ *= /*@>1da967*/scale/*@>1da969*/[/*@>1da965*/0U];
+    }
+}
+/* {E!d552}End of S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' */
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+extern void normPts_D_D(\
+%assign comma = ""
+%<comma>const double pts[]\
+%assign comma = ", "
+%<comma>const uint32_t samples[]\
+%assign comma = ", "
+%<comma>uint32_t ptsNum\
+%assign comma = ", "
+%<comma>uint32_t sampleNum\
+%assign comma = ", "
+%<comma>double ptsNorm[]\
+%assign comma = ", "
+%<comma>double scale[]\
+%assign comma = ", "
+%<comma>double cents[]\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 3, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function QRV2Norm_double_o_Fcn4(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+int32_t vi;
+/* {S!d558}S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' */
+/*@>1def3e*/rtDW./*@>1e64ec*/tmpQRSL/*@>15e28e*/ = /*@>1967f9*/0.0;
+/*@>1967fa*/vi/*@>15e295*/ = /*@>1e643b*/0;
+/*@>1e6455*/for ( int32_t /*@>1e6451*/i{/*@>1e6452*/0}; /*@>1e6447*/i/*@>1e6445*/ < /*@>1e6449*/N; /*@>1e644b*/i/*@>1e6469*/++) {
+    /*@>1def4a*/rtDW./*@>1e64f2*/d/*@>171437*/ = /*@>1def50*/rtDW./*@>1e64f5*/tmpQRSL;
+    /*@>1def56*/rtDW./*@>1e64f8*/d1/*@>171447*/ = /*@>1d35e2*/std::abs(/*@>1daa86*/V/*@>1daa88*/[/*@>1daa84*/vi]);
+    /*@>15e2c9*/if (/*@>1def5c*/rtDW./*@>1e64fb*/tmpQRSL/*@>15e2c8*/ > /*@>1def62*/rtDW./*@>1e64fe*/d1) {
+        /*@>1def68*/rtDW./*@>1e6501*/tmpQRSL/*@>15e2d0*/ = /*@>1daa94*/V/*@>1daa96*/[/*@>1daa92*/vi]/*@>15e2cf*/ / /*@>1def6e*/rtDW./*@>1e6504*/tmpQRSL;
+        /*@>1def86*/rtDW./*@>1e650d*/tmpQRSL/*@>15e2e2*/ = /*@>1d35e6*/std::sqrt(/*@>1def8c*/rtDW./*@>1e6510*/tmpQRSL/*@>196e9f*/ * /*@>1def92*/rtDW./*@>1e6513*/tmpQRSL/*@>15e2d9*/ + /*@>196813*/1.0)/*@>196e9b*/ * rtDW.d;
+    } else /*@>15e2e9*/if (/*@>1daa8d*/V/*@>1daa8f*/[/*@>1daa8b*/vi]/*@>15e2e8*/ == /*@>196817*/0.0) {
+        /*@>1def80*/rtDW./*@>1e650a*/tmpQRSL/*@>15e2ee*/ = /*@>196818*/0.0;
+    } else {
+        /*@>1def74*/rtDW./*@>1e6507*/tmpQRSL/*@>1e646b*/ /= /*@>1daa9b*/V/*@>1daa9d*/[/*@>1daa99*/vi];
+        /*@>1def9e*/rtDW./*@>1e6519*/tmpQRSL/*@>15e308*/ = /*@>1d35e4*/std::sqrt(/*@>1defa4*/rtDW./*@>1e651c*/tmpQRSL/*@>196e97*/ * /*@>1defaa*/rtDW./*@>1e651f*/tmpQRSL/*@>15e2ff*/ + /*@>196823*/1.0)/*@>196e93*/ * rtDW.d1;
+    }
+    /*@>19682a*/vi/*@>1e646a*/++;
+}
+/*@>1967f5*/v2norm/*@>15e319*/[/*@>19682c*/0U]/*@>15e31d*/ = /*@>1def44*/rtDW./*@>1e64ef*/tmpQRSL;
+/* {E!d558}End of S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' */
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void QRV2Norm_double_o(\
+%assign comma = ""
+%<comma>const double V[]\
+%assign comma = ", "
+%<comma>int32_t N\
+%assign comma = ", "
+%<comma>double v2norm[]\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 4, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function QRDC_double_o_Fcn5(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+int32_t i;
+int32_t j;
+int32_t l;
+int32_t maxj;
+int32_t minVal;
+int32_t mml;
+int32_t pl;
+int32_t plj;
+int32_t pu;
+int32_t px;
+int32_t px2;
+%assign _modelSS = ""
+
+%if SLibCG_FcnCallArgAccessed(0,5,2,0)
+%<SLibCG_AccessArg(0 ,5, 0)>
+%endif
+
+%if SLibCG_FcnCallArgAccessed(0,5,1,0)
+%<SLibCG_AccessArg(0 ,5, 0)>
+%endif
+
+%if SLibCG_FcnCallArgAccessed(0,5,0,0)
+%<SLibCG_AccessArg(0 ,5, 0)>
+%<SLibCG_AccessArg(0 ,5, 4)>
+%endif
+%if SLibCG_FcnCallArgAccessed(0,5,0,1)
+%<SLibCG_AccessArg(0 ,5, 4)>
+%endif
+%if SLibCG_FcnCallArgAccessed(0,5,0,2)
+%<SLibCG_AccessArg(0 ,5, 1)>
+%endif
+
+/* {S!d556}S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' */
+/*@>1964aa*/pl/*@>15e0a1*/ = /*@>1e6543*/0;
+/*@>1e6706*/for (/*@>1e6702*/j/*@>1e6701*/ = /*@>1e6703*/0; /*@>1e66f8*/j/*@>1e66f6*/ < /*@>1e66fa*/N; /*@>1e66fc*/j/*@>1e673e*/++) {
+    /*@>1964ae*/pu/*@>15e0c9*/ = (/*@>1da97c*/jpvt/*@>1da97e*/[/*@>1da97a*/j]/*@>15e0c4*/ > /*@>1964cb*/0);
+    /*@>1a7806*/if (/*@>1da983*/jpvt/*@>1da985*/[/*@>1da981*/j]/*@>15e0d9*/ < /*@>1964cc*/0) {
+        /*@>1a780c*/jpvt/*@>1a780a*/[/*@>1a780e*/j]/*@>1a7809*/ = -/*@<196e4f*//*@>1964cd*/j;
+    } else {
+        /*@>1967ba*/jpvt/*@>18fde2*/[/*@>1967bc*/j]/*@>18fde1*/ = /*@>1964cf*/j;
+    }
+    /*@>15e0f6*/if (/*@>1964d1*/pu/*@>15e0f5*/ == /*@>1964d3*/1) {
+        /*@>15e0fd*/if (/*@>1964d6*/j/*@>15e0fc*/ != /*@>1964d4*/pl) {
+            /* Swap columns pl and j */
+            /*@>1964b0*/px/*@>15e110*/ = /*@>1966c4*/pl/*@>196e4c*/ * /*@>1966c6*/M;
+            /*@>1964b2*/px2/*@>15e114*/ = /*@>1966c8*/j/*@>196e49*/ * /*@>1966ca*/M;
+/*@>1e672a*/            for (/*@>1e6725*/i/*@>1e6724*/ = /*@>1e6727*/M; /*@>1e671c*/i/*@>1e671a*/ > /*@>1e671d*/0; /*@>1e671f*/i/*@>1e673f*/--) {
+                /*@>1dee2a*/rtDW./*@>1e6b16*/maxnrm/*@>15e12e*/ = /*@>1da9a6*/xVec/*@>1da9a8*/[/*@>1da9a4*/px];
+                /*@>19670a*/xVec/*@>180fdf*/[/*@>19670c*/px]/*@>15e13d*/ = /*@>1da9bb*/xVec/*@>1da9bd*/[/*@>1da9b9*/px2];
+                /*@>1964e4*/xVec/*@>15e143*/[/*@>1964e2*/px2]/*@>15e147*/ = /*@>1dee36*/rtDW./*@>1e6b1c*/maxnrm;
+                /*@>1964eb*/px/*@>1e6740*/++;
+                /*@>1964f0*/px2/*@>1e6741*/++;
+            }
+        }
+        /*@>1966f6*/jpvt/*@>180f69*/[/*@>1966f8*/j]/*@>15e166*/ = /*@>1da998*/jpvt/*@>1da99a*/[/*@>1da996*/pl];
+        /*@>1964f6*/jpvt/*@>15e16e*/[/*@>1964f4*/pl]/*@>15e170*/ = /*@>1964f2*/j;
+        /*@>1964fb*/pl/*@>1e6742*/++;
+    }
+}
+/*@>196500*/pu/*@>15e180*/ = /*@>1964fd*/N/*@>15e17e*/ - /*@>1964ff*/1;
+/*@>1e66bc*/for (/*@>1e66b5*/j/*@>1e66b4*/ = /*@>1e66b8*/N/*@>1e66b6*/ - /*@>1e66b9*/1; /*@>1e66ac*/j/*@>1e66aa*/ >= /*@>1e66ad*/0; /*@>1e66af*/j/*@>1e6743*/--) {
+    /*@>15e1a5*/if (/*@>1da98a*/jpvt/*@>1da98c*/[/*@>1da988*/j]/*@>15e1a4*/ < /*@>19650c*/0) {
+        /*@>1966ee*/jpvt/*@>180f41*/[/*@>1966f0*/j]/*@>15e1b5*/ = -/*@<196e57*//*@>1da991*/jpvt/*@>1da993*/[/*@>1da98f*/j];
+        /*@>15e1bc*/if (/*@>19650f*/j/*@>15e1bb*/ != /*@>19650d*/pu) {
+            /* Swap columns pu and j */
+            /*@>196511*/px/*@>15e1d3*/ = /*@>1966bc*/pu/*@>196e54*/ * /*@>1966be*/M;
+            /*@>196513*/px2/*@>15e1d8*/ = /*@>1966c0*/j/*@>196e51*/ * /*@>1966c2*/M;
+/*@>1e66e2*/            for (/*@>1e66dd*/i/*@>1e66dc*/ = /*@>1e66df*/M; /*@>1e66d4*/i/*@>1e66d2*/ > /*@>1e66d5*/0; /*@>1e66d7*/i/*@>1e6744*/--) {
+                /*@>1dee30*/rtDW./*@>1e6b19*/maxnrm/*@>15e1f6*/ = /*@>1da9b4*/xVec/*@>1da9b6*/[/*@>1da9b2*/px];
+                /*@>196722*/xVec/*@>18105e*/[/*@>196724*/px]/*@>15e205*/ = /*@>1da9c9*/xVec/*@>1da9cb*/[/*@>1da9c7*/px2];
+                /*@>196525*/xVec/*@>15e20b*/[/*@>196523*/px2]/*@>15e20f*/ = /*@>1dee3c*/rtDW./*@>1e6b1f*/maxnrm;
+                /*@>19652c*/px/*@>1e6745*/++;
+                /*@>196531*/px2/*@>1e6746*/++;
+            }
+            /*@>1964a4*/px/*@>15e228*/ = /*@>1da9ad*/jpvt/*@>1da9af*/[/*@>1da9ab*/pu];
+            /*@>19671a*/jpvt/*@>181036*/[/*@>19671c*/pu]/*@>15e237*/ = /*@>1da9c2*/jpvt/*@>1da9c4*/[/*@>1da9c0*/j];
+            /*@>196535*/jpvt/*@>15e23f*/[/*@>19669d*/j]/*@>15e241*/ = /*@>196533*/px;
+        }
+        /*@>19653a*/pu/*@>1e6747*/--;
+    }
+}
+/* compute the norms of the free columns */
+/*@>1e6695*/for (/*@>1e6690*/j/*@>1e668f*/ = /*@>1e6692*/pl; /*@>1e6686*/j/*@>1e6684*/ <= /*@>1e6688*/pu; /*@>1e668a*/j/*@>1e6748*/++) {
+    /*@[1e58e8*/%<(SLibCGCallSubFcn("QRV2Norm_double_o", ["&/*@>1e6baa*/xVec/*@>1e6ba9*/[/*@>1e6bac*/j/*@>1e6bab*/ * /*@>1e6bad*/M]", "/*@>1e6bbb*/M", "&/*@>1e6bcb*/qrAux/*@>1e6bca*/[/*@>1e6bcc*/j]"], 0, 5, 0))>/*@]*/;
+    /*@>1966fe*/work/*@>180f9d*/[/*@>196700*/j]/*@>15e335*/ = /*@>1da99f*/qrAux/*@>1da9a1*/[/*@>1da99d*/j];
+}
+/* perform the Householder reduction of x */
+/*@>1a780f*/if (/*@>1a5e95*/M/*@>1a0495*/ <= /*@>1a5e97*/N) {
+    /*@>1a7813*/minVal/*@>1a7812*/ = /*@>1a5e99*/M;
+} else {
+    /*@>1a049a*/minVal/*@>1a049b*/ = /*@>1a5e9b*/N;
+}
+/*@>1e656c*/for (/*@>1e6568*/l/*@>1e6567*/ = /*@>1e6569*/0; /*@>1e655e*/l/*@>1e655c*/ < /*@>1e6560*/minVal; /*@>1e6562*/l/*@>1e6749*/++) {
+    /*@>1964ac*/mml/*@>15e364*/ = /*@>19655c*/M/*@>15e363*/ - /*@>19655a*/l;
+    /* locate the column of largest norm and bring it into the pivot position */
+    /*@>15e373*/if ((/*@>196564*/l/*@>15e371*/ >= /*@>196562*/pl)/*@>15e372*/ && (/*@>196560*/l/*@>15e36c*/ < /*@>19655e*/pu)) {
+        /*@>1dee42*/rtDW./*@>1e6b22*/maxnrm/*@>15e377*/ = /*@>196566*/0.0;
+        /*@>1964a8*/maxj/*@>15e37b*/ = /*@>196567*/l;
+/*@>1e666f*/        for (/*@>1e666a*/j/*@>1e6669*/ = /*@>1e666c*/l; /*@>1e6660*/j/*@>1e665e*/ <= /*@>1e6662*/pu; /*@>1e6664*/j/*@>1e674a*/++) {
+            /*@>15e39b*/if (/*@>1da9d0*/qrAux/*@>1da9d2*/[/*@>1da9ce*/j]/*@>15e39a*/ > /*@>1dee48*/rtDW./*@>1e6b25*/maxnrm) {
+                /*@>1dee54*/rtDW./*@>1e6b2b*/maxnrm/*@>15e3a5*/ = /*@>1da9d7*/qrAux/*@>1da9d9*/[/*@>1da9d5*/j];
+                /*@>19657c*/maxj/*@>15e3aa*/ = /*@>19657a*/j;
+            }
+        }
+        /*@>15e3b1*/if (/*@>196580*/maxj/*@>15e3b0*/ != /*@>19657e*/l) {
+            /* Swap columns l and maxj */
+            /*@>196582*/px/*@>15e3c7*/ = /*@>19669f*/l/*@>196e67*/ * /*@>1966a1*/M;
+            /*@>196584*/px2/*@>15e3cc*/ = /*@>1966a3*/maxj/*@>196e64*/ * /*@>1966a5*/M;
+/*@>1e664a*/            for (/*@>1e6645*/i/*@>1e6644*/ = /*@>1e6647*/M; /*@>1e663c*/i/*@>1e663a*/ > /*@>1e663d*/0; /*@>1e663f*/i/*@>1e674b*/--) {
+                /*@>1dee84*/rtDW./*@>1e6b43*/maxnrm/*@>15e3ea*/ = /*@>1da9f3*/xVec/*@>1da9f5*/[/*@>1da9f1*/px];
+                /*@>19674e*/xVec/*@>18115d*/[/*@>196750*/px]/*@>15e3f9*/ = /*@>1daa01*/xVec/*@>1daa03*/[/*@>1da9ff*/px2];
+                /*@>196596*/xVec/*@>15e3ff*/[/*@>196594*/px2]/*@>15e403*/ = /*@>1dee9c*/rtDW./*@>1e6b4f*/maxnrm;
+                /*@>19659d*/px/*@>1e674c*/++;
+                /*@>1965a2*/px2/*@>1e674d*/++;
+            }
+            /*@>19673a*/qrAux/*@>1810f6*/[/*@>19673c*/maxj]/*@>15e422*/ = /*@>1da9ec*/qrAux/*@>1da9ee*/[/*@>1da9ea*/l];
+            /*@>196746*/work/*@>181135*/[/*@>196748*/maxj]/*@>15e431*/ = /*@>1da9fa*/work/*@>1da9fc*/[/*@>1da9f8*/l];
+            /*@>1965a4*/px/*@>15e43b*/ = /*@>1daa08*/jpvt/*@>1daa0a*/[/*@>1daa06*/maxj];
+            /*@>19675a*/jpvt/*@>18119d*/[/*@>19675c*/maxj]/*@>15e44a*/ = /*@>1daa0f*/jpvt/*@>1daa11*/[/*@>1daa0d*/l];
+            /*@>1965aa*/jpvt/*@>15e452*/[/*@>1965a8*/l]/*@>15e454*/ = /*@>1965a6*/px;
+        }
+    }
+    /*@>1965ae*/qrAux/*@>15e45a*/[/*@>1965ac*/l]/*@>15e45e*/ = /*@>1965b0*/0.0;
+    /*@>15e468*/if (/*@>1965b1*/M/*@>15e464*/ - /*@>1965b3*/1/*@>15e467*/ != /*@>1965b4*/l) {
+        /* Compute the Householder transformation for column l */
+        /*@>1964b4*/maxj/*@>15e474*/ = (/*@>1965b6*/M/*@>15e470*/ + /*@>1965b8*/1)/*@>196e61*/ * /*@>1965b9*/l;
+        /*@>1965bd*/px/*@>15e479*/ = /*@>1965bb*/maxj;
+        /*@[1e5901*/%<(SLibCGCallSubFcn("QRV2Norm_double_o", ["&/*@>1e6bdc*/xVec/*@>1e6bdb*/[/*@>1e6bdd*/maxj]", "/*@>1e6beb*/mml", "&/*@>1e6bfb*/rtDW./*@>1e6bfa*/nrmxl"], 0, 5, 1))>/*@]*/;
+        /*@>1dee5a*/rtDW./*@>1e6b2e*/maxnrm/*@>1c3499*/ = /*@>1d35d6*/std::abs(/*@>1dee60*/rtDW./*@>1e6b31*/nrmxl);
+        /*@>15e491*/if (/*@>1dee66*/rtDW./*@>1e6b34*/maxnrm/*@>15e490*/ != /*@>1965c4*/0.0) {
+            /*@>15e4a6*/if (/*@>1d35d8*/std::abs(/*@>1da9de*/xVec/*@>1da9e0*/[/*@>1da9dc*/maxj])/*@>15e4a5*/ != /*@>1965c5*/0.0) {
+                /*@>1a7814*/if (/*@>1da9e5*/xVec/*@>1da9e7*/[/*@>1da9e3*/maxj]/*@>15e4b6*/ >= /*@>1965c6*/0.0) {
+                    /*@>1dee78*/rtDW./*@>1e6b3d*/nrmxl/*@>1a7817*/ = rtDW.maxnrm;
+                } else {
+                    /*@>1dee6c*/rtDW./*@>1e6b37*/nrmxl/*@>18fdea*/ = -/*@<196e60*/rtDW.maxnrm;
+                }
+            }
+            /* Check if it's safe to multiply by 1/nrmxl instead of dividing by nrmxl */
+            /*@>1965cf*/px2/*@>15e4cd*/ = /*@>196699*/maxj;
+            /*@>15e4db*/if (/*@>1966aa*/5.0E-20/*@>196e5e*/ * /*@>1dee8a*/rtDW./*@>1e6b46*/nrmxl/*@>15e4da*/ != /*@>1965d1*/0.0) {
+                /*@>1dee90*/rtDW./*@>1e6b49*/maxnrm/*@>15e4e3*/ = /*@>1965d4*/1.0/*@>15e4e1*/ / /*@>1dee96*/rtDW./*@>1e6b4c*/nrmxl;
+/*@>1e6626*/                for (/*@>1e6621*/i/*@>1e6620*/ = /*@>1e6623*/mml; /*@>1e6618*/i/*@>1e6616*/ > /*@>1e6619*/0; /*@>1e661b*/i/*@>1e674e*/--) {
+                    /*@>196772*/xVec/*@>18121a*/[/*@>196774*/px2]/*@>1e674f*/ *= /*@>1deea8*/rtDW./*@>1e6b55*/maxnrm;
+                    /*@>1965e8*/px2/*@>1e6750*/++;
+                }
+            } else {
+/*@>1e6602*/                for (/*@>1e65fd*/i/*@>1e65fc*/ = /*@>1e65ff*/mml; /*@>1e65f4*/i/*@>1e65f2*/ > /*@>1e65f5*/0; /*@>1e65f7*/i/*@>1e675d*/--) {
+                    /*@>196762*/xVec/*@>1811c6*/[/*@>196764*/px2]/*@>1e675e*/ /= /*@>1deea2*/rtDW./*@>1e6b52*/nrmxl;
+                    /*@>1965fb*/px2/*@>1e675f*/++;
+                }
+            }
+            /*@>19676a*/xVec/*@>1811f1*/[/*@>19676c*/maxj]/*@>1e6751*/++;
+            /* apply the transformation to the remaining columns, updating the norms. */
+/*@>1e6593*/            for (/*@>1e658c*/j/*@>1e658b*/ = /*@>1e658f*/l/*@>1e658d*/ + /*@>1e6590*/1; /*@>1e6582*/j/*@>1e6580*/ < /*@>1e6584*/N; /*@>1e6586*/j/*@>1e6752*/++) {
+                /*@>1964b6*/plj/*@>15e573*/ = /*@>196610*/j/*@>196e86*/ * /*@>19660e*/M/*@>15e572*/ + /*@>19660c*/l;
+                /*@>196614*/px2/*@>15e578*/ = /*@>196612*/plj;
+                /*@>1deeb4*/rtDW./*@>1e6b5b*/t/*@>15e57c*/ = /*@>196616*/0.0;
+/*@>1e65de*/                for (/*@>1e65d9*/i/*@>1e65d8*/ = /*@>1e65db*/mml; /*@>1e65d0*/i/*@>1e65ce*/ > /*@>1e65d1*/0; /*@>1e65d3*/i/*@>1e6753*/--) {
+                    /*@>1deeba*/rtDW./*@>1e6b5e*/t/*@>1e6754*/ -= /*@>1daa32*/xVec/*@>1daa34*/[/*@>1daa30*/px]/*@>196e8b*/ * /*@>1daa39*/xVec/*@>1daa3b*/[/*@>1daa37*/px2];
+                    /*@>19662a*/px/*@>1e6755*/++;
+                    /*@>19662f*/px2/*@>1e6756*/++;
+                }
+                /*@>196633*/px/*@>15e5ba*/ = /*@>196631*/maxj;
+                /*@>196637*/px2/*@>15e5bf*/ = /*@>196635*/plj;
+                /*@>1deec6*/rtDW./*@>1e6b61*/t/*@>1e6757*/ /= /*@>1daa40*/xVec/*@>1daa42*/[/*@>1daa3e*/maxj];
+/*@>1e65ba*/                for (/*@>1e65b5*/i/*@>1e65b4*/ = /*@>1e65b7*/mml; /*@>1e65ac*/i/*@>1e65aa*/ > /*@>1e65ad*/0; /*@>1e65af*/i/*@>1e6758*/--) {
+                    /*@>196792*/xVec/*@>1812d0*/[/*@>196794*/px2]/*@>1e6759*/ += /*@>1deed2*/rtDW./*@>1e6b64*/t/*@>196e8f*/ * /*@>1daa47*/xVec/*@>1daa49*/[/*@>1daa45*/px];
+                    /*@>19664e*/px/*@>1e675a*/++;
+                    /*@>196653*/px2/*@>1e675b*/++;
+                }
+                /*@>196657*/px/*@>15e60e*/ = /*@>196655*/maxj;
+                /*@>196659*/px2/*@>15e640*/ = /*@>1e654c*/0;
+                /*@>15e64c*/if (/*@>1daa55*/qrAux/*@>1daa57*/[/*@>1daa53*/j]/*@>15e64b*/ == /*@>19665c*/0.0) {
+                    /*@>19665e*/px2/*@>15e651*/ = /*@>1e654f*/1;
+                }
+                /*@>15e65c*/if ((/*@>1966ad*/j/*@>169fc7*/ >= /*@>1966af*/pl)/*@>169fc6*/ && (/*@>1966b1*/j/*@>169fc8*/ <= /*@>1966b3*/pu)/*@>169fc3*/ && (/*@>196660*/px2/*@>197e4f*/ == /*@>196e83*/0)) {
+                    /*@>1deed8*/rtDW./*@>1e6b67*/maxnrm/*@>15e675*/ = /*@>1d35da*/std::abs(/*@>1daa5c*/xVec/*@>1daa5e*/[/*@>1daa5a*/plj])/*@>15e673*/ / /*@>1daa63*/qrAux/*@>1daa65*/[/*@>1daa61*/j];
+                    /*@>1deede*/rtDW./*@>1e6b6a*/tt/*@>15e67f*/ = /*@>196668*/1.0/*@>15e67e*/ - /*@>1deee4*/rtDW./*@>1e6b6d*/maxnrm/*@>196e80*/ * /*@>1deeea*/rtDW./*@>1e6b70*/maxnrm;
+                    /*@>15e686*/if (/*@>1deef0*/rtDW./*@>1e6b73*/tt/*@>15e685*/ < /*@>19666b*/0.0) {
+                        /*@>1deef6*/rtDW./*@>1e6b76*/tt/*@>15e68b*/ = /*@>19666c*/0.0;
+                    }
+                    /*@>1deefc*/rtDW./*@>1e6b79*/t/*@>15e690*/ = /*@>1def02*/rtDW./*@>1e6b7c*/tt;
+                    /*@>1def08*/rtDW./*@>1e6b7f*/maxnrm/*@>15e6a2*/ = /*@>1daa6a*/qrAux/*@>1daa6c*/[/*@>1daa68*/j]/*@>15e6a0*/ / /*@>1daa71*/work/*@>1daa73*/[/*@>1daa6f*/j];
+                    /*@>1def0e*/rtDW./*@>1e6b82*/tt/*@>15e6b3*/ = /*@>19667b*/0.05/*@>196e7c*/ * /*@>1def14*/rtDW./*@>1e6b85*/tt/*@>196e78*/ * /*@>1def1a*/rtDW./*@>1e6b88*/maxnrm/*@>196e74*/ * /*@>1def20*/rtDW./*@>1e6b8b*/maxnrm/*@>15e6b1*/ + /*@>19667c*/1.0;
+                    /*@>15e6ba*/if (/*@>1def26*/rtDW./*@>1e6b8e*/tt/*@>15e6b9*/ != /*@>196681*/1.0) {
+                        /*@>1967ae*/qrAux/*@>18136d*/[/*@>1967b0*/j]/*@>1e675c*/ *= /*@>1d35de*/std::sqrt(/*@>1def32*/rtDW./*@>1e6b94*/t);
+                    } else {
+                        /*@[1e591a*/%<(SLibCGCallSubFcn("QRV2Norm_double_o", ["&/*@>1e6c0c*/xVec/*@>1e6c0b*/[/*@>1e6c0e*/plj/*@>1e6c0d*/ + /*@>1e6c0f*/1]", "/*@>1e6c1e*/mml/*@>1e6c1d*/ - /*@>1e6c1f*/1", "&/*@>1e6c2f*/rtDW./*@>1e6c2e*/maxnrm"], 0, 5, 2))>/*@]*/;
+                        /*@>19668d*/qrAux/*@>15e6eb*/[/*@>19668b*/j]/*@>15e6ef*/ = /*@>1def38*/rtDW./*@>1e6b97*/maxnrm;
+                        /*@>1967b6*/work/*@>181396*/[/*@>1967b8*/j]/*@>15e6fe*/ = /*@>1daa7f*/qrAux/*@>1daa81*/[/*@>1daa7d*/j];
+                    }
+                }
+            }
+            /* save the transformation. */
+            /*@>19677a*/qrAux/*@>181249*/[/*@>19677c*/l]/*@>15e70f*/ = /*@>1daa2b*/xVec/*@>1daa2d*/[/*@>1daa29*/px];
+            /*@>196695*/xVec/*@>15e718*/[/*@>196693*/px]/*@>15e71a*/ = -/*@<196e5b*//*@>1deeae*/rtDW./*@>1e6b58*/nrmxl;
+        }
+    }
+}
+/* {E!d556}End of S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' */
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void QRDC_double_o(\
+%assign comma = ""
+%<comma>double xVec[]\
+%assign comma = ", "
+%<comma>double qrAux[]\
+%assign comma = ", "
+%<comma>int32_t jpvt[]\
+%assign comma = ", "
+%<comma>double work[]\
+%assign comma = ", "
+%<comma>int32_t M\
+%assign comma = ", "
+%<comma>int32_t N\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 5, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function QRCompQy_double_Fcn6(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+/* {S!d562}S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' */
+/*@>15e878*/if (/*@>1d35ea*/std::abs(/*@>1daaa1*/qrAuxj/*@>1daaa3*/[/*@>1daa9f*/0U])/*@>15e877*/ != /*@>1968a7*/0.0) {
+    double t;
+    double temp;
+    int32_t nmj;
+    int32_t pjj;
+    int32_t pqr;
+    int32_t py;
+    /*@>1968a8*/nmj/*@>15e892*/ = /*@>1968a3*/n/*@>15e891*/ - /*@>1968a5*/j;
+    /*@>1968ac*/pjj/*@>15e89c*/ = (/*@>1968b6*/n/*@>15e898*/ + /*@>1968b8*/1)/*@>196ea1*/ * /*@>1968b9*/j;
+    /*@>1968b2*/pqr/*@>15e8a0*/ = /*@>1968bb*/pjj;
+    /*@>1968b0*/temp/*@>15e8a7*/ = /*@>1daaa8*/qr/*@>1daaaa*/[/*@>1daaa6*/pjj];
+    /*@>19690b*/qr/*@>181489*/[/*@>19690d*/pjj]/*@>15e8b6*/ = /*@>1daaae*/qrAuxj/*@>1daab0*/[/*@>1daaac*/0U];
+    /*@>1968ae*/t/*@>15e8c1*/ = /*@>1968bd*/0.0;
+    /*@>1968b4*/py/*@>15e8c5*/ = /*@>1e6c39*/0;
+/*@>1e6c75*/    for ( int32_t /*@>1e6c70*/i{/*@>1e6c72*/nmj}; /*@>1e6c67*/i/*@>1e6c65*/ > /*@>1e6c68*/0; /*@>1e6c6a*/i/*@>1e6c89*/--) {
+        /*@>1968cb*/t/*@>1e6c8a*/ -= /*@>1daab5*/y/*@>1daab7*/[/*@>1daab3*/py]/*@>196ea6*/ * /*@>1daabc*/qr/*@>1daabe*/[/*@>1daaba*/pqr];
+        /*@>1968d0*/pqr/*@>1e6c8b*/++;
+        /*@>1968d5*/py/*@>1e6c8c*/++;
+    }
+    /*@>1968d9*/pqr/*@>15e900*/ = /*@>1968d7*/pjj;
+    /*@>1968dd*/t/*@>1e6c8d*/ /= /*@>1daac3*/qr/*@>1daac5*/[/*@>1daac1*/pjj];
+    /*@>1968e0*/py/*@>15e912*/ = /*@>1e6c3c*/0;
+/*@>1e6c51*/    for ( int32_t /*@>1e6c4c*/i{/*@>1e6c4e*/nmj}; /*@>1e6c43*/i/*@>1e6c41*/ > /*@>1e6c44*/0; /*@>1e6c46*/i/*@>1e6c8e*/--) {
+        /*@>196923*/y/*@>18150f*/[/*@>196925*/py]/*@>1e6c8f*/ += /*@>1968ee*/t/*@>196eaa*/ * /*@>1daaca*/qr/*@>1daacc*/[/*@>1daac8*/pqr];
+        /*@>1968f3*/pqr/*@>1e6c90*/++;
+        /*@>1968f8*/py/*@>1e6c91*/++;
+    }
+    /*@>1968fa*/qr/*@>15e95a*/[/*@>1968fe*/pjj]/*@>15e95e*/ = /*@>1968fc*/temp;
+}
+/* {E!d562}End of S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' */
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+extern void QRCompQy_double(\
+%assign comma = ""
+%<comma>double qr[]\
+%assign comma = ", "
+%<comma>const double qrAuxj[]\
+%assign comma = ", "
+%<comma>double y[]\
+%assign comma = ", "
+%<comma>int32_t n\
+%assign comma = ", "
+%<comma>int32_t j\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 6, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function QRSL1_double_Fcn7(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+int32_t j;
+int32_t pqraux;
+int32_t y_0;
+%assign _modelSS = ""
+
+%if SLibCG_FcnCallArgAccessed(0,7,0,0)
+%<SLibCG_AccessArg(0 ,7, 0)>
+%endif
+%if SLibCG_FcnCallArgAccessed(0,7,0,1)
+%<SLibCG_AccessArg(0 ,7, 1)>
+%endif
+%if SLibCG_FcnCallArgAccessed(0,7,0,2)
+%<SLibCG_AccessArg(0 ,7, 2)>
+%endif
+%if SLibCG_FcnCallArgAccessed(0,7,0,3)
+%<SLibCG_AccessArg(0 ,7, 3)>
+%endif
+
+/* {S!d560}S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' */
+/*@>1a781b*/if (/*@>1a611f*/k/*@>1a04d0*/ <= /*@>1a6129*/n/*@>1a6127*/ - /*@>1a612a*/1) {
+    /*@>1a781f*/y_0/*@>1a781e*/ = /*@>1a6121*/k;
+    /*@>1a782d*/pqraux/*@>1a782c*/ = /*@>1a6138*/k;
+} else {
+    /*@>1a04d5*/y_0/*@>1a04d6*/ = /*@>1c68ca*/n/*@>1c68c8*/ - /*@>1c68cb*/1;
+    /*@>1a7822*/pqraux/*@>1a7824*/ = /*@>1c68d0*/n/*@>1c68ce*/ - /*@>1c68d1*/1;
+}
+/*@>196856*/j/*@>15e7fb*/ = /*@>1cf802*/pqraux/*@>1cf800*/ - /*@>1cf803*/1;
+/*@>15e80a*/if (/*@>1b1e86*/y_0/*@>15e809*/ != /*@>196860*/0) {
+    /*@>196861*/pqraux/*@>1e6d40*/--;
+    /*@>196865*/y_0/*@>1e6d41*/--;
+    while/*@<15e831*/ (/*@>19686c*/j/*@>184e75*/ + /*@>19688c*/1/*@>15e82a*/ > /*@>19686e*/0) {
+        /*@[1e5935*/%<(SLibCGCallSubFcn("QRCompQy_double", ["&/*@>1e6da7*/qr/*@>1e6da6*/[/*@>1e6da8*/0]", "&/*@>1e6db8*/qrAux/*@>1e6db7*/[/*@>1e6db9*/pqraux]", "&/*@>1e6dc9*/y/*@>1e6dc8*/[/*@>1e6dca*/y_0]", "/*@>1e6dd8*/n", "/*@>1e6de6*/j"], 0, 7, 0))>/*@]*/;
+        /*@>1c3ab6*/y_0/*@>1c3ab8*/ = /*@>1cf814*/pqraux/*@>1cf812*/ - /*@>1cf815*/1;
+        /*@>19687e*/pqraux/*@>1e6d42*/--;
+        /*@>19686a*/j/*@>1e6d43*/--;
+    }
+}
+/* {E!d560}End of S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' */
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+extern void QRSL1_double(\
+%assign comma = ""
+%<comma>double qr[]\
+%assign comma = ", "
+%<comma>const double qrAux[]\
+%assign comma = ", "
+%<comma>double y[]\
+%assign comma = ", "
+%<comma>int32_t n\
+%assign comma = ", "
+%<comma>int32_t k\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 7, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function QRE_double_o_Fcn8(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+int32_t L_tmp;
+int32_t ps;
+%assign _modelSS = ""
+
+%if SLibCG_FcnCallArgAccessed(0,8,1,0)
+%<SLibCG_AccessArg(0 ,8, 1)>
+%endif
+%if SLibCG_FcnCallArgAccessed(0,8,1,1)
+%<SLibCG_AccessArg(0 ,8, 3)>
+%endif
+%if SLibCG_FcnCallArgAccessed(0,8,1,2)
+%<SLibCG_AccessArg(0 ,8, 0)>
+%endif
+%if SLibCG_FcnCallArgAccessed(0,8,1,3)
+%<SLibCG_AccessArg(0 ,8, 7)>
+%endif
+%if SLibCG_FcnCallArgAccessed(0,8,1,4)
+%<SLibCG_AccessArg(0 ,8, 8)>
+%endif
+
+%if SLibCG_FcnCallArgAccessed(0,8,0,0)
+%<SLibCG_AccessArg(0 ,8, 1)>
+%endif
+%if SLibCG_FcnCallArgAccessed(0,8,0,1)
+%<SLibCG_AccessArg(0 ,8, 3)>
+%endif
+%if SLibCG_FcnCallArgAccessed(0,8,0,2)
+%<SLibCG_AccessArg(0 ,8, 5)>
+%endif
+%if SLibCG_FcnCallArgAccessed(0,8,0,3)
+%<SLibCG_AccessArg(0 ,8, 4)>
+%endif
+%if SLibCG_FcnCallArgAccessed(0,8,0,4)
+%<SLibCG_AccessArg(0 ,8, 7)>
+%endif
+%if SLibCG_FcnCallArgAccessed(0,8,0,5)
+%<SLibCG_AccessArg(0 ,8, 8)>
+%endif
+
+/* {S!d554}S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' */
+/*@[1e5951*/%<(SLibCGCallSubFcn("QRDC_double_o", ["&/*@>1e70b9*/outR/*@>1e70b8*/[/*@>1e70ba*/0]", "&/*@>1e70ca*/qrAux/*@>1e70c9*/[/*@>1e70cb*/0]", "&/*@>1e70db*/jpvt/*@>1e70da*/[/*@>1e70dc*/0]", "&/*@>1e70ec*/work/*@>1e70eb*/[/*@>1e70ed*/0]", "/*@>1e70fb*/M", "/*@>1e7109*/N"], 0, 8, 0))>/*@]*/;
+/* explicitly form q by manipulating identity */
+/*@>18fdd3*/if (/*@>19631c*/economy) {
+    /*@>1a77fb*/if (/*@>1a5d19*/M/*@>1a0461*/ <= /*@>1a5d1b*/N) {
+        /*@>1dece6*/rtDW./*@>1e7028*/L/*@>1a77fe*/ = /*@>1a5d1d*/M;
+    } else {
+        /*@>1dece0*/rtDW./*@>1e7025*/L/*@>1a0467*/ = /*@>1a5d1f*/N;
+    }
+} else {
+    /*@>1decda*/rtDW./*@>1e7022*/L/*@>15e747*/ = /*@>19631e*/M;
+}
+/*@>196320*/L_tmp/*@>15e758*/ = /*@>1e6dfc*/0;
+/*@>1decec*/rtDW./*@>1e702b*/j_b/*@>15e76b*/ = /*@>1e6dff*/0;
+while/*@<15e76e*/ (/*@>1decf2*/rtDW./*@>1e702e*/j_b/*@>15e767*/ < /*@>196328*/M/*@>196e46*/ * /*@>1decf8*/rtDW./*@>1e7031*/L) {
+    /*@>19630d*/outQ/*@>15e772*/[/*@>1ded04*/rtDW./*@>1e7037*/j_b]/*@>15e776*/ = /*@>196331*/0.0;
+    /*@>1ded0a*/rtDW./*@>1e703a*/j_b/*@>1e6eac*/++;
+}
+/*@>1decfe*/rtDW./*@>1e7034*/j_b/*@>15e787*/ = /*@>1e6e02*/0;
+while/*@<15e78a*/ (/*@>1ded16*/rtDW./*@>1e703d*/j_b/*@>15e783*/ < /*@>1ded1c*/rtDW./*@>1e7040*/L) {
+    /*@>196340*/outQ/*@>15e790*/[/*@>19633e*/L_tmp]/*@>15e794*/ = /*@>196342*/1.0;
+    /*@>196348*/L_tmp/*@>15e79f*/ = (/*@>196345*/L_tmp/*@>15e79a*/ + /*@>196343*/M)/*@>15e79d*/ + /*@>196347*/1;
+    /*@>1ded28*/rtDW./*@>1e7046*/j_b/*@>1e6ead*/++;
+}
+/* Convert cols of identity into cols of q. Use info stored in lower triangle of r and in vector qraux to work on columns of identity matrix I and transform them into q*I(:,j) i.e. the columns of q. */
+/*@>19634b*/L_tmp/*@>15e7a6*/ = /*@>1e6e05*/0;
+/*@>1ded22*/rtDW./*@>1e7043*/j_b/*@>15e7b7*/ = /*@>1e6e08*/0;
+while/*@<15e7ba*/ (/*@>1ded34*/rtDW./*@>1e7049*/j_b/*@>15e7b3*/ < /*@>1ded3a*/rtDW./*@>1e704c*/L) {
+    /*@[1e596c*/%<(SLibCGCallSubFcn("QRSL1_double", ["&/*@>1e7119*/outR/*@>1e7118*/[/*@>1e711a*/0]", "&/*@>1e712a*/qrAux/*@>1e7129*/[/*@>1e712b*/0]", "&/*@>1e713b*/outQ/*@>1e713a*/[/*@>1e713c*/L_tmp]", "/*@>1e714a*/M", "/*@>1e7158*/N"], 0, 8, 1))>/*@]*/;
+    /*@>19636c*/L_tmp/*@>1e6eae*/ += /*@>196368*/M;
+    /*@>1ded4c*/rtDW./*@>1e7055*/j_b/*@>1e6eaf*/++;
+}
+/*@>15e99c*/if (/*@>196374*/economy/*@>15e99b*/ && (/*@>196372*/M/*@>15e997*/ > /*@>196370*/N)) {
+    /* Copy upper triangle of r to s */
+    /*@>1ded46*/rtDW./*@>1e7052*/L/*@>15e9a2*/ = /*@>1e6e0b*/0;
+    /*@>196377*/ps/*@>15e9a9*/ = /*@>1e6e0e*/0;
+    /*@>1ded5e*/rtDW./*@>1e705b*/j_b/*@>15e9ba*/ = /*@>1e6e11*/1;
+    while/*@<15e9bd*/ (/*@>1ded6a*/rtDW./*@>1e7061*/j_b/*@>184e19*/ - /*@>196426*/1/*@>15e9b6*/ < /*@>19637f*/N) {
+/*@>1e6e93*/        for (/*@>1e6e8f*/L_tmp/*@>1e6e8e*/ = /*@>1e6e90*/0; /*@>1e6e81*/L_tmp/*@>1e6eab*/ < /*@>1e6e85*/rtDW./*@>1e70a6*/j_b; /*@>1e6e89*/L_tmp/*@>1e6eb0*/++) {
+            /*@>196418*/sPtr/*@>180dfa*/[/*@>19641a*/ps]/*@>15e9db*/ = /*@>1da96e*/outR/*@>1da970*/[/*@>1dedd0*/rtDW./*@>1e7085*/L];
+            /*@>196393*/ps/*@>1e6eb1*/++;
+            /*@>1dede8*/rtDW./*@>1e708e*/L/*@>1e6eb2*/++;
+        }
+        /*@>1dedbe*/rtDW./*@>1e707c*/L/*@>15e9f9*/ = (/*@>1dedc4*/rtDW./*@>1e707f*/L/*@>15e9f3*/ + /*@>19639c*/M)/*@>15e9f4*/ - /*@>1dedca*/rtDW./*@>1e7082*/j_b;
+/*@>1e6e66*/        for (/*@>1e6e62*/L_tmp/*@>1e6e61*/ = /*@>1e6e63*/0; /*@>1e6e53*/L_tmp/*@>1e6e51*/ < /*@>1e6e56*/N/*@>1e6e54*/ - /*@>1e6e59*/rtDW./*@>1e70a3*/j_b; /*@>1e6e5c*/L_tmp/*@>1e6eb3*/++) {
+            /*@>1963b2*/sPtr/*@>15ea19*/[/*@>1963b0*/ps]/*@>15ea1d*/ = /*@>1963b4*/0.0;
+            /*@>1963b8*/ps/*@>1e6eb4*/++;
+        }
+        /*@>1dee06*/rtDW./*@>1e7097*/j_b/*@>1e6eb5*/++;
+    }
+} else {
+    /* Zero strict lower triangle of r */
+    /*@>1ded40*/rtDW./*@>1e704f*/L/*@>15ea32*/ = /*@>1963bc*/M/*@>196e43*/ * /*@>1963ba*/N/*@>15ea30*/ - /*@>1963be*/1;
+    /*@>1ded58*/rtDW./*@>1e7058*/j_b/*@>15ea46*/ = /*@>1963c9*/N;
+    while/*@<15ea49*/ (/*@>1ded64*/rtDW./*@>1e705e*/j_b/*@>184e12*/ - /*@>196424*/1/*@>15ea3f*/ >= /*@>1963c8*/0) {
+/*@>1e6e3a*/        for (/*@>1e6e35*/L_tmp/*@>1e6e34*/ = /*@>1e6e37*/M; /*@>1e6e29*/L_tmp/*@>1e6e27*/ > /*@>1e6e2c*/rtDW./*@>1e70a0*/j_b; /*@>1e6e2f*/L_tmp/*@>1e6eb8*/--) {
+            /*@>1963dc*/outR/*@>15ea66*/[/*@>1ded82*/rtDW./*@>1e706a*/L]/*@>15ea6a*/ = /*@>1963de*/0.0;
+            /*@>1dedb2*/rtDW./*@>1e7079*/L/*@>1e6eb9*/--;
+        }
+        /*@>1a7800*/if (/*@>1963e6*/M/*@>15ea7b*/ < /*@>1ded7c*/rtDW./*@>1e7067*/j_b) {
+            /*@>1deda6*/rtDW./*@>1e7076*/L/*@>1e6eba*/ -= /*@>1963e8*/M;
+        } else {
+            /*@>1ded94*/rtDW./*@>1e7070*/L/*@>1e6ebc*/ -= /*@>1deda0*/rtDW./*@>1e7073*/j_b;
+        }
+        /*@>1deddc*/rtDW./*@>1e708b*/j_b/*@>1e6ebb*/--;
+    }
+}
+/* form permutation vector e */
+/*@>1ded70*/rtDW./*@>1e7064*/L/*@>15ea98*/ = /*@>1e6e17*/0;
+/*@>1963f5*/L_tmp/*@>15ea9f*/ = /*@>1e6e1a*/0;
+/*@>1ded8e*/rtDW./*@>1e706d*/j_b/*@>15eab0*/ = /*@>1e6e1d*/0;
+while/*@<15eab3*/ (/*@>1dedd6*/rtDW./*@>1e7088*/j_b/*@>15eaac*/ < /*@>1963fd*/N) {
+    /*@>196420*/outE/*@>180e27*/[/*@>1dedf4*/rtDW./*@>1e7091*/L]/*@>15eac2*/ = /*@>1da975*/jpvt/*@>1da977*/[/*@>1da973*/L_tmp]/*@>15eabc*/ + /*@>196404*/1;
+    /*@>1c1529*/L_tmp/*@>1c152b*/ = /*@>1dee00*/rtDW./*@>1e7094*/L/*@>1cf3fb*/ + /*@>1cf3fe*/1;
+    /*@>1dee12*/rtDW./*@>1e709a*/L/*@>1e6eb6*/++;
+    /*@>1dee1e*/rtDW./*@>1e709d*/j_b/*@>1e6eb7*/++;
+}
+/* {E!d554}End of S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' */
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void QRE_double_o(\
+%assign comma = ""
+%<comma>double outQ[]\
+%assign comma = ", "
+%<comma>double outR[]\
+%assign comma = ", "
+%<comma>double outE[]\
+%assign comma = ", "
+%<comma>double qrAux[]\
+%assign comma = ", "
+%<comma>double work[]\
+%assign comma = ", "
+%<comma>int32_t jpvt[]\
+%assign comma = ", "
+%<comma>double sPtr[]\
+%assign comma = ", "
+%<comma>int32_t M\
+%assign comma = ", "
+%<comma>int32_t N\
+%assign comma = ", "
+%<comma>bool economy\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 8, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function Warp_stepImpl_Fcn9(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+int32_t itmp;
+int32_t p1;
+int32_t p2;
+int32_t p3;
+/*@>17eb1b*/for (/*@>1e71ed*/p2 = /*@>1e71ec*/0; /*@>1e71f7*/p2 < /*@>1e71f5*/9; /*@>1e71f3*/p2/*@>1e71fb*/++) {
+    /* {S!d514}Start for MATLABSystem: '<S4>/Warp' */
+    /*@>1de7dc*/rtDW./*@>1e7803*/absx11/*@>17eb0e*/ = /*@>1da5b8*/input2/*@>1da5ba*/[/*@>1da5b6*/p2];
+    /*@>1ae231*/b_this->/*@>1e77a6*/TformProjective./*@>1e77a3*/T/*@>1ae22d*/[/*@>1ae235*/p2]/*@>1ae238*/ = /*@>1de7e2*/rtDW./*@>1e7806*/absx11;
+    /*@>1de7e8*/rtDW./*@>1e7809*/x/*@>17eb56*/[/*@>195971*/p2]/*@>17eb57*/ = /*@>1de7ee*/rtDW./*@>1e780c*/absx11;
+}
+/*@>195851*/p1/*@>11e2dd*/ = /*@>1e7166*/1;
+/*@>195853*/p2/*@>11e2df*/ = /*@>1e7169*/3;
+/*@>195855*/p3/*@>11e2e1*/ = /*@>1e716c*/6;
+/* {S!d516}Start for MATLABSystem: '<S4>/Warp' */
+/*@>1de7f4*/rtDW./*@>1e780f*/absx11/*@>11ebed*/ = /*@>1d359a*/std::abs(/*@>1da5be*/b_this->/*@>1e77a9*/TformProjective./*@>1e77ac*/T/*@>1da5c8*/[/*@>1da5bc*/0]);
+/*@>1de7fa*/rtDW./*@>1e7812*/absx21/*@>11ec09*/ = /*@>1d359c*/std::abs(/*@>1da5cc*/b_this->/*@>1e77af*/TformProjective./*@>1e77b2*/T/*@>1da5d6*/[/*@>1da5ca*/1]);
+/*@>1de800*/rtDW./*@>1e7815*/absx31/*@>11ec25*/ = /*@>1d359e*/std::abs(/*@>1da5da*/b_this->/*@>1e77b5*/TformProjective./*@>1e77b8*/T/*@>1da5e4*/[/*@>1da5d8*/2]);
+/*@>11e549*/if ((/*@>1de806*/rtDW./*@>1e7818*/absx21/*@>11e4a7*/ > /*@>1de80c*/rtDW./*@>1e781b*/absx11)/*@>13422d*/ && (/*@>1de812*/rtDW./*@>1e781e*/absx21/*@>11e4a8*/ > /*@>1de818*/rtDW./*@>1e7821*/absx31)) {
+    /*@>19585f*/p1/*@>11e2fa*/ = /*@>1e716f*/4;
+    /*@>195861*/p2/*@>11e2fc*/ = /*@>1e7175*/0;
+    /*@>1de82a*/rtDW./*@>1e782a*/x/*@>18ee06*/[/*@>195b98*/0]/*@>11e307*/ = /*@>1da5e8*/b_this->/*@>1e77bb*/TformProjective./*@>1e77be*/T/*@>1da5f2*/[/*@>1da5e6*/1];
+    /*@>1de848*/rtDW./*@>1e7839*/x/*@>18ee14*/[/*@>195b9a*/1]/*@>11e30c*/ = /*@>1da60e*/b_this->/*@>1e77c7*/TformProjective./*@>1e77ca*/T/*@>1da618*/[/*@>1da60c*/0];
+    /*@>1de860*/rtDW./*@>1e7845*/x/*@>18ee22*/[/*@>195b9c*/3]/*@>11e317*/ = /*@>1da62a*/b_this->/*@>1e77d3*/TformProjective./*@>1e77d6*/T/*@>1da634*/[/*@>1da628*/4];
+    /*@>1de87e*/rtDW./*@>1e7854*/x/*@>18ee30*/[/*@>195b9e*/4]/*@>11e31c*/ = /*@>1da650*/b_this->/*@>1e77df*/TformProjective./*@>1e77e2*/T/*@>1da65a*/[/*@>1da64e*/3];
+    /*@>1de896*/rtDW./*@>1e7860*/x/*@>18ee3e*/[/*@>195ba0*/6]/*@>11e327*/ = /*@>1da66c*/b_this->/*@>1e77eb*/TformProjective./*@>1e77ee*/T/*@>1da676*/[/*@>1da66a*/7];
+    /*@>1de8ba*/rtDW./*@>1e786f*/x/*@>18ee4c*/[/*@>195ba2*/7]/*@>11e32c*/ = /*@>1da692*/b_this->/*@>1e77f7*/TformProjective./*@>1e77fa*/T/*@>1da69c*/[/*@>1da690*/6];
+} else /*@>11e557*/if (/*@>1de81e*/rtDW./*@>1e7824*/absx31/*@>11e4a9*/ > /*@>1de824*/rtDW./*@>1e7827*/absx11) {
+    /*@>195867*/p1/*@>11e332*/ = /*@>1e7172*/7;
+    /*@>195869*/p3/*@>11e334*/ = /*@>1e7178*/0;
+    /*@>1de842*/rtDW./*@>1e7836*/x/*@>18edb0*/[/*@>195b8c*/0]/*@>11e33f*/ = /*@>1da600*/b_this->/*@>1e77c1*/TformProjective./*@>1e77c4*/T/*@>1da60a*/[/*@>1da5fe*/2];
+    /*@>1de85a*/rtDW./*@>1e7842*/x/*@>18edbe*/[/*@>195b8e*/2]/*@>11e344*/ = /*@>1da61c*/b_this->/*@>1e77cd*/TformProjective./*@>1e77d0*/T/*@>1da626*/[/*@>1da61a*/0];
+    /*@>1de878*/rtDW./*@>1e7851*/x/*@>18edcc*/[/*@>195b90*/3]/*@>11e34f*/ = /*@>1da642*/b_this->/*@>1e77d9*/TformProjective./*@>1e77dc*/T/*@>1da64c*/[/*@>1da640*/5];
+    /*@>1de890*/rtDW./*@>1e785d*/x/*@>18edda*/[/*@>195b92*/5]/*@>11e354*/ = /*@>1da65e*/b_this->/*@>1e77e5*/TformProjective./*@>1e77e8*/T/*@>1da668*/[/*@>1da65c*/3];
+    /*@>1de8b4*/rtDW./*@>1e786c*/x/*@>18ede8*/[/*@>195b94*/6]/*@>11e35f*/ = /*@>1da684*/b_this->/*@>1e77f1*/TformProjective./*@>1e77f4*/T/*@>1da68e*/[/*@>1da682*/8];
+    /*@>1de8d8*/rtDW./*@>1e787b*/x/*@>18edf6*/[/*@>195b96*/8]/*@>11e364*/ = /*@>1da6aa*/b_this->/*@>1e77fd*/TformProjective./*@>1e7800*/T/*@>1da6b4*/[/*@>1da6a8*/6];
+}
+/*@>1de830*/rtDW./*@>1e782d*/absx31/*@>1bd707*/ = /*@>1de836*/rtDW./*@>1e7830*/x/*@>1da5f7*/[/*@>1da5f4*/1]/*@>196d49*/ / /*@>1de83c*/rtDW./*@>1e7833*/x/*@>1da5fc*/[/*@>1da5f9*/0];
+/*@>1de84e*/rtDW./*@>1e783c*/x/*@>18ee69*/[/*@>195ba6*/1]/*@>11e36d*/ = rtDW.absx31;
+/* {S!d518}Start for MATLABSystem: '<S4>/Warp' */
+/*@>1de866*/rtDW./*@>1e7848*/absx11/*@>1bd711*/ = /*@>1de86c*/rtDW./*@>1e784b*/x/*@>1da639*/[/*@>1da636*/2]/*@>196d41*/ / /*@>1de872*/rtDW./*@>1e784e*/x/*@>1da63e*/[/*@>1da63b*/0];
+/*@>1de884*/rtDW./*@>1e7857*/x/*@>18ee8d*/[/*@>195bab*/2]/*@>11e376*/ = rtDW.absx11;
+/*@>1de89c*/rtDW./*@>1e7863*/x/*@>18eea2*/[/*@>195bae*/4]/*@>1e71fc*/ -= /*@>1de8a8*/rtDW./*@>1e7866*/absx31/*@>196d39*/ * /*@>1de8ae*/rtDW./*@>1e7869*/x/*@>1da680*/[/*@>1da67d*/3];
+/*@>1de8c0*/rtDW./*@>1e7872*/x/*@>18eeb8*/[/*@>195bb1*/5]/*@>1e71fd*/ -= /*@>1de8cc*/rtDW./*@>1e7875*/absx11/*@>196d35*/ * /*@>1de8d2*/rtDW./*@>1e7878*/x/*@>1da6a6*/[/*@>1da6a3*/3];
+/*@>1de8de*/rtDW./*@>1e787e*/x/*@>18eece*/[/*@>195bb4*/7]/*@>1e71fe*/ -= /*@>1de8ea*/rtDW./*@>1e7881*/absx31/*@>196d31*/ * /*@>1de8f0*/rtDW./*@>1e7884*/x/*@>1da6be*/[/*@>1da6bb*/6];
+/*@>1de8f6*/rtDW./*@>1e7887*/x/*@>18eee4*/[/*@>195bb7*/8]/*@>1e71ff*/ -= /*@>1de902*/rtDW./*@>1e788a*/absx11/*@>196d2d*/ * /*@>1de908*/rtDW./*@>1e788d*/x/*@>1da6c8*/[/*@>1da6c5*/6];
+/* {S!d520}Start for MATLABSystem: '<S4>/Warp' */
+/*@>11e56b*/if (/*@>1d35a0*/std::abs(/*@>1de90e*/rtDW./*@>1e7890*/x/*@>1da6cd*/[/*@>1da6ca*/5])/*@>11e4d6*/ > /*@>1d35a2*/std::abs(/*@>1de914*/rtDW./*@>1e7893*/x/*@>1da6d2*/[/*@>1da6cf*/4])) {
+    /*@>19586b*/itmp/*@>11e3b0*/ = /*@>19586d*/p2;
+    /*@>19586f*/p2/*@>11e3b4*/ = /*@>195871*/p3;
+    /*@>195873*/p3/*@>11e3b8*/ = /*@>195875*/itmp;
+    /*@>1de962*/rtDW./*@>1e78b7*/x/*@>18ef0e*/[/*@>195bbc*/1]/*@>11e3c3*/ = /*@>1de968*/rtDW./*@>1e78ba*/absx11;
+    /*@>1de98c*/rtDW./*@>1e78cc*/x/*@>18ef16*/[/*@>195bbd*/2]/*@>11e3c8*/ = /*@>1de992*/rtDW./*@>1e78cf*/absx31;
+    /*@>1de99e*/rtDW./*@>1e78d2*/absx11/*@>11e3cd*/ = /*@>1de9a4*/rtDW./*@>1e78d5*/x/*@>1da709*/[/*@>1da706*/4];
+    /*@>1de9ce*/rtDW./*@>1e78ea*/x/*@>18ef26*/[/*@>195bbf*/4]/*@>11e3d3*/ = /*@>1de9d4*/rtDW./*@>1e78ed*/x/*@>1da71d*/[/*@>1da71a*/5];
+    /*@>1de9e6*/rtDW./*@>1e78f6*/x/*@>18ef34*/[/*@>195bc1*/5]/*@>11e3d8*/ = /*@>1de9ec*/rtDW./*@>1e78f9*/absx11;
+    /*@>1de9fe*/rtDW./*@>1e7902*/absx11/*@>11e3dd*/ = /*@>1dea04*/rtDW./*@>1e7905*/x/*@>1da722*/[/*@>1da71f*/7];
+    /*@>1dea1c*/rtDW./*@>1e7911*/x/*@>18ef44*/[/*@>195bc3*/7]/*@>11e3e3*/ = /*@>1dea22*/rtDW./*@>1e7914*/x/*@>1da72c*/[/*@>1da729*/8];
+    /*@>1dea40*/rtDW./*@>1e7923*/x/*@>18ef52*/[/*@>195bc5*/8]/*@>11e3e8*/ = /*@>1dea46*/rtDW./*@>1e7926*/absx11;
+}
+/*@>1de91a*/rtDW./*@>1e7896*/absx31/*@>1bd71b*/ = /*@>1de920*/rtDW./*@>1e7899*/x/*@>1da6d7*/[/*@>1da6d4*/5]/*@>196d29*/ / /*@>1de926*/rtDW./*@>1e789c*/x/*@>1da6dc*/[/*@>1da6d9*/4];
+/*@>1de92c*/rtDW./*@>1e789f*/x/*@>18ef7e*/[/*@>195bcb*/8]/*@>1e7200*/ -= /*@>1de938*/rtDW./*@>1e78a2*/absx31/*@>196d21*/ * /*@>1de93e*/rtDW./*@>1e78a5*/x/*@>1da6e6*/[/*@>1da6e3*/7];
+/* {S!d522}Start for MATLABSystem: '<S4>/Warp' */
+/*@>1de944*/rtDW./*@>1e78a8*/absx11/*@>11e62a*/ = (/*@>1de94a*/rtDW./*@>1e78ab*/x/*@>1da6eb*/[/*@>1da6e8*/1]/*@>196d1d*/ * rtDW.absx31/*@>121c92*/ - /*@>1de956*/rtDW./*@>1e78b1*/x/*@>1da6f0*/[/*@>1da6ed*/2])/*@>196d19*/ / /*@>1de95c*/rtDW./*@>1e78b4*/x/*@>1da6f5*/[/*@>1da6f2*/8];
+/*@>1de96e*/rtDW./*@>1e78bd*/absx21/*@>11e638*/ = -/*@<196d12*/(/*@>1de974*/rtDW./*@>1e78c0*/x/*@>1da6fa*/[/*@>1da6f7*/7]/*@>196d15*/ * /*@>1de97a*/rtDW./*@>1e78c3*/absx11/*@>121cab*/ + /*@>1de980*/rtDW./*@>1e78c6*/x/*@>1da6ff*/[/*@>1da6fc*/1])/*@>196d10*/ / /*@>1de986*/rtDW./*@>1e78c9*/x/*@>1da704*/[/*@>1da701*/4];
+/*@>1de9aa*/rtDW./*@>1e78d8*/tinv/*@>17f483*/[/*@>195a2a*/p1/*@>184d7e*/ - /*@>195b52*/1]/*@>11e429*/ = ((/*@>195921*/1.0/*@>1222cc*/ - /*@>1de9b0*/rtDW./*@>1e78db*/x/*@>1da70e*/[/*@>1da70b*/3]/*@>196d08*/ * /*@>1de9b6*/rtDW./*@>1e78de*/absx21)/*@>1222cb*/ - /*@>1de9bc*/rtDW./*@>1e78e1*/x/*@>1da713*/[/*@>1da710*/6]/*@>196d0c*/ * /*@>1de9c2*/rtDW./*@>1e78e4*/absx11)/*@>196d04*/ / /*@>1de9c8*/rtDW./*@>1e78e7*/x/*@>1da718*/[/*@>1da715*/0];
+/*@>1de9da*/rtDW./*@>1e78f0*/tinv/*@>17f4a7*/[/*@>195a2e*/p1]/*@>11e431*/ = /*@>1de9e0*/rtDW./*@>1e78f3*/absx21;
+/*@>1de9f2*/rtDW./*@>1e78fc*/tinv/*@>17f4ed*/[/*@>195a34*/p1/*@>17f4f4*/ + /*@>195a36*/1]/*@>11e439*/ = /*@>1de9f8*/rtDW./*@>1e78ff*/absx11;
+/*@>1dea0a*/rtDW./*@>1e7908*/absx11/*@>11e689*/ = -/*@<196d01*/rtDW.absx31/*@>196cff*/ / /*@>1dea16*/rtDW./*@>1e790e*/x/*@>1da727*/[/*@>1da724*/8];
+/*@>1dea28*/rtDW./*@>1e7917*/absx21/*@>11e697*/ = (/*@>1958f7*/1.0/*@>121d09*/ - /*@>1dea2e*/rtDW./*@>1e791a*/x/*@>1da731*/[/*@>1da72e*/7]/*@>196cfb*/ * /*@>1dea34*/rtDW./*@>1e791d*/absx11)/*@>196cf7*/ / /*@>1dea3a*/rtDW./*@>1e7920*/x/*@>1da736*/[/*@>1da733*/4];
+/*@>1dea4c*/rtDW./*@>1e7929*/tinv/*@>17f631*/[/*@>195a4b*/p2]/*@>11e45b*/ = -/*@<196cec*/(/*@>1dea52*/rtDW./*@>1e792c*/x/*@>1da73b*/[/*@>1da738*/3]/*@>196cef*/ * /*@>1dea58*/rtDW./*@>1e792f*/absx21/*@>1222ed*/ + /*@>1dea5e*/rtDW./*@>1e7932*/x/*@>1da740*/[/*@>1da73d*/6]/*@>196cf3*/ * /*@>1dea64*/rtDW./*@>1e7935*/absx11)/*@>196cea*/ / /*@>1dea6a*/rtDW./*@>1e7938*/x/*@>1da745*/[/*@>1da742*/0];
+/*@>1dea70*/rtDW./*@>1e793b*/tinv/*@>17f654*/[/*@>195a4f*/p2/*@>17f65b*/ + /*@>195a51*/1]/*@>11e463*/ = /*@>1dea76*/rtDW./*@>1e793e*/absx21;
+/*@>1dea7c*/rtDW./*@>1e7941*/tinv/*@>17f679*/[/*@>195a54*/p2/*@>17f680*/ + /*@>195a56*/2]/*@>11e46b*/ = /*@>1dea82*/rtDW./*@>1e7944*/absx11;
+/*@>1dea88*/rtDW./*@>1e7947*/absx11/*@>11e6e8*/ = /*@>1958fa*/1.0/*@>196ce6*/ / /*@>1dea8e*/rtDW./*@>1e794a*/x/*@>1da74a*/[/*@>1da747*/8];
+/*@>1dea94*/rtDW./*@>1e794d*/absx21/*@>11e6f6*/ = -/*@<196ce3*//*@>1dea9a*/rtDW./*@>1e7950*/x/*@>1da74f*/[/*@>1da74c*/7]/*@>196ce1*/ * /*@>1deaa0*/rtDW./*@>1e7953*/absx11/*@>196cdd*/ / /*@>1deaa6*/rtDW./*@>1e7956*/x/*@>1da754*/[/*@>1da751*/4];
+/*@>1deaac*/rtDW./*@>1e7959*/tinv/*@>17f760*/[/*@>195a65*/p3]/*@>11e48a*/ = -/*@<196cd2*/(/*@>1deab2*/rtDW./*@>1e795c*/x/*@>1da759*/[/*@>1da756*/3]/*@>196cd5*/ * /*@>1deab8*/rtDW./*@>1e795f*/absx21/*@>12230c*/ + /*@>1deabe*/rtDW./*@>1e7962*/x/*@>1da75e*/[/*@>1da75b*/6]/*@>196cd9*/ * /*@>1deac4*/rtDW./*@>1e7965*/absx11)/*@>196cd0*/ / /*@>1deaca*/rtDW./*@>1e7968*/x/*@>1da763*/[/*@>1da760*/0];
+/*@>1dead0*/rtDW./*@>1e796b*/tinv/*@>17f783*/[/*@>195a69*/p3/*@>17f78a*/ + /*@>195a6b*/1]/*@>11e492*/ = /*@>1dead6*/rtDW./*@>1e796e*/absx21;
+/*@>1deadc*/rtDW./*@>1e7971*/tinv/*@>17f7a8*/[/*@>195a6e*/p3/*@>17f7af*/ + /*@>195a70*/2]/*@>11e49a*/ = /*@>1deae2*/rtDW./*@>1e7974*/absx11;
+/*@>1deae8*/rtDW./*@>1e7977*/absx21/*@>188f9e*/ = /*@>1deaee*/rtDW./*@>1e797a*/tinv/*@>1da768*/[/*@>1da765*/6];
+/*@>1deaf4*/rtDW./*@>1e797d*/absx31/*@>188fad*/ = /*@>1deafa*/rtDW./*@>1e7980*/tinv/*@>1da76d*/[/*@>1da76a*/7];
+/*@>1deb00*/rtDW./*@>1e7983*/tinv_b/*@>188fbc*/ = /*@>1deb06*/rtDW./*@>1e7986*/tinv/*@>1da772*/[/*@>1da76f*/8];
+/* {S!d524}Start for MATLABSystem: '<S4>/Warp' */
+/*@>1deb0c*/rtDW./*@>1e7989*/tinv_p/*@>188fcb*/ = /*@>1deb12*/rtDW./*@>1e798c*/tinv/*@>1da777*/[/*@>1da774*/0];
+/*@>1deb18*/rtDW./*@>1e798f*/tinv_c/*@>188fda*/ = /*@>1deb1e*/rtDW./*@>1e7992*/tinv/*@>1da77c*/[/*@>1da779*/1];
+/*@>1deb24*/rtDW./*@>1e7995*/tinv_f/*@>188fe9*/ = /*@>1deb2a*/rtDW./*@>1e7998*/tinv/*@>1da781*/[/*@>1da77e*/2];
+/*@>1deb30*/rtDW./*@>1e799b*/tinv_g/*@>188ff8*/ = /*@>1deb36*/rtDW./*@>1e799e*/tinv/*@>1da786*/[/*@>1da783*/3];
+/*@>1deb3c*/rtDW./*@>1e79a1*/tinv_g1/*@>189007*/ = /*@>1deb42*/rtDW./*@>1e79a4*/tinv/*@>1da78b*/[/*@>1da788*/4];
+/*@>1deb48*/rtDW./*@>1e79a7*/tinv_m/*@>189016*/ = /*@>1deb4e*/rtDW./*@>1e79aa*/tinv/*@>1da790*/[/*@>1da78d*/5];
+/*@>11e10c*/for (/*@>1e71cb*/p1 = /*@>1e71ca*/0; /*@>1e71d5*/p1 < /*@>1e71d3*/640; /*@>1e71d1*/p1/*@>1e7201*/++) {
+/*@>11e110*/    for (/*@>1e71dc*/p2 = /*@>1e71db*/0; /*@>1e71e6*/p2 < /*@>1e71e4*/480; /*@>1e71e2*/p2/*@>1e7202*/++) {
+        /* {S!d526}Start for MATLABSystem: '<S4>/Warp' */
+        /*@>1deb66*/rtDW./*@>1e79ad*/absx11/*@>11e0a3*/ = ((((static_cast<double>(/*@>19592e*/p1)/*@>12232e*/ + /*@>195930*/1.0)/*@>121dd8*/ - /*@>1958fe*/0.5)/*@>121dd6*/ + /*@>1958fd*/0.5)/*@>196d85*/ * /*@>1deb6c*/rtDW./*@>1e79b0*/absx21/*@>11e0ef*/ + (((static_cast<double>(/*@>195931*/p2)/*@>122333*/ + /*@>195933*/1.0)/*@>121dde*/ - /*@>195900*/0.5)/*@>121ddc*/ + /*@>1958ff*/0.5)/*@>196d8c*/ * /*@>1deb72*/rtDW./*@>1e79b3*/absx31)/*@>11e0f0*/ + /*@>1deb78*/rtDW./*@>1e79b6*/tinv_b;
+        /*@>1bd723*/itmp/*@>1bd725*/ = /*@>195bee*/480/*@>196d6e*/ * /*@>195a82*/p1/*@>18f0b1*/ + /*@>195a80*/p2;
+        /*@>1deb84*/rtDW./*@>1e79bc*/srcXIntrinsic/*@>18f0b5*/[/*@>1bd727*/itmp]/*@>11e0b9*/ = ((((((static_cast<double>(/*@>19594a*/p1)/*@>122445*/ + /*@>19594c*/1.0)/*@>122444*/ - /*@>19594d*/0.5)/*@>122442*/ + /*@>195949*/0.5)/*@>196d77*/ * /*@>1deb8a*/rtDW./*@>1e79bf*/tinv_p/*@>122361*/ + (((static_cast<double>(/*@>19594f*/p2)/*@>12244e*/ + /*@>195951*/1.0)/*@>12244d*/ - /*@>195952*/0.5)/*@>12244b*/ + /*@>19594e*/0.5)/*@>196d7e*/ * /*@>1deb90*/rtDW./*@>1e79c2*/tinv_c)/*@>122360*/ + /*@>1deb96*/rtDW./*@>1e79c5*/tinv_f)/*@>196d73*/ / /*@>1deb9c*/rtDW./*@>1e79c8*/absx11/*@>11e0f5*/ - /*@>19584f*/0.5)/*@>11e0f6*/ + /*@>195843*/0.5;
+        /*@>1deba2*/rtDW./*@>1e79cb*/srcYIntrinsic/*@>18f0c8*/[itmp]/*@>11e0c3*/ = ((((((static_cast<double>(/*@>195954*/p1)/*@>122458*/ + /*@>195956*/1.0)/*@>122457*/ - /*@>195957*/0.5)/*@>122455*/ + /*@>195953*/0.5)/*@>196d62*/ * /*@>1deba8*/rtDW./*@>1e79ce*/tinv_g/*@>12237c*/ + (((static_cast<double>(/*@>195959*/p2)/*@>122461*/ + /*@>19595b*/1.0)/*@>122460*/ - /*@>19595c*/0.5)/*@>12245e*/ + /*@>195958*/0.5)/*@>196d69*/ * /*@>1debae*/rtDW./*@>1e79d1*/tinv_g1)/*@>12237b*/ + /*@>1debb4*/rtDW./*@>1e79d4*/tinv_m)/*@>196d5e*/ / /*@>1debba*/rtDW./*@>1e79d7*/absx11/*@>11e0f7*/ - /*@>195850*/0.5)/*@>11e0f8*/ + /*@>195844*/0.5;
+    }
+}
+/*@>17f800*/for (/*@>1e71ba*/p2 = /*@>1e71b9*/0; /*@>1e71c4*/p2 < /*@>1e71c2*/307200; /*@>1e71c0*/p2/*@>1e7209*/++) {
+    /* {S!d528}Start for MATLABSystem: '<S4>/Warp' */
+    /*@>1deb7e*/rtDW./*@>1e79b9*/inputImage/*@>17f7f2*/[/*@>195a75*/p2]/*@>17f7f3*/ = static_cast<int8_t>(/*@>1da795*/Image/*@>1da797*/[/*@>1da793*/p2]);
+}
+/*@>11e9cf*/for (/*@>1e71a9*/p1 = /*@>1e71a8*/0; /*@>1e71b3*/p1 < /*@>1e71b1*/307200; /*@>1e71af*/p1/*@>1e720b*/++) {
+    float qx2;
+    /* {S!d530}Start for MATLABSystem: '<S4>/Warp' */
+    /*@>1debc0*/rtDW./*@>1e79da*/absx11/*@>1ae199*/ = /*@>1debc6*/rtDW./*@>1e79dd*/srcXIntrinsic/*@>1da79d*/[/*@>1da79a*/p1];
+    /*@>11ea4f*/if ((/*@>1debcc*/rtDW./*@>1e79e0*/absx11/*@>11ea3d*/ >= /*@>1958b9*/1.0)/*@>1e5338*/ && (/*@>1debd2*/rtDW./*@>1e79e3*/absx11/*@>11ea3e*/ <= /*@>1958bb*/640.0)) {
+        /*@>1debd8*/rtDW./*@>1e79e6*/absx21/*@>1ae1bd*/ = /*@>1debde*/rtDW./*@>1e79e9*/srcYIntrinsic/*@>1da7a3*/[/*@>1da7a0*/p1];
+        /*@>11ea51*/if ((/*@>1debe4*/rtDW./*@>1e79ec*/absx21/*@>11ea3f*/ >= /*@>1958ba*/1.0)/*@>1e5339*/ && (/*@>1debea*/rtDW./*@>1e79ef*/absx21/*@>11ea40*/ <= /*@>1958bc*/480.0)) {
+            float qx1;
+            /*@>1a77c9*/if (/*@>1debf0*/rtDW./*@>1e79f2*/absx11/*@>11ea7a*/ <= /*@>1958be*/1.0) {
+                /*@>1a77cd*/p3/*@>1a77cc*/ = /*@>1e717b*/1;
+            } else /*@>1a77dd*/if (/*@>1debf6*/rtDW./*@>1e79f5*/absx11/*@>11ea7b*/ <= /*@>19595d*/639.0) {
+                /*@>1a77e1*/p3/*@>1a77e0*/ = static_cast<int32_t>(/*@>1d35a4*/std::floor(/*@>1debfc*/rtDW./*@>1e79f8*/absx11));
+            } else {
+                /*@>195bfe*/p3/*@>18fd94*/ = /*@>1e717e*/639;
+            }
+            /*@>1dec02*/rtDW./*@>1e79fb*/absx21/*@>1ae1cf*/ = /*@>1dec08*/rtDW./*@>1e79fe*/srcYIntrinsic/*@>1da7a9*/[/*@>1da7a6*/p1];
+            /*@>1a77ce*/if (/*@>1dec0e*/rtDW./*@>1e7a01*/absx21/*@>11ea9f*/ <= /*@>1958c2*/1.0) {
+                /*@>1a77d2*/itmp/*@>1a77d1*/ = /*@>1e7181*/1;
+            } else /*@>1a77e2*/if (/*@>1dec14*/rtDW./*@>1e7a04*/absx21/*@>11eaa0*/ <= /*@>19595e*/479.0) {
+                /*@>1a77e6*/itmp/*@>1a77e5*/ = static_cast<int32_t>(/*@>1d35a6*/std::floor(/*@>1dec1a*/rtDW./*@>1e7a07*/absx21));
+            } else {
+                /*@>195c00*/itmp/*@>18fd99*/ = /*@>1e7184*/479;
+            }
+            /*@>11eb51*/if (/*@>1dec20*/rtDW./*@>1e7a0a*/absx11/*@>11eb3f*/ == /*@>195905*/p3) {
+                /*@>1bd72d*/p2/*@>1bd72f*/ = (/*@>195ab8*/p3/*@>17fbc5*/ - /*@>195aba*/1)/*@>196dd8*/ * /*@>195bfc*/480/*@>1907a2*/ + /*@>195ab5*/itmp;
+                /*@>1958c6*/qx1/*@>11ead2*/ = /*@>1dec38*/rtDW./*@>1e7a13*/inputImage/*@>1da7b1*/[/*@>1da7ad*/p2/*@>1da7ab*/ - /*@>1da7ae*/1];
+                /*@>1958c8*/qx2/*@>11ead6*/ = /*@>1dec44*/rtDW./*@>1e7a19*/inputImage/*@>1da7bf*/[p2];
+            } else /*@>11eb54*/if (static_cast<double>(/*@>195938*/p3)/*@>121f8d*/ + /*@>195907*/1.0/*@>11eb40*/ == /*@>1dec26*/rtDW./*@>1e7a0d*/absx11) {
+                /*@>1bd737*/p2/*@>1bd739*/ = /*@>195bfa*/480/*@>196dd2*/ * /*@>195ac2*/p3/*@>1907a0*/ + /*@>195abf*/itmp;
+                /*@>1958ca*/qx1/*@>11eade*/ = /*@>1dec3e*/rtDW./*@>1e7a16*/inputImage/*@>1da7b9*/[/*@>1da7b5*/p2/*@>1da7b3*/ - /*@>1da7b6*/1];
+                /*@>1958cc*/qx2/*@>11eae2*/ = /*@>1dec50*/rtDW./*@>1e7a1f*/inputImage/*@>1da7cd*/[p2];
+            } else {
+                int8_t tmp;
+                int8_t tmp_0;
+                /*@>1dec2c*/rtDW./*@>1e7a10*/absx11/*@>1e7212*/ -= static_cast<double>(/*@>195908*/p3);
+                /*@>1bd757*/p2/*@>1bd759*/ = (/*@>195ad0*/p3/*@>17fc5c*/ - /*@>195ad2*/1)/*@>196dc5*/ * /*@>195bf0*/480/*@>190764*/ + /*@>195acd*/itmp;
+                /*@>1bd741*/tmp/*@>1bd743*/ = /*@>1dec4a*/rtDW./*@>1e7a1c*/inputImage/*@>1da7c7*/[/*@>1da7c3*/p2/*@>1da7c1*/ - /*@>1da7c4*/1];
+                /*@>1bd761*/p3/*@>1bd763*/ = /*@>195bf1*/480/*@>196dc8*/ * /*@>195ad8*/p3/*@>190766*/ + /*@>195ad5*/itmp;
+                /*@>1bd74d*/tmp_0/*@>1bd74f*/ = /*@>1dec5c*/rtDW./*@>1e7a25*/inputImage/*@>1da7d5*/[/*@>1da7d1*/p3/*@>1da7cf*/ - /*@>1da7d2*/1];
+                /*@>1a77d3*/if (/*@>1bd745*/tmp/*@>11eb45*/ == /*@>1bd751*/tmp_0) {
+                    /*@>1a77d7*/qx1/*@>1a77d6*/ = tmp;
+                } else {
+                    /*@>195c02*/qx1/*@>18fd9e*/ = static_cast<float>(/*@>19593c*/1.0/*@>1223c6*/ - /*@>1dec68*/rtDW./*@>1e7a2b*/absx11)/*@>196db6*/ * static_cast<float>(tmp)/*@>11eb46*/ + static_cast<float>(tmp_0)/*@>196dbd*/ * static_cast<float>(/*@>1dec6e*/rtDW./*@>1e7a2e*/absx11);
+                }
+                /*@>1bd76b*/tmp/*@>1bd76d*/ = /*@>1dec8c*/rtDW./*@>1e7a3d*/inputImage/*@>1da7db*/[p2];
+                /*@>1bd777*/tmp_0/*@>1bd779*/ = /*@>1dec92*/rtDW./*@>1e7a40*/inputImage/*@>1da7e1*/[p3];
+                /*@>1a77d8*/if (/*@>1bd76f*/tmp/*@>11eb47*/ == /*@>1bd77b*/tmp_0) {
+                    /*@>1a77dc*/qx2/*@>1a77db*/ = tmp;
+                } else {
+                    /*@>195c04*/qx2/*@>18fda3*/ = static_cast<float>(/*@>19593f*/1.0/*@>1223e1*/ - /*@>1dec98*/rtDW./*@>1e7a43*/absx11)/*@>196d9f*/ * static_cast<float>(tmp)/*@>11eb48*/ + static_cast<float>(tmp_0)/*@>196da6*/ * static_cast<float>(/*@>1dec9e*/rtDW./*@>1e7a46*/absx11);
+                }
+            }
+            /*@>11eb63*/if ((/*@>1dec56*/rtDW./*@>1e7a22*/absx21/*@>11eb49*/ == /*@>195911*/itmp)/*@>1e533a*/ || (/*@>1958d4*/qx1/*@>11eb4a*/ == /*@>1958d6*/qx2)) {
+                /*@>1ae216*/qx2/*@>11eb21*/ = /*@>1958d8*/qx1;
+            } else /*@>11eb67*/if (!/*@<1c9ff2*/(static_cast<double>(/*@>195942*/itmp)/*@>12209f*/ + /*@>195913*/1.0/*@>11eb4b*/ == /*@>1dec62*/rtDW./*@>1e7a28*/absx21)) {
+                /*@>1dec74*/rtDW./*@>1e7a31*/absx11/*@>11eb33*/ = /*@>1dec7a*/rtDW./*@>1e7a34*/absx21/*@>11eb4c*/ - static_cast<double>(/*@>195914*/itmp);
+                /*@>1ae212*/qx2/*@>11eb3e*/ = static_cast<float>(/*@>195946*/1.0/*@>122405*/ - /*@>1dec80*/rtDW./*@>1e7a37*/absx11)/*@>196d93*/ * /*@>195919*/qx1/*@>11eb50*/ + static_cast<float>(/*@>1dec86*/rtDW./*@>1e7a3a*/absx11)/*@>196d97*/ * /*@>19591d*/qx2;
+            }
+        } else {
+            /*@>1e7199*/qx2/*@>1e7198*/ = /*@>1e719a*/0.0F;
+        }
+    } else {
+        /*@>1ae210*/qx2/*@>11ea3c*/ = /*@>1958bd*/0.0F;
+    }
+    /*@>1d34a4*/Jout/*@>17f927*/[/*@>195a88*/p1]/*@>17f928*/ = (/*@>1ae218*/qx2/*@>17f912*/ > /*@>19595f*/0.5F);
+}
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Warp_stepImpl(\
+%assign comma = ""
+%<comma>vision_internal_blocks_Warp *b_this\
+%assign comma = ", "
+%<comma>const bool Image[307200]\
+%assign comma = ", "
+%<comma>const double input2[9]\
+%assign comma = ", "
+%<comma>bool Jout[307200]\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 9, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function eml_find_7rUftLmJ_Fcn10(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+int32_t idx;
+int32_t ii;
+int32_t jj;
+bool exitg1;
+/*@>195caa*/idx/*@>15381b*/ = /*@>1e7a73*/0;
+/*@>195cb1*/ii/*@>15381a*/ = /*@>1e7a76*/1;
+/*@>195cb4*/jj/*@>153819*/ = /*@>1e7a79*/1;
+exitg1 = false;
+while/*@<15382a*/ ((!exitg1) && (/*@>195cb7*/jj/*@>1537f2*/ <= /*@>195cb9*/640)) {
+    bool guard1;
+    guard1 = false;
+    /*@>15382b*/if (/*@>1da7ef*/x/*@>1da7f1*/[((/*@>1da7e8*/jj/*@>1da7e6*/ - /*@>1da7e9*/1)/*@>1da7e5*/ * /*@>1da7ea*/480/*@>1da7e4*/ + /*@>1da7ec*/ii)/*@>1da7e3*/ - /*@>1da7ed*/1]) {
+        /*@>195cbd*/idx/*@>1e7ac4*/++;
+        /*@>1d34b6*/i_data/*@>153810*/[/*@>195cc4*/idx/*@>1537e4*/ - /*@>195cc6*/1]/*@>15380e*/ = /*@>195cc7*/ii;
+        /*@>1d34b9*/j_data/*@>15380c*/[/*@>195ccc*/idx/*@>1537da*/ - /*@>195cce*/1]/*@>15380a*/ = /*@>195ccf*/jj;
+        /*@>153830*/if (/*@>195cd9*/idx/*@>1537ec*/ >= /*@>195cdb*/307200) {
+            exitg1 = true;
+        } else {
+            guard1 = true;
+        }
+    } else {
+        guard1 = true;
+    }
+    if (guard1) {
+        /*@>195cc2*/ii/*@>1e7ac5*/++;
+        /*@>153833*/if (/*@>195cc9*/ii/*@>1537ea*/ > /*@>195ccb*/480) {
+            /*@>195cd1*/ii/*@>1537fe*/ = /*@>1e7a82*/1;
+            /*@>195cd7*/jj/*@>1e7ac6*/++;
+        }
+    }
+}
+/*@>18fdb0*/if (/*@>195cde*/idx/*@>168ec6*/ < /*@>195ce0*/1) {
+    *i_size/*@>18fdb3*/ = /*@>1e7a7c*/0;
+    *j_size/*@>18fdbb*/ = /*@>1e7a7f*/0;
+} else {
+    *i_size/*@>1559d8*/ = /*@>195ce2*/idx;
+    *j_size/*@>1559ee*/ = /*@>195ce5*/idx;
+}
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+extern void eml_find_7rUftLmJ(\
+%assign comma = ""
+%<comma>const bool x[307200]\
+%assign comma = ", "
+%<comma>int32_t i_data[]\
+%assign comma = ", "
+%<comma>int32_t *i_size\
+%assign comma = ", "
+%<comma>int32_t j_data[]\
+%assign comma = ", "
+%<comma>int32_t *j_size\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 10, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function and_o_Fcn11(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+int32_t loop_ub;
+int32_t stride_0_0;
+int32_t stride_1_0;
+/* {S!d564}MATLAB Function: '<S2>/MATLAB Function1' */
+/*@>1c4241*/loop_ub/*@>1c4243*/ = *in3_size/*@>181579*/ == /*@>196939*/1/*@>181579*/ ? *in2_size : *in3_size;
+*in1_size/*@>181599*/ = /*@>1c4245*/loop_ub;
+/*@>196959*/stride_0_0/*@>1815ed*/ = (*in2_size/*@>18aad7*/ != /*@>196973*/1);
+/*@>19695b*/stride_1_0/*@>1815f9*/ = (*in3_size/*@>18aaf7*/ != /*@>196977*/1);
+/*@>1815d6*/for ( int32_t /*@>1e7b46*/i{/*@>1e7b45*/0}; /*@>1e7b53*/i < loop_ub; /*@>1e7b4c*/i/*@>1e7b56*/++) {
+    /*@>1cdc06*/in1_data/*@>1815b3*/[/*@>196947*/i]/*@>1815b4*/ = (/*@>1daadb*/in2_data/*@>1daadd*/[/*@>1daad7*/i * /*@>1daad9*/stride_0_0]/*@>18159e*/ && /*@>1daae5*/in3_data/*@>1daae7*/[/*@>1daae1*/i * /*@>1daae3*/stride_1_0]);
+}
+/* {E!d564}End of MATLAB Function: '<S2>/MATLAB Function1' */
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void and_o(\
+%assign comma = ""
+%<comma>bool in1_data[]\
+%assign comma = ", "
+%<comma>int32_t *in1_size\
+%assign comma = ", "
+%<comma>const bool in2_data[]\
+%assign comma = ", "
+%<comma>const int32_t *in2_size\
+%assign comma = ", "
+%<comma>const bool in3_data[]\
+%assign comma = ", "
+%<comma>const int32_t *in3_size\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 11, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function binary_expand_op_3_Fcn12(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+int32_t loop_ub;
+int32_t stride_0_0;
+int32_t stride_1_0_tmp;
+/* {S!d572}MATLAB Function: '<S2>/MATLAB Function1' */
+/*@>1c4efc*/loop_ub/*@>1c4efe*/ = *in3_size/*@>181ad9*/ == /*@>196b00*/1/*@>181ad9*/ ? *in3_size/*@>181ae2*/ == /*@>196b04*/1/*@>181ae2*/ ? *in2_size : *in3_size : *in3_size;
+*in1_size/*@>181b08*/ = /*@>1c4f00*/loop_ub;
+/*@>196b30*/stride_0_0/*@>181b77*/ = (*in2_size/*@>18acac*/ != /*@>196b53*/1);
+stride_1_0_tmp = (*in3_size/*@>18accc*/ != /*@>196b57*/1);
+/*@>181b5f*/for ( int32_t /*@>1e7bc4*/i{/*@>1e7bc3*/0}; /*@>1e7bd1*/i < loop_ub; /*@>1e7bca*/i/*@>1e7bd4*/++) {
+    int32_t tmp;
+    /*@>1c4f06*/tmp/*@>1c4f08*/ = /*@>1dab39*/in3_data/*@>1dab3b*/[/*@>1dab35*/i * stride_1_0_tmp];
+    /*@>1cde04*/in1_data/*@>181b2d*/[/*@>196b17*/i]/*@>181b2e*/ = (/*@>1dab43*/in2_data/*@>1dab45*/[/*@>1dab3f*/i * /*@>1dab41*/stride_0_0]/*@>181b0f*/ && (/*@>1c4f0a*/tmp/*@>181b17*/ >= /*@>196afb*/0)/*@>181b0e*/ && (tmp/*@>181b1f*/ < /*@>196afc*/160));
+}
+/* {E!d572}End of MATLAB Function: '<S2>/MATLAB Function1' */
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void binary_expand_op_3(\
+%assign comma = ""
+%<comma>bool in1_data[]\
+%assign comma = ", "
+%<comma>int32_t *in1_size\
+%assign comma = ", "
+%<comma>const bool in2_data[]\
+%assign comma = ", "
+%<comma>const int32_t *in2_size\
+%assign comma = ", "
+%<comma>const int32_t in3_data[]\
+%assign comma = ", "
+%<comma>const int32_t *in3_size\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 12, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function mean_uQukM2rh_Fcn13(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+double b_y;
+/*@>153a9b*/if (*x_size/*@>153a97*/ == /*@>195d6d*/0) {
+    /*@>195d6b*/b_y/*@>153a90*/ = /*@>195d6a*/0.0;
+} else {
+    int32_t firstBlockLength;
+    int32_t lastBlockLength;
+    int32_t nblocks;
+    int32_t xblockoffset;
+    /*@>153b22*/if (*x_size/*@>153b0f*/ <= /*@>195d69*/1024) {
+        /*@>195d64*/firstBlockLength/*@>153ade*/ = *x_size;
+        /*@>195d62*/lastBlockLength/*@>153adf*/ = /*@>1e7c56*/0;
+        /*@>195d5a*/nblocks/*@>153ae0*/ = /*@>1e7c59*/1;
+    } else {
+        /*@>195d67*/firstBlockLength/*@>153ae1*/ = /*@>1e7c53*/1024;
+        /*@>195d19*/nblocks/*@>153ba5*/ = static_cast<int32_t>(static_cast<uint32_t>(*x_size)/*@>19ab79*/ >> /*@>196df5*/10);
+        /*@>195d5c*/lastBlockLength/*@>153ae5*/ = *x_size/*@>153b11*/ - (/*@>195d5f*/nblocks/*@>196dee*/ << /*@>196ded*/10);
+        /*@>153b28*/if (/*@>195d57*/lastBlockLength/*@>153b12*/ > /*@>195d56*/0) {
+            /*@>195d4e*/nblocks/*@>1e7c9f*/++;
+        } else {
+            /*@>195d54*/lastBlockLength/*@>153ae9*/ = /*@>1e7c5c*/1024;
+        }
+    }
+    /*@>195d4c*/b_y/*@>153aec*/ = /*@>1da7f5*/x_data/*@>1da7f7*/[/*@>1da7f3*/0];
+/*@>153b2e*/    for (/*@>1e7c89*/xblockoffset = /*@>1e7c88*/2; /*@>1e7c94*/xblockoffset <= /*@>1e7c92*/firstBlockLength; /*@>1e7c8f*/xblockoffset/*@>1e7c97*/++) {
+        /*@>195d36*/b_y/*@>1e7c98*/ += /*@>1da7fe*/x_data/*@>1da800*/[/*@>1da7fb*/xblockoffset/*@>1da7f9*/ - /*@>1da7fc*/1];
+    }
+/*@>153b33*/    for (/*@>1e7c69*/firstBlockLength = /*@>1e7c68*/2; /*@>1e7c74*/firstBlockLength <= /*@>1e7c72*/nblocks; /*@>1e7c6f*/firstBlockLength/*@>1e7c99*/++) {
+        double bsum;
+        int32_t hi;
+        /*@>195d3a*/xblockoffset/*@>153af7*/ = (/*@>195d3e*/firstBlockLength/*@>153b18*/ - /*@>195d3d*/1)/*@>196e02*/ << /*@>196e01*/10;
+        /*@>195d34*/bsum/*@>153afd*/ = /*@>1da805*/x_data/*@>1da807*/[/*@>1da803*/xblockoffset];
+        /*@>1a77e9*/if (/*@>195d32*/firstBlockLength/*@>153b1c*/ == /*@>195d30*/nblocks) {
+            /*@>1a77ed*/hi/*@>1a77ec*/ = /*@>195d2d*/lastBlockLength;
+        } else {
+            /*@>195d98*/hi/*@>18fdc4*/ = /*@>1e7c5f*/1024;
+        }
+/*@>153b3c*/        for ( int32_t /*@>1e7c79*/b_k{/*@>1e7c78*/2}; /*@>1e7c84*/b_k <= /*@>1e7c82*/hi; /*@>1e7c7f*/b_k/*@>1e7c9a*/++) {
+            /*@>195d1b*/bsum/*@>1e7c9b*/ += /*@>1da811*/x_data/*@>1da813*/[(/*@>1da80c*/xblockoffset/*@>1da80a*/ + /*@>1da80e*/b_k)/*@>1da809*/ - /*@>1da80f*/1];
+        }
+        /*@>195d1f*/b_y/*@>1e7c9c*/ += /*@>195d21*/bsum;
+    }
+}
+return /*@>195d6e*/b_y/*@>146d40*/ / static_cast<double>(*x_size);
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+extern double mean_uQukM2rh(\
+%assign comma = ""
+%<comma>const double x_data[]\
+%assign comma = ", "
+%<comma>const int32_t *x_size\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 13, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function maximum_4kJ3rROr_Fcn14(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+double ex;
+int32_t last;
+/*@>195db1*/last/*@>153963*/ = *x_size;
+/*@>153967*/if (*x_size/*@>153945*/ <= /*@>195db3*/2) {
+    /*@>153968*/if (*x_size/*@>153944*/ == /*@>195db4*/1) {
+        /*@>195db5*/ex/*@>15395c*/ = /*@>1da827*/x_data/*@>1da829*/[/*@>1da825*/0];
+    } else {
+        /*@>1be1fb*/ex/*@>1be1fd*/ = /*@>1da821*/x_data/*@>1da823*/[*x_size/*@>1da81b*/ - /*@>1da81f*/1];
+        /*@>1a77ef*/if (!/*@<1c9ff9*/(/*@>1da82d*/x_data/*@>1da82f*/[/*@>1da82b*/0]/*@>153942*/ < /*@>1be1ff*/ex)) {
+            /*@>195df1*/ex/*@>18fdca*/ = /*@>1da83c*/x_data/*@>1da83e*/[/*@>1da83a*/0];
+        }
+    }
+} else {
+    /*@>195db9*/ex/*@>1539f4*/ = /*@>1da817*/x_data/*@>1da819*/[/*@>1da815*/0];
+/*@>153a04*/    for ( int32_t /*@>1e7d65*/k{/*@>1e7d64*/2}; /*@>1e7d70*/k <= /*@>1e7d6e*/last; /*@>1e7d6b*/k/*@>1e7d72*/++) {
+        double x;
+        /*@>195de6*/x/*@>18908e*/ = /*@>1da836*/x_data/*@>1da838*/[/*@>1da833*/k/*@>1da831*/ - /*@>1da834*/1];
+        /*@>153a06*/if (/*@>195dbf*/ex/*@>1539ff*/ < /*@>195ded*/x) {
+            /*@>195dc1*/ex/*@>1539fc*/ = /*@>195def*/x;
+        }
+    }
+}
+return ex;
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+extern double maximum_4kJ3rROr(\
+%assign comma = ""
+%<comma>const double x_data[]\
+%assign comma = ", "
+%<comma>const int32_t *x_size\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 14, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function binary_expand_op_2_Fcn15(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+int32_t loop_ub;
+int32_t stride_0_0;
+int32_t stride_1_0;
+int32_t stride_2_0;
+/* {S!d570}MATLAB Function: '<S2>/MATLAB Function1' */
+/*@>1c4bbe*/loop_ub/*@>1c4bc0*/ = *in5_size/*@>181955*/ == /*@>196a72*/1/*@>181955*/ ? *in4_size/*@>18195e*/ == /*@>196a76*/1/*@>18195e*/ ? *in2_size : *in4_size : *in5_size;
+*in1_size/*@>181984*/ = /*@>1c4bc2*/loop_ub;
+/*@>196aa4*/stride_0_0/*@>1819f9*/ = (*in2_size/*@>18ac2c*/ != /*@>196acb*/1);
+/*@>196aa6*/stride_1_0/*@>181a05*/ = (*in4_size/*@>18ac4c*/ != /*@>196acf*/1);
+/*@>196aa8*/stride_2_0/*@>181a11*/ = (*in5_size/*@>18ac6c*/ != /*@>196ad3*/1);
+/*@>1819e1*/for ( int32_t /*@>1e7df0*/i{/*@>1e7def*/0}; /*@>1e7dfd*/i < loop_ub; /*@>1e7df6*/i/*@>1e7e00*/++) {
+    int32_t tmp;
+    tmp = /*@>196abb*/i * /*@>196abd*/stride_0_0;
+    /*@>1cdd77*/in1_data/*@>1819af*/[/*@>196a8b*/i]/*@>1819b0*/ = (/*@>1dab14*/in2_data/*@>1dab16*/[tmp]/*@>18198c*/ && /*@>1dab1b*/in3_data/*@>1dab1d*/[tmp]/*@>18198b*/ && /*@>1dab25*/in4_data/*@>1dab27*/[/*@>1dab21*/i * /*@>1dab23*/stride_1_0]/*@>18198a*/ && /*@>1dab2f*/in5_data/*@>1dab31*/[/*@>1dab2b*/i * /*@>1dab2d*/stride_2_0]);
+}
+/* {E!d570}End of MATLAB Function: '<S2>/MATLAB Function1' */
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void binary_expand_op_2(\
+%assign comma = ""
+%<comma>bool in1_data[]\
+%assign comma = ", "
+%<comma>int32_t *in1_size\
+%assign comma = ", "
+%<comma>const bool in2_data[]\
+%assign comma = ", "
+%<comma>const int32_t *in2_size\
+%assign comma = ", "
+%<comma>const bool in3_data[]\
+%assign comma = ", "
+%<comma>const bool in4_data[]\
+%assign comma = ", "
+%<comma>const int32_t *in4_size\
+%assign comma = ", "
+%<comma>const bool in5_data[]\
+%assign comma = ", "
+%<comma>const int32_t *in5_size\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 15, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function binary_expand_op_Fcn16(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+int32_t loop_ub;
+int32_t stride_0_0;
+int32_t stride_1_0;
+/* {S!d566}MATLAB Function: '<S2>/MATLAB Function1' */
+/*@>1c4531*/loop_ub/*@>1c4533*/ = *in5_size/*@>1816aa*/ == /*@>1969a0*/1/*@>1816aa*/ ? *in2_size : *in5_size;
+*in1_size/*@>1816ca*/ = /*@>1c4535*/loop_ub;
+/*@>1969c2*/stride_0_0/*@>181735*/ = (*in2_size/*@>18ab27*/ != /*@>1969e0*/1);
+/*@>1969c4*/stride_1_0/*@>181741*/ = (*in5_size/*@>18ab47*/ != /*@>1969e4*/1);
+/*@>18171e*/for ( int32_t /*@>1e7e9b*/i{/*@>1e7e9a*/0}; /*@>1e7ea8*/i < loop_ub; /*@>1e7ea1*/i/*@>1e7eab*/++) {
+    double tmp;
+    /*@>1c453b*/tmp/*@>1c453d*/ = /*@>1daaef*/in2_data/*@>1daaf1*/[/*@>1daaeb*/i * /*@>1daaed*/stride_0_0];
+    /*@>1cdc7b*/in1_data/*@>1816fb*/[/*@>1969b0*/i]/*@>1816fc*/ = ((/*@>1c453f*/tmp/*@>1816d1*/ >= /*@>196993*/in3)/*@>1816d0*/ && (tmp/*@>1816dd*/ < /*@>196995*/in4)/*@>1816cf*/ && (/*@>1daaf9*/in5_data/*@>1daafb*/[/*@>1daaf5*/i * /*@>1daaf7*/stride_1_0]/*@>1816e9*/ >= /*@>1a6231*/in6/*@>1a622f*/ - /*@>1a6232*/40.0));
+}
+/* {E!d566}End of MATLAB Function: '<S2>/MATLAB Function1' */
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void binary_expand_op(\
+%assign comma = ""
+%<comma>bool in1_data[]\
+%assign comma = ", "
+%<comma>int32_t *in1_size\
+%assign comma = ", "
+%<comma>const int32_t in2_data[]\
+%assign comma = ", "
+%<comma>const int32_t *in2_size\
+%assign comma = ", "
+%<comma>double in3\
+%assign comma = ", "
+%<comma>double in4\
+%assign comma = ", "
+%<comma>const int32_t in5_data[]\
+%assign comma = ", "
+%<comma>const int32_t *in5_size\
+%assign comma = ", "
+%<comma>double in6\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 16, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function binary_expand_op_1_Fcn17(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+int32_t loop_ub;
+int32_t stride_0_0;
+int32_t stride_1_0;
+/* {S!d568}MATLAB Function: '<S2>/MATLAB Function1' */
+/*@>1c4828*/loop_ub/*@>1c482a*/ = *in5_size/*@>1817f2*/ == /*@>196a0e*/1/*@>1817f2*/ ? *in2_size : *in5_size;
+*in1_size/*@>181812*/ = /*@>1c482c*/loop_ub;
+/*@>196a30*/stride_0_0/*@>181871*/ = (*in2_size/*@>18aba7*/ != /*@>196a4e*/1);
+/*@>196a32*/stride_1_0/*@>18187d*/ = (*in5_size/*@>18abc7*/ != /*@>196a52*/1);
+/*@>18185a*/for ( int32_t /*@>1e7f29*/i{/*@>1e7f28*/0}; /*@>1e7f36*/i < loop_ub; /*@>1e7f2f*/i/*@>1e7f39*/++) {
+    double tmp;
+    /*@>1c4832*/tmp/*@>1c4834*/ = /*@>1dab03*/in2_data/*@>1dab05*/[/*@>1daaff*/i * /*@>1dab01*/stride_0_0];
+    /*@>1cdcef*/in1_data/*@>181837*/[/*@>196a1e*/i]/*@>181838*/ = ((/*@>1c4836*/tmp/*@>181819*/ >= /*@>196a01*/in3)/*@>181818*/ && (tmp/*@>181821*/ < /*@>196a03*/in4)/*@>181817*/ && (/*@>1dab0d*/in5_data/*@>1dab0f*/[/*@>1dab09*/i * /*@>1dab0b*/stride_1_0]/*@>181829*/ >= /*@>1a625b*/in6/*@>1a6259*/ - /*@>1a625c*/40.0));
+}
+/* {E!d568}End of MATLAB Function: '<S2>/MATLAB Function1' */
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void binary_expand_op_1(\
+%assign comma = ""
+%<comma>bool in1_data[]\
+%assign comma = ", "
+%<comma>int32_t *in1_size\
+%assign comma = ", "
+%<comma>const double in2_data[]\
+%assign comma = ", "
+%<comma>const int32_t *in2_size\
+%assign comma = ", "
+%<comma>double in3\
+%assign comma = ", "
+%<comma>double in4\
+%assign comma = ", "
+%<comma>const double in5_data[]\
+%assign comma = ", "
+%<comma>const int32_t *in5_size\
+%assign comma = ", "
+%<comma>double in6\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 17, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function Raspiv4l2Capture_Raspiv4l2Capture_Fcn18(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+codertarget_raspi_internal_Raspiv4l2Capture *b_obj;
+/* Start for MATLABSystem: '<Root>/V4L2 Video Capture' */
+/*@>195e27*/obj->/*@>1e7ffb*/BrightnessInternal/*@>156ffc*/ = /*@>195e12*/0.5;
+/*@>195e29*/obj->/*@>1e7ffe*/SaturationInternal/*@>157002*/ = /*@>195e14*/0.5;
+/*@>195e2b*/obj->/*@>1e8001*/ContrastInternal/*@>157008*/ = /*@>195e16*/0.5;
+/*@>195e2d*/obj->/*@>1e8004*/SharpnessInternal/*@>15700e*/ = /*@>195e18*/0.5;
+/*@>195e2f*/obj->/*@>1e8007*/CameraZoomInternal/*@>157014*/ = /*@>195e1a*/0.5;
+/*@>195e31*/obj->/*@>1e800a*/ManualFocusInternal/*@>15701a*/ = /*@>195e1c*/0.5;
+/*@>195e33*/obj->/*@>1e800d*/CameraPanInternal/*@>157020*/ = /*@>195e1e*/0.0;
+/*@>195e35*/obj->/*@>1e8010*/CameraTiltInternal/*@>157026*/ = /*@>195e20*/0.0;
+/*@>195e37*/obj->/*@>1e8013*/EnableManualFocusInternal/*@>15702c*/ = /*@>195e22*/true;
+/*@>195e39*/obj->/*@>1e8016*/isInitialized/*@>1570da*/ = /*@>1e7fb2*/0;
+/*@>195e24*/b_obj/*@>157087*/ = /*@>195e3b*/obj;
+/*@>195e3d*/obj->matlabCodegenIsDeleted = false;
+return b_obj;
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static codertarget_raspi_internal_Raspiv4l2Capture *Raspiv4l2Capture_Raspiv4l2Capture(\
+%assign comma = ""
+%<comma>codertarget_raspi_internal_Raspiv4l2Capture *obj\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 18, fcnProtoType)>
+%return fcnBuff
+%endfunction
+
+%function SystemCore_setup_Fcn19(block) void
+%assign fcnBuff = ""
+%openfile fcnBuff
+%assign cfgTxt = ""
+%openfile cfgTxt
+int32_t i;
+int8_t resolutionStatus;
+uint8_t camIndex;
+static const std::array<char, 12> devName%<(TLC_STR_CTX(9))>;
+static const std::array<char, 101> b_errorMessage%<(TLC_STR_CTX(10))>;
+%assign _modelSS = ""
+
+%if SLibCG_FcnCallArgAccessed(0,19,0,0)
+%<SLibCG_AccessArg(0 ,19, 0)>
+%endif
+
+/*@>195e4e*/obj->/*@>1e80b7*/isSetupComplete/*@>fe72a*/ = /*@>195e57*/false;
+/* {S!d534}Start for MATLABSystem: '<Root>/V4L2 Video Capture' */
+/*@>195e51*/obj->/*@>1e80ba*/isInitialized/*@>fe751*/ = /*@>1e8043*/1;
+/*@>1d35a8*/getCameraList();
+/*@>180465*/for (/*@>1e804b*/i = /*@>1e804a*/0; /*@>1e8055*/i < /*@>1e8053*/12; /*@>1e8051*/i/*@>1e8059*/++) {
+    /*@>1decb0*/rtDW./*@>1e80c3*/devName/*@>18f266*/[/*@>195e87*/i]/*@>180458*/ = /*@>1da842*/devName/*@>1da844*/[/*@>1da841*/i];
+}
+/* {S!d536}Start for MATLABSystem: '<Root>/V4L2 Video Capture' */
+/*@>195e59*/camIndex/*@>157235*/ = /*@>1d35aa*/getCameraAddrIndex(&/*@>1decaa*/rtDW./*@>1e80c0*/devName/*@>18f277*/[/*@>195e9f*/0], /*@>195e73*/11U);
+/*@>195e5d*/resolutionStatus/*@>15723f*/ = /*@>1d35ac*/validateResolution(/*@>195e5f*/camIndex, /*@>1b0a46*/640, /*@>1b0a49*/480);
+/*@>1572a8*/if (/*@>195e61*/resolutionStatus/*@>157273*/ >= /*@>195e63*/0) {
+    /* {S!d538}Start for MATLABSystem: '<Root>/V4L2 Video Capture' */
+    /*@>1d35b4*/EXT_webcamInit(/*@>1b0a4f*/0, /*@>1b0a52*/0, /*@>195e77*/0, /*@>195e78*/0, /*@>195e79*/0, /*@>195e7a*/0, /*@>195e7b*/640U, /*@>195e7c*/480U, /*@>195e7d*/2U, /*@>195e7e*/2U, /*@>195e7f*/1U, /*@>195e68*/0.1);
+} else {
+    /* {S!d540}Start for MATLABSystem: '<Root>/V4L2 Video Capture' */
+    /*@>1d4845*/std::memcpy(&/*@>1decbc*/rtDW./*@>1e80c6*/b_errorMessage/*@>1d0e3f*/[/*@>1d0e2e*/0], &/*@>1d0e46*/b_errorMessage/*@>1d0e47*/[/*@>1d0e3b*/0], /*@>1d0e3d*/101U/*@>1d0e4a*/ * /*@>1d0e49*/sizeof(char));
+    /*@>1d35b0*/std::perror(&/*@>1decc2*/rtDW./*@>1e80c9*/b_errorMessage/*@>18f295*/[/*@>195ea0*/0]);
+    /* {S!d542}Start for MATLABSystem: '<Root>/V4L2 Video Capture' */
+    /*@>1d35b2*/std::exit(/*@>195e80*/0);
+}
+/* {S!d544}Start for MATLABSystem: '<Root>/V4L2 Video Capture' */
+/*@[1e5984*/%<(SLibCGCallSubFcn("v4l2Capture_updateV4L2Settings", ["/*@>1e80f8*/obj", "/*@>1e8106*/true"], 0, 19, 0))>/*@]*/;
+/*@>195e54*/obj->/*@>1e80bd*/isSetupComplete/*@>fe7d1*/ = /*@>195e58*/true;
+%closefile cfgTxt
+%<cfgTxt>
+%closefile fcnBuff
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void SystemCore_setup(\
+%assign comma = ""
+%<comma>codertarget_raspi_internal_Raspiv4l2Capture *obj\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 19, fcnProtoType)>
+%return fcnBuff
+%endfunction
+

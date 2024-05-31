@@ -1,5 +1,5 @@
-/* Code generated for Simulink model Rpi_cam */
-/* Generated on 31-May-2024 */
+/* Code generated for Simulink model lkas */
+/* Generated on Fri May 31 15:31:58 2024 */
 
 #include <cstdint>
 #include <exception>
@@ -13,7 +13,7 @@
 #include <ara/log/common.h>
 #include <ara/log/logger.h>
 #include <ara/log/log_stream.h>
-#include "Rpi_cam.h"
+#include "lkas.h"
 
 /* main() handles the following: */
 /*  - Instantiates the model object and owns its memory. */
@@ -38,12 +38,12 @@ int32_t main() {
 
   if (bAraInitialized) {
     ara::log::Logger &araLog{ara::log::CreateLogger(
-        ara::core::StringView{"Rpi_"},
-        ara::core::StringView{"Logger for Rpi_cam's main function."},
+        ara::core::StringView{"lkas"},
+        ara::core::StringView{"Logger for lkas's main function."},
         ara::log::LogLevel::kWarn)};
 
     /* Report Execution state */
-    ara::exec::ExecutionClient exec_client;
+    const ara::exec::ExecutionClient exec_client;
     try {
       if (!exec_client.ReportExecutionState(
               ara::exec::ExecutionState::kRunning)) {
@@ -59,11 +59,11 @@ int32_t main() {
       bProceed = false;
     }
 
-    Rpi_cam rtObj;
+    lkas lkas_Obj;
     if (bProceed) {
       /* Initialize Functions */
       try {
-        rtObj.initialize();
+        lkas_Obj.initialize();
       } catch (std::exception const &e) {
         araLog.LogError() << "Unable to initialize: " << e.what() << ".\n";
         bProceed = false;
@@ -71,30 +71,31 @@ int32_t main() {
     } /* if */
 
     if (bProceed) {
-      /* Create an executor instance to schedule the periodic step functions */
+      /* Create an executor instance to schedule the periodic step functions. */
       /* Whenever the period of a step function passes, the executor */
-      /* schedules that step function to be executed on a thread. */
+      /* schedules that function to be executed on a thread. */
       platform::runtime::Executor fcnExecutor;
 
-      /* Base rate is the time unit of a tick */
-      const double baseRate{0.100000};
+      /* Base rate is the time unit of a tick. */
+      constexpr double baseRate{0.100000};
       fcnExecutor.setBaseRateInSeconds(std::chrono::duration<double>(baseRate));
 
       /* Register periodic step functions in the executor. */
       fcnExecutor.addPeriodicEvent(
-          [&rtObj, &araLog]() {
+          [&lkas_Obj, &araLog]() {
             try {
-              rtObj.step();
+              lkas_Obj.step();
             } catch (std::exception const &e) {
               araLog.LogError() << "Error executing step: " << e.what();
             }
           },
           1);
 
-      araLog.LogVerbose() << "Starting Step function.";
+      araLog.LogVerbose() << "Starting periodic execution of step functions.";
 #if defined(rtmSetStopRequested) && defined(rtmGetStopRequested)
       fcnExecutor.run(
-          [&rtObj]() { return rtmGetStopRequested(rtObj.getRTM()); }, araLog);
+          [&lkas_Obj]() { return rtmGetStopRequested(lkas_Obj.getRTM()); },
+          araLog);
 #else
       fcnExecutor.run(araLog);
 #endif
@@ -103,7 +104,7 @@ int32_t main() {
     if (bProceed) {
       try {
         /* Terminate Functions */
-        rtObj.terminate();
+        lkas_Obj.terminate();
       } catch (std::exception const &e) {
         araLog.LogError() << "Unable to terminate: " << e.what() << ".\n";
         bProceed = false;

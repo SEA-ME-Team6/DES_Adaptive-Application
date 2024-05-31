@@ -5,7 +5,7 @@
 
    Code generated for Simulink Adaptive model: "control"
    AUTOSAR AP Release: "21-11"
-   On: "31-May-2024 11:38:45"  */
+   On: "Fri May 31 15:33:12 2024"  */
 
 #ifndef PROVIDEDINTERFACE_SKELETON_H_
 #define PROVIDEDINTERFACE_SKELETON_H_
@@ -18,6 +18,10 @@ namespace skeleton
   {
     using Steering = ara::com::SkeletonEvent<double>;
   }                                    /* namespace events */
+
+  namespace methods
+  {
+  }                                    /* namespace methods */
 
   namespace fields
   {
@@ -35,8 +39,9 @@ namespace skeleton
       com::MethodCallProcessingMode mode = ara::com::MethodCallProcessingMode::
       kEvent): mMethodProcMode(mode)
     {
-      ara::core::Result<ara::com::InstanceIdentifierContainer> vecInstance(ara::
-        com::runtime::ResolveInstanceIDs(instanceSpec));
+      const ara::core::Result<ara::com::InstanceIdentifierContainer> vecInstance
+        { ara::com::runtime::ResolveInstanceIDs(instanceSpec) };
+
       if (!vecInstance->empty()) {
         mHndl.mInstanceID = vecInstance->front();
       }                                /* if */
@@ -56,14 +61,13 @@ namespace skeleton
     inline ara::core::Result<void> OfferService()
     {
       ara::com::ServiceFactory::CreateService(mHndl);
-      mMethodMiddleware.reset(ara::com::MethodFactory::CreateSkeletonMethod<
-        ProvidedInterfaceSkeleton, skeleton_io::
-        ProvidedInterfaceSkeleton_mthd_dispatcher_t>(mMethodProcMode, this,
-        mHndl));
-      std::string sTopicName;
-      sTopicName = "Steering";
+      uint16_t mEventId, mEventGroupId;
+      uint16_t mMethodId;
+      mEventId = 12225;
+      mEventGroupId = 12225;
       Steering.Init(ara::com::EventFactory::CreateSkeletonEvent<double,
-                    skeleton_io::ProvidedInterface_Steering_t>(mHndl, sTopicName));
+                    skeleton_io::ProvidedInterface_Steering_t>(mHndl, mEventId,
+        mEventGroupId));
       return ara::core::Result<void>::FromValue();
     }
 

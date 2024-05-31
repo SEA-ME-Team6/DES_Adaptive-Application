@@ -1,0 +1,606 @@
+%implements s8_b0_ew32h_Outputs "C"
+
+%function Outputs(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+
+uint8_t xtmp;
+static const std::array<int16_t, 8> tmp%<(TLC_STR_CTX(11))>;
+static const std::array<int16_t, 8> tmp_0%<(TLC_STR_CTX(12))>;
+%closefile localVarDecl
+/* {S!d462}MATLABSystem: '<Root>/V4L2 Video Capture' */
+/*@>15fbc0*/if (/*@>1dcfac*/rtDW./*@>1e9d96*/obj.Brightness/*@>15fb7e*/ != /*@>195473*/0.5) {
+    /*@>1dcfb2*/rtDW./*@>1e9d99*/obj./*@>1e9d7e*/Brightness/*@>15fbb7*/ = /*@>195474*/0.5;
+}
+/*@>15fbc3*/if (/*@>1dcfb8*/rtDW./*@>1e9d9c*/obj.Saturation/*@>15fb7d*/ != /*@>195475*/0.5) {
+    /*@>1dcfbe*/rtDW./*@>1e9d9f*/obj./*@>1e9d81*/Saturation/*@>15fbaf*/ = /*@>195476*/0.5;
+}
+/*@>15fbc6*/if (/*@>1dcfc4*/rtDW./*@>1e9da2*/obj.Contrast/*@>15fb7c*/ != /*@>195477*/0.5) {
+    /*@>1dcfca*/rtDW./*@>1e9da5*/obj./*@>1e9d84*/Contrast/*@>15fba7*/ = /*@>195478*/0.5;
+}
+/*@>15fbc9*/if (/*@>1dcfd0*/rtDW./*@>1e9da8*/obj.Sharpness/*@>15fb7b*/ != /*@>195479*/0.5) {
+    /*@>1dcfd6*/rtDW./*@>1e9dab*/obj./*@>1e9d87*/Sharpness/*@>15fb9f*/ = /*@>19547a*/0.5;
+}
+/*@>15fbcc*/if (/*@>1dcfdc*/rtDW./*@>1e9dae*/obj.CameraPan/*@>15fb7a*/ != /*@>19547b*/0.0) {
+    /*@>1dcfe2*/rtDW./*@>1e9db1*/obj./*@>1e9d8a*/CameraPan/*@>15fb97*/ = /*@>19547c*/0.0;
+}
+/*@>15fbcf*/if (/*@>1dcfe8*/rtDW./*@>1e9db4*/obj.CameraTilt/*@>15fb79*/ != /*@>19547d*/0.0) {
+    /*@>1dcfee*/rtDW./*@>1e9db7*/obj./*@>1e9d8d*/CameraTilt/*@>15fb8f*/ = /*@>19547e*/0.0;
+}
+/*@>15fbd2*/if (/*@>1dcff4*/rtDW./*@>1e9dba*/obj.CameraZoom/*@>15fb78*/ != /*@>19547f*/0.5) {
+    /*@>1dcffa*/rtDW./*@>1e9dbd*/obj./*@>1e9d90*/CameraZoom/*@>15fb87*/ = /*@>195480*/0.5;
+}
+/*@>15fbd5*/if (/*@>1dd000*/rtDW./*@>1e9dc0*/obj.ManualFocus/*@>15fb77*/ != /*@>195481*/0.5) {
+    /*@>1dd006*/rtDW./*@>1e9dc3*/obj./*@>1e9d93*/ManualFocus/*@>15fb7f*/ = /*@>195482*/0.5;
+}
+/*@[1e599e*/%<(SLibCGCallSubFcn("SystemCore_step", ["&/*@>1eab41*/rtDW./*@>1eab40*/obj", "&/*@>1eab53*/rtDW./*@>1eab52*/uv[0]", "&/*@>1eab66*/rtDW./*@>1eab65*/uv1[0]", "&/*@>1eab79*/rtDW./*@>1eab78*/uv2[0]"], 0, 20, 0))>/*@]*/;
+/* {S!d464}Math: '<S3>/Transpose' incorporates:
+ *  MATLABSystem: '<Root>/V4L2 Video Capture'
+ */
+/*@>17b9de*/for (/*@>1e8900*/rtDW./*@>1eaace*/i = /*@>1e88fe*/0; /*@>1e8910*/rtDW./*@>1eaad4*/i < /*@>1e890d*/640; /*@>1e890a*/rtDW./*@>1eaad1*/i/*@>1e8930*/++) {
+/*@>17b9ce*/    for (/*@>1e891b*/rtDW./*@>1eaad7*/inlierNum = /*@>1e8919*/0; /*@>1e892b*/rtDW./*@>1eaadd*/inlierNum < /*@>1e8928*/480; /*@>1e8925*/rtDW./*@>1eaada*/inlierNum/*@>1e8931*/++) {
+        /*@>1dd060*/rtDW./*@>1e9dd8*/uv3/*@>18e8f5*/[/*@>1dd066*/rtDW./*@>1e9ddb*/inlierNum/*@>18e8f1*/ + /*@>19555e*/480/*@>196bb0*/ * /*@>1dd06c*/rtDW./*@>1e9dde*/i]/*@>17b9c1*/ = /*@>1dd072*/rtDW./*@>1e9de1*/uv/*@>1da293*/[/*@>1da28c*/640/*@>1da28b*/ * /*@>1dd078*/rtDW./*@>1e9de4*/inlierNum/*@>1da28a*/ + /*@>1dd07e*/rtDW./*@>1e9de7*/i];
+    }
+}
+/*@>1d4832*/std::memcpy(&/*@>1dd042*/rtDW./*@>1e9dcc*/outputImage/*@>1d0314*/[/*@>1d0302*/0], &/*@>1dd048*/rtDW./*@>1e9dcf*/uv3/*@>1d031c*/[/*@>1d030f*/0], /*@>1d0312*/307200U/*@>1d031f*/ * /*@>1d031e*/sizeof(uint8_t));
+/* {E!d464}End of Math: '<S3>/Transpose' */
+
+/* {S!d466}Math: '<S3>/Transpose1' incorporates:
+ *  MATLABSystem: '<Root>/V4L2 Video Capture'
+ */
+/*@>17bab4*/for (/*@>1e88ca*/rtDW./*@>1eaabc*/i = /*@>1e88c8*/0; /*@>1e88da*/rtDW./*@>1eaac2*/i < /*@>1e88d7*/640; /*@>1e88d4*/rtDW./*@>1eaabf*/i/*@>1e8932*/++) {
+/*@>17baa4*/    for (/*@>1e88e5*/rtDW./*@>1eaac5*/inlierNum = /*@>1e88e3*/0; /*@>1e88f5*/rtDW./*@>1eaacb*/inlierNum < /*@>1e88f2*/480; /*@>1e88ef*/rtDW./*@>1eaac8*/inlierNum/*@>1e8933*/++) {
+        /*@>1dd0a2*/rtDW./*@>1e9df6*/uv/*@>18e917*/[/*@>1dd0a8*/rtDW./*@>1e9df9*/inlierNum/*@>18e913*/ + /*@>195560*/480/*@>196bb6*/ * /*@>1dd0ae*/rtDW./*@>1e9dfc*/i]/*@>17ba97*/ = /*@>1dd0b4*/rtDW./*@>1e9dff*/uv1/*@>1da29e*/[/*@>1da297*/640/*@>1da296*/ * /*@>1dd0ba*/rtDW./*@>1e9e02*/inlierNum/*@>1da295*/ + /*@>1dd0c0*/rtDW./*@>1e9e05*/i];
+    }
+}
+/*@>1d4834*/std::memcpy(&/*@>1dd084*/rtDW./*@>1e9dea*/outputImage/*@>1d02a7*/[/*@>1d0295*/307200], &/*@>1dd08a*/rtDW./*@>1e9ded*/uv/*@>1d02af*/[/*@>1d02a2*/0], /*@>1d02a5*/307200U/*@>1d02b2*/ * /*@>1d02b1*/sizeof(uint8_t));
+/* {E!d466}End of Math: '<S3>/Transpose1' */
+
+/* {S!d468}Math: '<S3>/Transpose2' incorporates:
+ *  MATLABSystem: '<Root>/V4L2 Video Capture'
+ */
+/*@>17bb8e*/for (/*@>1e8894*/rtDW./*@>1eaaaa*/i = /*@>1e8892*/0; /*@>1e88a4*/rtDW./*@>1eaab0*/i < /*@>1e88a1*/640; /*@>1e889e*/rtDW./*@>1eaaad*/i/*@>1e8934*/++) {
+/*@>17bb7e*/    for (/*@>1e88af*/rtDW./*@>1eaab3*/inlierNum = /*@>1e88ad*/0; /*@>1e88bf*/rtDW./*@>1eaab9*/inlierNum < /*@>1e88bc*/480; /*@>1e88b9*/rtDW./*@>1eaab6*/inlierNum/*@>1e8935*/++) {
+        /*@>1dd0de*/rtDW./*@>1e9e14*/uv/*@>18e936*/[/*@>1dd0e4*/rtDW./*@>1e9e17*/inlierNum/*@>18e932*/ + /*@>195562*/480/*@>196bbc*/ * /*@>1dd0ea*/rtDW./*@>1e9e1a*/i]/*@>17bb71*/ = /*@>1dd0f0*/rtDW./*@>1e9e1d*/uv2/*@>1da2a9*/[/*@>1da2a2*/640/*@>1da2a1*/ * /*@>1dd0f6*/rtDW./*@>1e9e20*/inlierNum/*@>1da2a0*/ + /*@>1dd0fc*/rtDW./*@>1e9e23*/i];
+    }
+}
+/*@>1d4836*/std::memcpy(&/*@>1dd0c6*/rtDW./*@>1e9e08*/outputImage/*@>1d023a*/[/*@>1d0228*/614400], &/*@>1dd0cc*/rtDW./*@>1e9e0b*/uv/*@>1d0242*/[/*@>1d0235*/0], /*@>1d0238*/307200U/*@>1d0245*/ * /*@>1d0244*/sizeof(uint8_t));
+/* {E!d468}End of Math: '<S3>/Transpose2' */
+
+/* {S!d470}MATLAB Function: '<Root>/MATLAB Function' */
+/*@>15f8b4*/for (/*@>1e8843*/rtDW./*@>1eaa8f*/inlierNum = /*@>1e8841*/0; /*@>1e8853*/rtDW./*@>1eaa95*/inlierNum < /*@>1e8850*/3; /*@>1e884d*/rtDW./*@>1eaa92*/inlierNum/*@>1e8936*/++) {
+/*@>15f8b6*/    for (/*@>1e885e*/rtDW./*@>1eaa98*/j = /*@>1e885c*/0; /*@>1e886e*/rtDW./*@>1eaa9e*/j < /*@>1e886b*/640; /*@>1e8868*/rtDW./*@>1eaa9b*/j/*@>1e8937*/++) {
+/*@>15f8b8*/        for (/*@>1e8879*/rtDW./*@>1eaaa1*/svdRsltVar = /*@>1e8877*/0; /*@>1e8889*/rtDW./*@>1eaaa7*/svdRsltVar < /*@>1e8886*/240; /*@>1e8883*/rtDW./*@>1eaaa4*/svdRsltVar/*@>1e8938*/++) {
+            /*@>1dd12c*/rtDW./*@>1e9e38*/i/*@>1bbd42*/ = (/*@>19554b*/480/*@>196bd4*/ * /*@>1dd132*/rtDW./*@>1e9e3b*/j/*@>18a596*/ + /*@>1dd138*/rtDW./*@>1e9e3e*/svdRsltVar)/*@>18a59b*/ + /*@>19554c*/307200/*@>196bd7*/ * /*@>1dd13e*/rtDW./*@>1e9e41*/inlierNum;
+            /*@>194bd5*/xtmp/*@>15f8ac*/ = /*@>1dd15c*/rtDW./*@>1e9e50*/outputImage/*@>1da2b5*/[/*@>1dd162*/rtDW./*@>1e9e53*/i];
+            /*@>1dd186*/rtDW./*@>1e9e62*/outputImage_tmp/*@>1bbd4c*/ = ((/*@>19554f*/480/*@>196bce*/ * /*@>1dd18c*/rtDW./*@>1e9e65*/j/*@>1904f1*/ - /*@>1dd192*/rtDW./*@>1e9e68*/svdRsltVar)/*@>1904f3*/ + /*@>195550*/307200/*@>196bd1*/ * /*@>1dd198*/rtDW./*@>1e9e6b*/inlierNum)/*@>1904f4*/ + /*@>194ee1*/479;
+            /*@>1dd1b0*/rtDW./*@>1e9e77*/outputImage/*@>18a5af*/[rtDW.i]/*@>15f8b0*/ = /*@>1dd1bc*/rtDW./*@>1e9e7d*/outputImage/*@>1da2c1*/[/*@>1dd1c2*/rtDW./*@>1e9e80*/outputImage_tmp];
+            /*@>1dd1e0*/rtDW./*@>1e9e8f*/outputImage/*@>18a5ce*/[rtDW.outputImage_tmp]/*@>15f8b3*/ = /*@>194bd7*/xtmp;
+        }
+    }
+}
+/*@>15f8dc*/for (/*@>1e87f2*/rtDW./*@>1eaa74*/svdRsltVar = /*@>1e87f0*/0; /*@>1e8802*/rtDW./*@>1eaa7a*/svdRsltVar < /*@>1e87ff*/3; /*@>1e87fc*/rtDW./*@>1eaa77*/svdRsltVar/*@>1e8939*/++) {
+/*@>15f8de*/    for (/*@>1e880d*/rtDW./*@>1eaa7d*/inlierNum = /*@>1e880b*/0; /*@>1e881d*/rtDW./*@>1eaa83*/inlierNum < /*@>1e881a*/320; /*@>1e8817*/rtDW./*@>1eaa80*/inlierNum/*@>1e893a*/++) {
+/*@>15f8e0*/        for (/*@>1e8828*/rtDW./*@>1eaa86*/j = /*@>1e8826*/0; /*@>1e8838*/rtDW./*@>1eaa8c*/j < /*@>1e8835*/480; /*@>1e8832*/rtDW./*@>1eaa89*/j/*@>1e893b*/++) {
+            /*@>1dd16e*/rtDW./*@>1e9e56*/i/*@>1bbd56*/ = (/*@>195553*/480/*@>196bec*/ * /*@>1dd174*/rtDW./*@>1e9e59*/inlierNum/*@>18a5d4*/ + /*@>1dd17a*/rtDW./*@>1e9e5c*/j)/*@>18a5d9*/ + /*@>195554*/307200/*@>196bef*/ * /*@>1dd180*/rtDW./*@>1e9e5f*/svdRsltVar;
+            /*@>194be8*/xtmp/*@>15f8d4*/ = /*@>1dd1a4*/rtDW./*@>1e9e71*/outputImage/*@>1da2bb*/[/*@>1dd1aa*/rtDW./*@>1e9e74*/i];
+            /*@>1dd1c8*/rtDW./*@>1e9e83*/outputImage_tmp/*@>1bbd60*/ = ((/*@>194f01*/639/*@>17bde2*/ - /*@>1dd1ce*/rtDW./*@>1e9e86*/inlierNum)/*@>196be6*/ * /*@>195557*/480/*@>18a5f3*/ + /*@>1dd1d4*/rtDW./*@>1e9e89*/j)/*@>18a5f8*/ + /*@>195558*/307200/*@>196be9*/ * /*@>1dd1da*/rtDW./*@>1e9e8c*/svdRsltVar;
+            /*@>1dd1f2*/rtDW./*@>1e9e95*/outputImage/*@>18a5ed*/[rtDW.i]/*@>15f8d8*/ = /*@>1dd1fe*/rtDW./*@>1e9e9b*/outputImage/*@>1da2c7*/[/*@>1dd204*/rtDW./*@>1e9e9e*/outputImage_tmp];
+            /*@>1dd222*/rtDW./*@>1e9eaa*/outputImage/*@>18a60c*/[rtDW.outputImage_tmp]/*@>15f8db*/ = /*@>194bea*/xtmp;
+        }
+    }
+}
+/* {E!d470}End of MATLAB Function: '<Root>/MATLAB Function' */
+
+/* {S!d472}S-Function (svipscalenconvert): '<S4>/Image Data Type Conversion' */
+/*@>181efd*/for (/*@>1e87d7*/rtDW./*@>1eaa6b*/svdRsltVar = /*@>1e87d5*/0; /*@>1e87e7*/rtDW./*@>1eaa71*/svdRsltVar < /*@>1e87e4*/921600; /*@>1e87e1*/rtDW./*@>1eaa6e*/svdRsltVar/*@>1e893c*/++) {
+    /*@>1dd144*/rtDW./*@>1e9e44*/ImageDataTypeConversion/*@>17bca1*/[/*@>1dd14a*/rtDW./*@>1e9e47*/svdRsltVar]/*@>15d79f*/ = static_cast<double>(/*@>1dd150*/rtDW./*@>1e9e4a*/outputImage/*@>1da2af*/[/*@>1dd156*/rtDW./*@>1e9e4d*/svdRsltVar])/*@>15d79c*/ / /*@>194a3c*/255.0;
+}
+/* {E!d472}End of S-Function (svipscalenconvert): '<S4>/Image Data Type Conversion' */
+/* temporary variables for in-place operation */
+/*@>181ee6*/for (/*@>1e87bc*/rtDW./*@>1eaa62*/svdRsltVar = /*@>1e87ba*/0; /*@>1e87cc*/rtDW./*@>1eaa68*/svdRsltVar < /*@>1e87c9*/307200; /*@>1e87c6*/rtDW./*@>1eaa65*/svdRsltVar/*@>1e893e*/++) {
+    /* {S!d474}S-Function (svipcolorconv): '<S4>/Color Space  Conversion' incorporates:
+ *  S-Function (svipscalenconvert): '<S4>/Image Data Type Conversion'
+ */
+    /* First get the min and max of the RGB triplet */
+    /*@>1dd210*/rtDW./*@>1e9ea1*/ImageDataTypeConversion_c/*@>188d83*/ = /*@>1dd216*/rtDW./*@>1e9ea4*/ImageDataTypeConversion/*@>1da2cd*/[/*@>1dd21c*/rtDW./*@>1e9ea7*/svdRsltVar];
+    /*@>1dd234*/rtDW./*@>1e9eb3*/ImageDataTypeConversion_k/*@>188da9*/ = /*@>1dd23a*/rtDW./*@>1e9eb6*/ImageDataTypeConversion/*@>1da2d5*/[/*@>1dd240*/rtDW./*@>1e9eb9*/svdRsltVar/*@>1da2cf*/ + /*@>1da2d2*/307200];
+    /*@>15f6b0*/if (/*@>1dd246*/rtDW./*@>1e9ebc*/ImageDataTypeConversion_c/*@>15f6af*/ > /*@>1dd24c*/rtDW./*@>1e9ebf*/ImageDataTypeConversion_k) {
+        /*@>1dd27c*/rtDW./*@>1e9ed4*/ImageDataTypeConversion_cx/*@>188ddc*/ = /*@>1dd282*/rtDW./*@>1e9ed7*/ImageDataTypeConversion/*@>1da2eb*/[/*@>1dd288*/rtDW./*@>1e9eda*/svdRsltVar/*@>1da2e5*/ + /*@>1da2e8*/614400];
+        /*@>1a77b1*/if (/*@>1dd2b2*/rtDW./*@>1e9eef*/ImageDataTypeConversion_k/*@>15f6c0*/ < /*@>1dd2b8*/rtDW./*@>1e9ef2*/ImageDataTypeConversion_cx) {
+            /*@>1dd2e8*/rtDW./*@>1e9f0a*/win_y_high/*@>1a77b4*/ = /*@>1dd2ee*/rtDW./*@>1e9f0d*/ImageDataTypeConversion_k;
+        } else {
+            /*@>1dd2dc*/rtDW./*@>1e9f04*/win_y_high/*@>18fd72*/ = /*@>1dd2e2*/rtDW./*@>1e9f07*/ImageDataTypeConversion_cx;
+        }
+        /*@>1a77bb*/if (/*@>1dd30c*/rtDW./*@>1e9f1c*/ImageDataTypeConversion_c/*@>15f6e1*/ > /*@>1dd312*/rtDW./*@>1e9f1f*/ImageDataTypeConversion_cx) {
+            /*@>1dd342*/rtDW./*@>1e9f37*/bestInlierDis/*@>1a77be*/ = /*@>1dd348*/rtDW./*@>1e9f3a*/ImageDataTypeConversion_c;
+        } else {
+            /*@>1dd336*/rtDW./*@>1e9f31*/bestInlierDis/*@>18fd7c*/ = /*@>1dd33c*/rtDW./*@>1e9f34*/ImageDataTypeConversion_cx;
+        }
+    } else {
+        /*@>1dd26a*/rtDW./*@>1e9ecb*/ImageDataTypeConversion_cx/*@>188dcf*/ = /*@>1dd270*/rtDW./*@>1e9ece*/ImageDataTypeConversion/*@>1da2e3*/[/*@>1dd276*/rtDW./*@>1e9ed1*/svdRsltVar/*@>1da2dd*/ + /*@>1da2e0*/614400];
+        /*@>1a77ac*/if (/*@>1dd2a6*/rtDW./*@>1e9ee9*/ImageDataTypeConversion_c/*@>15f6ff*/ < /*@>1dd2ac*/rtDW./*@>1e9eec*/ImageDataTypeConversion_cx) {
+            /*@>1dd2d0*/rtDW./*@>1e9efe*/win_y_high/*@>1a77af*/ = /*@>1dd2d6*/rtDW./*@>1e9f01*/ImageDataTypeConversion_c;
+        } else {
+            /*@>1dd2c4*/rtDW./*@>1e9ef8*/win_y_high/*@>18fd6d*/ = /*@>1dd2ca*/rtDW./*@>1e9efb*/ImageDataTypeConversion_cx;
+        }
+        /*@>1a77b6*/if (/*@>1dd300*/rtDW./*@>1e9f16*/ImageDataTypeConversion_k/*@>15f721*/ > /*@>1dd306*/rtDW./*@>1e9f19*/ImageDataTypeConversion_cx) {
+            /*@>1dd32a*/rtDW./*@>1e9f2b*/bestInlierDis/*@>1a77b9*/ = /*@>1dd330*/rtDW./*@>1e9f2e*/ImageDataTypeConversion_k;
+        } else {
+            /*@>1dd31e*/rtDW./*@>1e9f25*/bestInlierDis/*@>18fd77*/ = /*@>1dd324*/rtDW./*@>1e9f28*/ImageDataTypeConversion_cx;
+        }
+    }
+    /*@>1dd366*/rtDW./*@>1e9f49*/s1DivS2/*@>15f741*/ = /*@>1dd36c*/rtDW./*@>1e9f4c*/bestInlierDis/*@>15f740*/ - /*@>1dd372*/rtDW./*@>1e9f4f*/win_y_high;
+    /*@>15f747*/if (/*@>1dd37e*/rtDW./*@>1e9f55*/bestInlierDis/*@>15f746*/ != /*@>194b93*/0.0) {
+        /*@>1dd3a8*/rtDW./*@>1e9f6a*/win_y_high/*@>15f753*/ = /*@>1dd3ae*/rtDW./*@>1e9f6d*/s1DivS2/*@>15f751*/ / /*@>1dd3b4*/rtDW./*@>1e9f70*/bestInlierDis;
+    } else {
+        /*@>1dd3a2*/rtDW./*@>1e9f67*/win_y_high/*@>15f757*/ = /*@>194b98*/0.0;
+    }
+    /*@>15f75d*/if (/*@>1dd402*/rtDW./*@>1e9f94*/s1DivS2/*@>15f75c*/ != /*@>194b9d*/0.0) {
+        /*@>15f766*/if (/*@>1dd420*/rtDW./*@>1e9fa3*/ImageDataTypeConversion_c/*@>15f765*/ == /*@>1dd426*/rtDW./*@>1e9fa6*/bestInlierDis) {
+            /*@>1dd43e*/rtDW./*@>1e9fb2*/s1DivS2/*@>15f77f*/ = (/*@>1dd444*/rtDW./*@>1e9fb5*/ImageDataTypeConversion_k/*@>168762*/ - /*@>1dd44a*/rtDW./*@>1e9fb8*/ImageDataTypeConversion_cx)/*@>15f77d*/ / /*@>1dd450*/rtDW./*@>1e9fbb*/s1DivS2;
+        } else /*@>15f78b*/if (/*@>1dd432*/rtDW./*@>1e9fac*/ImageDataTypeConversion_k/*@>15f78a*/ == /*@>1dd438*/rtDW./*@>1e9faf*/bestInlierDis) {
+            /*@>1dd46e*/rtDW./*@>1e9fca*/s1DivS2/*@>15f7a9*/ = (/*@>1dd474*/rtDW./*@>1e9fcd*/ImageDataTypeConversion_cx/*@>1688d0*/ - /*@>1dd47a*/rtDW./*@>1e9fd0*/ImageDataTypeConversion_c)/*@>168758*/ / /*@>1dd480*/rtDW./*@>1e9fd3*/s1DivS2/*@>15f7a7*/ + /*@>194ba6*/2.0;
+        } else {
+            /*@>1dd456*/rtDW./*@>1e9fbe*/s1DivS2/*@>15f7c7*/ = (/*@>1dd45c*/rtDW./*@>1e9fc1*/ImageDataTypeConversion_c/*@>1688bf*/ - /*@>1dd462*/rtDW./*@>1e9fc4*/ImageDataTypeConversion_k)/*@>168740*/ / /*@>1dd468*/rtDW./*@>1e9fc7*/s1DivS2/*@>15f7c5*/ + /*@>194ba9*/4.0;
+        }
+        /*@>1dd4ce*/rtDW./*@>1e9ffa*/s1DivS2/*@>1e893f*/ /= /*@>194bae*/6.0;
+        /*@>15f7d4*/if (/*@>1dd4f2*/rtDW./*@>1ea009*/s1DivS2/*@>15f7d3*/ < /*@>194bb3*/0.0) {
+            /*@>1dd510*/rtDW./*@>1ea018*/s1DivS2/*@>1e8940*/++;
+        }
+    } else {
+        /*@>1dd41a*/rtDW./*@>1e9fa0*/s1DivS2/*@>15f7df*/ = /*@>194bb9*/0.0;
+    }
+    /* assign the results */
+    /*@>1dd4bc*/rtDW./*@>1e9ff1*/ColorSpaceConversion/*@>15f7e4*/[/*@>1dd4c2*/rtDW./*@>1e9ff4*/svdRsltVar]/*@>15f7e7*/ = /*@>1dd4c8*/rtDW./*@>1e9ff7*/s1DivS2;
+    /*@>1dd4e0*/rtDW./*@>1ea000*/ColorSpaceConversion/*@>15f7ef*/[/*@>1dd4e6*/rtDW./*@>1ea003*/svdRsltVar/*@>15f7ed*/ + /*@>194c9d*/307200]/*@>15f7f2*/ = /*@>1dd4ec*/rtDW./*@>1ea006*/win_y_high;
+    /* {S!d476}S-Function (svipcolorconv): '<S4>/Color Space  Conversion' */
+    /*@>1dd4fe*/rtDW./*@>1ea00f*/ColorSpaceConversion/*@>1ae0ad*/[/*@>1dd504*/rtDW./*@>1ea012*/svdRsltVar/*@>1ae0af*/ + /*@>1ae0b2*/614400]/*@>1ae0b5*/ = /*@>1dd50a*/rtDW./*@>1ea015*/bestInlierDis;
+    /* {S!d478}MATLAB Function: '<S4>/MATLAB Function7' incorporates:
+ *  S-Function (svipcolorconv): '<S4>/Color Space  Conversion'
+ */
+    /*@>1dd51c*/rtDW./*@>1ea01b*/V_Channel/*@>18a645*/[/*@>1dd522*/rtDW./*@>1ea01e*/svdRsltVar]/*@>17bee2*/ = /*@>1dd528*/rtDW./*@>1ea021*/bestInlierDis;
+}
+/*@>17bf3f*/for (/*@>1e87a1*/rtDW./*@>1eaa59*/i = /*@>1e879f*/0; /*@>1e87b1*/rtDW./*@>1eaa5f*/i < /*@>1e87ae*/8; /*@>1e87ab*/rtDW./*@>1eaa5c*/i/*@>1e8941*/++) {
+    /* {S!d480}MATLAB Function: '<S4>/MATLAB Function1' */
+    /*@>1dd258*/rtDW./*@>1e9ec2*/pts1/*@>17bf31*/[/*@>1dd25e*/rtDW./*@>1e9ec5*/i]/*@>17bf32*/ = /*@>1da2d9*/tmp/*@>1da2db*/[/*@>1dd264*/rtDW./*@>1e9ec8*/i];
+    /* {S!d482}MATLAB Function: '<S4>/MATLAB Function2' */
+    /*@>1dd294*/rtDW./*@>1e9ee0*/pts2/*@>17bfae*/[/*@>1dd29a*/rtDW./*@>1e9ee3*/i]/*@>17bfaf*/ = /*@>1da2ef*/tmp_0/*@>1da2f1*/[/*@>1dd2a0*/rtDW./*@>1e9ee6*/i];
+}
+/* {S!d484}S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' */
+/*@>1d4841*/std::memset(&/*@>1dd28e*/rtDW./*@>1e9edd*/EstimateGeometricTransformation/*@>1d189e*/[/*@>1d189a*/0], /*@>1e81c5*/0, /*@>1d189c*/9U/*@>1d18a4*/ * /*@>1d18a3*/sizeof(double));
+/*@>1dd2be*/rtDW./*@>1e9ef5*/EstimateGeometricTransformation_DW_BEST_SAMPLE/*@>1901dc*/[/*@>1955e0*/0]/*@>1901db*/ = /*@>1e81c8*/0;
+/*@>1dd2f4*/rtDW./*@>1e9f10*/EstimateGeometricTransformation_DW_BEST_SAMPLE/*@>1901e8*/[/*@>1955e3*/1]/*@>1901e7*/ = /*@>1e81cb*/1;
+/*@>1dd2fa*/rtDW./*@>1e9f13*/EstimateGeometricTransformation_DW_BEST_SAMPLE/*@>1901f4*/[/*@>1955e6*/2]/*@>1901f3*/ = /*@>1e81ce*/2;
+/*@>1dd318*/rtDW./*@>1e9f22*/EstimateGeometricTransformation_DW_BEST_SAMPLE/*@>190200*/[/*@>1955e9*/3]/*@>1901ff*/ = /*@>1e81d1*/3;
+/*@[1e59b9*/%<(SLibCGCallSubFcn("makeConstraintMatrix_Projective_D_D", ["(const double *)&/*@>1eab8d*/rtDW./*@>1eab8c*/pts1/*@>1eab8b*/[/*@>1eab8f*/0]", "(const double *)&/*@>1eaba1*/rtDW./*@>1eaba0*/pts2/*@>1eab9f*/[/*@>1eaba3*/0]", "/*@>1eabb1*/4U", "/*@>1eabbf*/4U", "&/*@>1eabd0*/rtDW./*@>1eabcf*/EstimateGeometricTransformation_DW_CONSTRT_ALL/*@>1eabce*/[/*@>1eabd2*/0]"], 0, 20, 1))>/*@]*/;
+/*@>1dd360*/rtDW./*@>1e9f46*/svdRsltVar/*@>15dd0e*/ = /*@>1e81d4*/0;
+while/*@<15dd14*/ (/*@>1dd378*/rtDW./*@>1e9f52*/svdRsltVar/*@>15dd13*/ < /*@>199957*/4) {
+    /*@>1dd38a*/rtDW./*@>1e9f5b*/EstimateGeometricTransformation_DW_SAMPLEIDX/*@>17c490*/[/*@>1dd390*/rtDW./*@>1e9f5e*/svdRsltVar]/*@>15dd1a*/ = static_cast<uint32_t>(/*@>1dd396*/rtDW./*@>1e9f61*/EstimateGeometricTransformation_DW_BEST_SAMPLE/*@>1da2f7*/[/*@>1dd39c*/rtDW./*@>1e9f64*/svdRsltVar]);
+    /*@>1dd3d8*/rtDW./*@>1e9f82*/svdRsltVar/*@>1e8943*/++;
+}
+/*@>1dd384*/rtDW./*@>1e9f58*/bestCol/*@>15dd48*/ = /*@>194a31*/0U;
+/*@[1e59d6*/%<(SLibCGCallSubFcn("normPts_D_D", ["(const double *)&/*@>1eabe4*/rtDW./*@>1eabe3*/pts1/*@>1eabe2*/[/*@>1eabe6*/0]", "(const uint32_t *)&/*@>1eabf8*/rtDW./*@>1eabf7*/EstimateGeometricTransformation_DW_SAMPLEIDX/*@>1eabf6*/[/*@>1eabfa*/0]", "/*@>1eac08*/4U", "/*@>1eac16*/4U", "&/*@>1eac27*/rtDW./*@>1eac26*/EstimateGeometricTransformation_DW_PTSNORM1/*@>1eac25*/[/*@>1eac29*/0]", "&/*@>1eac39*/rtDW./*@>1eac38*/x_location", "&/*@>1eac4b*/rtDW./*@>1eac4a*/cents1/*@>1eac49*/[/*@>1eac4d*/0]"], 0, 20, 2))>/*@]*/;
+/*@[1e59f3*/%<(SLibCGCallSubFcn("normPts_D_D", ["(const double *)&/*@>1eac5f*/rtDW./*@>1eac5e*/pts2/*@>1eac5d*/[/*@>1eac61*/0]", "(const uint32_t *)&/*@>1eac73*/rtDW./*@>1eac72*/EstimateGeometricTransformation_DW_SAMPLEIDX/*@>1eac71*/[/*@>1eac75*/0]", "/*@>1eac83*/4U", "/*@>1eac91*/4U", "&/*@>1eaca2*/rtDW./*@>1eaca1*/EstimateGeometricTransformation_DW_PTSNORM2/*@>1eaca0*/[/*@>1eaca4*/0]", "&/*@>1eacb4*/rtDW./*@>1eacb3*/x_current", "&/*@>1eacc6*/rtDW./*@>1eacc5*/cents2/*@>1eacc4*/[/*@>1eacc8*/0]"], 0, 20, 3))>/*@]*/;
+/*@[1e5a0e*/%<(SLibCGCallSubFcn("makeConstraintMatrix_Projective_D_D", ["(const double *)&/*@>1eacda*/rtDW./*@>1eacd9*/EstimateGeometricTransformation_DW_PTSNORM1/*@>1eacd8*/[/*@>1eacdc*/0]", "(const double *)&/*@>1eacee*/rtDW./*@>1eaced*/EstimateGeometricTransformation_DW_PTSNORM2/*@>1eacec*/[/*@>1eacf0*/0]", "/*@>1eacfe*/4U", "/*@>1ead0c*/4U", "&/*@>1ead1d*/rtDW./*@>1ead1c*/Constraint/*@>1ead1b*/[/*@>1ead1f*/0]"], 0, 20, 4))>/*@]*/;
+/*@>181e72*/for (/*@>1e8786*/rtDW./*@>1eaa50*/i = /*@>1e8784*/0; /*@>1e8796*/rtDW./*@>1eaa56*/i < /*@>1e8793*/8; /*@>1e8790*/rtDW./*@>1eaa53*/i/*@>1e8944*/++) {
+    /*@>1dd4b0*/rtDW./*@>1e9feb*/JPVT/*@>15dfc6*/[static_cast<uint32_t>(/*@>1dd4b6*/rtDW./*@>1e9fee*/i)]/*@>15dfc7*/ = /*@>1e81d7*/0;
+}
+/*@[1e5a2e*/%<(SLibCGCallSubFcn("QRE_double_o", ["&/*@>1ead30*/rtDW./*@>1ead2f*/Q/*@>1ead2e*/[/*@>1ead32*/0]", "&/*@>1ead43*/rtDW./*@>1ead42*/Constraint/*@>1ead41*/[/*@>1ead45*/0]", "&/*@>1ead56*/rtDW./*@>1ead55*/E/*@>1ead54*/[/*@>1ead58*/0]", "&/*@>1ead69*/rtDW./*@>1ead68*/Qraux/*@>1ead67*/[/*@>1ead6b*/0]", "&/*@>1ead7c*/rtDW./*@>1ead7b*/Work/*@>1ead7a*/[/*@>1ead7e*/0]", "&/*@>1ead8f*/rtDW./*@>1ead8e*/JPVT/*@>1ead8d*/[/*@>1ead91*/0]", "&/*@>1eada2*/rtDW./*@>1eada1*/RV/*@>1eada0*/[/*@>1eada4*/0]", "/*@>1eadb2*/9", "/*@>1eadc0*/8", "/*@>1eadce*/true"], 0, 20, 5))>/*@]*/;
+/*@>1dd4da*/rtDW./*@>1e9ffd*/win_y_high/*@>15eae7*/ = /*@>194a2d*/0.0;
+/*@>181e22*/for (/*@>1e8735*/rtDW./*@>1eaa35*/i = /*@>1e8733*/0; /*@>1e8745*/rtDW./*@>1eaa3b*/i < /*@>1e8742*/9; /*@>1e873f*/rtDW./*@>1eaa38*/i/*@>1e8946*/++) {
+/*@>181e44*/    for (/*@>1e8750*/rtDW./*@>1eaa3e*/j = /*@>1e874e*/0; /*@>1e8760*/rtDW./*@>1eaa44*/j < /*@>1e875d*/9; /*@>1e875a*/rtDW./*@>1eaa41*/j/*@>1e8947*/++) {
+        /*@>1a77c0*/if (static_cast<uint32_t>(/*@>1dd546*/rtDW./*@>1ea030*/i)/*@>15eaf8*/ != static_cast<uint32_t>(/*@>1dd54c*/rtDW./*@>1ea033*/j)) {
+            /*@>1dd582*/rtDW./*@>1ea04e*/s1DivS2/*@>1a77c3*/ = /*@>194a1b*/0.0;
+        } else {
+            /*@>1dd57c*/rtDW./*@>1ea04b*/s1DivS2/*@>18fd81*/ = /*@>194a1a*/-1.0;
+        }
+/*@>181e5b*/        for (/*@>1e876b*/rtDW./*@>1eaa47*/inlierNum = /*@>1e8769*/0; /*@>1e877b*/rtDW./*@>1eaa4d*/inlierNum < /*@>1e8778*/8; /*@>1e8775*/rtDW./*@>1eaa4a*/inlierNum/*@>1e894a*/++) {
+            /*@>1dd600*/rtDW./*@>1ea08d*/s1DivS2_tmp/*@>1bbd6a*/ = static_cast<uint32_t>(/*@>1dd606*/rtDW./*@>1ea090*/inlierNum)/*@>196c7f*/ * /*@>1950ea*/9U;
+            /*@>1dd624*/rtDW./*@>1ea09f*/s1DivS2/*@>1e894e*/ += /*@>1dd62a*/rtDW./*@>1ea0a2*/Q/*@>1da334*/[/*@>1dd630*/rtDW./*@>1ea0a5*/s1DivS2_tmp/*@>1da32c*/ + static_cast<uint32_t>(/*@>1dd636*/rtDW./*@>1ea0a8*/i)]/*@>196c7d*/ * /*@>1dd63c*/rtDW./*@>1ea0ab*/Q/*@>1da33e*/[rtDW.s1DivS2_tmp/*@>1da336*/ + static_cast<uint32_t>(/*@>1dd648*/rtDW./*@>1ea0b1*/j)];
+        }
+        /*@>1dd5e8*/rtDW./*@>1ea081*/RV/*@>15eb26*/[static_cast<uint32_t>(/*@>1dd5ee*/rtDW./*@>1ea084*/i)/*@>196c78*/ * /*@>194a19*/9U/*@>15eb24*/ + static_cast<uint32_t>(/*@>1dd5f4*/rtDW./*@>1ea087*/j)]/*@>15eb27*/ = /*@>1dd5fa*/rtDW./*@>1ea08a*/s1DivS2;
+        /*@>18fd83*/if (!/*@<1c9fe9*/(/*@>1dd61e*/rtDW./*@>1ea09c*/s1DivS2/*@>15eb2b*/ >= /*@>194a18*/0.0)) {
+            /*@>1dd666*/rtDW./*@>1ea0bd*/s1DivS2/*@>15eb2f*/ = -/*@<196c77*//*@>1dd66c*/rtDW./*@>1ea0c0*/s1DivS2;
+        }
+        /*@>15eb36*/if (/*@>1dd6a8*/rtDW./*@>1ea0de*/win_y_high/*@>15eb35*/ < /*@>1dd6ae*/rtDW./*@>1ea0e1*/s1DivS2) {
+            /*@>1dd6c6*/rtDW./*@>1ea0ed*/win_y_high/*@>15eb39*/ = /*@>1dd6cc*/rtDW./*@>1ea0f0*/s1DivS2;
+            /*@>1dd6e4*/rtDW./*@>1ea0fc*/bestCol/*@>15eb3b*/ = static_cast<uint32_t>(/*@>1dd6ea*/rtDW./*@>1ea0ff*/i);
+        }
+    }
+}
+/*@>1dd52e*/rtDW./*@>1ea024*/j/*@>15ebb4*/ = static_cast<int32_t>(/*@>1dd534*/rtDW./*@>1ea027*/bestCol/*@>196c4f*/ * /*@>194a2b*/9U);
+/*@>181ddb*/for (/*@>1e871a*/rtDW./*@>1eaa2c*/i = /*@>1e8718*/0; /*@>1e872a*/rtDW./*@>1eaa32*/i < /*@>1e8727*/9; /*@>1e8724*/rtDW./*@>1eaa2f*/i/*@>1e8953*/++) {
+    /*@>1dd55e*/rtDW./*@>1ea03c*/tformCompact/*@>17ce3f*/[static_cast<uint32_t>(/*@>1dd564*/rtDW./*@>1ea03f*/i)]/*@>15ebc1*/ = /*@>1dd56a*/rtDW./*@>1ea042*/RV/*@>1da302*/[static_cast<uint32_t>(/*@>1dd570*/rtDW./*@>1ea045*/j) + static_cast<uint32_t>(/*@>1dd576*/rtDW./*@>1ea048*/i)];
+}
+/*@>1dd552*/rtDW./*@>1ea036*/win_y_high/*@>15ebcf*/ = /*@>194b34*/1.0/*@>15ebce*/ / /*@>1dd558*/rtDW./*@>1ea039*/x_current;
+/*@>1dd588*/rtDW./*@>1ea051*/s1DivS2/*@>15ebd4*/ = /*@>1dd58e*/rtDW./*@>1ea054*/x_location/*@>196c4d*/ * /*@>1dd594*/rtDW./*@>1ea057*/win_y_high;
+/*@>1dd59a*/rtDW./*@>1ea05a*/tformCompact_m/*@>17ceda*/[/*@>1950e5*/6]/*@>15ebdc*/ = /*@>1dd5a0*/rtDW./*@>1ea05d*/tformCompact/*@>1da307*/[/*@>1da304*/6]/*@>196c49*/ * /*@>1dd5a6*/rtDW./*@>1ea060*/x_location;
+/*@>1dd5b2*/rtDW./*@>1ea066*/tformCompact_m/*@>17cf57*/[/*@>1950f9*/7]/*@>15ebe4*/ = /*@>1dd5b8*/rtDW./*@>1ea069*/tformCompact/*@>1da30c*/[/*@>1da309*/7]/*@>196c45*/ * /*@>1dd5be*/rtDW./*@>1ea06c*/x_location;
+/*@>1dd5c4*/rtDW./*@>1ea06f*/tformCompact_m/*@>17d001*/[/*@>19510b*/8]/*@>15ebfa*/ = (/*@>1dd5ca*/rtDW./*@>1ea072*/tformCompact/*@>1da311*/[/*@>1da30e*/8]/*@>15ebef*/ - /*@>1dd5d0*/rtDW./*@>1ea075*/cents1/*@>1da316*/[/*@>1da313*/0]/*@>196c3d*/ * /*@>1dd5d6*/rtDW./*@>1ea078*/tformCompact_m/*@>1da31b*/[/*@>1da318*/6])/*@>15ebf7*/ - /*@>1dd5dc*/rtDW./*@>1ea07b*/cents1/*@>1da320*/[/*@>1da31d*/1]/*@>196c41*/ * /*@>1dd5e2*/rtDW./*@>1ea07e*/tformCompact_m/*@>1da325*/[/*@>1da322*/7];
+/*@>1dd60c*/rtDW./*@>1ea093*/tformCompact_m/*@>17d036*/[/*@>195111*/0]/*@>15ec02*/ = /*@>1dd612*/rtDW./*@>1ea096*/tformCompact/*@>1da32a*/[/*@>1da327*/0]/*@>196c39*/ * /*@>1dd618*/rtDW./*@>1ea099*/s1DivS2;
+/*@>1dd654*/rtDW./*@>1ea0b4*/tformCompact_m/*@>17d18d*/[/*@>195129*/1]/*@>15ec0a*/ = /*@>1dd65a*/rtDW./*@>1ea0b7*/tformCompact/*@>1da343*/[/*@>1da340*/1]/*@>196c35*/ * /*@>1dd660*/rtDW./*@>1ea0ba*/s1DivS2;
+/*@>1dd672*/rtDW./*@>1ea0c3*/tformCompact_m/*@>17d270*/[/*@>195141*/2]/*@>15ec2a*/ = ((/*@>1dd678*/rtDW./*@>1ea0c6*/cents2/*@>1da348*/[/*@>1da345*/0]/*@>196c25*/ * /*@>1dd67e*/rtDW./*@>1ea0c9*/tformCompact_m/*@>1da34d*/[/*@>1da34a*/8]/*@>15ec19*/ - /*@>1dd684*/rtDW./*@>1ea0cc*/tformCompact_m/*@>1da352*/[/*@>1da34f*/0]/*@>196c29*/ * /*@>1dd68a*/rtDW./*@>1ea0cf*/cents1/*@>1da357*/[/*@>1da354*/0])/*@>15ec21*/ - /*@>1dd690*/rtDW./*@>1ea0d2*/tformCompact_m/*@>1da35c*/[/*@>1da359*/1]/*@>196c2d*/ * /*@>1dd696*/rtDW./*@>1ea0d5*/cents1/*@>1da361*/[/*@>1da35e*/1])/*@>15ec27*/ + /*@>1dd69c*/rtDW./*@>1ea0d8*/tformCompact/*@>1da366*/[/*@>1da363*/2]/*@>196c31*/ * /*@>1dd6a2*/rtDW./*@>1ea0db*/win_y_high;
+/*@>1dd6b4*/rtDW./*@>1ea0e4*/tformCompact_m/*@>17d2aa*/[/*@>195147*/3]/*@>15ec32*/ = /*@>1dd6ba*/rtDW./*@>1ea0e7*/tformCompact/*@>1da36b*/[/*@>1da368*/3]/*@>196c21*/ * /*@>1dd6c0*/rtDW./*@>1ea0ea*/s1DivS2;
+/*@>1dd6d2*/rtDW./*@>1ea0f3*/tformCompact_m/*@>17d2df*/[/*@>19514d*/4]/*@>15ec3a*/ = /*@>1dd6d8*/rtDW./*@>1ea0f6*/tformCompact/*@>1da370*/[/*@>1da36d*/4]/*@>196c1d*/ * /*@>1dd6de*/rtDW./*@>1ea0f9*/s1DivS2;
+/*@>1dd6f0*/rtDW./*@>1ea102*/tformCompact_m/*@>17d5d2*/[/*@>1951b5*/5]/*@>15ec5a*/ = ((/*@>1dd6f6*/rtDW./*@>1ea105*/cents2/*@>1da375*/[/*@>1da372*/1]/*@>196c0d*/ * /*@>1dd6fc*/rtDW./*@>1ea108*/tformCompact_m/*@>1da37a*/[/*@>1da377*/8]/*@>15ec49*/ - /*@>1dd702*/rtDW./*@>1ea10b*/cents1/*@>1da37f*/[/*@>1da37c*/0]/*@>196c11*/ * /*@>1dd708*/rtDW./*@>1ea10e*/tformCompact_m/*@>1da384*/[/*@>1da381*/3])/*@>15ec51*/ - /*@>1dd70e*/rtDW./*@>1ea111*/cents1/*@>1da389*/[/*@>1da386*/1]/*@>196c15*/ * /*@>1dd714*/rtDW./*@>1ea114*/tformCompact_m/*@>1da38e*/[/*@>1da38b*/4])/*@>15ec57*/ + /*@>1dd71a*/rtDW./*@>1ea117*/tformCompact/*@>1da393*/[/*@>1da390*/5]/*@>196c19*/ * /*@>1dd720*/rtDW./*@>1ea11a*/win_y_high;
+/*@>1dd726*/rtDW./*@>1ea11d*/tformCompact_m/*@>17d6ad*/[/*@>1951c9*/0]/*@>1e8957*/ += /*@>1dd72c*/rtDW./*@>1ea120*/cents2/*@>1da398*/[/*@>1da395*/0]/*@>196c09*/ * /*@>1dd732*/rtDW./*@>1ea123*/tformCompact_m/*@>1da39d*/[/*@>1da39a*/6];
+/*@>1dd73e*/rtDW./*@>1ea126*/tformCompact_m/*@>17d8e7*/[/*@>195204*/1]/*@>1e8958*/ += /*@>1dd744*/rtDW./*@>1ea129*/cents2/*@>1da3a7*/[/*@>1da3a4*/0]/*@>196c05*/ * /*@>1dd74a*/rtDW./*@>1ea12c*/tformCompact_m/*@>1da3ac*/[/*@>1da3a9*/7];
+/*@>1dd756*/rtDW./*@>1ea12f*/tformCompact_m/*@>17da4c*/[/*@>195237*/3]/*@>1e8959*/ += /*@>1dd75c*/rtDW./*@>1ea132*/cents2/*@>1da3b6*/[/*@>1da3b3*/1]/*@>196c01*/ * /*@>1dd762*/rtDW./*@>1ea135*/tformCompact_m/*@>1da3bb*/[/*@>1da3b8*/6];
+/*@>1dd76e*/rtDW./*@>1ea138*/tformCompact_m/*@>17dab7*/[/*@>195243*/4]/*@>1e895a*/ += /*@>1dd774*/rtDW./*@>1ea13b*/cents2/*@>1da3c5*/[/*@>1da3c2*/1]/*@>196bfd*/ * /*@>1dd77a*/rtDW./*@>1ea13e*/tformCompact_m/*@>1da3ca*/[/*@>1da3c7*/7];
+/*@>15ec9c*/if (/*@>1dd786*/rtDW./*@>1ea141*/tformCompact_m/*@>1da3d4*/[/*@>1da3d1*/8U]/*@>15ec9b*/ != /*@>194a2a*/0.0) {
+    /*@>1dd792*/rtDW./*@>1ea147*/win_y_high/*@>15eca4*/ = /*@>194b4d*/1.0/*@>15eca3*/ / /*@>1dd798*/rtDW./*@>1ea14a*/tformCompact_m/*@>1da3d9*/[/*@>1da3d6*/8];
+/*@>181dc3*/    for (/*@>1e86ff*/rtDW./*@>1eaa23*/i = /*@>1e86fd*/0; /*@>1e870f*/rtDW./*@>1eaa29*/i < /*@>1e870c*/8; /*@>1e8709*/rtDW./*@>1eaa26*/i/*@>1e895b*/++) {
+        /*@>1dd7bc*/rtDW./*@>1ea15c*/tformCompact_m/*@>17dc75*/[static_cast<uint32_t>(/*@>1dd7c2*/rtDW./*@>1ea15f*/i)]/*@>1e895e*/ *= /*@>1dd7d4*/rtDW./*@>1ea162*/win_y_high;
+    }
+    /*@>1dd7b6*/rtDW./*@>1ea159*/tformCompact_m/*@>15ecba*/[/*@>194b52*/8]/*@>15ecbc*/ = /*@>194a28*/1.0;
+    /*@>1dd7ec*/rtDW./*@>1ea16b*/bestCol/*@>15eccc*/ = /*@>194a24*/0U;
+/*@>181d76*/    for (/*@>1e86ae*/rtDW./*@>1eaa08*/i = /*@>1e86ac*/0; /*@>1e86be*/rtDW./*@>1eaa0e*/i < /*@>1e86bb*/4; /*@>1e86b8*/rtDW./*@>1eaa0b*/i/*@>1e895f*/++) {
+        /*@>1dd846*/rtDW./*@>1ea192*/EstimateGeometricTransformation_DW_DISTANCE/*@>15ecd6*/[static_cast<uint32_t>(/*@>1dd84c*/rtDW./*@>1ea195*/i)]/*@>15ecd8*/ = /*@>194a1d*/0.0;
+/*@>181d94*/        for (/*@>1e86c9*/rtDW./*@>1eaa11*/j = /*@>1e86c7*/0; /*@>1e86d9*/rtDW./*@>1eaa17*/j < /*@>1e86d6*/2; /*@>1e86d3*/rtDW./*@>1eaa14*/j/*@>1e8961*/++) {
+            /*@>1dd8b8*/rtDW./*@>1ea1bf*/win_y_high/*@>15ece2*/ = /*@>194a1c*/0.0;
+/*@>181dac*/            for (/*@>1e86e4*/rtDW./*@>1eaa1a*/inlierNum = /*@>1e86e2*/0; /*@>1e86f4*/rtDW./*@>1eaa20*/inlierNum < /*@>1e86f1*/9; /*@>1e86ee*/rtDW./*@>1eaa1d*/inlierNum/*@>1e8962*/++) {
+                /*@>1dd91e*/rtDW./*@>1ea1e6*/win_y_high/*@>1e8965*/ += /*@>1dd924*/rtDW./*@>1ea1e9*/EstimateGeometricTransformation_DW_CONSTRT_ALL/*@>1da427*/[/*@>1dd92a*/rtDW./*@>1ea1ec*/bestCol + static_cast<uint32_t>(/*@>1dd930*/rtDW./*@>1ea1ef*/inlierNum)]/*@>196c8f*/ * /*@>1dd936*/rtDW./*@>1ea1f2*/tformCompact_m/*@>1da42e*/[static_cast<uint32_t>(/*@>1dd93c*/rtDW./*@>1ea1f5*/inlierNum)];
+            }
+            rtDW.bestCol += /*@>19546c*/9U;
+            /*@>1dd95a*/rtDW./*@>1ea201*/EstimateGeometricTransformation_DW_DISTANCE/*@>17d4bc*/[static_cast<uint32_t>(/*@>1dd960*/rtDW./*@>1ea204*/i)]/*@>1e8969*/ += /*@>1dd966*/rtDW./*@>1ea207*/win_y_high/*@>196c8b*/ * /*@>1dd96c*/rtDW./*@>1ea20a*/win_y_high;
+        }
+    }
+    /*@>1d4843*/std::memcpy(&/*@>1dd876*/rtDW./*@>1ea1a1*/bestTFormCompact/*@>1d0164*/[/*@>1d0153*/0], &/*@>1dd87c*/rtDW./*@>1ea1a4*/tformCompact_m/*@>1d016c*/[/*@>1d0160*/0], /*@>1d0162*/9U/*@>1d016f*/ * /*@>1d016e*/sizeof(double));
+    /*@>1dd89a*/rtDW./*@>1ea1b3*/inlierNum/*@>15ed53*/ = /*@>1e81dd*/0;
+    /*@>1900e8*/if (/*@>1dd8b2*/rtDW./*@>1ea1bc*/EstimateGeometricTransformation_DW_DISTANCE/*@>1da413*/[/*@>1da410*/0]/*@>1900e9*/ <= /*@>195570*/2.5) {
+        /*@>1dd8d0*/rtDW./*@>1ea1c8*/inlierNum/*@>1900fb*/ = /*@>1e81e0*/1;
+    }
+    /*@>190104*/if (/*@>1dd8fa*/rtDW./*@>1ea1da*/EstimateGeometricTransformation_DW_DISTANCE/*@>1da41d*/[/*@>1da41a*/1]/*@>190105*/ <= /*@>195578*/2.5) {
+        /*@>1dd906*/rtDW./*@>1ea1dd*/inlierNum/*@>190117*/ = static_cast<int32_t>(static_cast<uint32_t>(/*@>1dd90c*/rtDW./*@>1ea1e0*/inlierNum)/*@>190119*/ + /*@>195581*/1U);
+    }
+    /*@>190120*/if (/*@>1dd954*/rtDW./*@>1ea1fe*/EstimateGeometricTransformation_DW_DISTANCE/*@>1da433*/[/*@>1da430*/2]/*@>190121*/ <= /*@>195585*/2.5) {
+        /*@>1dd98a*/rtDW./*@>1ea213*/inlierNum/*@>190133*/ = static_cast<int32_t>(static_cast<uint32_t>(/*@>1dd990*/rtDW./*@>1ea216*/inlierNum)/*@>190135*/ + /*@>19558e*/1U);
+    }
+    /*@>19013c*/if (/*@>1dd99c*/rtDW./*@>1ea219*/EstimateGeometricTransformation_DW_DISTANCE/*@>1da43f*/[/*@>1da43c*/3]/*@>19013d*/ <= /*@>195592*/2.5) {
+        /*@>1dd9ae*/rtDW./*@>1ea21f*/inlierNum/*@>19014f*/ = static_cast<int32_t>(static_cast<uint32_t>(/*@>1dd9b4*/rtDW./*@>1ea222*/inlierNum)/*@>190151*/ + /*@>19559b*/1U);
+    }
+} else {
+    /*@>1dd78c*/rtDW./*@>1ea144*/inlierNum/*@>15ed8f*/ = /*@>1e81da*/0;
+}
+/*@>15ed9c*/if (static_cast<uint32_t>(/*@>1dd7a4*/rtDW./*@>1ea150*/inlierNum)/*@>15ed9b*/ >= /*@>194a36*/4U) {
+    /*@>1dd7aa*/rtDW./*@>1ea153*/EstimateGeometricTransformation/*@>17c2f0*/[/*@>194f47*/0]/*@>15eda3*/ = /*@>1dd7b0*/rtDW./*@>1ea156*/bestTFormCompact/*@>1da3de*/[/*@>1da3db*/4];
+    /*@>1dd7e0*/rtDW./*@>1ea165*/EstimateGeometricTransformation/*@>17c36b*/[/*@>194f5c*/1]/*@>15eda9*/ = /*@>1dd7e6*/rtDW./*@>1ea168*/bestTFormCompact/*@>1da3ea*/[/*@>1da3e7*/3];
+    /*@>1dd7f8*/rtDW./*@>1ea171*/EstimateGeometricTransformation/*@>17c3cd*/[/*@>194f62*/2]/*@>15edaf*/ = /*@>1dd7fe*/rtDW./*@>1ea174*/bestTFormCompact/*@>1da3ef*/[/*@>1da3ec*/5];
+    /*@>1dd80a*/rtDW./*@>1ea17a*/EstimateGeometricTransformation/*@>17c400*/[/*@>194f68*/3]/*@>15edb5*/ = /*@>1dd810*/rtDW./*@>1ea17d*/bestTFormCompact/*@>1da3f4*/[/*@>1da3f1*/1];
+    /*@>1dd834*/rtDW./*@>1ea18c*/EstimateGeometricTransformation/*@>17c45b*/[/*@>194f6e*/4]/*@>15edbb*/ = /*@>1dd83a*/rtDW./*@>1ea18f*/bestTFormCompact/*@>1da3ff*/[/*@>1da3fc*/0];
+    /*@>1dd86a*/rtDW./*@>1ea19b*/EstimateGeometricTransformation/*@>17c53b*/[/*@>194f97*/5]/*@>15edc1*/ = /*@>1dd870*/rtDW./*@>1ea19e*/bestTFormCompact/*@>1da404*/[/*@>1da401*/2];
+    /*@>1dd88e*/rtDW./*@>1ea1ad*/EstimateGeometricTransformation/*@>17c5e6*/[/*@>194fb8*/6]/*@>15edc7*/ = /*@>1dd894*/rtDW./*@>1ea1b0*/bestTFormCompact/*@>1da409*/[/*@>1da406*/7];
+    /*@>1dd8a6*/rtDW./*@>1ea1b6*/EstimateGeometricTransformation/*@>17c691*/[/*@>194fd9*/7]/*@>15edcd*/ = /*@>1dd8ac*/rtDW./*@>1ea1b9*/bestTFormCompact/*@>1da40e*/[/*@>1da40b*/6];
+    /*@>1dd8c4*/rtDW./*@>1ea1c2*/EstimateGeometricTransformation/*@>17c75f*/[/*@>194ffe*/8]/*@>15edd3*/ = /*@>1dd8ca*/rtDW./*@>1ea1c5*/bestTFormCompact/*@>1da418*/[/*@>1da415*/8];
+}
+/* {S!d486}MATLAB Function: '<S4>/MATLAB Function8' */
+/*@>17c33a*/for (/*@>1e8693*/rtDW./*@>1ea9ff*/i = /*@>1e8691*/0; /*@>1e86a3*/rtDW./*@>1eaa05*/i < /*@>1e86a0*/307200; /*@>1e869d*/rtDW./*@>1eaa02*/i/*@>1e8971*/++) {
+    /*@>1dd81c*/rtDW./*@>1ea180*/rtb_V_Channel_a/*@>17c32c*/[/*@>1dd822*/rtDW./*@>1ea183*/i]/*@>17c32d*/ = (/*@>1dd828*/rtDW./*@>1ea186*/V_Channel/*@>1da3fa*/[/*@>1dd82e*/rtDW./*@>1ea189*/i]/*@>17c31e*/ > /*@>194e07*/0.5);
+}
+/* {E!d486}End of MATLAB Function: '<S4>/MATLAB Function8' */
+
+/* {S!d488}MATLABSystem: '<S4>/Warp' incorporates:
+ *  S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
+ */
+/*@[1e5a48*/%<(SLibCGCallSubFcn("Warp_stepImpl", ["&/*@>1eadde*/rtDW./*@>1eaddd*/obj_k", "&/*@>1eadf0*/rtDW./*@>1eadef*/rtb_V_Channel_a[0]", "&/*@>1eae03*/rtDW./*@>1eae02*/EstimateGeometricTransformation[0]", "&/*@>1eae16*/rtDW./*@>1eae15*/bv[0]"], 0, 20, 6))>/*@]*/;
+/* {S!d490}MATLAB Function: '<S2>/MATLAB Function1' incorporates:
+ *  MATLABSystem: '<S4>/Warp'
+ */
+/*@>1dd888*/rtDW./*@>1ea1aa*/x_location/*@>15f99d*/ = /*@>194bee*/320.0;
+/*@[1e5a63*/%<(SLibCGCallSubFcn("eml_find_7rUftLmJ", ["&/*@>1eae29*/rtDW./*@>1eae28*/bv[0]", "/*@>1eae3a*/rtDW./*@>1eae39*/ii_data_n", "&rtDW.ii_size", "/*@>1eae5b*/rtDW./*@>1eae5a*/jj_data_p", "&rtDW.jj_size"], 0, 20, 7))>/*@]*/;
+/*@>1dd948*/rtDW./*@>1ea1f8*/j/*@>1bbd74*/ = rtDW.ii_size;
+rtDW.c_size/*@>17c4d7*/ = rtDW.ii_size;
+/*@>17c4f9*/for (/*@>1e8674*/rtDW./*@>1ea9f3*/i = /*@>1e8672*/0; /*@>1e8689*/rtDW./*@>1ea9fc*/i < rtDW.j; /*@>1e867e*/rtDW./*@>1ea9f6*/i/*@>1e8972*/++) {
+    /*@>1dd9c0*/rtDW./*@>1ea225*/outputImage_tmp/*@>1ae00b*/ = /*@>1dd9c6*/rtDW./*@>1ea228*/ii_data_n/*@>1da445*/[/*@>1dd9cc*/rtDW./*@>1ea22b*/i];
+    /*@>1dd9de*/rtDW./*@>1ea234*/c_data/*@>17c4e6*/[/*@>1dd9e4*/rtDW./*@>1ea237*/i]/*@>17c4e7*/ = (/*@>1dd9ea*/rtDW./*@>1ea23a*/outputImage_tmp/*@>17c4da*/ >= /*@>194e08*/456);
+    /*@>1dd9fc*/rtDW./*@>1ea243*/d_data/*@>17c591*/[/*@>1dda02*/rtDW./*@>1ea246*/i]/*@>17c592*/ = (/*@>1dda08*/rtDW./*@>1ea249*/outputImage_tmp/*@>17c585*/ < /*@>194e09*/480);
+}
+/*@>1dd9d2*/rtDW./*@>1ea22e*/svdRsltVar/*@>1bbd80*/ = rtDW.jj_size;
+rtDW.g_size/*@>17c62d*/ = rtDW.jj_size;
+/*@>17c64f*/for (/*@>1e8655*/rtDW./*@>1ea9e7*/i = /*@>1e8653*/0; /*@>1e866a*/rtDW./*@>1ea9f0*/i < rtDW.svdRsltVar; /*@>1e865f*/rtDW./*@>1ea9ea*/i/*@>1e8973*/++) {
+    /*@>1dda20*/rtDW./*@>1ea24f*/g_data/*@>17c63c*/[/*@>1dda26*/rtDW./*@>1ea252*/i]/*@>17c63d*/ = (/*@>1dda2c*/rtDW./*@>1ea255*/jj_data_p/*@>1da44b*/[/*@>1dda32*/rtDW./*@>1ea258*/i]/*@>17c630*/ >= /*@>194e0a*/480);
+}
+rtDW.b_tmp_size/*@>17c6f5*/ = rtDW.ii_size;
+/*@>17c71d*/for (/*@>1e8636*/rtDW./*@>1ea9db*/i = /*@>1e8634*/0; /*@>1e864b*/rtDW./*@>1ea9e4*/i < rtDW.j; /*@>1e8640*/rtDW./*@>1ea9de*/i/*@>1e8974*/++) {
+    /*@>1dda5c*/rtDW./*@>1ea26a*/b_tmp_data/*@>17c70a*/[/*@>1dda62*/rtDW./*@>1ea26d*/i]/*@>17c70b*/ = (/*@>1dda68*/rtDW./*@>1ea270*/c_data/*@>1da451*/[/*@>1dda6e*/rtDW./*@>1ea273*/i]/*@>17c6f8*/ && /*@>1dda74*/rtDW./*@>1ea276*/d_data/*@>1da457*/[/*@>1dda7a*/rtDW./*@>1ea279*/i]);
+}
+if (rtDW.ii_size == rtDW.jj_size) {
+    /* {S!d492}MATLAB Function: '<S2>/MATLAB Function1' */
+    rtDW.b_size/*@>17c829*/ = rtDW.ii_size;
+/*@>17c851*/    for (/*@>1e8617*/rtDW./*@>1ea9cf*/i = /*@>1e8615*/0; /*@>1e862c*/rtDW./*@>1ea9d8*/i < rtDW.j; /*@>1e8621*/rtDW./*@>1ea9d2*/i/*@>1e8975*/++) {
+        /*@>1ddae0*/rtDW./*@>1ea2a0*/b_data/*@>17c83e*/[/*@>1ddae6*/rtDW./*@>1ea2a3*/i]/*@>17c83f*/ = (/*@>1ddaec*/rtDW./*@>1ea2a6*/b_tmp_data/*@>1da45d*/[/*@>1ddaf2*/rtDW./*@>1ea2a9*/i]/*@>17c82c*/ && /*@>1ddaf8*/rtDW./*@>1ea2ac*/g_data/*@>1da463*/[/*@>1ddafe*/rtDW./*@>1ea2af*/i]);
+    }
+} else {
+    /* {S!d494}MATLAB Function: '<S2>/MATLAB Function1' */
+    /*@[1e5a7f*/%<(SLibCGCallSubFcn("and_o", ["/*@>1eae7c*/rtDW./*@>1eae7b*/b_data", "&rtDW.b_size", "/*@>1eae9d*/rtDW./*@>1eae9c*/b_tmp_data", "&rtDW.b_tmp_size", "/*@>1eaebe*/rtDW./*@>1eaebd*/g_data", "&rtDW.g_size"], 0, 20, 8))>/*@]*/;
+}
+/* {S!d496}MATLAB Function: '<S2>/MATLAB Function1' */
+rtDW.h_size/*@>17c8ab*/ = rtDW.jj_size;
+/*@>17c8cd*/for (/*@>1e85f8*/rtDW./*@>1ea9c3*/i = /*@>1e85f6*/0; /*@>1e860d*/rtDW./*@>1ea9cc*/i < rtDW.svdRsltVar; /*@>1e8602*/rtDW./*@>1ea9c6*/i/*@>1e8976*/++) {
+    /*@>1ddb10*/rtDW./*@>1ea2b8*/h_data/*@>17c8ba*/[/*@>1ddb16*/rtDW./*@>1ea2bb*/i]/*@>17c8bb*/ = (/*@>1ddb1c*/rtDW./*@>1ea2be*/jj_data_p/*@>1da469*/[/*@>1ddb22*/rtDW./*@>1ea2c1*/i]/*@>17c8ae*/ < /*@>194e29*/640);
+}
+if (rtDW.b_size == rtDW.jj_size) {
+    /* {S!d498}MATLAB Function: '<S2>/MATLAB Function1' */
+    /*@>1ddb52*/rtDW./*@>1ea2d6*/svdRsltVar/*@>1bbd96*/ = rtDW.b_size;
+    rtDW.tmp_size/*@>17c9e0*/ = rtDW.b_size;
+/*@>17ca08*/    for (/*@>1e85d9*/rtDW./*@>1ea9b7*/i = /*@>1e85d7*/0; /*@>1e85ee*/rtDW./*@>1ea9c0*/i < rtDW.svdRsltVar; /*@>1e85e3*/rtDW./*@>1ea9ba*/i/*@>1e8977*/++) {
+        /*@>1ddb94*/rtDW./*@>1ea2f1*/tmp_data_h/*@>17c9f5*/[/*@>1ddb9a*/rtDW./*@>1ea2f4*/i]/*@>17c9f6*/ = (/*@>1ddba0*/rtDW./*@>1ea2f7*/b_data/*@>1da46f*/[/*@>1ddba6*/rtDW./*@>1ea2fa*/i]/*@>17c9e3*/ && /*@>1ddbac*/rtDW./*@>1ea2fd*/h_data/*@>1da475*/[/*@>1ddbb2*/rtDW./*@>1ea300*/i]);
+    }
+} else {
+    /* {S!d500}MATLAB Function: '<S2>/MATLAB Function1' */
+    /*@[1e5a9b*/%<(SLibCGCallSubFcn("and_o", ["/*@>1eaedf*/rtDW./*@>1eaede*/tmp_data_h", "&rtDW.tmp_size", "/*@>1eaf00*/rtDW./*@>1eaeff*/b_data", "&rtDW.b_size", "/*@>1eaf21*/rtDW./*@>1eaf20*/h_data", "&rtDW.h_size"], 0, 20, 9))>/*@]*/;
+}
+rtDW.outputImage_tmp = rtDW.tmp_size - 1;
+rtDW.trueCount = 0;
+for (rtDW.i = 0; rtDW.i <= rtDW.outputImage_tmp; rtDW.i++) {
+    /* {S!d502}MATLAB Function: '<S2>/MATLAB Function1' */
+    if (/*@>1ddbbe*/rtDW./*@>1ea306*/tmp_data_h/*@>1da47b*/[rtDW.i]) {
+        rtDW.trueCount++;
+    }
+}
+/* {S!d504}MATLAB Function: '<S2>/MATLAB Function1' incorporates:
+ *  S-Function (svipcolorconv): '<S4>/Color Space  Conversion'
+ *  S-Function (svipesttform): '<S4>/Estimate Geometric Transformation'
+ */
+/*@>15f9e5*/if (rtDW.trueCount/*@>15f9c3*/ > /*@>194bef*/30) {
+    /*@>1ddbd0*/rtDW./*@>1ea30f*/inlierNum/*@>15f99e*/ = /*@>1e81e9*/1;
+    if (rtDW.b_size == rtDW.jj_size) {
+        /*@>1ddc72*/rtDW./*@>1ea357*/svdRsltVar/*@>1bbda0*/ = rtDW.b_size;
+        rtDW.tmp_size_g/*@>17cdd1*/ = rtDW.b_size;
+/*@>17cdf9*/        for (/*@>1e859e*/rtDW./*@>1ea99f*/i = /*@>1e859c*/0; /*@>1e85b3*/rtDW./*@>1ea9a8*/i < rtDW.svdRsltVar; /*@>1e85a8*/rtDW./*@>1ea9a2*/i/*@>1e897a*/++) {
+            /*@>1ddcfc*/rtDW./*@>1ea390*/tmp_data_b/*@>17cde6*/[/*@>1ddd02*/rtDW./*@>1ea393*/i]/*@>17cde7*/ = (/*@>1ddd08*/rtDW./*@>1ea396*/b_data/*@>1da487*/[/*@>1ddd0e*/rtDW./*@>1ea399*/i]/*@>17cdd4*/ && /*@>1ddd14*/rtDW./*@>1ea39c*/h_data/*@>1da48d*/[/*@>1ddd1a*/rtDW./*@>1ea39f*/i]);
+        }
+    } else {
+        /*@[1e5ab7*/%<(SLibCGCallSubFcn("and_o", ["/*@>1eaf42*/rtDW./*@>1eaf41*/tmp_data_b", "&rtDW.tmp_size_g", "/*@>1eaf63*/rtDW./*@>1eaf62*/b_data", "&rtDW.b_size", "/*@>1eaf84*/rtDW./*@>1eaf83*/h_data", "&rtDW.h_size"], 0, 20, 10))>/*@]*/;
+    }
+    rtDW.outputImage_tmp = rtDW.tmp_size_g - 1;
+    rtDW.trueCount = 0;
+    for (rtDW.i = 0; rtDW.i <= rtDW.outputImage_tmp; rtDW.i++) {
+        if (/*@>1ddd68*/rtDW./*@>1ea3c6*/tmp_data_b/*@>1da49f*/[rtDW.i]) {
+            rtDW.trueCount++;
+        }
+    }
+    rtDW.tmp_size_idx_0 = rtDW.trueCount;
+    rtDW.trueCount = 0;
+    for (rtDW.i = 0; rtDW.i <= rtDW.outputImage_tmp; rtDW.i++) {
+        if (/*@>1dddc8*/rtDW./*@>1ea3e4*/tmp_data_b/*@>1da4ab*/[rtDW.i]) {
+            /*@>1dddfe*/rtDW./*@>1ea3ff*/tmp_data[rtDW.trueCount]/*@>178d10*/ = rtDW.i;
+            rtDW.trueCount++;
+        }
+    }
+    rtDW.jj_size_b/*@>17d414*/ = rtDW.tmp_size_idx_0;
+/*@>17d44d*/    for (/*@>1e8547*/rtDW./*@>1ea97b*/i = /*@>1e8545*/0; /*@>1e855c*/rtDW./*@>1ea984*/i < rtDW.tmp_size_idx_0; /*@>1e8551*/rtDW./*@>1ea97e*/i/*@>1e897f*/++) {
+        /*@>1dde64*/rtDW./*@>1ea423*/jj_data/*@>17d43a*/[/*@>1dde6a*/rtDW./*@>1ea426*/i]/*@>17d43b*/ = /*@>1dde70*/rtDW./*@>1ea429*/jj_data_p/*@>1da4ba*/[/*@>1dde76*/rtDW./*@>1ea42c*/tmp_data/*@>1da4b4*/[/*@>1dde7c*/rtDW./*@>1ea42f*/i]];
+    }
+    /*@>1dde52*/rtDW./*@>1ea41a*/x_current/*@>15f99f*/ = /*@[1e5acf*/%<(SLibCGCallSubFcn("mean_uQukM2rh", ["/*@>1eafa5*/rtDW./*@>1eafa4*/jj_data", "&rtDW.jj_size_b"], 0, 20, 11))>/*@]*/;
+    if ((rtDW.ii_size == rtDW.jj_size) && ((rtDW.ii_size == 1 ? rtDW.jj_size : rtDW.ii_size) == rtDW.jj_size)) {
+        rtDW.tmp_size_l/*@>17d99c*/ = rtDW.ii_size;
+/*@>17d9d2*/        for (/*@>1e8528*/rtDW./*@>1ea96f*/i = /*@>1e8526*/0; /*@>1e853d*/rtDW./*@>1ea978*/i < rtDW.j; /*@>1e8532*/rtDW./*@>1ea972*/i/*@>1e8980*/++) {
+            /*@>1ddf7e*/rtDW./*@>1ea4a7*/tmp_data_da/*@>17d9bf*/[/*@>1ddf84*/rtDW./*@>1ea4aa*/i]/*@>17d9c0*/ = (/*@>1ddf8a*/rtDW./*@>1ea4ad*/c_data/*@>1da4de*/[/*@>1ddf90*/rtDW./*@>1ea4b0*/i]/*@>17d9a1*/ && /*@>1ddf96*/rtDW./*@>1ea4b3*/d_data/*@>1da4e4*/[/*@>1ddf9c*/rtDW./*@>1ea4b6*/i]/*@>17d9a0*/ && /*@>1ddfa2*/rtDW./*@>1ea4b9*/g_data/*@>1da4ea*/[/*@>1ddfa8*/rtDW./*@>1ea4bc*/i]/*@>17d99f*/ && /*@>1ddfae*/rtDW./*@>1ea4bf*/h_data/*@>1da4f0*/[/*@>1ddfb4*/rtDW./*@>1ea4c2*/i]);
+        }
+    } else {
+        /*@[1e5aee*/%<(SLibCGCallSubFcn("binary_expand_op_2", ["/*@>1eafc6*/rtDW./*@>1eafc5*/tmp_data_da", "&rtDW.tmp_size_l", "/*@>1eafe7*/rtDW./*@>1eafe6*/c_data", "&rtDW.c_size", "/*@>1eb008*/rtDW./*@>1eb007*/d_data", "/*@>1eb018*/rtDW./*@>1eb017*/g_data", "&rtDW.g_size", "/*@>1eb039*/rtDW./*@>1eb038*/h_data", "&rtDW.h_size"], 0, 20, 12))>/*@]*/;
+    }
+    rtDW.outputImage_tmp = rtDW.tmp_size_l - 1;
+    rtDW.trueCount = 0;
+    for (rtDW.i = 0; rtDW.i <= rtDW.outputImage_tmp; rtDW.i++) {
+        if (/*@>1ddff6*/rtDW./*@>1ea4e3*/tmp_data_da/*@>1da4f6*/[rtDW.i]) {
+            rtDW.trueCount++;
+        }
+    }
+    rtDW.tmp_size_idx_0 = rtDW.trueCount;
+    rtDW.trueCount = 0;
+    for (rtDW.i = 0; rtDW.i <= rtDW.outputImage_tmp; rtDW.i++) {
+        if (/*@>1de0bc*/rtDW./*@>1ea537*/tmp_data_da/*@>1da4fc*/[rtDW.i]) {
+            /*@>1de0ec*/rtDW./*@>1ea54c*/tmp_data_l[rtDW.trueCount]/*@>178dd1*/ = rtDW.i;
+            rtDW.trueCount++;
+        }
+    }
+    rtDW.ii_size_n/*@>17de1c*/ = rtDW.tmp_size_idx_0;
+/*@>17de55*/    for (/*@>1e84d1*/rtDW./*@>1ea94b*/i = /*@>1e84cf*/0; /*@>1e84e6*/rtDW./*@>1ea954*/i < rtDW.tmp_size_idx_0; /*@>1e84db*/rtDW./*@>1ea94e*/i/*@>1e8985*/++) {
+        /*@>1de18e*/rtDW./*@>1ea58e*/ii_data/*@>17de42*/[/*@>1de194*/rtDW./*@>1ea591*/i]/*@>17de43*/ = /*@>1de19a*/rtDW./*@>1ea594*/ii_data_n/*@>1da517*/[/*@>1de1a0*/rtDW./*@>1ea597*/tmp_data_l/*@>1da511*/[/*@>1de1a6*/rtDW./*@>1ea59a*/i]];
+    }
+    /*@>1de17c*/rtDW./*@>1ea585*/bestInlierDis/*@>15fa46*/ = /*@[1e5b06*/%<(SLibCGCallSubFcn("maximum_4kJ3rROr", ["/*@>1eb05a*/rtDW./*@>1eb059*/ii_data", "&rtDW.ii_size_n"], 0, 20, 13))>/*@]*/;
+} else {
+    /*@>1ddbca*/rtDW./*@>1ea30c*/inlierNum/*@>15f9a0*/ = /*@>1e81e6*/2;
+    if ((rtDW.ii_size == rtDW.jj_size) && ((rtDW.ii_size == 1 ? rtDW.jj_size : rtDW.ii_size) == rtDW.jj_size)) {
+        /*@>1ddc66*/rtDW./*@>1ea351*/j/*@>1bbdc2*/ = rtDW.ii_size;
+        rtDW.tmp_size_g/*@>17cd2e*/ = rtDW.ii_size;
+/*@>17cd5f*/        for (/*@>1e84b2*/rtDW./*@>1ea93f*/i = /*@>1e84b0*/0; /*@>1e84c7*/rtDW./*@>1ea948*/i < rtDW.j; /*@>1e84bc*/rtDW./*@>1ea942*/i/*@>1e89a4*/++) {
+            /*@>1ddcea*/rtDW./*@>1ea387*/outputImage_tmp/*@>188d05*/ = /*@>1ddcf0*/rtDW./*@>1ea38a*/jj_data_p/*@>1da481*/[/*@>1ddcf6*/rtDW./*@>1ea38d*/i];
+            /*@>1ddd38*/rtDW./*@>1ea3ae*/tmp_data_b/*@>17cd4c*/[/*@>1ddd3e*/rtDW./*@>1ea3b1*/i]/*@>17cd4d*/ = (/*@>1ddd44*/rtDW./*@>1ea3b4*/b_tmp_data/*@>1da499*/[/*@>1ddd4a*/rtDW./*@>1ea3b7*/i]/*@>17cd32*/ && (/*@>1ddd50*/rtDW./*@>1ea3ba*/outputImage_tmp/*@>17cd39*/ >= /*@>194e46*/0)/*@>17cd31*/ && (/*@>1ddd56*/rtDW./*@>1ea3bd*/outputImage_tmp/*@>17cd40*/ < /*@>194e47*/160));
+        }
+    } else {
+        /*@[1e5b22*/%<(SLibCGCallSubFcn("binary_expand_op_3", ["/*@>1eb07b*/rtDW./*@>1eb07a*/tmp_data_b", "&rtDW.tmp_size_g", "/*@>1eb09c*/rtDW./*@>1eb09b*/b_tmp_data", "&rtDW.b_tmp_size", "/*@>1eb0bd*/rtDW./*@>1eb0bc*/jj_data_p", "&rtDW.jj_size"], 0, 20, 14))>/*@]*/;
+    }
+    rtDW.outputImage_tmp = rtDW.tmp_size_g - 1;
+    rtDW.trueCount = 0;
+    for (rtDW.i = 0; rtDW.i <= rtDW.outputImage_tmp; rtDW.i++) {
+        if (/*@>1ddd2c*/rtDW./*@>1ea3a8*/tmp_data_b/*@>1da493*/[rtDW.i]) {
+            rtDW.trueCount++;
+        }
+    }
+    rtDW.tmp_size_idx_0 = rtDW.trueCount;
+    rtDW.trueCount = 0;
+    for (rtDW.i = 0; rtDW.i <= rtDW.outputImage_tmp; rtDW.i++) {
+        if (/*@>1dddb6*/rtDW./*@>1ea3de*/tmp_data_b/*@>1da4a5*/[rtDW.i]) {
+            /*@>1ddde0*/rtDW./*@>1ea3f0*/tmp_data[rtDW.trueCount]/*@>178c5e*/ = rtDW.i;
+            rtDW.trueCount++;
+        }
+    }
+    rtDW.jj_size_b/*@>17d340*/ = rtDW.tmp_size_idx_0;
+    rtDW.ii_size_n/*@>17d70e*/ = rtDW.tmp_size_idx_0;
+/*@>17d379*/    for (/*@>1e845b*/rtDW./*@>1ea91b*/i = /*@>1e8459*/0; /*@>1e8470*/rtDW./*@>1ea924*/i < rtDW.tmp_size_idx_0; /*@>1e8465*/rtDW./*@>1ea91e*/i/*@>1e89a9*/++) {
+        /*@>1ddeb8*/rtDW./*@>1ea44d*/jj_data/*@>17d366*/[/*@>1ddebe*/rtDW./*@>1ea450*/i]/*@>17d367*/ = /*@>1ddec4*/rtDW./*@>1ea453*/jj_data_p/*@>1da4c9*/[/*@>1ddeca*/rtDW./*@>1ea456*/tmp_data/*@>1da4c3*/[/*@>1dded0*/rtDW./*@>1ea459*/i]];
+        /*@>1ddf24*/rtDW./*@>1ea480*/ii_data/*@>17d734*/[/*@>1ddf2a*/rtDW./*@>1ea483*/i]/*@>17d735*/ = /*@>1ddf30*/rtDW./*@>1ea486*/ii_data_n/*@>1da4d8*/[/*@>1ddf36*/rtDW./*@>1ea489*/tmp_data/*@>1da4d2*/[/*@>1ddf3c*/rtDW./*@>1ea48c*/i]];
+    }
+    /*@>1ddea6*/rtDW./*@>1ea444*/x_current/*@>15f9a1*/ = /*@[1e5b3a*/%<(SLibCGCallSubFcn("mean_uQukM2rh", ["/*@>1eb0de*/rtDW./*@>1eb0dd*/jj_data", "&rtDW.jj_size_b"], 0, 20, 15))>/*@]*/;
+    /*@>1ddf12*/rtDW./*@>1ea477*/bestInlierDis/*@>15fa43*/ = /*@[1e5b52*/%<(SLibCGCallSubFcn("maximum_4kJ3rROr", ["/*@>1eb0ff*/rtDW./*@>1eb0fe*/ii_data", "&rtDW.ii_size_n"], 0, 20, 16))>/*@]*/;
+}
+/*@>15f9eb*/for (/*@>1e8224*/rtDW./*@>1ea83a*/svdRsltVar = /*@>1e8222*/0; /*@>1e8234*/rtDW./*@>1ea840*/svdRsltVar < /*@>1e8231*/20; /*@>1e822e*/rtDW./*@>1ea83d*/svdRsltVar/*@>1e8986*/++) {
+    /*@>15f9ed*/if (/*@>1ddfba*/rtDW./*@>1ea4c5*/inlierNum/*@>15f9c4*/ == /*@>194c01*/1) {
+        /*@>1ddfd8*/rtDW./*@>1ea4d4*/win_y_low/*@>15f9a5*/ = /*@>1ddfde*/rtDW./*@>1ea4d7*/bestInlierDis/*@>15f9c7*/ - ((static_cast<double>(/*@>1ddfe4*/rtDW./*@>1ea4da*/svdRsltVar)/*@>15fa6b*/ + /*@>194c46*/1.0)/*@>15f9c5*/ + /*@>194c04*/1.0)/*@>196cae*/ * /*@>194c05*/24.0;
+        /*@>1de014*/rtDW./*@>1ea4f2*/win_y_high/*@>15f9a7*/ = /*@>1de01a*/rtDW./*@>1ea4f5*/bestInlierDis/*@>15f9c9*/ - (static_cast<double>(/*@>1de020*/rtDW./*@>1ea4f8*/svdRsltVar)/*@>15fa6f*/ + /*@>194c49*/1.0)/*@>196ca7*/ * /*@>194c0d*/24.0;
+        /*@>1de062*/rtDW./*@>1ea510*/j/*@>1bbdda*/ = rtDW.ii_size;
+        rtDW.jj_size_b/*@>17dc0b*/ = rtDW.ii_size;
+/*@>17dc2f*/        for (/*@>1e843c*/rtDW./*@>1ea90f*/i = /*@>1e843a*/0; /*@>1e8451*/rtDW./*@>1ea918*/i < /*@>1e844c*/rtDW./*@>1ea915*/j; /*@>1e8446*/rtDW./*@>1ea912*/i/*@>1e8989*/++) {
+            /*@>1de13a*/rtDW./*@>1ea564*/jj_data/*@>17dc1c*/[/*@>1de140*/rtDW./*@>1ea567*/i]/*@>17dc1d*/ = /*@>1de146*/rtDW./*@>1ea56a*/ii_data_n/*@>1da502*/[/*@>1de14c*/rtDW./*@>1ea56d*/i];
+        }
+        /*@>1de170*/rtDW./*@>1ea57f*/outputImage_tmp/*@>1adf86*/ = rtDW.jj_size;
+        rtDW.ii_size_n/*@>17dcbd*/ = rtDW.jj_size;
+/*@>17dce1*/        for (/*@>1e841d*/rtDW./*@>1ea903*/i = /*@>1e841b*/0; /*@>1e8432*/rtDW./*@>1ea90c*/i < /*@>1e842d*/rtDW./*@>1ea909*/outputImage_tmp; /*@>1e8427*/rtDW./*@>1ea906*/i/*@>1e898a*/++) {
+            /*@>1de266*/rtDW./*@>1ea5f1*/ii_data/*@>17dcce*/[/*@>1de26c*/rtDW./*@>1ea5f4*/i]/*@>17dccf*/ = /*@>1de272*/rtDW./*@>1ea5f7*/jj_data_p/*@>1da529*/[/*@>1de278*/rtDW./*@>1ea5fa*/i];
+        }
+        if (rtDW.ii_size == rtDW.jj_size) {
+            rtDW.c_size/*@>17dfd4*/ = rtDW.ii_size;
+/*@>17e006*/            for (/*@>1e83fe*/rtDW./*@>1ea8f7*/i = /*@>1e83fc*/0; /*@>1e8413*/rtDW./*@>1ea900*/i < rtDW.j; /*@>1e8408*/rtDW./*@>1ea8fa*/i/*@>1e898b*/++) {
+                /*@>1de356*/rtDW./*@>1ea65a*/outputImage_tmp/*@>188bb0*/ = static_cast<int32_t>(/*@>1de35c*/rtDW./*@>1ea65d*/jj_data/*@>1da53b*/[/*@>1de362*/rtDW./*@>1ea660*/i]);
+                /*@>1de386*/rtDW./*@>1ea66f*/c_data/*@>17dff3*/[/*@>1de38c*/rtDW./*@>1ea672*/i]/*@>17dff4*/ = ((/*@>1de392*/rtDW./*@>1ea675*/outputImage_tmp/*@>17dfd9*/ >= /*@>1de398*/rtDW./*@>1ea678*/win_y_low)/*@>17dfd8*/ && (/*@>1de39e*/rtDW./*@>1ea67b*/outputImage_tmp/*@>17dfe0*/ < /*@>1de3a4*/rtDW./*@>1ea67e*/win_y_high)/*@>17dfd7*/ && (/*@>1de3aa*/rtDW./*@>1ea681*/ii_data/*@>1da547*/[/*@>1de3b0*/rtDW./*@>1ea684*/i]/*@>17dfe7*/ >= /*@>1de3b6*/rtDW./*@>1ea687*/x_current/*@>1a51cc*/ - /*@>1a51cf*/40.0));
+            }
+        } else {
+            /*@[1e5b71*/%<(SLibCGCallSubFcn("binary_expand_op_1", ["/*@>1eb120*/rtDW./*@>1eb11f*/c_data", "&rtDW.c_size", "/*@>1eb141*/rtDW./*@>1eb140*/jj_data", "&rtDW.jj_size_b", "/*@>1eb162*/rtDW./*@>1eb161*/win_y_low", "/*@>1eb172*/rtDW./*@>1eb171*/win_y_high", "/*@>1eb182*/rtDW./*@>1eb181*/ii_data", "&rtDW.ii_size_n", "/*@>1eb1a3*/rtDW./*@>1eb1a2*/x_current"], 0, 20, 17))>/*@]*/;
+        }
+        /*@>1de31a*/rtDW./*@>1ea63c*/j/*@>1bbde6*/ = rtDW.jj_size;
+        rtDW.d_size/*@>17e0f4*/ = rtDW.jj_size;
+/*@>17e116*/        for (/*@>1e83df*/rtDW./*@>1ea8eb*/i = /*@>1e83dd*/0; /*@>1e83f4*/rtDW./*@>1ea8f4*/i < rtDW.j; /*@>1e83e9*/rtDW./*@>1ea8ee*/i/*@>1e898d*/++) {
+            /*@>1de416*/rtDW./*@>1ea6b1*/d_data/*@>17e103*/[/*@>1de41c*/rtDW./*@>1ea6b4*/i]/*@>17e104*/ = (/*@>1de422*/rtDW./*@>1ea6b7*/ii_data/*@>1da54d*/[/*@>1de428*/rtDW./*@>1ea6ba*/i]/*@>17e0f7*/ < /*@>1de42e*/rtDW./*@>1ea6bd*/x_current/*@>1a51d2*/ + /*@>1a51d5*/40.0);
+        }
+        if (rtDW.c_size == rtDW.jj_size) {
+            /*@>1de48e*/rtDW./*@>1ea6ea*/j/*@>1bbdf0*/ = rtDW.c_size;
+            rtDW.tmp_size_dy/*@>17e2e4*/ = rtDW.c_size;
+/*@>17e30c*/            for (/*@>1e83c0*/rtDW./*@>1ea8df*/i = /*@>1e83be*/0; /*@>1e83d5*/rtDW./*@>1ea8e8*/i < rtDW.j; /*@>1e83ca*/rtDW./*@>1ea8e2*/i/*@>1e898e*/++) {
+                /*@>1de536*/rtDW./*@>1ea732*/tmp_data_bj/*@>17e2f9*/[/*@>1de53c*/rtDW./*@>1ea735*/i]/*@>17e2fa*/ = (/*@>1de542*/rtDW./*@>1ea738*/c_data/*@>1da565*/[/*@>1de548*/rtDW./*@>1ea73b*/i]/*@>17e2e7*/ && /*@>1de54e*/rtDW./*@>1ea73e*/d_data/*@>1da56b*/[/*@>1de554*/rtDW./*@>1ea741*/i]);
+            }
+        } else {
+            /*@[1e5b8d*/%<(SLibCGCallSubFcn("and_o", ["/*@>1eb1b3*/rtDW./*@>1eb1b2*/tmp_data_bj", "&rtDW.tmp_size_dy", "/*@>1eb1d4*/rtDW./*@>1eb1d3*/c_data", "&rtDW.c_size", "/*@>1eb1f5*/rtDW./*@>1eb1f4*/d_data", "&rtDW.d_size"], 0, 20, 18))>/*@]*/;
+        }
+        rtDW.outputImage_tmp = rtDW.tmp_size_dy - 1;
+        rtDW.trueCount = 0;
+        for (rtDW.i = 0; rtDW.i <= rtDW.outputImage_tmp; rtDW.i++) {
+            if (/*@>1de572*/rtDW./*@>1ea74d*/tmp_data_bj/*@>1da571*/[rtDW.i]) {
+                rtDW.trueCount++;
+            }
+        }
+        /*@>15f9f1*/if (rtDW.trueCount/*@>15f9cf*/ > /*@>194c20*/30) {
+            if (rtDW.c_size == rtDW.jj_size) {
+                /*@>1de5f6*/rtDW./*@>1ea783*/j/*@>1bbdfa*/ = rtDW.c_size;
+                rtDW.tmp_size_o/*@>17e64e*/ = rtDW.c_size;
+/*@>17e676*/                for (/*@>1e8385*/rtDW./*@>1ea8c7*/i = /*@>1e8383*/0; /*@>1e839a*/rtDW./*@>1ea8d0*/i < rtDW.j; /*@>1e838f*/rtDW./*@>1ea8ca*/i/*@>1e8991*/++) {
+                    /*@>1de69e*/rtDW./*@>1ea7cb*/tmp_data_f/*@>17e663*/[/*@>1de6a4*/rtDW./*@>1ea7ce*/i]/*@>17e664*/ = (/*@>1de6aa*/rtDW./*@>1ea7d1*/c_data/*@>1da58c*/[/*@>1de6b0*/rtDW./*@>1ea7d4*/i]/*@>17e651*/ && /*@>1de6b6*/rtDW./*@>1ea7d7*/d_data/*@>1da592*/[/*@>1de6bc*/rtDW./*@>1ea7da*/i]);
+                }
+            } else {
+                /*@[1e5ba9*/%<(SLibCGCallSubFcn("and_o", ["/*@>1eb216*/rtDW./*@>1eb215*/tmp_data_f", "&rtDW.tmp_size_o", "/*@>1eb237*/rtDW./*@>1eb236*/c_data", "&rtDW.c_size", "/*@>1eb258*/rtDW./*@>1eb257*/d_data", "&rtDW.d_size"], 0, 20, 19))>/*@]*/;
+            }
+            rtDW.outputImage_tmp = rtDW.tmp_size_o - 1;
+            rtDW.trueCount = 0;
+            for (rtDW.i = 0; rtDW.i <= rtDW.outputImage_tmp; rtDW.i++) {
+                if (/*@>1de6ce*/rtDW./*@>1ea7e3*/tmp_data_f/*@>1da598*/[rtDW.i]) {
+                    rtDW.trueCount++;
+                }
+            }
+            rtDW.tmp_size_idx_0 = rtDW.trueCount;
+            rtDW.trueCount = 0;
+            for (rtDW.i = 0; rtDW.i <= rtDW.outputImage_tmp; rtDW.i++) {
+                if (/*@>1de6fe*/rtDW./*@>1ea7f2*/tmp_data_f/*@>1da59e*/[rtDW.i]) {
+                    /*@>1de716*/rtDW./*@>1ea7fe*/tmp_data_d[rtDW.trueCount]/*@>179013*/ = rtDW.i;
+                    rtDW.trueCount++;
+                }
+            }
+            rtDW.jj_size_b/*@>17e917*/ = rtDW.tmp_size_idx_0;
+/*@>17e950*/            for (/*@>1e832e*/rtDW./*@>1ea8a3*/i = /*@>1e832c*/0; /*@>1e8343*/rtDW./*@>1ea8ac*/i < rtDW.tmp_size_idx_0; /*@>1e8338*/rtDW./*@>1ea8a6*/i/*@>1e8996*/++) {
+                /*@>1de752*/rtDW./*@>1ea816*/jj_data/*@>17e93d*/[/*@>1de758*/rtDW./*@>1ea819*/i]/*@>17e93e*/ = /*@>1de75e*/rtDW./*@>1ea81c*/jj_data_p/*@>1da5ad*/[/*@>1de764*/rtDW./*@>1ea81f*/tmp_data_d/*@>1da5a7*/[/*@>1de76a*/rtDW./*@>1ea822*/i]];
+            }
+            /*@>1de740*/rtDW./*@>1ea80d*/x_current/*@>15f9a8*/ = /*@[1e5bc1*/%<(SLibCGCallSubFcn("mean_uQukM2rh", ["/*@>1eb279*/rtDW./*@>1eb278*/jj_data", "&rtDW.jj_size_b"], 0, 20, 20))>/*@]*/;
+        }
+        /*@>15f9f4*/if ((/*@>1de5a2*/rtDW./*@>1ea75f*/win_y_low/*@>15f9d0*/ > /*@>194c26*/300.0)/*@>15fb30*/ && (/*@>1de5a8*/rtDW./*@>1ea762*/win_y_low/*@>15f9d1*/ < /*@>194c2b*/340.0)) {
+            /*@>1de5ea*/rtDW./*@>1ea77d*/x_location/*@>15f9ac*/ = /*@>1de5f0*/rtDW./*@>1ea780*/x_current/*@>15f9d2*/ - /*@>194c31*/220.0;
+        }
+    } else {
+        /*@>1ddfc6*/rtDW./*@>1ea4cb*/win_y_low/*@>15f9af*/ = /*@>1ddfcc*/rtDW./*@>1ea4ce*/bestInlierDis/*@>15f9d6*/ - ((static_cast<double>(/*@>1ddfd2*/rtDW./*@>1ea4d1*/svdRsltVar)/*@>15fa7d*/ + /*@>194c4c*/1.0)/*@>15f9d4*/ + /*@>194c12*/1.0)/*@>196ca0*/ * /*@>194c13*/24.0;
+        /*@>1de002*/rtDW./*@>1ea4e9*/win_y_high/*@>15f9b1*/ = /*@>1de008*/rtDW./*@>1ea4ec*/bestInlierDis/*@>15f9d8*/ - (static_cast<double>(/*@>1de00e*/rtDW./*@>1ea4ef*/svdRsltVar)/*@>15fa81*/ + /*@>194c4f*/1.0)/*@>196c99*/ * /*@>194c1d*/24.0;
+        /*@>1de038*/rtDW./*@>1ea501*/outputImage_tmp/*@>1adf4d*/ = rtDW.ii_size;
+        if (rtDW.ii_size == rtDW.jj_size) {
+            rtDW.c_size/*@>17df0c*/ = rtDW.ii_size;
+/*@>17df47*/            for (/*@>1e830f*/rtDW./*@>1ea897*/i = /*@>1e830d*/0; /*@>1e8324*/rtDW./*@>1ea8a0*/i < /*@>1e831f*/rtDW./*@>1ea89d*/outputImage_tmp; /*@>1e8319*/rtDW./*@>1ea89a*/i/*@>1e8999*/++) {
+                /*@>1de15e*/rtDW./*@>1ea576*/j/*@>188b7f*/ = /*@>1de164*/rtDW./*@>1ea579*/ii_data_n/*@>1da508*/[/*@>1de16a*/rtDW./*@>1ea57c*/i];
+                /*@>1de1b8*/rtDW./*@>1ea5a0*/c_data/*@>17df34*/[/*@>1de1be*/rtDW./*@>1ea5a3*/i]/*@>17df35*/ = ((/*@>1de1c4*/rtDW./*@>1ea5a6*/j/*@>17df11*/ >= /*@>1de1ca*/rtDW./*@>1ea5a9*/win_y_low)/*@>17df10*/ && (/*@>1de1d0*/rtDW./*@>1ea5ac*/j/*@>17df1b*/ < /*@>1de1d6*/rtDW./*@>1ea5af*/win_y_high)/*@>17df0f*/ && (/*@>1de1dc*/rtDW./*@>1ea5b2*/jj_data_p/*@>1da51d*/[/*@>1de1e2*/rtDW./*@>1ea5b5*/i]/*@>17df25*/ >= /*@>1de1e8*/rtDW./*@>1ea5b8*/x_current/*@>1a5176*/ - /*@>1a5179*/40.0));
+            }
+        } else {
+            /*@[1e5be0*/%<(SLibCGCallSubFcn("binary_expand_op", ["/*@>1eb29a*/rtDW./*@>1eb299*/c_data", "&rtDW.c_size", "/*@>1eb2bb*/rtDW./*@>1eb2ba*/ii_data_n", "&rtDW.ii_size", "/*@>1eb2dc*/rtDW./*@>1eb2db*/win_y_low", "/*@>1eb2ec*/rtDW./*@>1eb2eb*/win_y_high", "/*@>1eb2fc*/rtDW./*@>1eb2fb*/jj_data_p", "&rtDW.jj_size", "/*@>1eb31d*/rtDW./*@>1eb31c*/x_current"], 0, 20, 21))>/*@]*/;
+        }
+        /*@>1de128*/rtDW./*@>1ea55e*/outputImage_tmp/*@>1adf74*/ = rtDW.jj_size;
+        rtDW.d_size/*@>17e07a*/ = rtDW.jj_size;
+/*@>17e09f*/        for (/*@>1e82f0*/rtDW./*@>1ea88b*/i = /*@>1e82ee*/0; /*@>1e8305*/rtDW./*@>1ea894*/i < /*@>1e8300*/rtDW./*@>1ea891*/outputImage_tmp; /*@>1e82fa*/rtDW./*@>1ea88e*/i/*@>1e899a*/++) {
+            /*@>1de212*/rtDW./*@>1ea5ca*/d_data/*@>17e08c*/[/*@>1de218*/rtDW./*@>1ea5cd*/i]/*@>17e08d*/ = (/*@>1de21e*/rtDW./*@>1ea5d0*/jj_data_p/*@>1da523*/[/*@>1de224*/rtDW./*@>1ea5d3*/i]/*@>17e07d*/ < /*@>1de22a*/rtDW./*@>1ea5d6*/x_current/*@>1a518a*/ + /*@>1a518d*/40.0);
+        }
+        if (rtDW.c_size == rtDW.jj_size) {
+            /*@>1de27e*/rtDW./*@>1ea5fd*/j/*@>1bbe04*/ = rtDW.c_size;
+            rtDW.tmp_size_d/*@>17e24a*/ = rtDW.c_size;
+/*@>17e272*/            for (/*@>1e82d1*/rtDW./*@>1ea87f*/i = /*@>1e82cf*/0; /*@>1e82e6*/rtDW./*@>1ea888*/i < rtDW.j; /*@>1e82db*/rtDW./*@>1ea882*/i/*@>1e899b*/++) {
+                /*@>1de326*/rtDW./*@>1ea642*/tmp_data_e/*@>17e25f*/[/*@>1de32c*/rtDW./*@>1ea645*/i]/*@>17e260*/ = (/*@>1de332*/rtDW./*@>1ea648*/c_data/*@>1da52f*/[/*@>1de338*/rtDW./*@>1ea64b*/i]/*@>17e24d*/ && /*@>1de33e*/rtDW./*@>1ea64e*/d_data/*@>1da535*/[/*@>1de344*/rtDW./*@>1ea651*/i]);
+            }
+        } else {
+            /*@[1e5bfc*/%<(SLibCGCallSubFcn("and_o", ["/*@>1eb32d*/rtDW./*@>1eb32c*/tmp_data_e", "&rtDW.tmp_size_d", "/*@>1eb34e*/rtDW./*@>1eb34d*/c_data", "&rtDW.c_size", "/*@>1eb36f*/rtDW./*@>1eb36e*/d_data", "&rtDW.d_size"], 0, 20, 22))>/*@]*/;
+        }
+        rtDW.outputImage_tmp = rtDW.tmp_size_d - 1;
+        rtDW.trueCount = 0;
+        for (rtDW.i = 0; rtDW.i <= rtDW.outputImage_tmp; rtDW.i++) {
+            if (/*@>1de36e*/rtDW./*@>1ea666*/tmp_data_e/*@>1da541*/[rtDW.i]) {
+                rtDW.trueCount++;
+            }
+        }
+        /*@>15f9fa*/if (rtDW.trueCount/*@>15f9de*/ > /*@>194c23*/30) {
+            if (rtDW.c_size == rtDW.jj_size) {
+                /*@>1de440*/rtDW./*@>1ea6c6*/j/*@>1bbe0e*/ = rtDW.c_size;
+                rtDW.tmp_size_lx/*@>17e5b3*/ = rtDW.c_size;
+/*@>17e5db*/                for (/*@>1e8296*/rtDW./*@>1ea867*/i = /*@>1e8294*/0; /*@>1e82ab*/rtDW./*@>1ea870*/i < rtDW.j; /*@>1e82a0*/rtDW./*@>1ea86a*/i/*@>1e899e*/++) {
+                    /*@>1de4ee*/rtDW./*@>1ea711*/tmp_data_jz/*@>17e5c8*/[/*@>1de4f4*/rtDW./*@>1ea714*/i]/*@>17e5c9*/ = (/*@>1de4fa*/rtDW./*@>1ea717*/c_data/*@>1da553*/[/*@>1de500*/rtDW./*@>1ea71a*/i]/*@>17e5b6*/ && /*@>1de506*/rtDW./*@>1ea71d*/d_data/*@>1da559*/[/*@>1de50c*/rtDW./*@>1ea720*/i]);
+                }
+            } else {
+                /*@[1e5c18*/%<(SLibCGCallSubFcn("and_o", ["/*@>1eb390*/rtDW./*@>1eb38f*/tmp_data_jz", "&rtDW.tmp_size_lx", "/*@>1eb3b1*/rtDW./*@>1eb3b0*/c_data", "&rtDW.c_size", "/*@>1eb3d2*/rtDW./*@>1eb3d1*/d_data", "&rtDW.d_size"], 0, 20, 23))>/*@]*/;
+            }
+            rtDW.outputImage_tmp = rtDW.tmp_size_lx - 1;
+            rtDW.trueCount = 0;
+            for (rtDW.i = 0; rtDW.i <= rtDW.outputImage_tmp; rtDW.i++) {
+                if (/*@>1de52a*/rtDW./*@>1ea72c*/tmp_data_jz/*@>1da55f*/[rtDW.i]) {
+                    rtDW.trueCount++;
+                }
+            }
+            rtDW.tmp_size_idx_0 = rtDW.trueCount;
+            rtDW.trueCount = 0;
+            for (rtDW.i = 0; rtDW.i <= rtDW.outputImage_tmp; rtDW.i++) {
+                if (/*@>1de5de*/rtDW./*@>1ea777*/tmp_data_jz/*@>1da577*/[rtDW.i]) {
+                    /*@>1de60e*/rtDW./*@>1ea78f*/tmp_data_j[rtDW.trueCount]/*@>178f61*/ = rtDW.i;
+                    rtDW.trueCount++;
+                }
+            }
+            rtDW.jj_size_b/*@>17e843*/ = rtDW.tmp_size_idx_0;
+/*@>17e87c*/            for (/*@>1e823f*/rtDW./*@>1ea843*/i = /*@>1e823d*/0; /*@>1e8254*/rtDW./*@>1ea84c*/i < rtDW.tmp_size_idx_0; /*@>1e8249*/rtDW./*@>1ea846*/i/*@>1e89a3*/++) {
+                /*@>1de680*/rtDW./*@>1ea7bc*/jj_data/*@>17e869*/[/*@>1de686*/rtDW./*@>1ea7bf*/i]/*@>17e86a*/ = /*@>1de68c*/rtDW./*@>1ea7c2*/jj_data_p/*@>1da586*/[/*@>1de692*/rtDW./*@>1ea7c5*/tmp_data_j/*@>1da580*/[/*@>1de698*/rtDW./*@>1ea7c8*/i]];
+            }
+            /*@>1de66e*/rtDW./*@>1ea7b3*/x_current/*@>15f9b2*/ = /*@[1e5c30*/%<(SLibCGCallSubFcn("mean_uQukM2rh", ["/*@>1eb3f3*/rtDW./*@>1eb3f2*/jj_data", "&rtDW.jj_size_b"], 0, 20, 24))>/*@]*/;
+        }
+        /*@>15f9fd*/if ((/*@>1de3d4*/rtDW./*@>1ea693*/win_y_low/*@>15f9df*/ > /*@>194c2e*/300.0)/*@>15fb31*/ && (/*@>1de3da*/rtDW./*@>1ea696*/win_y_low/*@>15f9e0*/ < /*@>194c36*/340.0)) {
+            /*@>1de434*/rtDW./*@>1ea6c0*/x_location/*@>15f9b6*/ = /*@>1de43a*/rtDW./*@>1ea6c3*/x_current/*@>15f9e1*/ + /*@>194c39*/290.0;
+        }
+    }
+    /*@>1de49a*/rtDW./*@>1ea6f0*/win_y_low/*@>15f9b8*/ = /*@>194c18*/340.0/*@>15f9e2*/ - /*@>1de4a0*/rtDW./*@>1ea6f3*/x_location;
+}
+/* Send event */
+ProvidedPort->Error.Send(/*@>1ddfc0*/rtDW./*@>1ea4c8*/win_y_low);
+%<SLibInsertSolverResetCode()>\
+%closefile cfgTxt
+%<cfgTxt>
+%<LibSetSystemField(system, "CachedOutputLocalVars", localVarDecl)>
+%endfunction
+%function OutputsFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Outputs(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 20, fcnProtoType)>
+%endfunction

@@ -1,0 +1,10 @@
+{
+	"Process" : {
+		"Name" : "DefaultInstance",
+		"LogTraceProcessDesc" : "Log messages for adaptive application Rpi_cam",
+		"LogTraceProcessId" : "3491",
+		"LogTraceDefaultLogLevel" : "Warn",
+		"LogTraceLogMode" : "Console",
+		"LogTraceFilePath" : ""
+	}
+}

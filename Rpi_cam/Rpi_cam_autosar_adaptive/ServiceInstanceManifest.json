@@ -1,0 +1,21 @@
+{
+	"RequiredPorts" : {
+		},
+		"ProvidedPorts" : {
+			},
+			"InstanceSpecifierToInstanceIdentifiers" : {
+				"Rpi_cam/Rpi_cam_RootSwComponentPrototype/ProvidedPort" : {
+					"InstanceIdentifiers" : [
+						"1"
+					]
+				}
+			},
+			"PortToInstanceSpecifier" : {
+				"ProvidedPort" : "Rpi_cam/Rpi_cam_RootSwComponentPrototype/ProvidedPort"
+			},
+			"InstanceToClassTypeMapping" : {
+				"Rpi_cam_RootSwComponentPrototype" : "Rpi_cam"
+			},
+			"ClassTypeToMembersMapping" : {
+				}
+			}

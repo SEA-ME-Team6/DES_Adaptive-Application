@@ -1,0 +1,26 @@
+%implements s8_b0_8l32h_Terminate "C"
+
+%function Terminate(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+/* {S!d282}Terminate for MATLABSystem: '<Root>/V4L2 Video Capture' */
+/*@>15fc21*/if (!/*@<15fc1f*//*@>1de656*/rtDW./*@>1eb327*/obj.matlabCodegenIsDeleted) {
+    /*@>1de65c*/rtDW./*@>1eb32a*/obj./*@>1eb324*/matlabCodegenIsDeleted/*@>15fc1e*/ = /*@>19574f*/true;
+    /*@>15fc27*/if ((/*@>1de662*/rtDW./*@>1eb32d*/obj.isInitialized/*@>15fc26*/ == /*@>19575c*/1)/*@>15fc36*/ && /*@>1de668*/rtDW./*@>1eb330*/obj.isSetupComplete) {
+        /*@>1d3578*/EXT_webcamTerminate(/*@>1b001f*/0, /*@>1b0022*/0);
+    }
+}
+/* {E!d282}End of Terminate for MATLABSystem: '<Root>/V4L2 Video Capture' */
+ProvidedPort->StopOfferService();
+%closefile cfgTxt
+%<cfgTxt>
+%endfunction
+%function TerminateFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Terminate(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 21, fcnProtoType)>
+%endfunction

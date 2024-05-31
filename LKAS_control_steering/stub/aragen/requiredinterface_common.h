@@ -5,7 +5,7 @@
 
    Code generated for Simulink Adaptive model: "control"
    AUTOSAR AP Release: "21-11"
-   On: "31-May-2024 11:38:45"  */
+   On: "Fri May 31 15:33:12 2024"  */
 
 #ifndef REQUIREDINTERFACE_COMMON_H_
 #define REQUIREDINTERFACE_COMMON_H_
@@ -15,16 +15,8 @@
 #include "ara/core/promise.h"
 #include "ara/com/types.h"
 #include "MiddlewareFactories.h"
-#include <fastrtps/types/DynamicData.h>
-#include <fastrtps/types/DynamicPubSubType.h>
-#include <fastrtps/types/DynamicTypeBuilderFactory.h>
-#include <fastrtps/types/DynamicDataFactory.h>
-#include <fastrtps/types/DynamicTypeBuilderPtr.h>
-#include <fastrtps/types/TypeIdentifier.h>
 #include "DDSEndianHelper.h"
 #include "DDSSerializer.h"
-#include "AdaptiveAUTOSARDDSIdl.h"
-#include "AdaptiveAUTOSARDDSIdlPubSubTypes.h"
-#include "RequiredInterface_araDynamicEventDDS.h"
-#include "RequiredInterface_araDynamicMethodDDS.h"
+#include "RequiredInterface_araDynamicEventSOMEIP.h"
+#include "RequiredInterface_araDynamicMethodSOMEIP.h"
 #endif

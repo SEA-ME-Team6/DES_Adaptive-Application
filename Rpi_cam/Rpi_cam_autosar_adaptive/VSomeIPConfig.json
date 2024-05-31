@@ -1,0 +1,16 @@
+{
+	"unicast" : "127.000.000.001",
+	"applications" : [
+		{
+			"name" : "Rpi_cam",
+			"id" : "0xDA3"
+		}
+	],
+	"services" : [
+		{
+			"service" : "0x1",
+			"instance" : "0x1",
+			"unreliable" : "30001"
+		}
+	]
+}

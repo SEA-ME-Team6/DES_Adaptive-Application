@@ -1,1 +1,1 @@
-Simulink block Rpi_cam/error using DDS topic name 'Error' for ara::com event communication.
+Simulink block lkas/error using SOME/IP EventId '59050' and EventGroupId '59050' for ara::com event communication.

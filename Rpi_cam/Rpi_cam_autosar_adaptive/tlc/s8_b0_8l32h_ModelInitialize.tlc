@@ -1,0 +1,52 @@
+%implements s8_b0_8l32h_ModelInitialize "C"
+
+%function ModelInitialize(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+
+int32_t i;
+static const std::array<int8_t, 9> self_T%<(TLC_STR_CTX(13))>;
+%closefile localVarDecl
+%<SLibInsertAsyncTaskInitializeCode(system)>
+%<SLibWriteMachineInitialize()>
+%<SLibCGIRDumpSystemUserCode(8, "Start", "Header")>\
+%<SLibCGIRDumpSystemUserCode(8, "Start", "Body")>\
+/* {S!d284}Start for S-Function (svipesttform): '<S4>/Estimate Geometric Transformation' */
+/*@>1d3582*/srand(/*@>1d3580*/clock());
+%<SLibCGIRDumpSystemUserCode(8, "Start", "Trailer")>\
+/* {S!d286}Start for MATLABSystem: '<Root>/V4L2 Video Capture' */
+/*@>1de66e*/rtDW./*@>1eb3f7*/obj./*@>1eb3d3*/matlabCodegenIsDeleted/*@>15fcad*/ = /*@>195786*/true;
+/*@[1e5b44*/%<(SLibCGCallSubFcn("Raspiv4l2Capture_Raspiv4l2Capture", ["&/*@>1eb470*/rtDW./*@>1eb46f*/obj"], 0, 22, 1))>/*@]*/;
+/*@>1de67a*/rtDW./*@>1eb3fd*/obj./*@>1eb3eb*/Brightness/*@>15fcf6*/ = /*@>1957c0*/0.5;
+/*@>1de680*/rtDW./*@>1eb400*/obj./*@>1eb3e8*/Saturation/*@>15fcf2*/ = /*@>1957c1*/0.5;
+/*@>1de686*/rtDW./*@>1eb403*/obj./*@>1eb3e5*/Contrast/*@>15fcee*/ = /*@>1957c2*/0.5;
+/*@>1de68c*/rtDW./*@>1eb406*/obj./*@>1eb3e2*/Sharpness/*@>15fcea*/ = /*@>1957c3*/0.5;
+/*@>1de692*/rtDW./*@>1eb409*/obj./*@>1eb3df*/CameraPan/*@>15fce6*/ = /*@>1957c4*/0.0;
+/*@>1de698*/rtDW./*@>1eb40c*/obj./*@>1eb3dc*/CameraTilt/*@>15fce2*/ = /*@>1957c5*/0.0;
+/*@>1de69e*/rtDW./*@>1eb40f*/obj./*@>1eb3d9*/CameraZoom/*@>15fcde*/ = /*@>1957c6*/0.5;
+/*@>1de6a4*/rtDW./*@>1eb412*/obj./*@>1eb3d6*/ManualFocus/*@>15fcda*/ = /*@>1957c7*/0.5;
+/*@[1e5b2d*/%<(SLibCGCallSubFcn("SystemCore_setup", ["&/*@>1eb481*/rtDW./*@>1eb480*/obj"], 0, 22, 0))>/*@]*/;
+/* {S!d288}Start for MATLABSystem: '<S4>/Warp' */
+/*@>1de6b0*/rtDW./*@>1eb418*/obj_k./*@>1eb3ee*/isInitialized/*@>15fd2c*/ = /*@>1eb34c*/1;
+/*@>17ea46*/for (/*@>1eb354*/i = /*@>1eb353*/0; /*@>1eb35e*/i < /*@>1eb35c*/9; /*@>1eb35a*/i/*@>1eb362*/++) {
+    /*@>1de6b6*/rtDW./*@>1eb41b*/obj_k./*@>1eb3f4*/TformProjective./*@>1eb3f1*/T/*@>17ea38*/[/*@>1957b3*/i]/*@>17ea39*/ = /*@>1da497*/self_T/*@>1da499*/[/*@>1da496*/i];
+}
+/* {E!d288}End of Start for MATLABSystem: '<S4>/Warp' */
+/* Initialize service provider instance - ProvidedPort */
+ProvidedPort = std::make_shared< skeleton::ProvidedInterfaceSkeleton >(ara::com::InstanceIdentifier(ara::core::StringView("1")), ara::com::MethodCallProcessingMode::kEventSingleThread);
+ProvidedPort->OfferService();
+%<SLibInsertInitPeriodicCStatesFcn(system)>
+%closefile cfgTxt
+%<cfgTxt>
+%<LibSetSystemField(system, "CachedModelInitializeLocalVars", localVarDecl)>
+%endfunction
+%function ModelInitializeFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void ModelInitialize(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 22, fcnProtoType)>
+%endfunction

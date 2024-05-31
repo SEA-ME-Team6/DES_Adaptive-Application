@@ -13,8 +13,9 @@ if(DEFINED ENV{CMAKE_EXPORT_COMPILE_COMMANDS} AND NOT DEFINED CMAKE_EXPORT_COMPI
     set(CMAKE_EXPORT_COMPILE_COMMANDS $ENV{CMAKE_EXPORT_COMPILE_COMMANDS})
 endif()
 
-# Define common variables that are used within the whole project.
-set(SYSLIB_PREFIX $<IF:$<AND:$<BOOL:${WIN32}>,$<NOT:$<BOOL:${MINGW}>>>,lib,>)
+
+# Set directory properties.
+set_property(DIRECTORY PROPERTY VS_STARTUP_PROJECT control)
 
 ###########################################################################
 ## Path variables
@@ -26,7 +27,7 @@ get_filename_component(START_DIR .. ABSOLUTE)
 # by setting the variable from the command line, e.g.,
 # 
 # 	cmake . -DMATLAB_ROOT=/path/to/another/matlab/root
-set(MATLAB_ROOT /usr/local/MATLAB/R2023b CACHE PATH "")
+set(MATLAB_ROOT /usr/local/MATLAB/R2024a CACHE PATH "")
 
 # Additional variables that are defined conditionally.
 if("${CMAKE_CURRENT_BINARY_DIR}" STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}")
@@ -53,6 +54,14 @@ elseif(WIN32 AND ("${CMAKE_SYSTEM_PROCESSOR}" STREQUAL AMD64))
 endif()
 
 
+
+# Add common link_directories, including any platform-specific paths under 
+# MATLAB_ROOT.
+set(EXTRA_SYSLIB_PATHS ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64
+    ${SPKG_ROOT}/bin/glnxa64/dlt-daemon/lib
+    ${SPKG_ROOT}/bin/glnxa64/vsomeip/lib)
+list(APPEND CMAKE_LIBRARY_PATH ${EXTRA_SYSLIB_PATHS})
+link_directories(${EXTRA_SYSLIB_PATHS})
 if(DEFINED MATLAB_ROOT_SYSLIB_PATHS)
     list(APPEND CMAKE_LIBRARY_PATH ${MATLAB_ROOT_SYSLIB_PATHS})
     link_directories(${MATLAB_ROOT_SYSLIB_PATHS})
@@ -72,10 +81,18 @@ find_package(Threads REQUIRED)
 ## System Libraries
 ###########################################################################
 find_library(FOUND_LIBM m NO_SYSTEM_ENVIRONMENT_PATH PATHS ${CMAKE_C_IMPLICIT_LINK_DIRECTORIES} ${CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES})
+find_library(LIB_DL NAMES dl libdl REQUIRED)
+find_library(LIB_RT NAMES rt librt REQUIRED)
 
 ###########################################################################
 ## Target definition and commands
 ###########################################################################
+
+# Include upstream components that need to be built as part of the current 
+# project using the add_subdirectory command.
+if(NOT TARGET rtwshared)
+    add_subdirectory(../slprj/autosar_adaptive/_sharedutils ${BINARY_START_DIR}/slprj/autosar_adaptive/_sharedutils)
+endif()
 
 # Definition of target "control".
 add_executable(control  ${START_DIR}/control_autosar_adaptive/control.cpp
@@ -105,7 +122,9 @@ target_compile_definitions(control PRIVATE -DMODEL=control
     -DMAT_FILE=0
     -DMULTI_INSTANCE_CODE=1
     -DINTEGER_CODE=0
-    -DMT=0)
+    -DMT=0
+    -DARA_VER_21_11
+    -DENABLE_VSOMEIP)
 
 # Specify compiler flags for target "control".
 target_compile_options(control PRIVATE -std=c++11
@@ -116,35 +135,43 @@ target_include_directories(control PRIVATE ${START_DIR}
     ${START_DIR}/control_autosar_adaptive
     ${MATLAB_ROOT}/toolbox/coder/simulinkcoder/src/executor
     ${START_DIR}/control_autosar_adaptive/stub/aragen
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include
     ${MATLAB_ROOT}/extern/include
     ${MATLAB_ROOT}/simulink/include
     ${MATLAB_ROOT}/rtw/c/src
     ${MATLAB_ROOT}/rtw/c/src/ext_mode/common
     ${MATLAB_ROOT}/rtw/c/ert
     ${START_DIR}/slprj/autosar_adaptive/_sharedutils
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/dds/core/policy
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/dds/log
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/dds/topic
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/attributes
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/builtin/data
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/common
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/flowcontrol
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/history
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/messages
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/network
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/resources
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/security/common
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastdds/rtps/transport
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastrtps
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastrtps/types
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastrtps/utils
-    ${MATLAB_ROOT}/sys/FastDDS/glnxa64/include/fastrtps/utils/collections)
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/headers/glnxa64/21_11
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/headers/glnxa64/ud_ipc
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/headers/glnxa64/dds_util
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/headers/glnxa64/com_factory
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/headers/glnxa64/log_utils
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/headers/glnxa64/manifest_utils
+    ${SPKG_ROOT}/bin/glnxa64/dlt-daemon/include
+    ${SPKG_ROOT}/bin/glnxa64/vsomeip/include)
 
-# Specify library link dependencies for target "control".  CMake generator 
+# Specify library link dependencies for target "control". CMake generator 
 # expressions are used to create a CMakeLists.txt file that supports 
 # multiple platforms with differently named system library dependencies.
-target_link_libraries(control PRIVATE Threads::Threads
+target_link_libraries(control PRIVATE ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64/libmwara_com_21_11.so
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64/libmwara_exec_21_11.so
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64/libmwara_log_21_11.so
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64/libmwara_per_21_11.so
+    ${SPKG_ROOT}/toolbox/coder/ara/mw_ara/libraries/glnxa64/libmwara_manifest_utils.so
+    ${MATLAB_ROOT}/bin/glnxa64/libmwboost_thread.so.1.78.0
+    ${MATLAB_ROOT}/bin/glnxa64/libmwboost_chrono.so.1.78.0
+    ${MATLAB_ROOT}/bin/glnxa64/libmwboost_timer.so.1.78.0
+    ${MATLAB_ROOT}/bin/glnxa64/libmwboost_filesystem.so.1.78.0
+    ${MATLAB_ROOT}/bin/glnxa64/libsqlite3.so.3
+    ${SPKG_ROOT}/bin/glnxa64/dlt-daemon/lib/libdlt.so
+    ${SPKG_ROOT}/bin/glnxa64/dlt-daemon/lib/libdlt.so.2
+    ${SPKG_ROOT}/bin/glnxa64/vsomeip/lib/libvsomeip3.so.3
+    ${SPKG_ROOT}/bin/glnxa64/vsomeip/lib/libvsomeip3-sd.so.3
+    ${SPKG_ROOT}/bin/glnxa64/vsomeip/lib/libvsomeip3-cfg.so.3
+    rtwshared
+    ${LIB_DL}
+    ${LIB_RT}
+    Threads::Threads
     $<$<BOOL:${FOUND_LIBM}>:m>
     $<$<BOOL:${WIN32}>:kernel32>
     $<$<BOOL:${WIN32}>:ws2_32>

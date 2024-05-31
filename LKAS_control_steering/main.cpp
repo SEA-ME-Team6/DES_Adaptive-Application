@@ -1,5 +1,5 @@
 /* Code generated for Simulink model control */
-/* Generated on 31-May-2024 */
+/* Generated on Fri May 31 15:33:12 2024 */
 
 #include <cstdint>
 #include <exception>
@@ -43,7 +43,7 @@ int32_t main() {
         ara::log::LogLevel::kWarn)};
 
     /* Report Execution state */
-    ara::exec::ExecutionClient exec_client;
+    const ara::exec::ExecutionClient exec_client;
     try {
       if (!exec_client.ReportExecutionState(
               ara::exec::ExecutionState::kRunning)) {
@@ -71,13 +71,13 @@ int32_t main() {
     } /* if */
 
     if (bProceed) {
-      /* Create an executor instance to schedule the periodic step functions */
+      /* Create an executor instance to schedule the periodic step functions. */
       /* Whenever the period of a step function passes, the executor */
-      /* schedules that step function to be executed on a thread. */
+      /* schedules that function to be executed on a thread. */
       platform::runtime::Executor fcnExecutor;
 
-      /* Base rate is the time unit of a tick */
-      const double baseRate{0.200000};
+      /* Base rate is the time unit of a tick. */
+      constexpr double baseRate{0.200000};
       fcnExecutor.setBaseRateInSeconds(std::chrono::duration<double>(baseRate));
 
       /* Register periodic step functions in the executor. */
@@ -91,7 +91,7 @@ int32_t main() {
           },
           1);
 
-      araLog.LogVerbose() << "Starting Step function.";
+      araLog.LogVerbose() << "Starting periodic execution of step functions.";
 #if defined(rtmSetStopRequested) && defined(rtmGetStopRequested)
       fcnExecutor.run(
           [&rtObj]() { return rtmGetStopRequested(rtObj.getRTM()); }, araLog);

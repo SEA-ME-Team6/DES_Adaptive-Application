@@ -1,0 +1,29 @@
+%implements s8_b0_ew32h_ModelClassDefinition "C"
+%function ModelClassDefinition(block) Output
+%openfile tmp
+class Rpi_cam final 
+{
+  public:
+    %<SLibFillInPublicClassMembers()>
+        /* model initialize function */
+%<FcnStaticOnEmptyInitMethod()>void initialize();
+        /* model step function */
+%<FcnStaticOnEmptyOutputUpdateMethod()>void step()%<AddConstToStepIfNeccessary("Outputs")>;
+        /* model terminate function */
+%<FcnStaticOnEmptyTermMethod()>void terminate()%<AddConstToTermIfNecessary("terminate")>;
+        /* Constructor */
+Rpi_cam();
+        /* Destructor */
+~Rpi_cam();
+  protected:
+    %<SLibFillInProtectedClassMembers()>
+  private:
+    /* Block states */
+    DW rtDW;
+    std::shared_ptr<skeleton::ProvidedInterfaceSkeleton> ProvidedPort;
+    %<SLibFillInPrivateClassMembers()>
+    %<SLibFillInLastPrivateClassMembers()>
+};
+%closefile tmp
+%return tmp
+%endfunction

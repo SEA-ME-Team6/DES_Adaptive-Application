@@ -1,0 +1,46 @@
+%implements s8_b0_ew32h_PublicModuleTypes "C"
+
+%function PublicModuleTypes(block) Output
+
+#ifndef struct_codertarget_raspi_internal_Raspiv4l2Capture
+#define struct_codertarget_raspi_internal_Raspiv4l2Capture
+struct codertarget_raspi_internal_Raspiv4l2Capture
+{
+    bool matlabCodegenIsDeleted;
+    int32_t isInitialized;
+    bool isSetupComplete;
+    double Brightness;
+    double Saturation;
+    double Contrast;
+    double Sharpness;
+    double CameraZoom;
+    double ManualFocus;
+    double CameraPan;
+    double CameraTilt;
+    double BrightnessInternal;
+    double SaturationInternal;
+    double ContrastInternal;
+    double SharpnessInternal;
+    double CameraZoomInternal;
+    double ManualFocusInternal;
+    double CameraPanInternal;
+    double CameraTiltInternal;
+    bool EnableManualFocusInternal;
+};
+#endif /* struct_codertarget_raspi_internal_Raspiv4l2Capture */
+#ifndef struct_c_projective2d
+#define struct_c_projective2d
+struct c_projective2d
+{
+    std::array<double, 9> T;
+};
+#endif /* struct_c_projective2d */
+#ifndef struct_vision_internal_blocks_Warp
+#define struct_vision_internal_blocks_Warp
+struct vision_internal_blocks_Warp
+{
+    int32_t isInitialized;
+    c_projective2d TformProjective;
+};
+#endif /* struct_vision_internal_blocks_Warp */
+%endfunction

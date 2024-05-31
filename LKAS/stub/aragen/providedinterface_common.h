@@ -3,9 +3,9 @@
    in Simulink. When deploying the generated code outside of Simulink,
    replace this file with an appropriate ARA file.
 
-   Code generated for Simulink Adaptive model: "Rpi_cam"
-   AUTOSAR AP Release: "21-11"
-   On: "31-May-2024 12:10:05"  */
+   Code generated for Simulink Adaptive model: "lkas"
+   AUTOSAR AP Release: "22-11"
+   On: "Fri May 31 15:31:58 2024"  */
 
 #ifndef PROVIDEDINTERFACE_COMMON_H_
 #define PROVIDEDINTERFACE_COMMON_H_
@@ -15,16 +15,8 @@
 #include "ara/core/promise.h"
 #include "ara/com/types.h"
 #include "MiddlewareFactories.h"
-#include <fastrtps/types/DynamicData.h>
-#include <fastrtps/types/DynamicPubSubType.h>
-#include <fastrtps/types/DynamicTypeBuilderFactory.h>
-#include <fastrtps/types/DynamicDataFactory.h>
-#include <fastrtps/types/DynamicTypeBuilderPtr.h>
-#include <fastrtps/types/TypeIdentifier.h>
 #include "DDSEndianHelper.h"
 #include "DDSSerializer.h"
-#include "AdaptiveAUTOSARDDSIdl.h"
-#include "AdaptiveAUTOSARDDSIdlPubSubTypes.h"
-#include "ProvidedInterface_araDynamicEventDDS.h"
-#include "ProvidedInterface_araDynamicMethodDDS.h"
+#include "ProvidedInterface_araDynamicEventSOMEIP.h"
+#include "ProvidedInterface_araDynamicMethodSOMEIP.h"
 #endif

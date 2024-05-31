@@ -7,9 +7,9 @@
 //
 //  Code generation for model "control".
 //
-//  Model version              : 1.3
-//  Simulink Coder version : 23.2 (R2023b) 01-Aug-2023
-//  C++ source code generated on : Fri May 31 11:38:43 2024
+//  Model version              : 2.0
+//  Simulink Coder version : 24.1 (R2024a) 19-Nov-2023
+//  C++ source code generated on : Fri May 31 15:33:10 2024
 //
 //  Target selection: autosar_adaptive.tlc
 //  Embedded hardware selection: ARM Compatible->ARM Cortex-A (64-bit)
@@ -38,7 +38,9 @@ void control::step()
     resultPtr = std::make_shared< ara::core::Result<size_t> >
       (RequiredPort->LKAS.GetNewSamples(std::move(std::bind(&control::
           RequiredPortLKASReceive, this, std::placeholders::_1)), 1U));
-    resultPtr->ValueOrThrow();
+    if (resultPtr->HasValue()) {
+      resultPtr->Value();
+    }
   }
 
   // Gain: '<Root>/Gain'
