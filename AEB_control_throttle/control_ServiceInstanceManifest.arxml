@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Auto generated XML Component Description for model control
+Model version                : 1.3
+Simulink Coder version       : Simulink Coder 23.2 (R2023b) 01-Aug-2023
+XML source code generated on : Fri May 31 11:36:53 2024
+Model Checksum               : 604566958 2718414761 963435697 4001492069
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00050.xsd">
+    <AR-PACKAGES>
+        <AR-PACKAGE>
+            <SHORT-NAME>control_CommunicationCluster</SHORT-NAME>
+            <ELEMENTS>
+                <ETHERNET-CLUSTER UUID="320940c5-784f-5b84-9c94-9dcbc0d52e4f">
+                    <SHORT-NAME>ComCluster</SHORT-NAME>
+                    <ETHERNET-CLUSTER-VARIANTS>
+                        <ETHERNET-CLUSTER-CONDITIONAL>
+                            <PHYSICAL-CHANNELS>
+                                <ETHERNET-PHYSICAL-CHANNEL UUID="589f47bb-3fa3-5b4a-9790-a13b0db66c71">
+                                    <SHORT-NAME>PhysicalChannel</SHORT-NAME>
+                                    <NETWORK-ENDPOINTS>
+                                        <NETWORK-ENDPOINT UUID="2f5f41cf-76f9-5a58-c192-99cfe39eb458">
+                                            <SHORT-NAME>NetworkEndpoint</SHORT-NAME>
+                                            <NETWORK-ENDPOINT-ADDRESSES>
+                                                <IPV-4-CONFIGURATION>
+                                                    <IPV-4-ADDRESS>127.0.0.1</IPV-4-ADDRESS>
+                                                </IPV-4-CONFIGURATION>
+                                            </NETWORK-ENDPOINT-ADDRESSES>
+                                        </NETWORK-ENDPOINT>
+                                    </NETWORK-ENDPOINTS>
+                                </ETHERNET-PHYSICAL-CHANNEL>
+                            </PHYSICAL-CHANNELS>
+                        </ETHERNET-CLUSTER-CONDITIONAL>
+                    </ETHERNET-CLUSTER-VARIANTS>
+                </ETHERNET-CLUSTER>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>control_Deployments</SHORT-NAME>
+            <ELEMENTS>
+                <DDS-SERVICE-INTERFACE-DEPLOYMENT UUID="e29f8f84-501d-58c7-9d15-c77a49bcab64">
+                    <SHORT-NAME>DdsDeployment_RequiredPort</SHORT-NAME>
+                    <EVENT-DEPLOYMENTS>
+                        <DDS-EVENT-DEPLOYMENT UUID="6849f14c-3e19-50dd-0f7c-34a499049340">
+                            <SHORT-NAME>Deployment_AEB</SHORT-NAME>
+                            <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/Interfaces/RequiredInterface/AEB</EVENT-REF>
+                            <TOPIC-NAME>AEB</TOPIC-NAME>
+                            <TRANSPORT-PROTOCOLS>
+                                <TRANSPORT-PROTOCOL>TCP</TRANSPORT-PROTOCOL>
+                            </TRANSPORT-PROTOCOLS>
+                        </DDS-EVENT-DEPLOYMENT>
+                    </EVENT-DEPLOYMENTS>
+                    <TRANSPORT-PROTOCOLS>
+                        <TRANSPORT-PROTOCOL>TCP</TRANSPORT-PROTOCOL>
+                    </TRANSPORT-PROTOCOLS>
+                </DDS-SERVICE-INTERFACE-DEPLOYMENT>
+                <DDS-SERVICE-INTERFACE-DEPLOYMENT UUID="cb313c21-1201-5f20-3438-472a3e4b792a">
+                    <SHORT-NAME>DdsDeployment_ProvidedPort</SHORT-NAME>
+                    <EVENT-DEPLOYMENTS>
+                        <DDS-EVENT-DEPLOYMENT UUID="2c2552f5-6680-593f-20f8-766bb8f8afe1">
+                            <SHORT-NAME>Deployment_Throttle</SHORT-NAME>
+                            <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/Interfaces/ProvidedInterface/Throttle</EVENT-REF>
+                            <TOPIC-NAME>Throttle</TOPIC-NAME>
+                            <TRANSPORT-PROTOCOLS>
+                                <TRANSPORT-PROTOCOL>TCP</TRANSPORT-PROTOCOL>
+                            </TRANSPORT-PROTOCOLS>
+                        </DDS-EVENT-DEPLOYMENT>
+                    </EVENT-DEPLOYMENTS>
+                    <TRANSPORT-PROTOCOLS>
+                        <TRANSPORT-PROTOCOL>TCP</TRANSPORT-PROTOCOL>
+                    </TRANSPORT-PROTOCOLS>
+                </DDS-SERVICE-INTERFACE-DEPLOYMENT>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>control_MachineDesign</SHORT-NAME>
+            <ELEMENTS>
+                <MACHINE-DESIGN UUID="271da47d-a8fa-55f3-b918-f677e35f0cd8">
+                    <SHORT-NAME>MachineDesign</SHORT-NAME>
+                    <COMMUNICATION-CONNECTORS>
+                        <ETHERNET-COMMUNICATION-CONNECTOR UUID="36f86bcb-d72c-5d2f-8ea2-c346be5b2e8b">
+                            <SHORT-NAME>CommunicationConnector</SHORT-NAME>
+                            <UNICAST-NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/control_CommunicationCluster/ComCluster/PhysicalChannel/NetworkEndpoint</UNICAST-NETWORK-ENDPOINT-REF>
+                        </ETHERNET-COMMUNICATION-CONNECTOR>
+                    </COMMUNICATION-CONNECTORS>
+                </MACHINE-DESIGN>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>control_ServiceInstToMachineMap</SHORT-NAME>
+            <ELEMENTS>
+                <DDS-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="7cfc1dff-b5e5-50cd-f423-75984f8c0f8a">
+                    <SHORT-NAME>DdsServiceInstToMachineMap_DdsSI_RequiredPort</SHORT-NAME>
+                    <COMMUNICATION-CONNECTOR-REF DEST="COMMUNICATION-CONNECTOR">/control_MachineDesign/MachineDesign/CommunicationConnector</COMMUNICATION-CONNECTOR-REF>
+                    <SERVICE-INSTANCE-REFS>
+                        <SERVICE-INSTANCE-REF DEST="DDS-REQUIRED-SERVICE-INSTANCE">/control_ServiceInstances/DdsSI_RequiredPort</SERVICE-INSTANCE-REF>
+                    </SERVICE-INSTANCE-REFS>
+                </DDS-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+                <DDS-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="79483efa-6e4a-58bd-8e5b-1f9d82b4c355">
+                    <SHORT-NAME>DdsServiceInstToMachineMap_DdsSI_ProvidedPort</SHORT-NAME>
+                    <COMMUNICATION-CONNECTOR-REF DEST="COMMUNICATION-CONNECTOR">/control_MachineDesign/MachineDesign/CommunicationConnector</COMMUNICATION-CONNECTOR-REF>
+                    <SERVICE-INSTANCE-REFS>
+                        <SERVICE-INSTANCE-REF DEST="DDS-PROVIDED-SERVICE-INSTANCE">/control_ServiceInstances/DdsSI_ProvidedPort</SERVICE-INSTANCE-REF>
+                    </SERVICE-INSTANCE-REFS>
+                </DDS-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>control_ServiceInstanceToPortMappings</SHORT-NAME>
+            <ELEMENTS>
+                <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="2dd65fa8-5237-521b-7736-a8211e47fcd2">
+                    <SHORT-NAME>Mapping_RequiredPort</SHORT-NAME>
+                    <PORT-PROTOTYPE-IREF>
+                        <CONTEXT-COMPONENT-PROTOTYPE-REF DEST="SW-COMPONENT-PROTOTYPE">/Components/control</CONTEXT-COMPONENT-PROTOTYPE-REF>
+                        <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Components/control/RequiredPort</TARGET-PORT-PROTOTYPE-REF>
+                    </PORT-PROTOTYPE-IREF>
+                    <PROCESS-DESIGN-REF DEST="PROCESS-DESIGN">/control_ProcessDesigns/DefaultProcessDesign</PROCESS-DESIGN-REF>
+                    <SERVICE-INSTANCE-REF DEST="DDS-REQUIRED-SERVICE-INSTANCE">/control_ServiceInstances/DdsSI_RequiredPort</SERVICE-INSTANCE-REF>
+                </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+                <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="7a9939c6-4eaa-55ce-876a-df5daf5e9076">
+                    <SHORT-NAME>Mapping_ProvidedPort</SHORT-NAME>
+                    <PORT-PROTOTYPE-IREF>
+                        <CONTEXT-COMPONENT-PROTOTYPE-REF DEST="SW-COMPONENT-PROTOTYPE">/Components/control</CONTEXT-COMPONENT-PROTOTYPE-REF>
+                        <TARGET-PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/Components/control/ProvidedPort</TARGET-PORT-PROTOTYPE-REF>
+                    </PORT-PROTOTYPE-IREF>
+                    <PROCESS-DESIGN-REF DEST="PROCESS-DESIGN">/control_ProcessDesigns/DefaultProcessDesign</PROCESS-DESIGN-REF>
+                    <SERVICE-INSTANCE-REF DEST="DDS-PROVIDED-SERVICE-INSTANCE">/control_ServiceInstances/DdsSI_ProvidedPort</SERVICE-INSTANCE-REF>
+                </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>control_ServiceInstances</SHORT-NAME>
+            <ELEMENTS>
+                <DDS-REQUIRED-SERVICE-INSTANCE UUID="08db6c10-cbb6-5a5b-1d7f-04ede5d4723d">
+                    <SHORT-NAME>DdsSI_RequiredPort</SHORT-NAME>
+                    <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="DDS-SERVICE-INTERFACE-DEPLOYMENT">/control_Deployments/DdsDeployment_RequiredPort</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                    <DOMAIN-ID>0</DOMAIN-ID>
+                    <EVENT-QOS-PROPSS>
+                        <DDS-EVENT-QOS-PROPS>
+                            <QOS-PROFILE>RELIABLE</QOS-PROFILE>
+                            <EVENT-REF DEST="DDS-EVENT-DEPLOYMENT">/control_Deployments/DdsDeployment_RequiredPort/Deployment_AEB</EVENT-REF>
+                        </DDS-EVENT-QOS-PROPS>
+                    </EVENT-QOS-PROPSS>
+                    <REQUIRED-SERVICE-INSTANCE-ID>1</REQUIRED-SERVICE-INSTANCE-ID>
+                </DDS-REQUIRED-SERVICE-INSTANCE>
+                <DDS-PROVIDED-SERVICE-INSTANCE UUID="33477e18-b41e-5f43-9a1a-a5e52d7885e7">
+                    <SHORT-NAME>DdsSI_ProvidedPort</SHORT-NAME>
+                    <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="DDS-SERVICE-INTERFACE-DEPLOYMENT">/control_Deployments/DdsDeployment_ProvidedPort</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                    <DOMAIN-ID>0</DOMAIN-ID>
+                    <EVENT-QOS-PROPSS>
+                        <DDS-EVENT-QOS-PROPS>
+                            <QOS-PROFILE>RELIABLE</QOS-PROFILE>
+                            <EVENT-REF DEST="DDS-EVENT-DEPLOYMENT">/control_Deployments/DdsDeployment_ProvidedPort/Deployment_Throttle</EVENT-REF>
+                        </DDS-EVENT-QOS-PROPS>
+                    </EVENT-QOS-PROPSS>
+                    <SERVICE-INSTANCE-ID>2</SERVICE-INSTANCE-ID>
+                </DDS-PROVIDED-SERVICE-INSTANCE>
+            </ELEMENTS>
+        </AR-PACKAGE>
+    </AR-PACKAGES>
+</AUTOSAR>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Auto generated XML Component Description for model Rpi_cam
+Model version                : 1.156
+Simulink Coder version       : Simulink Coder 23.2 (R2023b) 01-Aug-2023
+XML source code generated on : Fri May 31 12:10:06 2024
+Model Checksum               : 3344303447 623922664 2635561475 3360772836
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00050.xsd">
+    <AR-PACKAGES>
+        <AR-PACKAGE>
+            <SHORT-NAME>ModeDeclarationGroups</SHORT-NAME>
+            <ELEMENTS>
+                <MODE-DECLARATION-GROUP>
+                    <SHORT-NAME>ProcessStateMachine</SHORT-NAME>
+                    <INITIAL-MODE-REF DEST="MODE-DECLARATION">/ModeDeclarationGroups/ProcessStateMachine/Idle</INITIAL-MODE-REF>
+                    <MODE-DECLARATIONS>
+                        <MODE-DECLARATION UUID="ae794b9e-cfbb-5796-21ae-2c44dbce727c">
+                            <SHORT-NAME>Idle</SHORT-NAME>
+                            <VALUE>1</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="36580643-1f28-544e-eca5-e87b2cf2f417">
+                            <SHORT-NAME>Starting</SHORT-NAME>
+                            <VALUE>2</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="50e75263-8ca1-5203-d596-307972434822">
+                            <SHORT-NAME>Running</SHORT-NAME>
+                            <VALUE>3</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="6a06ae7d-e68e-5d1f-b555-9c9036ebeb88">
+                            <SHORT-NAME>Terminating</SHORT-NAME>
+                            <VALUE>4</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="ac22e2d2-701b-5d71-e9c8-b264f012e5f7">
+                            <SHORT-NAME>Terminated</SHORT-NAME>
+                            <VALUE>5</VALUE>
+                        </MODE-DECLARATION>
+                    </MODE-DECLARATIONS>
+                </MODE-DECLARATION-GROUP>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Rpi_cam_Executable</SHORT-NAME>
+            <ELEMENTS>
+                <EXECUTABLE UUID="77ad554e-3ab4-52eb-9af8-c4eed559719b">
+                    <SHORT-NAME>Rpi_cam</SHORT-NAME>
+                    <BUILD-TYPE>BUILD-TYPE-DEBUG</BUILD-TYPE>
+                    <LOGGING-BEHAVIOR>USES-LOGGING</LOGGING-BEHAVIOR>
+                    <ROOT-SW-COMPONENT-PROTOTYPE UUID="bbc49c82-7be9-54a1-b5e1-92f4dc739f46">
+                        <SHORT-NAME>Rpi_cam_RootSwComponentPrototype</SHORT-NAME>
+                        <APPLICATION-TYPE-TREF DEST="ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE">/Components/Rpi_cam</APPLICATION-TYPE-TREF>
+                    </ROOT-SW-COMPONENT-PROTOTYPE>
+                </EXECUTABLE>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Rpi_cam_FunctionGroupSet</SHORT-NAME>
+            <ELEMENTS>
+                <FUNCTION-GROUP-SET UUID="c5443c21-2f6b-553f-8ea2-a3d98a03901d">
+                    <SHORT-NAME>DefaultFunctionGroupSet</SHORT-NAME>
+                    <FUNCTION-GROUPS>
+                        <MODE-DECLARATION-GROUP-PROTOTYPE UUID="00d05752-5f06-59e5-c871-2a794d8394e4">
+                            <SHORT-NAME>DefaultFunctionGroupSet_ModeDeclarationGroupElement</SHORT-NAME>
+                            <SW-CALIBRATION-ACCESS>READ-ONLY</SW-CALIBRATION-ACCESS>
+                            <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/MachineStates/MachineFG</TYPE-TREF>
+                        </MODE-DECLARATION-GROUP-PROTOTYPE>
+                    </FUNCTION-GROUPS>
+                </FUNCTION-GROUP-SET>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Rpi_cam_ProcessDesigns</SHORT-NAME>
+            <ELEMENTS>
+                <PROCESS-DESIGN UUID="c5ceb79c-f9e7-5397-0d00-6fba2d7c6479">
+                    <SHORT-NAME>DefaultProcessDesign</SHORT-NAME>
+                    <EXECUTABLE-REF DEST="EXECUTABLE">/Rpi_cam_Executable/Rpi_cam</EXECUTABLE-REF>
+                </PROCESS-DESIGN>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Rpi_cam_ProcessToMachineMappingSet</SHORT-NAME>
+            <ELEMENTS>
+                <PROCESS-TO-MACHINE-MAPPING-SET UUID="ba103abb-4237-57a2-278c-659e32173d5a">
+                    <SHORT-NAME>ProcessToMachineMappingSet</SHORT-NAME>
+                    <PROCESS-TO-MACHINE-MAPPINGS>
+                        <PROCESS-TO-MACHINE-MAPPING UUID="f6dd835e-03fc-567b-76a3-c6b26ebef430">
+                            <SHORT-NAME>DefaultMapping</SHORT-NAME>
+                            <MACHINE-REF DEST="MACHINE">/Machines/Host</MACHINE-REF>
+                            <PROCESS-REF DEST="PROCESS">/Rpi_cam_Processes/DefaultInstance</PROCESS-REF>
+                        </PROCESS-TO-MACHINE-MAPPING>
+                    </PROCESS-TO-MACHINE-MAPPINGS>
+                </PROCESS-TO-MACHINE-MAPPING-SET>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Rpi_cam_Processes</SHORT-NAME>
+            <ELEMENTS>
+                <PROCESS UUID="0ed4e56f-039d-5b9d-d5b0-d3eeccb54447">
+                    <SHORT-NAME>DefaultInstance</SHORT-NAME>
+                    <DESIGN-REF DEST="PROCESS-DESIGN">/Rpi_cam_ProcessDesigns/DefaultProcessDesign</DESIGN-REF>
+                    <EXECUTABLE-REF DEST="EXECUTABLE">/Rpi_cam_Executable/Rpi_cam</EXECUTABLE-REF>
+                    <PROCESS-STATE-MACHINE UUID="fa8cbbd7-f314-537e-5693-293626556cf2">
+                        <SHORT-NAME>ProcessStateMachine_ModeDeclarationGroupElement</SHORT-NAME>
+                        <SW-CALIBRATION-ACCESS>READ-ONLY</SW-CALIBRATION-ACCESS>
+                        <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/ModeDeclarationGroups/ProcessStateMachine</TYPE-TREF>
+                    </PROCESS-STATE-MACHINE>
+                    <STATE-DEPENDENT-STARTUP-CONFIGS>
+                        <STATE-DEPENDENT-STARTUP-CONFIG>
+                            <FUNCTION-GROUP-STATE-IREFS>
+                                <FUNCTION-GROUP-STATE-IREF>
+                                    <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Rpi_cam_FunctionGroupSet/DefaultFunctionGroupSet/DefaultFunctionGroupSet_ModeDeclarationGroupElement</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                                    <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/MachineStates/MachineFG/Running</TARGET-MODE-DECLARATION-REF>
+                                </FUNCTION-GROUP-STATE-IREF>
+                            </FUNCTION-GROUP-STATE-IREFS>
+                            <RESOURCE-GROUP-REF DEST="RESOURCE-GROUP">/Machines/Host/HostOsInstantiation/DefaultResourceGroup</RESOURCE-GROUP-REF>
+                            <STARTUP-CONFIG-REF DEST="STARTUP-CONFIG">/Rpi_cam_StartupConfigs/StartupConfigRR</STARTUP-CONFIG-REF>
+                        </STATE-DEPENDENT-STARTUP-CONFIG>
+                    </STATE-DEPENDENT-STARTUP-CONFIGS>
+                </PROCESS>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Rpi_cam_StartupConfigs</SHORT-NAME>
+            <ELEMENTS>
+                <STARTUP-CONFIG UUID="3f840fbf-8a06-53af-a285-e464fe288402">
+                    <SHORT-NAME>StartupConfigRR</SHORT-NAME>
+                    <SCHEDULING-POLICY>SCHEDULING-POLICY-ROUND-ROBIN</SCHEDULING-POLICY>
+                    <SCHEDULING-PRIORITY>32</SCHEDULING-PRIORITY>
+                </STARTUP-CONFIG>
+                <STARTUP-CONFIG UUID="60cb3576-41f9-540a-8a60-6c16b14510b2">
+                    <SHORT-NAME>StartupConfigFifo</SHORT-NAME>
+                    <SCHEDULING-POLICY>SCHEDULING-POLICY-FIFO</SCHEDULING-POLICY>
+                    <SCHEDULING-PRIORITY>32</SCHEDULING-PRIORITY>
+                </STARTUP-CONFIG>
+                <STARTUP-CONFIG UUID="22736971-2479-522f-69d3-ffdd8782c50e">
+                    <SHORT-NAME>StartupConfigOther</SHORT-NAME>
+                    <SCHEDULING-POLICY>SCHEDULING-POLICY-OTHER</SCHEDULING-POLICY>
+                    <SCHEDULING-PRIORITY>32</SCHEDULING-PRIORITY>
+                </STARTUP-CONFIG>
+            </ELEMENTS>
+        </AR-PACKAGE>
+    </AR-PACKAGES>
+</AUTOSAR>

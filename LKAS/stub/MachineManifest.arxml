@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Auto generated XML Component Description for model Rpi_cam
+Model version                : 1.156
+Simulink Coder version       : Simulink Coder 23.2 (R2023b) 01-Aug-2023
+XML source code generated on : Fri May 31 12:10:06 2024
+Model Checksum               : 3344303447 623922664 2635561475 3360772836
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00050.xsd">
+    <AR-PACKAGES>
+        <AR-PACKAGE>
+            <SHORT-NAME>MachineStates</SHORT-NAME>
+            <ELEMENTS>
+                <MODE-DECLARATION-GROUP>
+                    <SHORT-NAME>MachineFG</SHORT-NAME>
+                    <INITIAL-MODE-REF DEST="MODE-DECLARATION">/MachineStates/MachineFG/Running</INITIAL-MODE-REF>
+                    <MODE-DECLARATIONS>
+                        <MODE-DECLARATION UUID="9cfe29dc-9202-5f28-a4d3-10e8ff83b26f">
+                            <SHORT-NAME>Off</SHORT-NAME>
+                            <VALUE>1</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="fe767296-587d-501f-b004-e92df14898dc">
+                            <SHORT-NAME>Startup</SHORT-NAME>
+                            <VALUE>2</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="73639c82-d527-5491-f8ea-a6c44d0b38b0">
+                            <SHORT-NAME>Running</SHORT-NAME>
+                            <VALUE>3</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="f4331f9f-faec-55cb-e036-06bc7a67e731">
+                            <SHORT-NAME>Idle</SHORT-NAME>
+                            <VALUE>4</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="0cb6e120-2410-5495-4d05-8b5bffcbc644">
+                            <SHORT-NAME>Shutdown</SHORT-NAME>
+                            <VALUE>5</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="aa9240b7-4f5f-5a83-74e7-38455b16dfcf">
+                            <SHORT-NAME>Restart</SHORT-NAME>
+                            <VALUE>6</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="9b9813cf-fd2c-569d-6220-bff1980f0d9f">
+                            <SHORT-NAME>Verify</SHORT-NAME>
+                            <VALUE>7</VALUE>
+                        </MODE-DECLARATION>
+                    </MODE-DECLARATIONS>
+                </MODE-DECLARATION-GROUP>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Machines</SHORT-NAME>
+            <ELEMENTS>
+                <MACHINE UUID="e5990de3-01d9-5025-8eba-125b33a467e1">
+                    <SHORT-NAME>Host</SHORT-NAME>
+                    <DEFAULT-APPLICATION-TIMEOUT>
+                        <ENTER-TIMEOUT-VALUE>60</ENTER-TIMEOUT-VALUE>
+                        <EXIT-TIMEOUT-VALUE>60</EXIT-TIMEOUT-VALUE>
+                    </DEFAULT-APPLICATION-TIMEOUT>
+                    <MACHINE-DESIGN-REF DEST="MACHINE-DESIGN">/Rpi_cam_MachineDesign/MachineDesign</MACHINE-DESIGN-REF>
+                    <MODULE-INSTANTIATIONS>
+                        <OS-MODULE-INSTANTIATION UUID="ad46b531-4cb2-5a56-471b-fbbc0b656934">
+                            <SHORT-NAME>HostOsInstantiation</SHORT-NAME>
+                            <RESOURCE-GROUPS>
+                                <RESOURCE-GROUP UUID="c67c085f-9908-5a20-1ad4-28f56808953e">
+                                    <SHORT-NAME>DefaultResourceGroup</SHORT-NAME>
+                                    <CPU-USAGE>100</CPU-USAGE>
+                                    <MEM-USAGE>4096000000</MEM-USAGE>
+                                </RESOURCE-GROUP>
+                            </RESOURCE-GROUPS>
+                        </OS-MODULE-INSTANTIATION>
+                        <LOG-AND-TRACE-INSTANTIATION UUID="73735ced-2b74-51a0-72dd-4f58e744a4e0">
+                            <SHORT-NAME>Rpi_cam_LogAndTraceInstantiation</SHORT-NAME>
+                            <DLT-ECU-REF DEST="DLT-ECU">/Rpi_cam_DltEcu/DefaultDltEcu</DLT-ECU-REF>
+                            <LOG-SINK-REFS>
+                                <LOG-SINK-REF DEST="DLT-LOG-SINK">/Rpi_cam_DltLogSink/DefaultDltLogSink</LOG-SINK-REF>
+                            </LOG-SINK-REFS>
+                        </LOG-AND-TRACE-INSTANTIATION>
+                    </MODULE-INSTANTIATIONS>
+                </MACHINE>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Rpi_cam_DltApplicationToProcessMapping</SHORT-NAME>
+            <ELEMENTS>
+                <DLT-APPLICATION-TO-PROCESS-MAPPING UUID="56be1693-2184-5b81-6775-e6a2cbcb5a57">
+                    <SHORT-NAME>DltApplicationToProcessMapping</SHORT-NAME>
+                    <DLT-APPLICATION-REF DEST="DLT-APPLICATION">/Rpi_cam_DltEcu/DefaultDltEcu/DefaultDltApplication</DLT-APPLICATION-REF>
+                    <PROCESS-REF DEST="PROCESS">/Rpi_cam_Processes/DefaultInstance</PROCESS-REF>
+                </DLT-APPLICATION-TO-PROCESS-MAPPING>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Rpi_cam_DltEcu</SHORT-NAME>
+            <ELEMENTS>
+                <DLT-ECU UUID="5a6ea8e8-733e-51a3-4ac1-bed479002b28">
+                    <SHORT-NAME>DefaultDltEcu</SHORT-NAME>
+                    <APPLICATIONS>
+                        <DLT-APPLICATION UUID="2868e244-5ede-5efe-850a-a22615967b23">
+                            <SHORT-NAME>DefaultDltApplication</SHORT-NAME>
+                            <APPLICATION-DESCRIPTION>Log messages for adaptive application Rpi_cam</APPLICATION-DESCRIPTION>
+                            <APPLICATION-ID>3491</APPLICATION-ID>
+                        </DLT-APPLICATION>
+                    </APPLICATIONS>
+                </DLT-ECU>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Rpi_cam_DltLogSink</SHORT-NAME>
+            <ELEMENTS>
+                <DLT-LOG-SINK UUID="ac2b2cfd-3403-5d88-7f0d-a27ae88c3bce">
+                    <SHORT-NAME>DefaultDltLogSink</SHORT-NAME>
+                    <CATEGORY>DLT_LOGSINK_CONSOLE</CATEGORY>
+                    <DEFAULT-LOG-THRESHOLD>WARN</DEFAULT-LOG-THRESHOLD>
+                </DLT-LOG-SINK>
+            </ELEMENTS>
+        </AR-PACKAGE>
+    </AR-PACKAGES>
+</AUTOSAR>

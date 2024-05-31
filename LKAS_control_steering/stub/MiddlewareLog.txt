@@ -1,0 +1,2 @@
+Simulink block control/Steering using DDS topic name 'Steering' for ara::com event communication.
+Simulink block control/LKAS using DDS topic name 'LKAS' for ara::com event communication.

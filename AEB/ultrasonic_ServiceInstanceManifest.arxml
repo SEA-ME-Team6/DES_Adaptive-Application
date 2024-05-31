@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Auto generated XML Component Description for model ultrasonic
+Model version                : 1.8
+Simulink Coder version       : Simulink Coder 23.2 (R2023b) 01-Aug-2023
+XML source code generated on : Fri May 31 12:04:12 2024
+Model Checksum               : 783562329 3507830434 1053040853 2359478767
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00050.xsd">
+    <AR-PACKAGES>
+        <AR-PACKAGE>
+            <SHORT-NAME>ultrasonic_CommunicationCluster</SHORT-NAME>
+            <ELEMENTS>
+                <ETHERNET-CLUSTER UUID="08ddf844-5448-59f4-eacc-889278cb48f9">
+                    <SHORT-NAME>ComCluster</SHORT-NAME>
+                    <ETHERNET-CLUSTER-VARIANTS>
+                        <ETHERNET-CLUSTER-CONDITIONAL>
+                            <PHYSICAL-CHANNELS>
+                                <ETHERNET-PHYSICAL-CHANNEL UUID="2f4ca93b-5a8e-5966-10b9-1d8b42f798b4">
+                                    <SHORT-NAME>PhysicalChannel</SHORT-NAME>
+                                    <NETWORK-ENDPOINTS>
+                                        <NETWORK-ENDPOINT UUID="bbb04f4f-86ba-5937-91a0-d0e85636ad39">
+                                            <SHORT-NAME>NetworkEndpoint</SHORT-NAME>
+                                            <NETWORK-ENDPOINT-ADDRESSES>
+                                                <IPV-4-CONFIGURATION>
+                                                    <IPV-4-ADDRESS>127.0.0.1</IPV-4-ADDRESS>
+                                                </IPV-4-CONFIGURATION>
+                                            </NETWORK-ENDPOINT-ADDRESSES>
+                                        </NETWORK-ENDPOINT>
+                                    </NETWORK-ENDPOINTS>
+                                </ETHERNET-PHYSICAL-CHANNEL>
+                            </PHYSICAL-CHANNELS>
+                        </ETHERNET-CLUSTER-CONDITIONAL>
+                    </ETHERNET-CLUSTER-VARIANTS>
+                </ETHERNET-CLUSTER>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>ultrasonic_Deployments</SHORT-NAME>
+            <ELEMENTS>
+                <DDS-SERVICE-INTERFACE-DEPLOYMENT UUID="fd179759-69c9-517f-f3e5-3ae8b7992c35">
+                    <SHORT-NAME>DdsDeployment_ProvidedPort</SHORT-NAME>
+                    <EVENT-DEPLOYMENTS>
+                        <DDS-EVENT-DEPLOYMENT UUID="7bddf472-7d32-55a3-b4f0-eba59aedcf08">
+                            <SHORT-NAME>Deployment_Brake</SHORT-NAME>
+                            <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/Interfaces/ProvidedInterface/Brake</EVENT-REF>
+                            <TOPIC-NAME>Brake</TOPIC-NAME>
+                            <TRANSPORT-PROTOCOLS>
+                                <TRANSPORT-PROTOCOL>TCP</TRANSPORT-PROTOCOL>
+                            </TRANSPORT-PROTOCOLS>
+                        </DDS-EVENT-DEPLOYMENT>
+                    </EVENT-DEPLOYMENTS>
+                    <TRANSPORT-PROTOCOLS>
+                        <TRANSPORT-PROTOCOL>TCP</TRANSPORT-PROTOCOL>
+                    </TRANSPORT-PROTOCOLS>
+                </DDS-SERVICE-INTERFACE-DEPLOYMENT>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>ultrasonic_MachineDesign</SHORT-NAME>
+            <ELEMENTS>
+                <MACHINE-DESIGN UUID="5657e9be-d8e1-5b44-609c-8979241301e3">
+                    <SHORT-NAME>MachineDesign</SHORT-NAME>
+                    <COMMUNICATION-CONNECTORS>
+                        <ETHERNET-COMMUNICATION-CONNECTOR UUID="0d35b640-1263-5750-81cf-4b6c809e30ad">
+                            <SHORT-NAME>CommunicationConnector</SHORT-NAME>
+                            <UNICAST-NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/ultrasonic_CommunicationCluster/ComCluster/PhysicalChannel/NetworkEndpoint</UNICAST-NETWORK-ENDPOINT-REF>
+                        </ETHERNET-COMMUNICATION-CONNECTOR>
+                    </COMMUNICATION-CONNECTORS>
+                </MACHINE-DESIGN>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>ultrasonic_ServiceInstToMachineMap</SHORT-NAME>
+            <ELEMENTS>
+                <DDS-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="9d6ba417-1647-5660-0ae3-d9a096ac5045">
+                    <SHORT-NAME>DdsServiceInstToMachineMap_DdsSI_ProvidedPort</SHORT-NAME>
+                    <COMMUNICATION-CONNECTOR-REF DEST="COMMUNICATION-CONNECTOR">/ultrasonic_MachineDesign/MachineDesign/CommunicationConnector</COMMUNICATION-CONNECTOR-REF>
+                    <SERVICE-INSTANCE-REFS>
+                        <SERVICE-INSTANCE-REF DEST="DDS-PROVIDED-SERVICE-INSTANCE">/ultrasonic_ServiceInstances/DdsSI_ProvidedPort</SERVICE-INSTANCE-REF>
+                    </SERVICE-INSTANCE-REFS>
+                </DDS-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>ultrasonic_ServiceInstanceToPortMappings</SHORT-NAME>
+            <ELEMENTS>
+                <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="90b30d40-78ad-5f7f-4785-afafee0ae239">
+                    <SHORT-NAME>Mapping_ProvidedPort</SHORT-NAME>
+                    <PORT-PROTOTYPE-IREF>
+                        <CONTEXT-COMPONENT-PROTOTYPE-REF DEST="SW-COMPONENT-PROTOTYPE">/Components/ultrasonic</CONTEXT-COMPONENT-PROTOTYPE-REF>
+                        <TARGET-PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/Components/ultrasonic/ProvidedPort</TARGET-PORT-PROTOTYPE-REF>
+                    </PORT-PROTOTYPE-IREF>
+                    <PROCESS-DESIGN-REF DEST="PROCESS-DESIGN">/ultrasonic_ProcessDesigns/DefaultProcessDesign</PROCESS-DESIGN-REF>
+                    <SERVICE-INSTANCE-REF DEST="DDS-PROVIDED-SERVICE-INSTANCE">/ultrasonic_ServiceInstances/DdsSI_ProvidedPort</SERVICE-INSTANCE-REF>
+                </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>ultrasonic_ServiceInstances</SHORT-NAME>
+            <ELEMENTS>
+                <DDS-PROVIDED-SERVICE-INSTANCE UUID="f408237e-277e-5070-6177-a2548a8e5ecf">
+                    <SHORT-NAME>DdsSI_ProvidedPort</SHORT-NAME>
+                    <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="DDS-SERVICE-INTERFACE-DEPLOYMENT">/ultrasonic_Deployments/DdsDeployment_ProvidedPort</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                    <DOMAIN-ID>0</DOMAIN-ID>
+                    <EVENT-QOS-PROPSS>
+                        <DDS-EVENT-QOS-PROPS>
+                            <QOS-PROFILE>RELIABLE</QOS-PROFILE>
+                            <EVENT-REF DEST="DDS-EVENT-DEPLOYMENT">/ultrasonic_Deployments/DdsDeployment_ProvidedPort/Deployment_Brake</EVENT-REF>
+                        </DDS-EVENT-QOS-PROPS>
+                    </EVENT-QOS-PROPSS>
+                    <SERVICE-INSTANCE-ID>1</SERVICE-INSTANCE-ID>
+                </DDS-PROVIDED-SERVICE-INSTANCE>
+            </ELEMENTS>
+        </AR-PACKAGE>
+    </AR-PACKAGES>
+</AUTOSAR>

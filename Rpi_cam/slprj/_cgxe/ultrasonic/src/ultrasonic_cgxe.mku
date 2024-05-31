@@ -8,9 +8,9 @@ LD = $(CC)
  
 MODEL  = ultrasonic
 TARGET = cgxe
-MODULE_SRCS 	= m_KfxEnyUMbeaOYicAxfslDF.c
-MODEL_SRC	= ultrasonic_cgxe.c
-MODEL_REG    = ultrasonic_cgxe_registry.c
+MODULE_SRCS 	= m_Y0B9WgMUpDX622CpoG0hQE.cpp
+MODEL_SRC	= ultrasonic_cgxe.cpp
+MODEL_REG    = ultrasonic_cgxe_registry.cpp
 MAKEFILE    = ultrasonic_cgxe.mku
 MATLAB_ROOT	= /usr/local/MATLAB/R2023b
 BUILDARGS   = 

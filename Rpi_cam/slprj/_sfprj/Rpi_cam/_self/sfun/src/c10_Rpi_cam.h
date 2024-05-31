@@ -8,8 +8,9 @@ struct SFc10_Rpi_camInstanceStruct;
 #ifndef typedef_c10_Rpi_camStackData
 #define typedef_c10_Rpi_camStackData
 
-typedef struct {
-} c10_Rpi_camStackData;
+struct c10_Rpi_camStackData
+{
+};
 
 #endif                                 /* typedef_c10_Rpi_camStackData */
 
@@ -38,15 +39,31 @@ struct SFc10_Rpi_camInstanceStruct
   uint32_T c10_statuses[37];
   void *c10_outMexFcns[37];
   void *c10_inMexFcns[37];
+  real_T c10_nonzeroy_data[307200];
+  real_T c10_nonzerox_data[307200];
+  real_T c10_good_leftx_indexs_data[307200];
+  real_T c10_good_lefty_indexs_data[307200];
+  real_T c10_good_rightx_indexs_data[307200];
+  real_T c10_good_righty_indexs_data[307200];
+  int32_T c10_ii_data[307200];
+  int32_T c10_jj_data[307200];
   boolean_T c10_bv[307200];
+  boolean_T c10_tmp_data[307200];
+  boolean_T c10_b_tmp_data[307200];
+  boolean_T c10_c_tmp_data[307200];
+  boolean_T c10_d_tmp_data[307200];
+  boolean_T c10_e_tmp_data[307200];
+  boolean_T c10_f_tmp_data[307200];
+  boolean_T c10_g_tmp_data[307200];
+  boolean_T c10_h_tmp_data[307200];
+  boolean_T c10_i_tmp_data[307200];
+  boolean_T c10_j_tmp_data[307200];
+  boolean_T c10_in2_data[307200];
+  boolean_T c10_in1_data[307200];
   CovrtStateflowInstance *c10_covrtInstance;
   void *c10_fEmlrtCtx;
-  real_T (*c10_mean_points)[3];
-  real_T (*c10_rectangle_points)[168];
   boolean_T (*c10_binary_image)[307200];
   real_T *c10_error;
-  real_T *c10_x_location;
-  real_T (*c10_error_point)[3];
 };
 
 #endif                                 /* struct_SFc10_Rpi_camInstanceStruct */

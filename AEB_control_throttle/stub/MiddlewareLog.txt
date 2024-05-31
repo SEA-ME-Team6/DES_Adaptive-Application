@@ -1,0 +1,2 @@
+Simulink block control/Throttle using DDS topic name 'Throttle' for ara::com event communication.
+Simulink block control/AEB using DDS topic name 'AEB' for ara::com event communication.

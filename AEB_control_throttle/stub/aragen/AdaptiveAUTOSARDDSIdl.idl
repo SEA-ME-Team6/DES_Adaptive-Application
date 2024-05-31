@@ -1,0 +1,15 @@
+module eprosima_dds {
+  struct ProvidedInterface_Throttle {
+    double m_double;
+  }
+  ;
+}
+;
+
+module eprosima_dds {
+  struct RequiredInterface_AEB {
+    double m_double;
+  }
+  ;
+}
+;

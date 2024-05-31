@@ -1,0 +1,7 @@
+module eprosima_dds {
+  struct ProvidedInterface_Brake {
+    double m_double;
+  }
+  ;
+}
+;

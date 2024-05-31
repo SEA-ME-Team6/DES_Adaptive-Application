@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MF0 version="1.1" packageUris="http://schema.mathworks.com/mf0/ci/19700101 http://schema.mathworks.com/mf0/sl_data_duplicateandconsistencycheck/R2022b http://schema.mathworks.com/mf0/sl_modelref_info/R2023b http://schema.mathworks.com/mf0/slexec_mm_sto/R2023a_202208151321 http://schema.mathworks.com/mf0/sltp_mm/R2023a_202209151115">
-  <ModelRefInfoRepo.ModelRefInfoRoot type="ModelRefInfoRepo.ModelRefInfoRoot" uuid="cf821571-5a4b-4c00-a59c-d2e5ac87cb2f">
+  <ModelRefInfoRepo.ModelRefInfoRoot type="ModelRefInfoRepo.ModelRefInfoRoot" uuid="6404ca91-cb27-4108-8be9-c1e9030b91d7">
     <JITEngines>s01HX5NDoDz06iB9lGIrJqB</JITEngines>
     <JITEngines>sQbVtSQcpRCLE9zXgB5S7YH</JITEngines>
     <JITEngines>sUcXtSTcaFya9Jiiqj71r9F</JITEngines>
     <JITEngines>sVJqpJaA4x71Z0woEEtnM0G</JITEngines>
     <JITEngines>suHtumfMB8xcEYWQyXkSRP</JITEngines>
-    <childModelRefInfo type="ModelRefInfoRepo.ChildModelRefInfo" uuid="7093e0da-0824-46ab-85c0-e6046509f622">
+    <childModelRefInfo type="ModelRefInfoRepo.ChildModelRefInfo" uuid="0669a583-1c96-4ea1-8211-9fae1d8d4695">
       <modelName>Rpi_cam</modelName>
       <modelPath>Rpi_cam</modelPath>
     </childModelRefInfo>
     <compiledTFinal>50.0</compiledTFinal>
-    <dataSourceInfo type="ModelRefInfoRepo.DataSourceInfo" uuid="2356b261-3e91-485d-ba1b-4c4c72b4b147">
-      <dataSources type="ModelRefInfoRepo.SourceInfo" uuid="9e11a4d2-21de-4500-b5db-dbbab29809dc">
+    <dataSourceInfo type="ModelRefInfoRepo.DataSourceInfo" uuid="feb4991b-f445-450a-a46e-3881189e7a3e">
+      <dataSources type="ModelRefInfoRepo.SourceInfo" uuid="0ddc53a4-a09f-46fd-a9a5-f0ca0e0bd6db">
         <includeAllSections>true</includeAllSections>
         <sourceName>base workspace</sourceName>
         <type>BaseWorkspace</type>
@@ -25,12 +25,30 @@
     <hasBlockWithPeriodicDiscreteSampleTime>true</hasBlockWithPeriodicDiscreteSampleTime>
     <hasBwsAccessed>true</hasBwsAccessed>
     <hasBwsAccessedByAnyModel>true</hasBwsAccessedByAnyModel>
+    <hasNonVirtualConstantTs>true</hasNonVirtualConstantTs>
     <isBdInSimModeForSimCodegenVariants>false</isBdInSimModeForSimCodegenVariants>
     <isInlineParamsOn>true</isInlineParamsOn>
+    <isOrigOutportVirtualBus>false</isOrigOutportVirtualBus>
     <loggingSaveFormat>2</loggingSaveFormat>
     <maxFreqHz>-1.0</maxFreqHz>
     <numDataInputPorts>0</numDataInputPorts>
     <numLoggableJacobianDStates>0</numLoggableJacobianDStates>
+    <origOutportBusOutputAsStruct>false</origOutportBusOutputAsStruct>
+    <origOutportBusType></origOutportBusType>
+    <outports type="ModelRefInfoRepo.OutportInformation" uuid="69766908-fcbf-4d15-a2c3-d8924f695d7b">
+      <designMax>inf</designMax>
+      <designMin>-inf</designMin>
+      <rateInfos type="ModelRefInfoRepo.RateInfo">
+        <compiled>true</compiled>
+        <nonFcnCallPartitionName>D1</nonFcnCallPartitionName>
+        <period>.1</period>
+        <priority>40</priority>
+        <rateIdx>0</rateIdx>
+      </rateInfos>
+      <resolvedSignalObject></resolvedSignalObject>
+      <executionInterface type="ModelRefInfoRepo.OutputExecutionInterface" uuid="4980eb3d-bbdb-409b-a24b-ccef42398941"/>
+      <sigNameToEMVCEMap type="ModelRefInfoRepo.SigNameEMVCEInfo" uuid="316beb12-b426-4868-a2f8-ae2fcf6d1de2"/>
+    </outports>
     <removeResetFunc>true</removeResetFunc>
     <runtimeNonFcnCallRateInfos type="ModelRefInfoRepo.RateInfo">
       <compiled>true</compiled>
@@ -43,34 +61,34 @@
     <solverStatusFlags>331</solverStatusFlags>
     <timingAndTaskingRegistry>&lt;?xml version=&quot;1.0&quot;?&gt;
 &lt;slexec_sto version=&quot;1.1&quot; packageUris=&quot;http://schema.mathworks.com/mf0/slexec_mm_sto/R2023a_202208151321&quot;&gt;
-  &lt;sto.Registry type=&quot;sto.Registry&quot; uuid=&quot;bb3e32c1-d7b4-455b-a3f6-ddd65ff446a9&quot;&gt;
+  &lt;sto.Registry type=&quot;sto.Registry&quot; uuid=&quot;c9ad4173-6a19-49c9-9880-5fd3b2e1f063&quot;&gt;
     &lt;executionSpec&gt;Undetermined&lt;/executionSpec&gt;
     &lt;identifier&gt;Rpi_cam&lt;/identifier&gt;
-    &lt;clockRegistry type=&quot;sto.ClockRegistry&quot; uuid=&quot;811d6b9c-9d0b-49da-ab8b-113521d95b14&quot;&gt;
-      &lt;clocks type=&quot;sto.Timer&quot; uuid=&quot;ed190771-0312-47d4-879a-7c0ad1f869c7&quot;&gt;
+    &lt;clockRegistry type=&quot;sto.ClockRegistry&quot; uuid=&quot;ef919fec-5993-4d17-9937-b14cfaff29d1&quot;&gt;
+      &lt;clocks type=&quot;sto.Timer&quot; uuid=&quot;3b1bab3c-63e7-4fe1-845f-120f5244178b&quot;&gt;
         &lt;clockTickConstraint&gt;PeriodicWithFixedResolution&lt;/clockTickConstraint&gt;
         &lt;computedFundamentalDiscretePeriod&gt;.1&lt;/computedFundamentalDiscretePeriod&gt;
-        &lt;fastestDiscreteRate type=&quot;sto.ClassicPeriodicDiscreteRate&quot; uuid=&quot;545bc1e1-fe7d-4148-b5e0-03681f3d42c1&quot;/&gt;
+        &lt;fastestDiscreteRate type=&quot;sto.ClassicPeriodicDiscreteRate&quot; uuid=&quot;b199e4f6-87db-496b-b497-36e3e92c4f5f&quot;/&gt;
         &lt;isDefaultTimer&gt;true&lt;/isDefaultTimer&gt;
         &lt;resolution&gt;.1&lt;/resolution&gt;
         &lt;timeAdvanceMode&gt;FixedStep&lt;/timeAdvanceMode&gt;
         &lt;identifier&gt;Rpi_cam::defaultTimer&lt;/identifier&gt;
-        &lt;rates type=&quot;sto.ClassicPeriodicDiscreteRate&quot; uuid=&quot;545bc1e1-fe7d-4148-b5e0-03681f3d42c1&quot;&gt;
+        &lt;rates type=&quot;sto.ClassicPeriodicDiscreteRate&quot; uuid=&quot;b199e4f6-87db-496b-b497-36e3e92c4f5f&quot;&gt;
           &lt;annotation&gt;D1&lt;/annotation&gt;
           &lt;clockId&gt;Rpi_cam::defaultTimer&lt;/clockId&gt;
           &lt;description&gt;Discrete 1&lt;/description&gt;
           &lt;taskId&gt;_task0&lt;/taskId&gt;
-          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;1c30702a-f8bf-47aa-b53d-4b401340298c&quot;&gt;
+          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;a4b2afb1-d6b2-4f15-8f7d-76d927a6a120&quot;&gt;
             &lt;period&gt;.1&lt;/period&gt;
             &lt;rateType&gt;ClassicPeriodicDiscrete&lt;/rateType&gt;
           &lt;/rateSpec&gt;
         &lt;/rates&gt;
-        &lt;baseRate type=&quot;sto.ClassicPeriodicDiscreteRate&quot; uuid=&quot;5d4fde8f-cf7a-4cdb-82d8-f2766c23efcb&quot;&gt;
+        &lt;baseRate type=&quot;sto.ClassicPeriodicDiscreteRate&quot; uuid=&quot;1cebd905-95c5-4f3b-9be5-7259a4764d6e&quot;&gt;
           &lt;annotation&gt;D1&lt;/annotation&gt;
           &lt;clockId&gt;Rpi_cam::defaultTimer&lt;/clockId&gt;
           &lt;description&gt;Discrete 1&lt;/description&gt;
           &lt;taskId&gt;_task0&lt;/taskId&gt;
-          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;a5fb3ecc-5f64-4072-906c-74e4f76da044&quot;&gt;
+          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;49db16ae-ebc2-495b-9ce9-7ed57c190997&quot;&gt;
             &lt;period&gt;.1&lt;/period&gt;
             &lt;rateType&gt;ClassicPeriodicDiscrete&lt;/rateType&gt;
           &lt;/rateSpec&gt;
@@ -78,16 +96,16 @@
       &lt;/clocks&gt;
       &lt;timeAdvanceMode&gt;FixedStep&lt;/timeAdvanceMode&gt;
     &lt;/clockRegistry&gt;
-    &lt;taskRegistry type=&quot;sto.TaskRegistry&quot; uuid=&quot;a8f3ef21-5c44-40c7-bceb-10a4e786fb00&quot;&gt;
-      &lt;rootTaskHierarchyElements type=&quot;sto.Task&quot; uuid=&quot;4488b23e-50cd-49ad-a543-e35770ac376d&quot;&gt;
+    &lt;taskRegistry type=&quot;sto.TaskRegistry&quot; uuid=&quot;c562d378-b783-4419-8672-7b958a783a55&quot;&gt;
+      &lt;rootTaskHierarchyElements type=&quot;sto.Task&quot; uuid=&quot;254f96e2-5e58-4e3c-8e4f-c8a8b16895ad&quot;&gt;
         &lt;isExecutable&gt;true&lt;/isExecutable&gt;
         &lt;orderIndex&gt;1&lt;/orderIndex&gt;
-        &lt;rates type=&quot;sto.ClassicPeriodicDiscreteRate&quot; uuid=&quot;591cd4a2-9585-43d6-8995-36375daca7b7&quot;&gt;
+        &lt;rates type=&quot;sto.ClassicPeriodicDiscreteRate&quot; uuid=&quot;5546bcbc-0086-4543-8d6f-fc51fd55c87f&quot;&gt;
           &lt;annotation&gt;D1&lt;/annotation&gt;
           &lt;clockId&gt;Rpi_cam::defaultTimer&lt;/clockId&gt;
           &lt;description&gt;Discrete 1&lt;/description&gt;
           &lt;taskId&gt;_task0&lt;/taskId&gt;
-          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;9e2b7536-9d84-4a4b-a272-a7d79b705892&quot;&gt;
+          &lt;rateSpec type=&quot;sto.RateSpec&quot; uuid=&quot;5bb4ebc6-9ac2-4f88-a182-41c50896e6d5&quot;&gt;
             &lt;period&gt;.1&lt;/period&gt;
             &lt;rateType&gt;ClassicPeriodicDiscrete&lt;/rateType&gt;
           &lt;/rateSpec&gt;
@@ -98,7 +116,7 @@
         &lt;identifier&gt;_task0&lt;/identifier&gt;
         &lt;priority&gt;40&lt;/priority&gt;
       &lt;/rootTaskHierarchyElements&gt;
-      &lt;taskDependencyGraph type=&quot;sto.SerializedTaskConnectionList&quot; uuid=&quot;447c495f-80f7-485b-bdac-3b6eb5e550c6&quot;&gt;
+      &lt;taskDependencyGraph type=&quot;sto.SerializedTaskConnectionList&quot; uuid=&quot;36530b3f-eb3b-45ba-b249-d433c632a84e&quot;&gt;
         &lt;clockIdentifier&gt;Rpi_cam::defaultTimer&lt;/clockIdentifier&gt;
         &lt;taskIdentifier&gt;_task0&lt;/taskIdentifier&gt;
       &lt;/taskDependencyGraph&gt;
@@ -106,10 +124,10 @@
   &lt;/sto.Registry&gt;
 &lt;/slexec_sto&gt;</timingAndTaskingRegistry>
     <zeroInternalMemoryAtStartupUnchecked>true</zeroInternalMemoryAtStartupUnchecked>
-    <FMUBlockMap type="ModelRefInfoRepo.FMUBlockInfo" uuid="08bbe67a-7a71-466e-a4fa-c9b07ea7e82f"/>
-    <codeGenInfo type="ModelRefInfoRepo.CodeGenInformation" uuid="85bc8b48-45f1-414c-9295-c5b32d63b4a8"/>
-    <compiledVariantInfos type="ModelRefInfoRepo.CompiledVariantInfoMap" uuid="24f2d186-5e20-4efa-8848-d7f6d57cfe08"/>
-    <configSettingsForConsistencyChecks type="ModelRefInfoRepo.ConfigSettingsForConsistencyChecks" uuid="4ded9f97-043e-440d-9888-779f7b1af239">
+    <FMUBlockMap type="ModelRefInfoRepo.FMUBlockInfo" uuid="a3f6b6c4-68a3-4b30-9600-ad0a3ec5f539"/>
+    <codeGenInfo type="ModelRefInfoRepo.CodeGenInformation" uuid="f4d468c7-590a-436a-97b4-20065b864606"/>
+    <compiledVariantInfos type="ModelRefInfoRepo.CompiledVariantInfoMap" uuid="e3d3ca58-9e3c-4c93-944e-6468b9446725"/>
+    <configSettingsForConsistencyChecks type="ModelRefInfoRepo.ConfigSettingsForConsistencyChecks" uuid="fcd4b79d-b87d-4f82-8e73-2c7e588bc96f">
       <LUTObjectStructOrderEvenSpacing>1</LUTObjectStructOrderEvenSpacing>
       <consistentOutportInitialization>true</consistentOutportInitialization>
       <fixedStepSize>.1</fixedStepSize>
@@ -121,7 +139,7 @@
       <solverName>FixedStepDiscrete</solverName>
       <solverType>SOLVER_TYPE_FIXEDSTEP</solverType>
       <useDivForNetSlopComp>2</useDivForNetSlopComp>
-      <hardwareSettings type="ModelRefInfoRepo.HardwareSettings" uuid="e4d7f20c-6607-4388-97b0-626b3a846f58">
+      <hardwareSettings type="ModelRefInfoRepo.HardwareSettings" uuid="b752dfbf-06c5-43e1-bd0f-b688b4ea12e1">
         <prodBitPerChar>8</prodBitPerChar>
         <prodBitPerDouble>64</prodBitPerDouble>
         <prodBitPerFloat>32</prodBitPerFloat>
@@ -140,37 +158,161 @@
         <prodWordSize>64</prodWordSize>
       </hardwareSettings>
     </configSettingsForConsistencyChecks>
-    <controllableInputRatesMap type="ModelRefInfoRepo.VarTsUIDMap" uuid="a0b19d32-aaac-4c67-9a68-7569c1bfb9e1"/>
-    <controllableOutputRatesMap type="ModelRefInfoRepo.VarTsUIDMap" uuid="81978a6d-4c22-46b1-ac5d-9969bba55d8f"/>
-    <dataPortGroup type="ModelRefInfoRepo.DataPortGroup" uuid="2b92e51d-9e65-4656-8fa6-b0afc16ddb29"/>
-    <expFcnUnconnectedDataPortGroup type="ModelRefInfoRepo.DataPortGroup" uuid="a85f0661-493b-4ce6-ab22-f5e95c5ae815"/>
-    <interfaceParameterInfo type="ModelRefInfoRepo.InterfaceParameterInfo" uuid="50ca18be-b862-45fa-8393-0efb63b4ea5d"/>
-    <messageInfo type="ModelRefInfoRepo.MessageInformation" uuid="b3b0d59f-1d1a-43e8-9cff-2abe0c55c869"/>
-    <methodInfo type="ModelRefInfoRepo.MethodExistenceInfo" uuid="caf1b012-2c80-4811-af0a-c6a2577b14d8">
+    <controllableInputRatesMap type="ModelRefInfoRepo.VarTsUIDMap" uuid="57178c6c-569b-4d77-8b4f-5ba14b3764b8"/>
+    <controllableOutputRatesMap type="ModelRefInfoRepo.VarTsUIDMap" uuid="944a0eb8-8aa5-40ba-937b-9912255df32e"/>
+    <dataPortGroup type="ModelRefInfoRepo.DataPortGroup" uuid="5bd3fd96-daf9-4e71-8b66-a8b91d3a2ad3">
+      <compDataOutputPorts>0</compDataOutputPorts>
+      <dataOutputPorts>0</dataOutputPorts>
+    </dataPortGroup>
+    <expFcnUnconnectedDataPortGroup type="ModelRefInfoRepo.DataPortGroup" uuid="22bb78bb-58b0-4373-9aa4-d7592935d646"/>
+    <interfaceParameterInfo type="ModelRefInfoRepo.InterfaceParameterInfo" uuid="6a8663ed-a806-4875-96ff-6c4c2444efcf"/>
+    <messageInfo type="ModelRefInfoRepo.MessageInformation" uuid="6b7d04c1-dd55-4bd4-ba94-e69edb136c4a">
+      <rootOutportInfo type="ModelRefInfoRepo.MessageRootPortInfo" uuid="8e430ed3-4bfa-4fa5-a7b8-10c8574fd521">
+        <CompMsgInfoMap type="ModelRefInfoRepo.MessageCompPortInfo" uuid="b7880ed5-277b-4fdb-b793-e30551c0f918">
+          <msgPortType>MESSAGE_PORT_SEND</msgPortType>
+        </CompMsgInfoMap>
+        <GrHierarchyMsgModeMap type="ModelRefInfoRepo.MessageModeMap" uuid="cf43c953-d0e0-49fd-a803-df053b285281">
+          <messageMode>2</messageMode>
+        </GrHierarchyMsgModeMap>
+      </rootOutportInfo>
+    </messageInfo>
+    <methodInfo type="ModelRefInfoRepo.MethodExistenceInfo" uuid="87d6cd39-9682-4402-b40f-b8a795fd40e8">
+      <hasEnableMethod>true</hasEnableMethod>
       <hasSystemInitializeMethod>true</hasSystemInitializeMethod>
       <hasSystemResetMethod>true</hasSystemResetMethod>
       <hasTerminateMethod>true</hasTerminateMethod>
     </methodInfo>
-    <periodicEventPortUnsupportedBlockInfo type="ModelRefInfoRepo.PeriodicEventPortUnsupportedBlockInfo" uuid="df9f6625-8c31-46ce-9ecb-30209248db57"/>
-    <portGroupsRequireSameRate type="ModelRefInfoRepo.PortGroupsRequireSameRate" uuid="cf2e56b4-daf2-43c2-ae6f-589dc69c1b71">
-      <DSMPortGroups type="ModelRefInfoRepo.NameToPortGroupIdxVectMap" uuid="fb910b4d-a833-4501-92c4-79a09b207988"/>
-      <GlobalDSMPortGroups type="ModelRefInfoRepo.NameToPortGroupIdxVectMap" uuid="39a2a358-18cb-49e9-9bdb-350c6035d4d6"/>
-      <mergedPortGroups type="ModelRefInfoRepo.NameToPortGroupIdxVectMap" uuid="0519927b-c773-4210-83e3-c7eedd0937e6"/>
+    <periodicEventPortUnsupportedBlockInfo type="ModelRefInfoRepo.PeriodicEventPortUnsupportedBlockInfo" uuid="a2621b25-9780-4bff-9687-0311b7a109b5"/>
+    <portGroupsRequireSameRate type="ModelRefInfoRepo.PortGroupsRequireSameRate" uuid="73cef3b6-1092-47bb-913b-fea329e2e032">
+      <DSMPortGroups type="ModelRefInfoRepo.NameToPortGroupIdxVectMap" uuid="9a6b5085-feb0-4079-86f1-f0273e593ac5"/>
+      <GlobalDSMPortGroups type="ModelRefInfoRepo.NameToPortGroupIdxVectMap" uuid="dc0652d8-8b1d-49ca-944c-3ca1fe4afe06"/>
+      <mergedPortGroups type="ModelRefInfoRepo.NameToPortGroupIdxVectMap" uuid="3b1df017-1682-4934-8f77-5ef3efc74e83"/>
     </portGroupsRequireSameRate>
-    <rateBasedMdlGlobalDSMRateSpec type="ModelRefInfoRepo.GlobalDSMRateSpecMap" uuid="3502660d-1000-44f9-b352-23314c0ce567"/>
-    <rateSpecOfGlobalDSMAccessedByDescExpFcnMdlMap type="ModelRefInfoRepo.GlobalDSMRateSpecMap" uuid="99a41b52-f5a7-43c1-86a9-966dbe829cbb"/>
-    <rootBlockDiagramInterface type="ci.Model" uuid="e4a1b801-c900-4fec-8457-e8cfa3b6c81a">
-      <p_RootComponentInterface type="ci.ComponentInterface" uuid="669308d9-de20-4fae-b63c-987ec1ef8e00">
+    <rateBasedMdlGlobalDSMRateSpec type="ModelRefInfoRepo.GlobalDSMRateSpecMap" uuid="de550570-36ce-4f26-a343-b328e78bf909"/>
+    <rateSpecOfGlobalDSMAccessedByDescExpFcnMdlMap type="ModelRefInfoRepo.GlobalDSMRateSpecMap" uuid="7495eb44-7b00-4599-899d-41743149a027"/>
+    <rootBlockDiagramInterface type="ci.Model" uuid="aef9e029-4386-4737-8905-313cb3c8f0f3">
+      <p_RootComponentInterface type="ci.ComponentInterface" uuid="9242df8b-62e4-456c-b6fd-9c37d8bf6f1c">
         <p_Name>Rpi_cam</p_Name>
+        <p_OutputPorts type="ci.SignalInterface" uuid="bdd98191-ed9b-4ea9-ac5b-eb09e7c43f20">
+          <p_ComputedNumericDimensions>1.0</p_ComputedNumericDimensions>
+          <p_ComputedSampleTime>.1</p_ComputedSampleTime>
+          <p_ComputedSampleTime>0.0</p_ComputedSampleTime>
+          <p_Name>error</p_Name>
+        </p_OutputPorts>
         <p_Type>ROOT</p_Type>
       </p_RootComponentInterface>
     </rootBlockDiagramInterface>
-    <simulinkFunctions type="ModelRefInfoRepo.SimulinkFunctions" uuid="0e6b36c6-5722-4faa-8e26-6a92b158fc47">
+    <simulinkFunctions type="ModelRefInfoRepo.SimulinkFunctions" uuid="6d5815b2-7ea6-41c0-be2f-6f0820f4d72a">
+      <compFunctions type="ModelRefInfoRepo.CompFunction" uuid="27b8f8f8-1b9d-4493-9625-f74964e6bd60">
+        <CGFunctionName>SendData</CGFunctionName>
+        <CGIsCalled>true</CGIsCalled>
+        <canInvokeConcurrently>true</canInvokeConcurrently>
+        <fullPathToFunction>Rpi_cam/error_In_0</fullPathToFunction>
+        <functionBlock>Rpi_cam/error</functionBlock>
+        <functionName>SendData</functionName>
+        <hasDeclaration>true</hasDeclaration>
+        <isDefined>true</isDefined>
+        <isServiceFcn>true</isServiceFcn>
+        <sourceModel>Rpi_cam</sourceModel>
+        <variantFunctionBlockPath>Rpi_cam/error</variantFunctionBlockPath>
+        <variantFunctionNetEMVCE type="ModelRefInfoRepo.VariantFunctionNetEMVCE" uuid="8aaea38e-d5c0-40af-ab2e-8fca24ff0076">
+          <EMVCE>({true}_0)</EMVCE>
+        </variantFunctionNetEMVCE>
+        <visibility>Scoped Local</visibility>
+        <fcnArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="9eb5611d-b1ef-4cb8-8b1b-93cc7618b785">
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="e24126c6-c484-4d9f-9f62-231d6e5d4089">
+            <index>I0</index>
+          </argIndexMap>
+          <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="0254d71b-30ae-4a90-8f34-bffc70aa130c">
+            <index>O0</index>
+            <position>1</position>
+          </argIndexMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="ec25378c-2b90-46d9-a874-d0e39e4272c1">
+            <name>data</name>
+          </argNameMap>
+          <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="7bad2cbc-f09d-4287-b7c9-5ab0ea994eed">
+            <name>status</name>
+            <position>1</position>
+          </argNameMap>
+          <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="e07d47c9-762c-41d1-816f-8f83706235fc">
+            <argumentType>1</argumentType>
+            <dims>1</dims>
+            <passByType>CONST_POINTER_CONST_DATA</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="523a07a4-fd6d-4dab-9ab7-205f103e41ed">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+            </dataType>
+          </inArgs>
+          <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="d9275b6c-da8f-4c6e-9b20-649f0757605e">
+            <argumentType>2</argumentType>
+            <dims>1</dims>
+            <passByType>AUTO</passByType>
+            <dataType type="ModelRefInfoRepo.CompDataType" uuid="d1b3535b-395e-4316-b1b2-02459abe8f00">
+              <dataClass>Numeric</dataClass>
+              <dataTypeName>numerictype(1,32,0)</dataTypeName>
+            </dataType>
+          </outArgs>
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnArgs>
+        <fcnFpcArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="c31411a4-987c-4e6c-bb9b-beeb1d487519">
+          <returnArgIdx>-1</returnArgIdx>
+        </fcnFpcArgs>
+      </compFunctions>
+      <compServicePorts type="ModelRefInfoRepo.CompIOServicePort" uuid="a462ffcc-2826-4beb-b3bb-8d8b8ec012b0">
+        <providingServices type="ModelRefInfoRepo.CompMsgService" uuid="8cdcaba9-ba32-4e20-b3c3-95d8e6ee721b">
+          <compFcnFullPath>Rpi_cam/error_In_0</compFcnFullPath>
+          <serviceCGFcnName>SendData</serviceCGFcnName>
+          <serviceName>SendData</serviceName>
+          <serviceArgs type="ModelRefInfoRepo.CompFunctionArgs" uuid="147c9828-479a-4b11-b458-1d17a452dff8">
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="66f28b5c-b8f7-454d-9ba7-43484dc38a7a">
+              <index>I0</index>
+            </argIndexMap>
+            <argIndexMap type="ModelRefInfoRepo.ArgIndexMap" uuid="64929c24-5c92-4d8f-8156-a2e3013486c4">
+              <index>O0</index>
+              <position>1</position>
+            </argIndexMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="d9d918e8-b08f-4532-be1f-90adfb504345">
+              <name>data</name>
+            </argNameMap>
+            <argNameMap type="ModelRefInfoRepo.ArgNameMap" uuid="6b5c785f-30ef-4f12-b368-ec4f9ab4578c">
+              <name>status</name>
+              <position>1</position>
+            </argNameMap>
+            <inArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="afb356f2-f347-4e24-bafa-568b05e0975b">
+              <argumentType>1</argumentType>
+              <dims>1</dims>
+              <passByType>CONST_POINTER_CONST_DATA</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="7f9ff883-fc59-434b-b84e-682a6a799d4c">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(&apos;double&apos;)</dataTypeName>
+              </dataType>
+            </inArgs>
+            <outArgs type="ModelRefInfoRepo.CompFunctionArgInfo" uuid="3dea95e9-84f8-4b90-9de3-07baeb654ba1">
+              <argumentType>2</argumentType>
+              <dims>1</dims>
+              <passByType>AUTO</passByType>
+              <dataType type="ModelRefInfoRepo.CompDataType" uuid="19420ac4-e045-4dee-a260-5797704be494">
+                <dataClass>Numeric</dataClass>
+                <dataTypeName>numerictype(1,32,0)</dataTypeName>
+              </dataType>
+            </outArgs>
+            <returnArgIdx>-1</returnArgIdx>
+          </serviceArgs>
+        </providingServices>
+        <servicePortKey type="ModelRefInfoRepo.ServicePortKey">
+          <blockPath>Rpi_cam/error</blockPath>
+          <portType>SVC_IN_PORT</portType>
+        </servicePortKey>
+      </compServicePorts>
       <compSimulinkFunctionCatalog></compSimulinkFunctionCatalog>
     </simulinkFunctions>
     <sltpContext type="sltp.mm.core.Context" uuid="9163d92d-0590-41fc-b13d-3bf36253804b">
       <globalData type="sltp.mm.core.GlobalData" uuid="d2eb01c4-be9e-4f50-8404-32d642b7ba29">
         <dataName>portOut1</dataName>
+        <type>RootOutport</type>
+      </globalData>
+      <globalData type="sltp.mm.core.GlobalData" uuid="83724dbf-c9dc-424e-8313-18764ca77087">
+        <dataName>porterror</dataName>
         <type>RootOutport</type>
       </globalData>
       <defaultEventBehavior type="sltp.mm.core.EventBehavior" uuid="20acfb17-c6b5-4a78-9c36-261814a06c6d"/>
@@ -206,19 +348,19 @@
         </subgraph>
       </rootTask>
     </sltpContext>
-    <stateWriterToOwnerMap type="ModelRefInfoRepo.StateWriterInfo" uuid="47460fd6-1bac-4966-adc8-f37ce61bee68"/>
-    <stoClientDataRegistry type="sto.ClientDataRegistry" uuid="23856fdc-6708-49d7-b04f-49a2fc4a5095">
-      <dataSets type="sto.ClientClockNamedDataSet" uuid="e9c25226-ccab-4089-ab98-845a5f7823ad">
+    <stateWriterToOwnerMap type="ModelRefInfoRepo.StateWriterInfo" uuid="65c118b0-7fc8-419e-84f3-555298979fef"/>
+    <stoClientDataRegistry type="sto.ClientDataRegistry" uuid="a19a9a42-fea2-4785-8c54-8a27cd89c12c">
+      <dataSets type="sto.ClientClockNamedDataSet" uuid="2f76ff8f-09c6-4568-a287-60f5005a4e81">
         <tag>sltpEvents</tag>
       </dataSets>
-      <dataSets type="sto.ClientTaskHierarchyElementNamedDataSet" uuid="bf189d5a-9b8f-4771-9dab-08cf9318dfd5">
+      <dataSets type="sto.ClientTaskHierarchyElementNamedDataSet" uuid="da4e5faf-6edd-4214-ae76-5a41fe82bc63">
         <tag>sltpTaskGroups</tag>
       </dataSets>
-      <dataSets type="sto.ClientTaskHierarchyElementNamedDataSet" uuid="ec64475e-06a3-4760-8f42-b29e4928deec">
-        <dSet type="ModelRefInfoRepo.SltpTaskData" uuid="162315a2-8c67-4d4c-bf6c-add589ff275c"/>
-        <tSet type="ModelRefInfoRepo.SltpTaskData" uuid="162315a2-8c67-4d4c-bf6c-add589ff275c">
+      <dataSets type="sto.ClientTaskHierarchyElementNamedDataSet" uuid="2e0baeea-49a9-4abf-876f-d006e646bee8">
+        <dSet type="ModelRefInfoRepo.SltpTaskData" uuid="bdcecbeb-9a1a-4469-8404-b54b06f10dc4"/>
+        <tSet type="ModelRefInfoRepo.SltpTaskData" uuid="bdcecbeb-9a1a-4469-8404-b54b06f10dc4">
           <dataName>D1</dataName>
-          <linkedSet type="sto.ClientTaskHierarchyElementNamedDataSet" uuid="ec64475e-06a3-4760-8f42-b29e4928deec"/>
+          <linkedSet type="sto.ClientTaskHierarchyElementNamedDataSet" uuid="2e0baeea-49a9-4abf-876f-d006e646bee8"/>
           <id type="sto.TaskHierarchyElementId">
             <clockId>Rpi_cam::defaultTimer</clockId>
             <id>_task0</id>
@@ -227,6 +369,6 @@
         <tag>sltpTasks</tag>
       </dataSets>
     </stoClientDataRegistry>
-    <varTsUIDMap type="ModelRefInfoRepo.VarTsUIDMap" uuid="1ce365ad-027b-45d8-ada7-4dbb85bc6a9e"/>
+    <varTsUIDMap type="ModelRefInfoRepo.VarTsUIDMap" uuid="f3cc51a6-e696-4759-9cc8-23c83cb1a580"/>
   </ModelRefInfoRepo.ModelRefInfoRoot>
 </MF0>

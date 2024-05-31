@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'Rpi_cam'.
 //
-// Model version                  : 1.153
+// Model version                  : 1.154
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Tue Apr  9 15:11:19 2024
+// C/C++ source code generated on : Thu Apr 18 13:37:00 2024
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -19,15 +19,7 @@
 #ifndef RTW_HEADER_Rpi_cam_private_h_
 #define RTW_HEADER_Rpi_cam_private_h_
 #include "rtwtypes.h"
-#include "multiword_types.h"
 #include "Rpi_cam_types.h"
-#include "Rpi_cam.h"
-
-// Private macros used by the generated code to access rtModel
-#ifndef rtmSetTFinal
-#define rtmSetTFinal(rtm, val)         ((rtm)->Timing.tFinal = (val))
-#endif
-
 #ifndef UCHAR_MAX
 #include <limits.h>
 #endif
@@ -77,8 +69,15 @@ preprocessor word size checks.
 #endif
 
 // Skipping ulong_long/long_long check: insufficient preprocessor integer range. 
+extern void makeConstraintMatrix_Projective_D_D(const real_T pts1[], const
+  real_T pts2[], uint32_T sampleNum, uint32_T maxSampleNum, real_T constraint[]);
+extern void normPts_D_D(const real_T pts[], const uint32_T samples[], uint32_T
+  ptsNum, uint32_T sampleNum, real_T ptsNorm[], real_T scale[], real_T cents[]);
+extern void QRCompQy_real_T(real_T qr[], const real_T qrAuxj[], real_T y[],
+  int32_T n, int32_T j);
+extern void QRSL1_real_T(real_T qr[], const real_T qrAux[], real_T y[], int32_T
+  n, int32_T k);
 extern real_T rt_roundd_snf(real_T u);
-extern int32_T div_nde_s32_floor(int32_T numerator, int32_T denominator);
 
 #endif                                 // RTW_HEADER_Rpi_cam_private_h_
 

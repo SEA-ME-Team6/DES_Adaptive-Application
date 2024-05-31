@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'Rpi_cam'.
 //
-// Model version                  : 1.153
+// Model version                  : 1.154
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Tue Apr  9 15:11:19 2024
+// C/C++ source code generated on : Thu Apr 18 13:37:00 2024
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -81,48 +81,6 @@ struct vision_internal_blocks_Warp
 };
 
 #endif                                 // struct_vision_internal_blocks_Warp
-
-#ifndef struct_emxArray_boolean_T
-#define struct_emxArray_boolean_T
-
-struct emxArray_boolean_T
-{
-  boolean_T *data;
-  int32_T *size;
-  int32_T allocatedSize;
-  int32_T numDimensions;
-  boolean_T canFreeData;
-};
-
-#endif                                 // struct_emxArray_boolean_T
-
-#ifndef struct_emxArray_int32_T
-#define struct_emxArray_int32_T
-
-struct emxArray_int32_T
-{
-  int32_T *data;
-  int32_T *size;
-  int32_T allocatedSize;
-  int32_T numDimensions;
-  boolean_T canFreeData;
-};
-
-#endif                                 // struct_emxArray_int32_T
-
-#ifndef struct_emxArray_real_T
-#define struct_emxArray_real_T
-
-struct emxArray_real_T
-{
-  real_T *data;
-  int32_T *size;
-  int32_T allocatedSize;
-  int32_T numDimensions;
-  boolean_T canFreeData;
-};
-
-#endif                                 // struct_emxArray_real_T
 
 // Parameters (default storage)
 typedef struct P_ P;

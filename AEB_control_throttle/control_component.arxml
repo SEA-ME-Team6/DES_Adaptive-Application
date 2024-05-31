@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Auto generated XML Component Description for model control
+Model version                : 1.3
+Simulink Coder version       : Simulink Coder 23.2 (R2023b) 01-Aug-2023
+XML source code generated on : Fri May 31 11:36:53 2024
+Model Checksum               : 604566958 2718414761 963435697 4001492069
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00050.xsd">
+    <AR-PACKAGES>
+        <AR-PACKAGE>
+            <SHORT-NAME>Components</SHORT-NAME>
+            <ELEMENTS>
+                <ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE UUID="8e461cee-40bb-550b-a316-7a933a7b0b36">
+                    <SHORT-NAME>control</SHORT-NAME>
+                    <PORTS>
+                        <R-PORT-PROTOTYPE UUID="f1438379-6d70-5f16-75cd-24dd1c9a49e6">
+                            <SHORT-NAME>RequiredPort</SHORT-NAME>
+                            <REQUIRED-COM-SPECS>
+                                <QUEUED-RECEIVER-COM-SPEC>
+                                    <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/Interfaces/RequiredInterface/AEB</DATA-ELEMENT-REF>
+                                    <HANDLE-OUT-OF-RANGE>NONE</HANDLE-OUT-OF-RANGE>
+                                    <USES-END-TO-END-PROTECTION>false</USES-END-TO-END-PROTECTION>
+                                </QUEUED-RECEIVER-COM-SPEC>
+                            </REQUIRED-COM-SPECS>
+                            <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/Interfaces/RequiredInterface</REQUIRED-INTERFACE-TREF>
+                        </R-PORT-PROTOTYPE>
+                        <P-PORT-PROTOTYPE UUID="a7a33f60-6196-55ce-87d6-2fcc062009fe">
+                            <SHORT-NAME>ProvidedPort</SHORT-NAME>
+                            <PROVIDED-COM-SPECS>
+                                <QUEUED-SENDER-COM-SPEC>
+                                    <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/Interfaces/ProvidedInterface/Throttle</DATA-ELEMENT-REF>
+                                    <HANDLE-OUT-OF-RANGE>NONE</HANDLE-OUT-OF-RANGE>
+                                    <USES-END-TO-END-PROTECTION>false</USES-END-TO-END-PROTECTION>
+                                </QUEUED-SENDER-COM-SPEC>
+                            </PROVIDED-COM-SPECS>
+                            <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/Interfaces/ProvidedInterface</PROVIDED-INTERFACE-TREF>
+                        </P-PORT-PROTOTYPE>
+                    </PORTS>
+                </ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE>
+            </ELEMENTS>
+            <AR-PACKAGES/>
+        </AR-PACKAGE>
+    </AR-PACKAGES>
+</AUTOSAR>

@@ -1,0 +1,1 @@
+Simulink block Rpi_cam/error using DDS topic name 'Error' for ara::com event communication.

@@ -1,0 +1,15 @@
+module eprosima_dds {
+  struct ProvidedInterface_Steering {
+    double m_double;
+  }
+  ;
+}
+;
+
+module eprosima_dds {
+  struct RequiredInterface_LKAS {
+    double m_double;
+  }
+  ;
+}
+;

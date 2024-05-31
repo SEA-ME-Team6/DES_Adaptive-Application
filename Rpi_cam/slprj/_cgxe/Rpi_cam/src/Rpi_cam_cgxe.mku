@@ -8,7 +8,7 @@ LD = $(CC)
  
 MODEL  = Rpi_cam
 TARGET = cgxe
-MODULE_SRCS 	= m_GaAvoJiJTOAF4Sj2d9vExG.cpp
+MODULE_SRCS 	= m_uoiFwOpYbmSgDtdnhR8aM.cpp
 MODEL_SRC	= Rpi_cam_cgxe.cpp
 MODEL_REG    = Rpi_cam_cgxe_registry.cpp
 MAKEFILE    = Rpi_cam_cgxe.mku

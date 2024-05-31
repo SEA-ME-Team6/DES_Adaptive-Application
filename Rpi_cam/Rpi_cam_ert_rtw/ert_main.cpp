@@ -7,9 +7,9 @@
 //
 // Code generated for Simulink model 'Rpi_cam'.
 //
-// Model version                  : 1.153
+// Model version                  : 1.154
 // Simulink Coder version         : 23.2 (R2023b) 01-Aug-2023
-// C/C++ source code generated on : Tue Apr  9 15:11:19 2024
+// C/C++ source code generated on : Thu Apr 18 13:37:00 2024
 //
 // Target selection: ert.tlc
 // Embedded hardware selection: ARM Compatible->ARM Cortex
@@ -22,7 +22,6 @@
 #include "Rpi_cam_private.h"
 #include "rtwtypes.h"
 #include "limits.h"
-#include "ext_mode.h"
 #include "MW_raspi_init.h"
 #include "MW_Pyserver_control.h"
 #include "linuxinitialize.h"
@@ -36,7 +35,6 @@ void *baseRateTask(void *arg);
 void *subrateTask(void *arg);
 volatile boolean_T stopRequested = false;
 volatile boolean_T runModel = true;
-extmodeErrorCode_T errorCode;
 sem_t stopSem;
 sem_t baserateTaskSem;
 pthread_t schedulerThread;
@@ -48,25 +46,10 @@ void *baseRateTask(void *arg)
   runModel = (rtmGetErrorStatus(rtM) == (NULL));
   while (runModel) {
     sem_wait(&baserateTaskSem);
-    extmodeSimulationTime_T currentTime = (extmodeSimulationTime_T)
-      rtM->Timing.taskTime0;
-
-    // Run External Mode background activities
-    errorCode = extmodeBackgroundRun();
-    if (errorCode != EXTMODE_SUCCESS) {
-      // Code to handle External Mode background task errors
-      // may be added here
-    }
-
     Rpi_cam_step();
 
     // Get model outputs here
-
-    // Trigger External Mode event
-    extmodeEvent(0, currentTime);
     stopRequested = !((rtmGetErrorStatus(rtM) == (NULL)));
-    runModel = !stopRequested && !extmodeSimulationComplete() &&
-      !extmodeStopRequested();
   }
 
   runModel = 0;
@@ -96,7 +79,6 @@ void *terminateTask(void *arg)
 
   // Terminate model
   Rpi_cam_terminate();
-  extmodeReset();
   sem_post(&stopSem);
   return NULL;
 }
@@ -109,29 +91,8 @@ int main(int argc, char **argv)
   MW_launchPyserver();
   rtmSetErrorStatus(rtM, 0);
 
-  // Parse External Mode command line arguments
-  errorCode = extmodeParseArgs(argc, (const char_T **)argv);
-  if (errorCode != EXTMODE_SUCCESS) {
-    return (errorCode);
-  }
-
   // Initialize model
   Rpi_cam_initialize();
-
-  // External Mode initialization
-  errorCode = extmodeInit(rtM->extModeInfo, &rtmGetTFinal(rtM));
-  if (errorCode != EXTMODE_SUCCESS) {
-    // Code to handle External Mode initialization errors
-    // may be added here
-  }
-
-  if (errorCode == EXTMODE_SUCCESS) {
-    // Wait until a Start or Stop Request has been received from the Host
-    extmodeWaitForHostRequest(EXTMODE_WAIT_FOREVER);
-    if (extmodeStopRequested()) {
-      rtmSetStopRequested(rtM, true);
-    }
-  }
 
   // Call RTOS Initialization function
   myRTOSInit(0.1, 0);
