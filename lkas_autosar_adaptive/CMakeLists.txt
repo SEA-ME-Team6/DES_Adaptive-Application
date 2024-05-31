@@ -40,6 +40,9 @@ endif()
 ## System Libraries
 ###########################################################################
 find_library(FOUND_LIBM m NO_SYSTEM_ENVIRONMENT_PATH PATHS ${CMAKE_C_IMPLICIT_LINK_DIRECTORIES} ${CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES})
+find_package(Threads REQUIRED)
+find_package(Boost 1.55 COMPONENTS system thread log REQUIRED)
+find_package(vsomeip3 REQUIRED)
 
 ###########################################################################
 ## Target definition and commands
@@ -51,14 +54,29 @@ if(NOT TARGET rtwshared)
     add_subdirectory(../slprj/autosar_adaptive/_sharedutils ${BINARY_START_DIR}/slprj/autosar_adaptive/_sharedutils)
 endif()
 
+file(GLOB ARA_COM_SOURCES "${CMAKE_SOURCE_DIR}/ara/com/*.cpp")
+file(GLOB ARA_COM_VSOMEIP_SOURCES "${CMAKE_SOURCE_DIR}/ara/com/vsomeip/*.cpp")
+file(GLOB ARA_CORE_SOURCES "${CMAKE_SOURCE_DIR}/ara/core/*.cpp")
+# file(GLOB ARA_DIAG_SOURCES "${CMAKE_SOURCE_DIR}/ara/diag/*.cpp")
+# file(GLOB ARA_EXEC_SOURCES "${CMAKE_SOURCE_DIR}/ara/exec/*.cpp")
+file(GLOB ARA_LOG_SOURCES "${CMAKE_SOURCE_DIR}/ara/log/*.cpp")
+
 # Definition of target "lkas".
-add_executable(lkas  /root/Documents/MATLAB/SupportPackages/R2024a/toolbox/realtime/targets/linux/src/MW_v4l2_cam.c
-    /root/Documents/MATLAB/SupportPackages/R2024a/toolbox/realtime/targets/linux/src/MW_availableWebcam.c
+add_executable(lkas  /home/dahyun/Documents/MATLAB/SupportPackages/R2024a/toolbox/realtime/targets/linux/src/MW_v4l2_cam.c
+    /home/dahyun/Documents/MATLAB/SupportPackages/R2024a/toolbox/realtime/targets/linux/src/MW_availableWebcam.c
     ${MATLAB_ROOT}/toolbox/vision/visionrt/vipsvd/svd_d_rt.c
     ${MATLAB_ROOT}/toolbox/vision/visionrt/vipsvd/svd_helper_rt.c
     ${MATLAB_ROOT}/toolbox/vision/visionrt/vipendian/is_little_endian_rt.c
     ${START_DIR}/lkas_autosar_adaptive/lkas.cpp
-    ${START_DIR}/lkas_autosar_adaptive/main.cpp)
+    ${START_DIR}/lkas_autosar_adaptive/main.cpp    
+    main.cpp
+    lkas.cpp
+    ${ARA_COM_SOURCES}
+    ${ARA_COM_VSOMEIP_SOURCES}
+    ${ARA_CORE_SOURCES}
+    # ${ARA_DIAG_SOURCES}
+    # ${ARA_EXEC_SOURCES}
+    ${ARA_LOG_SOURCES})
 
 # Set properties for target "lkas".
 set_target_properties(lkas PROPERTIES PREFIX ""
@@ -86,9 +104,19 @@ target_compile_definitions(lkas PRIVATE -DMODEL=lkas
     -DINTEGER_CODE=0
     -DMT=0)
 
+include_directories(
+    ${Boost_INCLUDE_DIR}
+    ${CMAKE_SOURCE_DIR}/ara/com
+    ${CMAKE_SOURCE_DIR}/ara/core
+    # ${CMAKE_SOURCE_DIR}/ara/diag
+    # ${CMAKE_SOURCE_DIR}/ara/exec
+    ${CMAKE_SOURCE_DIR}/ara/log
+    ${CMAKE_SOURCE_DIR}/slprj/autosar_adaptive/_sharedutils
+)
+
 # Specify include directories for target "lkas".
 target_include_directories(lkas PRIVATE ${START_DIR}
-    /root/Documents/MATLAB/SupportPackages/R2024a/toolbox/realtime/targets/linux/include
+    /home/dahyun/Documents/MATLAB/SupportPackages/R2024a/toolbox/realtime/targets/linux/include
     ${MATLAB_ROOT}/toolbox/shared/dsp/vision/matlab/include
     ${MATLAB_ROOT}/toolbox/vision/include
     ${MATLAB_ROOT}/toolbox/vision/visionrt/export/include
@@ -111,7 +139,9 @@ target_link_libraries(lkas PRIVATE rtwshared
     $<$<BOOL:${WIN32}>:kernel32>
     $<$<BOOL:${WIN32}>:ws2_32>
     $<$<BOOL:${WIN32}>:mswsock>
-    $<$<BOOL:${WIN32}>:advapi32>)
+    $<$<BOOL:${WIN32}>:advapi32>
+    Threads::Threads
+    vsomeip3)
 
 # Extract DWARF debug symbols into a separate file when building 
 # executable programs for Apple platforms.

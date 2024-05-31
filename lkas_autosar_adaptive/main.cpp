@@ -6,13 +6,13 @@
 #include <chrono>
 #include <functional>
 #include "PosixExecutor.hpp"
-#include <ara/core/initialization.h>
-#include <ara/core/result.h>
-#include <ara/core/string_view.h>
-#include <ara/exec/execution_client.h>
-#include <ara/log/common.h>
-#include <ara/log/logger.h>
-#include <ara/log/log_stream.h>
+#include "ara/core/initialization.h"
+#include "ara/core/result.h"
+#include "ara/core/string_view.h"
+// #include "ara/exec/execution_client.h"
+#include "ara/log/common.h"
+#include "ara/log/logger.h"
+#include "ara/log/log_stream.h"
 #include "lkas.h"
 
 /* main() handles the following: */
@@ -37,27 +37,27 @@ int32_t main() {
   } /* if */
 
   if (bAraInitialized) {
-    ara::log::Logger &araLog{ara::log::CreateLogger(
-        ara::core::StringView{"lkas"},
-        ara::core::StringView{"Logger for lkas's main function."},
-        ara::log::LogLevel::kWarn)};
+    ara::log::Logger araLog = ara::log::CreateLogger(
+        std::string{"lkas"},
+        std::string{"Logger for lkas's main function."},
+        ara::log::LogLevel::kWarn);
 
-    /* Report Execution state */
-    const ara::exec::ExecutionClient exec_client;
-    try {
-      if (!exec_client.ReportExecutionState(
-              ara::exec::ExecutionState::kRunning)) {
-        araLog.LogError() << "Unable to report running state: "
-                             "ara::exec::ExecutionReturnType::kGeneralError.\n";
-        bProceed = false;
-      } else {
-        araLog.LogVerbose() << "Adaptive application entering running state.";
-      } /* if */
-    } catch (std::exception const &e) {
-      araLog.LogError() << "Unable to report running state due to exception: "
-                        << e.what() << ".\n";
-      bProceed = false;
-    }
+    // /* Report Execution state */
+    // const ara::exec::ExecutionClient exec_client;
+    // try {
+    //   if (!exec_client.ReportExecutionState(
+    //           ara::exec::ExecutionState::kRunning)) {
+    //     araLog.LogError() << "Unable to report running state: "
+    //                          "ara::exec::ExecutionReturnType::kGeneralError.\n";
+    //     bProceed = false;
+    //   } else {
+    //     araLog.LogVerbose() << "Adaptive application entering running state.";
+    //   } /* if */
+    // } catch (std::exception const &e) {
+    //   araLog.LogError() << "Unable to report running state due to exception: "
+    //                     << e.what() << ".\n";
+    //   bProceed = false;
+    // }
 
     lkas lkas_Obj;
     if (bProceed) {
