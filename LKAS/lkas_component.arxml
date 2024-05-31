@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Auto generated XML Component Description for model lkas
+Model version                : 1.1
+Simulink Coder version       : Simulink Coder 24.1 (R2024a) 19-Nov-2023
+XML source code generated on : Fri May 31 15:32:00 2024
+Model Checksum               : 1022670798 455503621 2279108179 675694738
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00051.xsd">
+    <AR-PACKAGES>
+        <AR-PACKAGE>
+            <SHORT-NAME>Components</SHORT-NAME>
+            <ELEMENTS>
+                <ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE UUID="b6857eb2-7e2f-576a-3e01-26be726e387e">
+                    <SHORT-NAME>lkas</SHORT-NAME>
+                    <PORTS>
+                        <P-PORT-PROTOTYPE UUID="8034afcd-2b83-5650-a582-e3d647bfac67">
+                            <SHORT-NAME>ProvidedPort</SHORT-NAME>
+                            <PROVIDED-COM-SPECS>
+                                <QUEUED-SENDER-COM-SPEC>
+                                    <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/Interfaces/ProvidedInterface/Error</DATA-ELEMENT-REF>
+                                    <HANDLE-OUT-OF-RANGE>NONE</HANDLE-OUT-OF-RANGE>
+                                    <USES-END-TO-END-PROTECTION>false</USES-END-TO-END-PROTECTION>
+                                </QUEUED-SENDER-COM-SPEC>
+                            </PROVIDED-COM-SPECS>
+                            <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/Interfaces/ProvidedInterface</PROVIDED-INTERFACE-TREF>
+                        </P-PORT-PROTOTYPE>
+                    </PORTS>
+                </ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE>
+            </ELEMENTS>
+            <AR-PACKAGES/>
+        </AR-PACKAGE>
+    </AR-PACKAGES>
+</AUTOSAR>

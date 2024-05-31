@@ -1,0 +1,2 @@
+Simulink block control/Steering using SOME/IP EventId '12225' and EventGroupId '12225' for ara::com event communication.
+Simulink block control/LKAS using SOME/IP EventId '14859' and EventGroupId '14859' for ara::com event communication.

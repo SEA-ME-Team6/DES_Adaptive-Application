@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Auto generated XML Component Description for model lkas
+Model version                : 1.1
+Simulink Coder version       : Simulink Coder 24.1 (R2024a) 19-Nov-2023
+XML source code generated on : Fri May 31 15:32:00 2024
+Model Checksum               : 1022670798 455503621 2279108179 675694738
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00051.xsd">
+    <AR-PACKAGES>
+        <AR-PACKAGE>
+            <SHORT-NAME>MachineStates</SHORT-NAME>
+            <ELEMENTS>
+                <MODE-DECLARATION-GROUP>
+                    <SHORT-NAME>MachineFG</SHORT-NAME>
+                    <INITIAL-MODE-REF DEST="MODE-DECLARATION">/MachineStates/MachineFG/Running</INITIAL-MODE-REF>
+                    <MODE-DECLARATIONS>
+                        <MODE-DECLARATION UUID="f96a6bcd-7211-5a2c-bfb2-6b9a50ee9b54">
+                            <SHORT-NAME>Off</SHORT-NAME>
+                            <VALUE>1</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="4d9d62c4-d92c-51ed-9189-f390104a0011">
+                            <SHORT-NAME>Startup</SHORT-NAME>
+                            <VALUE>2</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="d7753bad-c3b9-5191-f5c9-94d4f32310f1">
+                            <SHORT-NAME>Running</SHORT-NAME>
+                            <VALUE>3</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="57358679-8b6d-549c-f258-c538a4a3d08c">
+                            <SHORT-NAME>Idle</SHORT-NAME>
+                            <VALUE>4</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="ccfdf0ab-bed7-5e9f-d9c9-3ca3b859244a">
+                            <SHORT-NAME>Shutdown</SHORT-NAME>
+                            <VALUE>5</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="05cc3bea-21b8-5284-9e79-788d755b82e3">
+                            <SHORT-NAME>Restart</SHORT-NAME>
+                            <VALUE>6</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="1a13b4dd-d722-5e7f-f77b-81aa4894bb47">
+                            <SHORT-NAME>Verify</SHORT-NAME>
+                            <VALUE>7</VALUE>
+                        </MODE-DECLARATION>
+                    </MODE-DECLARATIONS>
+                </MODE-DECLARATION-GROUP>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Machines</SHORT-NAME>
+            <ELEMENTS>
+                <MACHINE UUID="878da0fb-ebe2-554f-0699-5d5422de7de5">
+                    <SHORT-NAME>Host</SHORT-NAME>
+                    <DEFAULT-APPLICATION-TIMEOUT>
+                        <ENTER-TIMEOUT-VALUE>60</ENTER-TIMEOUT-VALUE>
+                        <EXIT-TIMEOUT-VALUE>60</EXIT-TIMEOUT-VALUE>
+                    </DEFAULT-APPLICATION-TIMEOUT>
+                    <MACHINE-DESIGN-REF DEST="MACHINE-DESIGN">/lkas_MachineDesign/MachineDesign</MACHINE-DESIGN-REF>
+                    <MODULE-INSTANTIATIONS>
+                        <OS-MODULE-INSTANTIATION UUID="f968968f-6f09-58d1-856f-13e85b3129af">
+                            <SHORT-NAME>HostOsInstantiation</SHORT-NAME>
+                            <RESOURCE-GROUPS>
+                                <RESOURCE-GROUP UUID="ccf1a46e-ffd6-57bc-4c00-b8b18cd68acb">
+                                    <SHORT-NAME>DefaultResourceGroup</SHORT-NAME>
+                                    <CPU-USAGE>100</CPU-USAGE>
+                                    <MEM-USAGE>4096000000</MEM-USAGE>
+                                </RESOURCE-GROUP>
+                            </RESOURCE-GROUPS>
+                        </OS-MODULE-INSTANTIATION>
+                        <LOG-AND-TRACE-INSTANTIATION UUID="a0aac54a-590f-5cb9-bc1f-d7b64b748670">
+                            <SHORT-NAME>lkas_LogAndTraceInstantiation</SHORT-NAME>
+                            <DLT-ECU-REF DEST="DLT-ECU">/lkas_DltEcu/DefaultDltEcu</DLT-ECU-REF>
+                            <LOG-SINK-REFS>
+                                <LOG-SINK-REF DEST="DLT-LOG-SINK">/lkas_DltLogSink/DefaultDltLogSink</LOG-SINK-REF>
+                            </LOG-SINK-REFS>
+                        </LOG-AND-TRACE-INSTANTIATION>
+                    </MODULE-INSTANTIATIONS>
+                </MACHINE>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>lkas_DltApplicationToProcessMapping</SHORT-NAME>
+            <ELEMENTS>
+                <DLT-APPLICATION-TO-PROCESS-MAPPING UUID="cd4ee2b8-7ffe-514e-9fca-379ef692d739">
+                    <SHORT-NAME>DltApplicationToProcessMapping</SHORT-NAME>
+                    <DLT-APPLICATION-REF DEST="DLT-APPLICATION">/lkas_DltEcu/DefaultDltEcu/DefaultDltApplication</DLT-APPLICATION-REF>
+                    <PROCESS-REF DEST="PROCESS">/lkas_Processes/DefaultInstance</PROCESS-REF>
+                </DLT-APPLICATION-TO-PROCESS-MAPPING>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>lkas_DltEcu</SHORT-NAME>
+            <ELEMENTS>
+                <DLT-ECU UUID="394c0695-432b-5b8d-f128-eef1a357ce15">
+                    <SHORT-NAME>DefaultDltEcu</SHORT-NAME>
+                    <APPLICATIONS>
+                        <DLT-APPLICATION UUID="4025810a-ef47-51ae-4745-0d240364b91b">
+                            <SHORT-NAME>DefaultDltApplication</SHORT-NAME>
+                            <APPLICATION-DESCRIPTION>Log messages for adaptive application lkas</APPLICATION-DESCRIPTION>
+                            <APPLICATION-ID>9217</APPLICATION-ID>
+                        </DLT-APPLICATION>
+                    </APPLICATIONS>
+                </DLT-ECU>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>lkas_DltLogSink</SHORT-NAME>
+            <ELEMENTS>
+                <DLT-LOG-SINK UUID="5bf47c82-15f4-57aa-f846-0734c9385faf">
+                    <SHORT-NAME>DefaultDltLogSink</SHORT-NAME>
+                    <CATEGORY>DLT_LOGSINK_CONSOLE</CATEGORY>
+                    <DEFAULT-LOG-THRESHOLD>WARN</DEFAULT-LOG-THRESHOLD>
+                </DLT-LOG-SINK>
+            </ELEMENTS>
+        </AR-PACKAGE>
+    </AR-PACKAGES>
+</AUTOSAR>

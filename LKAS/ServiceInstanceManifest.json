@@ -1,0 +1,27 @@
+{
+	"RequiredPorts" : {
+		},
+		"ProvidedPorts" : {
+			"1" : {
+				"Binding" : [
+					"SOMEIP"
+				],
+				"EventGroupId" : "59050"
+			}
+		},
+		"InstanceSpecifierToInstanceIdentifiers" : {
+			"lkas/lkas_RootSwComponentPrototype/ProvidedPort" : {
+				"InstanceIdentifiers" : [
+					"1"
+				]
+			}
+		},
+		"PortToInstanceSpecifier" : {
+			"ProvidedPort" : "lkas/lkas_RootSwComponentPrototype/ProvidedPort"
+		},
+		"InstanceToClassTypeMapping" : {
+			"lkas_RootSwComponentPrototype" : "lkas"
+		},
+		"ClassTypeToMembersMapping" : {
+			}
+		}
