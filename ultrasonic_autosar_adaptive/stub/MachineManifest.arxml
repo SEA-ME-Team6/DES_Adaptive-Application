@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Auto generated XML Component Description for model ultrasonic
+Model version                : 1.2
+Simulink Coder version       : Simulink Coder 24.1 (R2024a) 19-Nov-2023
+XML source code generated on : Mon Jun 03 19:08:46 2024
+Model Checksum               : 4207346381 1510395723 3869758370 4248922346
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00051.xsd">
+    <AR-PACKAGES>
+        <AR-PACKAGE>
+            <SHORT-NAME>MachineStates</SHORT-NAME>
+            <ELEMENTS>
+                <MODE-DECLARATION-GROUP>
+                    <SHORT-NAME>MachineFG</SHORT-NAME>
+                    <INITIAL-MODE-REF DEST="MODE-DECLARATION">/MachineStates/MachineFG/Running</INITIAL-MODE-REF>
+                    <MODE-DECLARATIONS>
+                        <MODE-DECLARATION UUID="7365abe4-4862-55a2-9d5f-690c293afcb5">
+                            <SHORT-NAME>Off</SHORT-NAME>
+                            <VALUE>1</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="e339f437-0035-58fd-fdaf-effefa6e312e">
+                            <SHORT-NAME>Startup</SHORT-NAME>
+                            <VALUE>2</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="1e977023-8bc8-5c77-b9dd-b0e7328afc72">
+                            <SHORT-NAME>Running</SHORT-NAME>
+                            <VALUE>3</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="9af26255-6322-5c94-0772-4c5182846683">
+                            <SHORT-NAME>Idle</SHORT-NAME>
+                            <VALUE>4</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="2865ad0e-5fd3-538a-62f5-84bfc8d14511">
+                            <SHORT-NAME>Shutdown</SHORT-NAME>
+                            <VALUE>5</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="ed7a13c9-6711-5678-404c-e907504658c6">
+                            <SHORT-NAME>Restart</SHORT-NAME>
+                            <VALUE>6</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="6a3ceff3-f066-5b31-ff2e-e365ab0ad10c">
+                            <SHORT-NAME>Verify</SHORT-NAME>
+                            <VALUE>7</VALUE>
+                        </MODE-DECLARATION>
+                    </MODE-DECLARATIONS>
+                </MODE-DECLARATION-GROUP>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>Machines</SHORT-NAME>
+            <ELEMENTS>
+                <MACHINE UUID="10741809-c96b-5ad5-19af-64aa62bd7def">
+                    <SHORT-NAME>Host</SHORT-NAME>
+                    <DEFAULT-APPLICATION-TIMEOUT>
+                        <ENTER-TIMEOUT-VALUE>60</ENTER-TIMEOUT-VALUE>
+                        <EXIT-TIMEOUT-VALUE>60</EXIT-TIMEOUT-VALUE>
+                    </DEFAULT-APPLICATION-TIMEOUT>
+                    <MACHINE-DESIGN-REF DEST="MACHINE-DESIGN">/ultrasonic_MachineDesign/MachineDesign</MACHINE-DESIGN-REF>
+                    <MODULE-INSTANTIATIONS>
+                        <OS-MODULE-INSTANTIATION UUID="cc3184ec-7a22-5411-ff28-385aa3978c30">
+                            <SHORT-NAME>HostOsInstantiation</SHORT-NAME>
+                            <RESOURCE-GROUPS>
+                                <RESOURCE-GROUP UUID="f9e30a1b-8826-5fd8-c278-a2be186992d2">
+                                    <SHORT-NAME>DefaultResourceGroup</SHORT-NAME>
+                                    <CPU-USAGE>100</CPU-USAGE>
+                                    <MEM-USAGE>4096000000</MEM-USAGE>
+                                </RESOURCE-GROUP>
+                            </RESOURCE-GROUPS>
+                        </OS-MODULE-INSTANTIATION>
+                        <LOG-AND-TRACE-INSTANTIATION UUID="bbc43d0c-231d-5843-df26-6366a167d290">
+                            <SHORT-NAME>ultrasonic_LogAndTraceInstantiation</SHORT-NAME>
+                            <DLT-ECU-REF DEST="DLT-ECU">/ultrasonic_DltEcu/DefaultDltEcu</DLT-ECU-REF>
+                            <LOG-SINK-REFS>
+                                <LOG-SINK-REF DEST="DLT-LOG-SINK">/ultrasonic_DltLogSink/DefaultDltLogSink</LOG-SINK-REF>
+                            </LOG-SINK-REFS>
+                        </LOG-AND-TRACE-INSTANTIATION>
+                    </MODULE-INSTANTIATIONS>
+                </MACHINE>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>ultrasonic_DltApplicationToProcessMapping</SHORT-NAME>
+            <ELEMENTS>
+                <DLT-APPLICATION-TO-PROCESS-MAPPING UUID="2f21f373-b2bb-5e3f-0ed2-f5e27a8733ad">
+                    <SHORT-NAME>DltApplicationToProcessMapping</SHORT-NAME>
+                    <DLT-APPLICATION-REF DEST="DLT-APPLICATION">/ultrasonic_DltEcu/DefaultDltEcu/DefaultDltApplication</DLT-APPLICATION-REF>
+                    <PROCESS-REF DEST="PROCESS">/ultrasonic_Processes/DefaultInstance</PROCESS-REF>
+                </DLT-APPLICATION-TO-PROCESS-MAPPING>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>ultrasonic_DltEcu</SHORT-NAME>
+            <ELEMENTS>
+                <DLT-ECU UUID="6272a0b3-e35f-56db-e85f-3a4106caddb2">
+                    <SHORT-NAME>DefaultDltEcu</SHORT-NAME>
+                    <APPLICATIONS>
+                        <DLT-APPLICATION UUID="e1a0f23e-2506-5e7e-b27a-d7e06450e052">
+                            <SHORT-NAME>DefaultDltApplication</SHORT-NAME>
+                            <APPLICATION-DESCRIPTION>Log messages for adaptive application ultrasonic</APPLICATION-DESCRIPTION>
+                            <APPLICATION-ID>136</APPLICATION-ID>
+                        </DLT-APPLICATION>
+                    </APPLICATIONS>
+                </DLT-ECU>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>ultrasonic_DltLogSink</SHORT-NAME>
+            <ELEMENTS>
+                <DLT-LOG-SINK UUID="0f1f2536-d955-5251-af52-e75c83b2c645">
+                    <SHORT-NAME>DefaultDltLogSink</SHORT-NAME>
+                    <CATEGORY>DLT_LOGSINK_CONSOLE</CATEGORY>
+                    <DEFAULT-LOG-THRESHOLD>WARN</DEFAULT-LOG-THRESHOLD>
+                </DLT-LOG-SINK>
+            </ELEMENTS>
+        </AR-PACKAGE>
+    </AR-PACKAGES>
+</AUTOSAR>

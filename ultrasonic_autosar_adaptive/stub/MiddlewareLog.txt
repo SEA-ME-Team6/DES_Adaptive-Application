@@ -1,0 +1,1 @@
+Simulink block ultrasonic/Brake using DDS topic name 'Brake' for ara::com event communication.

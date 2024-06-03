@@ -1,0 +1,27 @@
+{
+	"RequiredPorts" : {
+		},
+		"ProvidedPorts" : {
+			"1" : {
+				"Binding" : [
+					"SOMEIP"
+				],
+				"EventGroupId" : "8645"
+			}
+		},
+		"InstanceSpecifierToInstanceIdentifiers" : {
+			"ultrasonic/ultrasonic_RootSwComponentPrototype/ProvidedPort" : {
+				"InstanceIdentifiers" : [
+					"1"
+				]
+			}
+		},
+		"PortToInstanceSpecifier" : {
+			"ProvidedPort" : "ultrasonic/ultrasonic_RootSwComponentPrototype/ProvidedPort"
+		},
+		"InstanceToClassTypeMapping" : {
+			"ultrasonic_RootSwComponentPrototype" : "ultrasonic"
+		},
+		"ClassTypeToMembersMapping" : {
+			}
+		}

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Auto generated XML Component Description for model ultrasonic
+Model version                : 1.2
+Simulink Coder version       : Simulink Coder 24.1 (R2024a) 19-Nov-2023
+XML source code generated on : Mon Jun 03 19:08:46 2024
+Model Checksum               : 4207346381 1510395723 3869758370 4248922346
+-->
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00051.xsd">
+    <AR-PACKAGES>
+        <AR-PACKAGE>
+            <SHORT-NAME>ModeDeclarationGroups</SHORT-NAME>
+            <ELEMENTS>
+                <MODE-DECLARATION-GROUP>
+                    <SHORT-NAME>ProcessStateMachine</SHORT-NAME>
+                    <INITIAL-MODE-REF DEST="MODE-DECLARATION">/ModeDeclarationGroups/ProcessStateMachine/Idle</INITIAL-MODE-REF>
+                    <MODE-DECLARATIONS>
+                        <MODE-DECLARATION UUID="772d9c5d-063a-5e43-eef7-190a614826cc">
+                            <SHORT-NAME>Idle</SHORT-NAME>
+                            <VALUE>1</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="422601bd-b8de-5821-6bd2-c2b866a70a5a">
+                            <SHORT-NAME>Starting</SHORT-NAME>
+                            <VALUE>2</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="2a31b41e-632d-5704-1da4-3038cc4ad66e">
+                            <SHORT-NAME>Running</SHORT-NAME>
+                            <VALUE>3</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="161fb60f-004a-5e85-c6c7-235ca8d1f936">
+                            <SHORT-NAME>Terminating</SHORT-NAME>
+                            <VALUE>4</VALUE>
+                        </MODE-DECLARATION>
+                        <MODE-DECLARATION UUID="d1a572b3-70ce-51e3-48f1-6a4200774f01">
+                            <SHORT-NAME>Terminated</SHORT-NAME>
+                            <VALUE>5</VALUE>
+                        </MODE-DECLARATION>
+                    </MODE-DECLARATIONS>
+                </MODE-DECLARATION-GROUP>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>ultrasonic_Executable</SHORT-NAME>
+            <ELEMENTS>
+                <EXECUTABLE UUID="bb9c35b2-a424-5728-0613-b4793f85df73">
+                    <SHORT-NAME>ultrasonic</SHORT-NAME>
+                    <BUILD-TYPE>BUILD-TYPE-DEBUG</BUILD-TYPE>
+                    <ROOT-SW-COMPONENT-PROTOTYPE UUID="96b5c844-7df5-5e5e-62d0-c5e45bc0c7c4">
+                        <SHORT-NAME>ultrasonic_RootSwComponentPrototype</SHORT-NAME>
+                        <APPLICATION-TYPE-TREF DEST="ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE">/Components/ultrasonic</APPLICATION-TYPE-TREF>
+                    </ROOT-SW-COMPONENT-PROTOTYPE>
+                </EXECUTABLE>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>ultrasonic_FunctionGroupSet</SHORT-NAME>
+            <ELEMENTS>
+                <FUNCTION-GROUP-SET UUID="493f0ffa-0e57-5560-147a-040ad0a4acbb">
+                    <SHORT-NAME>DefaultFunctionGroupSet</SHORT-NAME>
+                    <FUNCTION-GROUPS>
+                        <MODE-DECLARATION-GROUP-PROTOTYPE UUID="ffa2a7ec-a336-599f-9b9c-930903dc9f17">
+                            <SHORT-NAME>MachineFG</SHORT-NAME>
+                            <SW-CALIBRATION-ACCESS>READ-ONLY</SW-CALIBRATION-ACCESS>
+                            <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/MachineStates/MachineFG</TYPE-TREF>
+                        </MODE-DECLARATION-GROUP-PROTOTYPE>
+                    </FUNCTION-GROUPS>
+                </FUNCTION-GROUP-SET>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>ultrasonic_ProcessDesigns</SHORT-NAME>
+            <ELEMENTS>
+                <PROCESS-DESIGN UUID="2118f494-b3ec-58c6-8e98-bda652973eea">
+                    <SHORT-NAME>DefaultProcessDesign</SHORT-NAME>
+                    <EXECUTABLE-REFS>
+                        <EXECUTABLE-REF DEST="EXECUTABLE">/ultrasonic_Executable/ultrasonic</EXECUTABLE-REF>
+                    </EXECUTABLE-REFS>
+                </PROCESS-DESIGN>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>ultrasonic_ProcessToMachineMappingSet</SHORT-NAME>
+            <ELEMENTS>
+                <PROCESS-TO-MACHINE-MAPPING-SET UUID="f6606eee-7557-5123-12ca-4bb14a902ca9">
+                    <SHORT-NAME>ProcessToMachineMappingSet</SHORT-NAME>
+                    <PROCESS-TO-MACHINE-MAPPINGS>
+                        <PROCESS-TO-MACHINE-MAPPING UUID="b4d57d05-02d9-5799-570d-368cfbf9dabb">
+                            <SHORT-NAME>DefaultMapping</SHORT-NAME>
+                            <MACHINE-REF DEST="MACHINE">/Machines/Host</MACHINE-REF>
+                            <PROCESS-REF DEST="PROCESS">/ultrasonic_Processes/DefaultInstance</PROCESS-REF>
+                        </PROCESS-TO-MACHINE-MAPPING>
+                    </PROCESS-TO-MACHINE-MAPPINGS>
+                </PROCESS-TO-MACHINE-MAPPING-SET>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>ultrasonic_Processes</SHORT-NAME>
+            <ELEMENTS>
+                <PROCESS UUID="67d03e40-46c5-595a-4338-44ab135a8bca">
+                    <SHORT-NAME>DefaultInstance</SHORT-NAME>
+                    <DESIGN-REF DEST="PROCESS-DESIGN">/ultrasonic_ProcessDesigns/DefaultProcessDesign</DESIGN-REF>
+                    <EXECUTABLE-REFS>
+                        <EXECUTABLE-REF DEST="EXECUTABLE">/ultrasonic_Executable/ultrasonic</EXECUTABLE-REF>
+                    </EXECUTABLE-REFS>
+                    <PROCESS-STATE-MACHINE UUID="b8ea776a-47e6-5eaa-dd69-18f90334b80e">
+                        <SHORT-NAME>ProcessStateMachine_ModeDeclarationGroupElement</SHORT-NAME>
+                        <SW-CALIBRATION-ACCESS>READ-ONLY</SW-CALIBRATION-ACCESS>
+                        <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/ModeDeclarationGroups/ProcessStateMachine</TYPE-TREF>
+                    </PROCESS-STATE-MACHINE>
+                    <STATE-DEPENDENT-STARTUP-CONFIGS>
+                        <STATE-DEPENDENT-STARTUP-CONFIG>
+                            <FUNCTION-GROUP-STATE-IREFS>
+                                <FUNCTION-GROUP-STATE-IREF>
+                                    <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/ultrasonic_FunctionGroupSet/DefaultFunctionGroupSet/MachineFG</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                                    <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/MachineStates/MachineFG/Running</TARGET-MODE-DECLARATION-REF>
+                                </FUNCTION-GROUP-STATE-IREF>
+                            </FUNCTION-GROUP-STATE-IREFS>
+                            <RESOURCE-GROUP-REF DEST="RESOURCE-GROUP">/Machines/Host/HostOsInstantiation/DefaultResourceGroup</RESOURCE-GROUP-REF>
+                            <STARTUP-CONFIG-REF DEST="STARTUP-CONFIG">/ultrasonic_StartupConfigs/StartupConfigRR</STARTUP-CONFIG-REF>
+                        </STATE-DEPENDENT-STARTUP-CONFIG>
+                    </STATE-DEPENDENT-STARTUP-CONFIGS>
+                </PROCESS>
+            </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+            <SHORT-NAME>ultrasonic_StartupConfigs</SHORT-NAME>
+            <ELEMENTS>
+                <STARTUP-CONFIG UUID="5e1202b7-3f9f-5f88-cf16-703247bf79e5">
+                    <SHORT-NAME>StartupConfigRR</SHORT-NAME>
+                    <PROCESS-ARGUMENTS>
+                        <PROCESS-ARGUMENT>
+                            <ARGUMENT>-s</ARGUMENT>
+                        </PROCESS-ARGUMENT>
+                        <PROCESS-ARGUMENT>
+                            <ARGUMENT>ServiceInstanceManifest.json</ARGUMENT>
+                        </PROCESS-ARGUMENT>
+                        <PROCESS-ARGUMENT>
+                            <ARGUMENT>-e</ARGUMENT>
+                        </PROCESS-ARGUMENT>
+                        <PROCESS-ARGUMENT>
+                            <ARGUMENT>ExecutionManifest.json</ARGUMENT>
+                        </PROCESS-ARGUMENT>
+                    </PROCESS-ARGUMENTS>
+                    <SCHEDULING-POLICY>SCHEDULING-POLICY-ROUND-ROBIN</SCHEDULING-POLICY>
+                    <SCHEDULING-PRIORITY>32</SCHEDULING-PRIORITY>
+                </STARTUP-CONFIG>
+                <STARTUP-CONFIG UUID="b2c7f717-fef8-53a2-4ef5-9e702588a32e">
+                    <SHORT-NAME>StartupConfigFifo</SHORT-NAME>
+                    <PROCESS-ARGUMENTS>
+                        <PROCESS-ARGUMENT>
+                            <ARGUMENT>-s</ARGUMENT>
+                        </PROCESS-ARGUMENT>
+                        <PROCESS-ARGUMENT>
+                            <ARGUMENT>ServiceInstanceManifest.json</ARGUMENT>
+                        </PROCESS-ARGUMENT>
+                        <PROCESS-ARGUMENT>
+                            <ARGUMENT>-e</ARGUMENT>
+                        </PROCESS-ARGUMENT>
+                        <PROCESS-ARGUMENT>
+                            <ARGUMENT>ExecutionManifest.json</ARGUMENT>
+                        </PROCESS-ARGUMENT>
+                    </PROCESS-ARGUMENTS>
+                    <SCHEDULING-POLICY>SCHEDULING-POLICY-FIFO</SCHEDULING-POLICY>
+                    <SCHEDULING-PRIORITY>32</SCHEDULING-PRIORITY>
+                </STARTUP-CONFIG>
+                <STARTUP-CONFIG UUID="247556b0-7ef2-5358-0e4a-e24b307cdfab">
+                    <SHORT-NAME>StartupConfigOther</SHORT-NAME>
+                    <PROCESS-ARGUMENTS>
+                        <PROCESS-ARGUMENT>
+                            <ARGUMENT>-s</ARGUMENT>
+                        </PROCESS-ARGUMENT>
+                        <PROCESS-ARGUMENT>
+                            <ARGUMENT>ServiceInstanceManifest.json</ARGUMENT>
+                        </PROCESS-ARGUMENT>
+                        <PROCESS-ARGUMENT>
+                            <ARGUMENT>-e</ARGUMENT>
+                        </PROCESS-ARGUMENT>
+                        <PROCESS-ARGUMENT>
+                            <ARGUMENT>ExecutionManifest.json</ARGUMENT>
+                        </PROCESS-ARGUMENT>
+                    </PROCESS-ARGUMENTS>
+                    <SCHEDULING-POLICY>SCHEDULING-POLICY-OTHER</SCHEDULING-POLICY>
+                    <SCHEDULING-PRIORITY>32</SCHEDULING-PRIORITY>
+                </STARTUP-CONFIG>
+            </ELEMENTS>
+        </AR-PACKAGE>
+    </AR-PACKAGES>
+</AUTOSAR>
