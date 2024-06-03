@@ -21,6 +21,7 @@
 
 #include "control.h"
 #include <stdint.h>
+#include <iostream>
 
 void control::RequiredPortSvcHandler(ara::com::ServiceHandleContainer< proxy::
   RequiredInterfaceProxy::HandleType > svcHandles, const ara::com::
@@ -38,6 +39,7 @@ void control::RequiredPortLKASReceive(ara::com::SamplePtr< proxy::events::LKAS::
   SampleType const > elementPtr)
 {
   *elementPtr;
+  std::cout << "Send messages: " << *elementPtr << std::endl;
 }
 
 // Model step function
@@ -60,7 +62,7 @@ void control::initialize()
   // Initialize service requester instance - RequiredPort
   proxy::RequiredInterfaceProxy::StartFindService(std::move(std::bind(&control::
     RequiredPortSvcHandler, this, std::placeholders::_1, std::placeholders::_2)),
-    ara::com::InstanceIdentifier(ara::core::StringView("1")));
+    ara::com::InstanceIdentifier(std::string("1")));
 }
 
 // Model terminate function

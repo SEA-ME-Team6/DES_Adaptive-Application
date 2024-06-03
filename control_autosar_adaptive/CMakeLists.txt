@@ -40,6 +40,9 @@ endif()
 ## System Libraries
 ###########################################################################
 find_library(FOUND_LIBM m NO_SYSTEM_ENVIRONMENT_PATH PATHS ${CMAKE_C_IMPLICIT_LINK_DIRECTORIES} ${CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES})
+find_package(Threads REQUIRED)
+find_package(Boost 1.55 COMPONENTS system thread log REQUIRED)
+find_package(vsomeip3 REQUIRED)
 
 ###########################################################################
 ## Target definition and commands
@@ -51,9 +54,23 @@ if(NOT TARGET rtwshared)
     add_subdirectory(../slprj/autosar_adaptive/_sharedutils ${BINARY_START_DIR}/slprj/autosar_adaptive/_sharedutils)
 endif()
 
+file(GLOB ARA_COM_SOURCES "${CMAKE_SOURCE_DIR}/ara/com/*.cpp")
+file(GLOB ARA_COM_VSOMEIP_SOURCES "${CMAKE_SOURCE_DIR}/ara/com/vsomeip/*.cpp")
+file(GLOB ARA_CORE_SOURCES "${CMAKE_SOURCE_DIR}/ara/core/*.cpp")
+# file(GLOB ARA_DIAG_SOURCES "${CMAKE_SOURCE_DIR}/ara/diag/*.cpp")
+# file(GLOB ARA_EXEC_SOURCES "${CMAKE_SOURCE_DIR}/ara/exec/*.cpp")
+file(GLOB ARA_LOG_SOURCES "${CMAKE_SOURCE_DIR}/ara/log/*.cpp")
+
 # Definition of target "control".
-add_executable(control  ${START_DIR}/control_autosar_adaptive/control.cpp
-    ${START_DIR}/control_autosar_adaptive/main.cpp)
+add_executable(control
+    main.cpp
+    control.cpp
+    ${ARA_COM_SOURCES}
+    ${ARA_COM_VSOMEIP_SOURCES}
+    ${ARA_CORE_SOURCES}
+    # ${ARA_DIAG_SOURCES}
+    # ${ARA_EXEC_SOURCES}
+    ${ARA_LOG_SOURCES})
 
 # Set properties for target "control".
 set_target_properties(control PROPERTIES PREFIX ""
@@ -81,6 +98,16 @@ target_compile_definitions(control PRIVATE -DMODEL=control
     -DINTEGER_CODE=0
     -DMT=0)
 
+include_directories(
+    ${Boost_INCLUDE_DIR}
+    ${CMAKE_SOURCE_DIR}/ara/com
+    ${CMAKE_SOURCE_DIR}/ara/core
+    # ${CMAKE_SOURCE_DIR}/ara/diag
+    # ${CMAKE_SOURCE_DIR}/ara/exec
+    ${CMAKE_SOURCE_DIR}/ara/log
+    ${CMAKE_SOURCE_DIR}/slprj/autosar_adaptive/_sharedutils
+)
+
 # Specify include directories for target "control".
 target_include_directories(control PRIVATE ${START_DIR}
     ${START_DIR}/control_autosar_adaptive
@@ -101,7 +128,10 @@ target_link_libraries(control PRIVATE rtwshared
     $<$<BOOL:${WIN32}>:kernel32>
     $<$<BOOL:${WIN32}>:ws2_32>
     $<$<BOOL:${WIN32}>:mswsock>
-    $<$<BOOL:${WIN32}>:advapi32>)
+    $<$<BOOL:${WIN32}>:advapi32>
+    Threads::Threads
+    ${Boost_LIBRARIES}
+    vsomeip3)
 
 # Extract DWARF debug symbols into a separate file when building 
 # executable programs for Apple platforms.
