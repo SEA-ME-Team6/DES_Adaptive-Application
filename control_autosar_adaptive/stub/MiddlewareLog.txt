@@ -1,0 +1,1 @@
+Simulink block control/LKAS using SOME/IP EventId '14859' and EventGroupId '14859' for ara::com event communication.
