@@ -1,7 +1,7 @@
 #ifndef SKELETION_EVENT_H
 #define SKELETION_EVENT_H
 
-#include "./handle_type.h"
+#include "./service_handle_type.h"
 #include "./sample_allocate_ptr.h"
 #include "./vsomeip/vsomeip_server.h"
 

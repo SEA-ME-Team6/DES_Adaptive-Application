@@ -15,7 +15,7 @@
 #include "ara/com/instance_identifier.h"
 #include "ara/com/instance_identifier_container.h"
 #include "ara/com/resolve_instance.h"
-#include "ara/com/handle_type.h"
+#include "ara/com/service_handle_type.h"
 // #include "providedinterface_common.h"
 
 namespace skeleton

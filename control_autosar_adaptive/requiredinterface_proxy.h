@@ -12,7 +12,7 @@
 #include <memory>
 #include <utility>
 #include "ara/com/proxy_event.h"
-#include "ara/com/handle_type.h"
+#include "ara/com/service_handle_type.h"
 #include "ara/com/service_handle_container.h"
 #include "ara/com/find_service_handle.h"
 #include "ara/com/service_factory.h"
@@ -67,7 +67,7 @@ namespace proxy
     {
       ara::com::ServiceHandleContainer<RequiredInterfaceProxy::HandleType>
         retResult;
-      // retResult.push_back(ara::com::ServiceFactory::FindService(instance));
+      retResult.push_back(ara::com::ServiceFactory::FindService(instance));
       return ara::core::Result<ara::com::ServiceHandleContainer<
         RequiredInterfaceProxy::HandleType>>{ retResult };
     }

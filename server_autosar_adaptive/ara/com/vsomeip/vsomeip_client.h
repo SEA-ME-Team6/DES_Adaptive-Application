@@ -17,10 +17,9 @@
 
 #include <vsomeip/vsomeip.hpp>
 
-#include "../handle_type.h"
+#include "../service_handle_type.h"
 #include "../service_handle_container.h"
 #include "../find_service_handle.h"
-#include "../handle_type.h"
 #include "../instance_identifier.h"
 
 namespace ara
