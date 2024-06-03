@@ -1,0 +1,10 @@
+{
+	"Process" : {
+		"Name" : "DefaultInstance",
+		"LogTraceProcessDesc" : "Log messages for adaptive application ultrasonic",
+		"LogTraceProcessId" : "9318",
+		"LogTraceDefaultLogLevel" : "Warn",
+		"LogTraceLogMode" : "Console",
+		"LogTraceFilePath" : ""
+	}
+}

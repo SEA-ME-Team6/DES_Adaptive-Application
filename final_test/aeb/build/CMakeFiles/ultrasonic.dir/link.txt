@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/ultrasonic.dir/ultrasonic.cpp.o CMakeFiles/ultrasonic.dir/main.cpp.o  -o ultrasonic   -L/usr/local/MATLAB/R2024a/bin/glnxa64  -Wl,-rpath,/usr/local/MATLAB/R2024a/bin/glnxa64 /usr/lib/x86_64-linux-gnu/libpthread.so /usr/lib/x86_64-linux-gnu/librt.so -lm 

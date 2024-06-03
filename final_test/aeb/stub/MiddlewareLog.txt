@@ -1,0 +1,1 @@
+Simulink block ultrasonic/Brake using SOME/IP EventId '8645' and EventGroupId '8645' for ara::com event communication.

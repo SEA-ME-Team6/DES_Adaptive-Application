@@ -1,0 +1,16 @@
+{
+	"unicast" : "127.000.000.001",
+	"applications" : [
+		{
+			"name" : "ultrasonic",
+			"id" : "0x2466"
+		}
+	],
+	"services" : [
+		{
+			"service" : "0x1",
+			"instance" : "0x1",
+			"unreliable" : "30001"
+		}
+	]
+}

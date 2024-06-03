@@ -1,0 +1,21 @@
+{
+	"RequiredPorts" : {
+		},
+		"ProvidedPorts" : {
+			},
+			"InstanceSpecifierToInstanceIdentifiers" : {
+				"ultrasonic/ultrasonic_RootSwComponentPrototype/ProvidedPort" : {
+					"InstanceIdentifiers" : [
+						"1"
+					]
+				}
+			},
+			"PortToInstanceSpecifier" : {
+				"ProvidedPort" : "ultrasonic/ultrasonic_RootSwComponentPrototype/ProvidedPort"
+			},
+			"InstanceToClassTypeMapping" : {
+				"ultrasonic_RootSwComponentPrototype" : "ultrasonic"
+			},
+			"ClassTypeToMembersMapping" : {
+				}
+			}
