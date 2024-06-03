@@ -7,9 +7,9 @@
 //
 //  Code generation for model "ultrasonic".
 //
-//  Model version              : 1.1
+//  Model version              : 1.2
 //  Simulink Coder version : 24.1 (R2024a) 19-Nov-2023
-//  C++ source code generated on : Mon Jun  3 18:59:03 2024
+//  C++ source code generated on : Mon Jun  3 19:16:19 2024
 //
 //  Target selection: autosar_adaptive.tlc
 //  Embedded hardware selection: ARM Compatible->ARM Cortex-A (64-bit)

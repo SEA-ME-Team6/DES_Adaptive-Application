@@ -1,5 +1,5 @@
 /* Code generated for Simulink model ultrasonic */
-/* Generated on Mon Jun 03 19:08:45 2024 */
+/* Generated on Mon Jun 03 19:16:21 2024 */
 
 #include <cstdint>
 #include <exception>

@@ -5,7 +5,7 @@
 
    Code generated for Simulink Adaptive model: "ultrasonic"
    AUTOSAR AP Release: "22-11"
-   On: "Mon Jun 03 18:59:05 2024"  */
+   On: "Mon Jun 03 19:16:22 2024"  */
 
 #ifndef PROVIDEDINTERFACE_SKELETON_H_
 #define PROVIDEDINTERFACE_SKELETON_H_
@@ -61,14 +61,12 @@ namespace skeleton
     inline ara::core::Result<void> OfferService()
     {
       ara::com::ServiceFactory::CreateService(mHndl);
-      std::string sTopicName;
-      mMethodMiddleware.reset(ara::com::MethodFactory::CreateSkeletonMethod<
-        ProvidedInterfaceSkeleton, skeleton_io::
-        ProvidedInterfaceSkeleton_mthd_dispatcher_t>(mMethodProcMode, this,
-        mHndl));
-      sTopicName = "Brake";
+      uint16_t mEventId, mEventGroupId;
+      uint16_t mMethodId;
+      mEventId = 8645;
+      mEventGroupId = 8645;
       Brake.Init(ara::com::EventFactory::CreateSkeletonEvent<double, skeleton_io::
-                 ProvidedInterface_Brake_t>(mHndl, sTopicName));
+                 ProvidedInterface_Brake_t>(mHndl, mEventId, mEventGroupId));
       return ara::core::Result<void>::FromValue();
     }
 

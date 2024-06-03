@@ -12,8 +12,8 @@ This file is the manifest for the generated code from model 'ultrasonic'.
 /home/dahyun/temp2/ultrasonic_autosar_adaptive/PosixExecutor.hpp
 /home/dahyun/temp2/ultrasonic_autosar_adaptive/Timer.hpp
 /home/dahyun/temp2/ultrasonic_autosar_adaptive/WorkerPool.hpp
-/home/dahyun/temp2/ultrasonic_autosar_adaptive/stub/aragen/ProvidedInterface_araDynamicEventDDS.h
-/home/dahyun/temp2/ultrasonic_autosar_adaptive/stub/aragen/ProvidedInterface_araDynamicMethodDDS.h
+/home/dahyun/temp2/ultrasonic_autosar_adaptive/stub/aragen/ProvidedInterface_araDynamicEventSOMEIP.h
+/home/dahyun/temp2/ultrasonic_autosar_adaptive/stub/aragen/ProvidedInterface_araDynamicMethodSOMEIP.h
 /home/dahyun/temp2/ultrasonic_autosar_adaptive/ultrasonic_ExecutionManifest.arxml
 /home/dahyun/temp2/ultrasonic_autosar_adaptive/ultrasonic_ServiceInstanceManifest.arxml
 /home/dahyun/temp2/ultrasonic_autosar_adaptive/ultrasonic_component.arxml

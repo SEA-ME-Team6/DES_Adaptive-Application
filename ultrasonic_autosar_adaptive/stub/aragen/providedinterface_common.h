@@ -5,7 +5,7 @@
 
    Code generated for Simulink Adaptive model: "ultrasonic"
    AUTOSAR AP Release: "22-11"
-   On: "Mon Jun 03 18:59:05 2024"  */
+   On: "Mon Jun 03 19:16:22 2024"  */
 
 #ifndef PROVIDEDINTERFACE_COMMON_H_
 #define PROVIDEDINTERFACE_COMMON_H_
@@ -15,16 +15,8 @@
 #include "ara/core/promise.h"
 #include "ara/com/types.h"
 #include "MiddlewareFactories.h"
-#include <fastrtps/types/DynamicData.h>
-#include <fastrtps/types/DynamicPubSubType.h>
-#include <fastrtps/types/DynamicTypeBuilderFactory.h>
-#include <fastrtps/types/DynamicDataFactory.h>
-#include <fastrtps/types/DynamicTypeBuilderPtr.h>
-#include <fastrtps/types/TypeIdentifier.h>
 #include "DDSEndianHelper.h"
 #include "DDSSerializer.h"
-#include "AdaptiveAUTOSARDDSIdl.h"
-#include "AdaptiveAUTOSARDDSIdlPubSubTypes.h"
-#include "ProvidedInterface_araDynamicEventDDS.h"
-#include "ProvidedInterface_araDynamicMethodDDS.h"
+#include "ProvidedInterface_araDynamicEventSOMEIP.h"
+#include "ProvidedInterface_araDynamicMethodSOMEIP.h"
 #endif
