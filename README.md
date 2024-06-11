@@ -24,8 +24,9 @@ Adaptive AUTOSAR finds applications across various domains within the automotive
 
 These are the two application we devoloped in this project with **Simulink**:  
 
-1. **LKAS**
-2. **AEB**
+**1. [LKAS](https://github.com/SEA-ME-Team6/DES_Adaptive-Application/blob/main/LKAS.md)**
+</br>
+**2. [AEB](https://github.com/SEA-ME-Team6/DES_Adaptive-Application/blob/main/AEB.md)**
 </br>
 
 
